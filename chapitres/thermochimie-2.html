@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>12&nbsp; Thermochimie 2 – Projet-Balmer</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapitres/vitesse-de-reaction.html" rel="next">
+<link href="../chapitres/thermochimie-1.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3d497cff885f6278d37568d0ef0763f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mhchem']},
+  tex: {packages: {'[+]': ['mhchem']}}
+};
+</script>
+<style>
+.quarto-figure img, main img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+.qcm-widget { margin: 1rem 0; padding: 0.75rem 1rem; border: 1px solid #ddd; border-radius: 8px; }
+.qcm-widget .qcm-label { font-size: 13px; color: #666; margin-bottom: 8px; }
+.qcm-widget button { display: block; width: 100%; text-align: left; margin: 4px 0; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; }
+.qcm-widget .qcm-feedback { margin-top: 8px; font-size: 14px; }
+.hist-note-name { color: inherit; text-decoration: none; border-bottom: 1px dotted #8a5a00; cursor: pointer; }
+.hist-note-name:hover { border-bottom-style: solid; }
+.hist-note { text-decoration: none; font-size: 0.75em; vertical-align: super; margin-left: 2px; color: #8a5a00; border-bottom: none; }
+.hist-note:hover { text-decoration: underline; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.qcm-widget').forEach(function(el) {
+    var options = JSON.parse(el.getAttribute('data-options'));
+    var correct = parseInt(el.getAttribute('data-correct'), 10);
+    var answered = false;
+    var label = document.createElement('div');
+    label.className = 'qcm-label';
+    label.textContent = 'Vérifier ma réponse';
+    el.appendChild(label);
+    var feedback = document.createElement('div');
+    feedback.className = 'qcm-feedback';
+    options.forEach(function(opt, i) {
+      var btn = document.createElement('button');
+      btn.textContent = opt;
+      btn.onclick = function() {
+        if (answered) return;
+        answered = true;
+        el.querySelectorAll('button').forEach(function(b) { b.disabled = true; });
+        if (i === correct) {
+          btn.style.borderColor = '#2e7d32';
+          btn.style.background = '#e8f5e9';
+          feedback.textContent = 'Correct.';
+          feedback.style.color = '#2e7d32';
+        } else {
+          btn.style.borderColor = '#c62828';
+          btn.style.background = '#ffebee';
+          feedback.textContent = 'Pas tout à fait — bonne réponse : ' + options[correct];
+          feedback.style.color = '#c62828';
+        }
+      };
+      el.appendChild(btn);
+    });
+    el.appendChild(feedback);
+  });
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapitres/thermochimie-2.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Thermochimie 2</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Recherche" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Projet-Balmer</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Recherche"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Historique Tome 1 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/atomes-quantite-de-matiere.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Atomes et quantité de matière</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-sels-molecules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Liaisons, sels et molécules</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-intermoleculaires.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Liaisons intermoléculaires</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-chimiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformations chimiques et stœchiométrie</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-physiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transformations physiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/oxydo-reduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Oxydoréduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/electrochimie-piles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Électrochimie et piles</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acido-basiques-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction aux équilibres acido-basiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Historique Tome 2 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Thermochimie 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Thermochimie 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/vitesse-de-reaction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Vitesse de réaction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Équilibre chimique 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Équilibre chimique 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acides-bases-ph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Acides, bases et pH</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/chimie-organique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Chimie organique</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#la-spontanéité-pourquoi-lénergie-ne-suffit-pas" id="toc-la-spontanéité-pourquoi-lénergie-ne-suffit-pas" class="nav-link active" data-scroll-target="#la-spontanéité-pourquoi-lénergie-ne-suffit-pas"><span class="header-section-number">12.0.1</span> La spontanéité : pourquoi l’énergie ne suffit pas</a></li>
+  <li><a href="#lentropie-désordre-et-énergie-non-utilisable" id="toc-lentropie-désordre-et-énergie-non-utilisable" class="nav-link" data-scroll-target="#lentropie-désordre-et-énergie-non-utilisable"><span class="header-section-number">12.0.2</span> L’entropie : désordre et énergie non utilisable</a></li>
+  <li><a href="#le-troisième-principe-et-lentropie-absolue" id="toc-le-troisième-principe-et-lentropie-absolue" class="nav-link" data-scroll-target="#le-troisième-principe-et-lentropie-absolue"><span class="header-section-number">12.0.3</span> Le troisième principe et l’entropie absolue</a></li>
+  <li><a href="#variation-qualitative-dentropie-de-réaction" id="toc-variation-qualitative-dentropie-de-réaction" class="nav-link" data-scroll-target="#variation-qualitative-dentropie-de-réaction"><span class="header-section-number">12.0.4</span> Variation qualitative d’entropie de réaction</a></li>
+  <li><a href="#variation-quantitative-dentropie-de-réaction" id="toc-variation-quantitative-dentropie-de-réaction" class="nav-link" data-scroll-target="#variation-quantitative-dentropie-de-réaction"><span class="header-section-number">12.0.5</span> Variation quantitative d’entropie de réaction</a></li>
+  <li><a href="#lenthalpie-libre-de-gibbs" id="toc-lenthalpie-libre-de-gibbs" class="nav-link" data-scroll-target="#lenthalpie-libre-de-gibbs"><span class="header-section-number">12.0.6</span> L’enthalpie libre de Gibbs</a></li>
+  <li><a href="#lien-entre-lenthalpie-libre-et-la-constante-déquilibre" id="toc-lien-entre-lenthalpie-libre-et-la-constante-déquilibre" class="nav-link" data-scroll-target="#lien-entre-lenthalpie-libre-et-la-constante-déquilibre"><span class="header-section-number">12.0.7</span> Lien entre l’enthalpie libre et la constante d’équilibre</a></li>
+  <li><a href="#variation-de-la-constante-déquilibre-avec-la-température" id="toc-variation-de-la-constante-déquilibre-avec-la-température" class="nav-link" data-scroll-target="#variation-de-la-constante-déquilibre-avec-la-température"><span class="header-section-number">12.0.8</span> Variation de la constante d’équilibre avec la température</a></li>
+  <li><a href="#défi-a-synthèse-industrielle-du-méthanol" id="toc-défi-a-synthèse-industrielle-du-méthanol" class="nav-link" data-scroll-target="#défi-a-synthèse-industrielle-du-méthanol"><span class="header-section-number">12.0.9</span> Défi A — Synthèse industrielle du méthanol</a></li>
+  <li><a href="#défi-b-études-thermochimiques-comparées" id="toc-défi-b-études-thermochimiques-comparées" class="nav-link" data-scroll-target="#défi-b-études-thermochimiques-comparées"><span class="header-section-number">12.0.10</span> Défi B — Études thermochimiques comparées</a></li>
+  <li><a href="#défi-c-température-dinversion-et-optimisation" id="toc-défi-c-température-dinversion-et-optimisation" class="nav-link" data-scroll-target="#défi-c-température-dinversion-et-optimisation"><span class="header-section-number">12.0.11</span> Défi C — Température d’inversion et optimisation</a></li>
+  <li><a href="#mots-clés" id="toc-mots-clés" class="nav-link" data-scroll-target="#mots-clés"><span class="header-section-number">12.1</span> Mots-clés</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Thermochimie 2</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Confort —</strong> Au chapitre précédent, vous avez appris à quantifier les échanges d’énergie d’une réaction chimique à travers l’enthalpie <span class="math inline">\(\Delta_r H^\circ\)</span>. Vous savez calculer une enthalpie de réaction à partir des enthalpies de formation tabulées, et interpréter son signe : une réaction exothermique libère de la chaleur, une réaction endothermique en absorbe.</p>
+<p><strong>Proximal —</strong> Ce chapitre introduit une deuxième grandeur thermodynamique : l’entropie <span class="math inline">\(S\)</span>, qui mesure le degré de désordre d’un système. Vous verrez que la spontanéité d’une réaction ne dépend pas uniquement de son enthalpie. Le bilan entre ces deux contributions est résumé par l’enthalpie libre de Gibbs <span class="math inline">\(\Delta_r G^\circ\)</span> : une grandeur unique qui prédit dans quel sens une réaction se déroule spontanément, et à quelle température ce sens peut s’inverser.</p>
+<p><strong>Dépassement —</strong> À la fin de ce chapitre, vous serez capable de calculer <span class="math inline">\(\Delta_r S^\circ\)</span> et <span class="math inline">\(\Delta_r G^\circ\)</span> à partir de tables thermodynamiques, de relier l’enthalpie libre à la constante d’équilibre <span class="math inline">\(K\)</span> d’une réaction (notion approfondie au chapitre suivant), et de prévoir comment <span class="math inline">\(K\)</span> évolue avec la température à l’aide de l’approximation d’Ellingham ou de la relation de Van’t Hoff.</p>
+<p><strong>Vous savez déjà que…</strong></p>
+<ul>
+<li>L’enthalpie de réaction <span class="math inline">\(\Delta_r H^\circ\)</span> quantifie l’énergie échangée sous forme de chaleur lors d’une réaction chimique.</li>
+<li>Une réaction exothermique (<span class="math inline">\(\Delta_r H^\circ &lt; 0\)</span>) libère de la chaleur vers l’environnement ; une réaction endothermique (<span class="math inline">\(\Delta_r H^\circ &gt; 0\)</span>) en absorbe.</li>
+<li><span class="math inline">\(\Delta_r H^\circ\)</span> se calcule comme la différence entre la somme des enthalpies de formation des produits et celle des réactifs, pondérées par leurs coefficients stœchiométriques.</li>
+<li>Les tables thermodynamiques fournissent les valeurs de <span class="math inline">\(\Delta_f H^\circ\)</span> pour les corps purs aux conditions standards (298 K, 101,3 kPa).</li>
+</ul>
+<p><strong>Mini-test de positionnement — répondez avant de continuer :</strong></p>
+<ol type="1">
+<li>La combustion du méthane a <span class="math inline">\(\Delta_r H^\circ = -890\ \text{kJ/mol}\)</span>. La réaction est-elle exo- ou endothermique ? Le système cède-t-il de la chaleur à l’environnement, ou en absorbe-t-il ?</li>
+<li>Pourquoi <span class="math inline">\(\Delta_f H^\circ(\ce{O2(g)}) = 0\)</span> par convention ?</li>
+<li>Une réaction est endothermique. Peut-elle néanmoins se produire spontanément ? Justifiez intuitivement.</li>
+</ol>
+<p><em>Si vous répondez sans hésiter -&gt; vous êtes dans votre zone de confort, passez directement à la Zone 2.</em></p>
+<section id="la-spontanéité-pourquoi-lénergie-ne-suffit-pas" class="level3" data-number="12.0.1">
+<h3 data-number="12.0.1" class="anchored" data-anchor-id="la-spontanéité-pourquoi-lénergie-ne-suffit-pas"><span class="header-section-number">12.0.1</span> La spontanéité : pourquoi l’énergie ne suffit pas</h3>
+<p><strong>Conception courante :</strong> on croit souvent qu’une réaction se produit spontanément parce qu’elle libère de l’énergie — autrement dit, qu’une réaction exothermique est toujours spontanée et qu’une réaction endothermique ne l’est jamais. C’est faux : la glace fond spontanément à température ambiante, alors que la fusion est endothermique (<span class="math inline">\(\Delta_r H^\circ &gt; 0\)</span>). L’enthalpie seule ne prédit pas le sens d’une réaction.</p>
+<p><strong>Au niveau macroscopique :</strong> les transformations se produisent toujours dans un sens précis et spontané. La chaleur s’écoule d’un corps chaud vers un corps froid — jamais l’inverse. L’air d’un ballon gonflé s’échappe lorsqu’on relâche l’embout — jamais l’air ambiant ne comprime spontanément un ballon vide. Ces sens favorables s’observent dans la très grande majorité des transformations physiques et chimiques.</p>
+<p><strong>Au niveau particulaire :</strong> à l’échelle moléculaire, un processus spontané correspond à une évolution vers un état qui peut être réalisé par un plus grand nombre de configurations de particules. Un gaz qui se détend occupe un volume plus grand — il existe beaucoup plus de façons de répartir ses molécules dans ce volume que dans le volume initial. C’est cette tendance vers les états les plus probables qui dirige le sens spontané d’une transformation. Le premier principe — conservation de l’énergie — ne dit rien sur cette direction. Il faut un second principe.</p>
+<p><strong>Formalisation :</strong> le deuxième principe de la thermodynamique énonce que toute transformation spontanée s’effectue avec une <strong>augmentation de l’entropie globale</strong> <span class="math inline">\(S_\text{créée}\)</span>, définie comme la somme des variations d’entropie du système et du milieu extérieur :</p>
+<p><span class="math display">\[S_\text{créée} = \Delta S_\text{sys} + \Delta S_\text{ext} &gt; 0
+\]</span> {#eq:second-principe}</p>
+<p>Le signe de <span class="math inline">\(S_\text{créée}\)</span> caractérise le processus :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(S_\text{créée}\)</span></th>
+<th>Nature du processus</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(= 0\)</span></td>
+<td>Processus réversible — système à l’équilibre</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(&gt; 0\)</span></td>
+<td>Processus irréversible — transformation spontanée</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(&lt; 0\)</span></td>
+<td>Processus impossible dans ce sens</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Attention :</strong> <span class="math inline">\(S_\text{créée}\)</span> est toujours calculée pour le système <em>et</em> son environnement ensemble — jamais pour le système seul. Un système peut perdre de l’entropie (<span class="math inline">\(\Delta S_\text{sys} &lt; 0\)</span>) lors d’un processus spontané, à condition que le milieu extérieur en gagne davantage.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Une transformation a <span class="math inline">\(S_\text{créée} = -12\ \text{J/K}\)</span>. Est-elle spontanée ? Justifiez.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li>La chaleur s’écoule spontanément d’un corps chaud vers un corps froid. Quel est le signe de <span class="math inline">\(S_\text{créée}\)</span> pour ce processus ?<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
+<li>Le système seul perd <span class="math inline">\(\Delta S_\text{sys} = -50\ \text{J/K}\)</span> lors d’une transformation. Cette transformation peut-elle être spontanée ? À quelle condition ?<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+</ol>
+</section>
+<section id="lentropie-désordre-et-énergie-non-utilisable" class="level3" data-number="12.0.2">
+<h3 data-number="12.0.2" class="anchored" data-anchor-id="lentropie-désordre-et-énergie-non-utilisable"><span class="header-section-number">12.0.2</span> L’entropie : désordre et énergie non utilisable</h3>
+<p><strong>Conception courante :</strong> on assimile souvent l’entropie au désordre d’une pièce mal rangée ou d’un tiroir en vrac. Cette image est utile comme point de départ, mais sa limite est importante : le désordre dont parle l’entropie est celui des particules à l’échelle moléculaire — le nombre de configurations microscopiques possibles — et non l’arrangement visible à l’œil nu. Une pièce bien rangée peut contenir un gaz à haute entropie ; un cristal parfaitement ordonné a une entropie nulle à <span class="math inline">\(0\ \text{K}\)</span>.</p>
+<p><strong>Au niveau macroscopique :</strong> l’entropie a été introduite en 1865 par Rudolf Clausius. C’est une <strong>fonction d’état extensive</strong> — proportionnelle à la quantité de matière — notée <span class="math inline">\(S\)</span> et exprimée en joules par kelvin (<span class="math inline">\(\text{J/K}\)</span>). Plus l’entropie d’un système est élevée, moins ses particules sont ordonnées et capables de produire des effets mécaniques organisés.</p>
+<p><strong>Au niveau particulaire :</strong> lors d’un processus favorable, une partie de l’énergie échangée est une quantité d’énergie <strong>non utilisable</strong> — dispersée et homogénéisée dans le système, incapable de fournir du travail. L’entropie mesure cette dispersion. Les transitions qui augmentent le désordre particulaire augmentent l’entropie :</p>
+<p><strong>Représentation symbolique :</strong> la variation d’entropie du milieu extérieur est reliée à la variation d’enthalpie du système par :</p>
+<p><span class="math display">\[\Delta S_\text{ext} = -\frac{\Delta H_\text{sys}}{T}
+\]</span> {#eq:entropie-ext}</p>
+<p>Cette relation montre que la température <span class="math inline">\(T\)</span> module l’effet d’un échange de chaleur sur l’entropie du milieu. À basse température, un même dégagement de chaleur crée davantage d’entropie dans l’environnement qu’à haute température.</p>
+<p><strong>Exemple travaillé — congélation de l’eau à <span class="math inline">\(T &lt; 0\ ^\circ\text{C}\)</span> :</strong></p>
+<p>La réaction <span class="math inline">\(\ce{H2O(l) -&gt; H2O(s)}\)</span> est spontanée en dessous de <span class="math inline">\(0\ ^\circ\text{C}\)</span>. Vérifions-le avec le bilan entropique global.</p>
+<ul>
+<li>La réaction est spontanée : <span class="math inline">\(S_\text{créée} &gt; 0\)</span></li>
+<li>L’eau passe du liquide au solide : <span class="math inline">\(\Delta S_\text{sys} &lt; 0\)</span> (le système s’ordonne — il perd de l’entropie)</li>
+<li>La solidification est exothermique (<span class="math inline">\(\Delta H_\text{sys} &lt; 0\)</span>) : d’après <span class="math inline">\(\Delta S_\text{ext} = -\Delta H_\text{sys}/T\)</span>, le milieu extérieur <em>gagne</em> de l’entropie (<span class="math inline">\(\Delta S_\text{ext} &gt; 0\)</span>)</li>
+<li>Pour que <span class="math inline">\(S_\text{créée} &gt; 0\)</span>, il faut <span class="math inline">\(|\Delta S_\text{ext}| &gt; |\Delta S_\text{sys}|\)</span> — ce qui est vérifié en dessous de <span class="math inline">\(0\ ^\circ\text{C}\)</span></li>
+</ul>
+<p>Au-dessus de <span class="math inline">\(0\ ^\circ\text{C}\)</span>, l’inégalité s’inverse : <span class="math inline">\(|\Delta S_\text{sys}| &gt; |\Delta S_\text{ext}|\)</span>, donc <span class="math inline">\(S_\text{créée} &lt; 0\)</span> — la congélation n’est plus spontanée.</p>
+<p><strong>Attention :</strong> l’entropie du système peut diminuer lors d’un processus spontané. C’est le bilan <em>global</em> — système + environnement — qui doit toujours augmenter.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>La fusion de la glace (<span class="math inline">\(\ce{H2O(s) -&gt; H2O(l)}\)</span>) est endothermique (<span class="math inline">\(\Delta H = +6{,}01\ \text{kJ/mol}\)</span>) et se produit spontanément à <span class="math inline">\(25\ ^\circ\text{C}\)</span>. Calculez <span class="math inline">\(\Delta S_\text{ext}\)</span> à 298 K et déduisez le signe de <span class="math inline">\(S_\text{créée}\)</span>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
+<li>Parmi les transformations suivantes, laquelle attend-on avec <span class="math inline">\(\Delta S_\text{sys} &gt; 0\)</span> ? (a) <span class="math inline">\(\ce{H2O(l) -&gt; H2O(s)}\)</span> ; (b) <span class="math inline">\(\ce{NaCl(s) -&gt; Na+(aq) + Cl-(aq)}\)</span> ; (c) <span class="math inline">\(\ce{N2(g) + 3H2(g) -&gt; 2NH3(g)}\)</span>.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
+<li>Expliquez en une phrase pourquoi <span class="math inline">\(\Delta S_\text{ext}\)</span> est plus grand à basse température qu’à haute température pour un même dégagement de chaleur.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
+</ol>
+</section>
+<section id="le-troisième-principe-et-lentropie-absolue" class="level3" data-number="12.0.3">
+<h3 data-number="12.0.3" class="anchored" data-anchor-id="le-troisième-principe-et-lentropie-absolue"><span class="header-section-number">12.0.3</span> Le troisième principe et l’entropie absolue</h3>
+<p><strong>Bootstrapping :</strong> nous utilisons ici la notion de capacité thermique <span class="math inline">\(C_p\)</span>, déjà rencontrée au chapitre Thermochimie 1. Retenez qu’elle mesure l’énergie nécessaire pour élever la température d’une substance d’un kelvin.</p>
+<p><strong>Formalisation :</strong> le troisième principe de la thermodynamique — appelé aussi principe de Nernst — stipule que :</p>
+<p><span class="math display">\[S(\text{cristal parfait},\ 0\ \text{K}) = 0
+\]</span> {#eq:troisieme-principe}</p>
+<p>Ce principe fixe une <strong>origine absolue</strong> pour l’entropie. Contrairement à l’enthalpie, dont on ne mesure que des variations <span class="math inline">\(\Delta_r H^\circ\)</span>, l’entropie est la seule fonction d’état thermodynamique calculable de façon absolue.</p>
+<p><strong>Au niveau macroscopique :</strong> à partir de cette origine, on calcule l’entropie molaire absolue <span class="math inline">\(S_T\)</span> d’un corps pur à toute température en additionnant toutes les contributions successives depuis <span class="math inline">\(0\ \text{K}\)</span> :</p>
+<p><span class="math display">\[S_T = \Delta S_1 + \Delta S_2 + \Delta S_3 + \Delta S_4 + \Delta S_5
+\]</span> {#eq:entropie-absolue}</p>
+<p>Pour un corps pur passant de <span class="math inline">\(0\ \text{K}\)</span> à l’état gazeux à la température <span class="math inline">\(T\)</span> :</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Contribution</th>
+<th>Processus</th>
+<th>Expression</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\Delta S_1\)</span></td>
+<td>Échauffement du solide</td>
+<td><span class="math inline">\(n \cdot C_p(s) \cdot \ln\!\left(\tfrac{T_2}{T_1}\right)\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\Delta S_2\)</span></td>
+<td>Fusion</td>
+<td><span class="math inline">\(n \cdot \tfrac{\Delta H_\text{fus}}{T_\text{fus}}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\Delta S_3\)</span></td>
+<td>Échauffement du liquide</td>
+<td><span class="math inline">\(n \cdot C_p(l) \cdot \ln\!\left(\tfrac{T_2}{T_1}\right)\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\Delta S_4\)</span></td>
+<td>Vaporisation</td>
+<td><span class="math inline">\(n \cdot \tfrac{\Delta H_\text{vap}}{T_\text{vap}}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\Delta S_5\)</span></td>
+<td>Échauffement du gaz</td>
+<td><span class="math inline">\(n \cdot C_p(g) \cdot \ln\!\left(\tfrac{T_2}{T_1}\right)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Les contributions <span class="math inline">\(\Delta S_1\)</span>, <span class="math inline">\(\Delta S_3\)</span> et <span class="math inline">\(\Delta S_5\)</span> ont la même forme mathématique <span class="math inline">\(n \cdot C_p \cdot \ln(T_2/T_1)\)</span>, mais correspondent à trois phases distinctes — solide, liquide, gaz — dont les capacités thermiques <span class="math inline">\(C_p\)</span> sont différentes. Elles ne peuvent donc pas être regroupées.</p>
+<p><strong>En pratique</strong>, ce calcul complet est rarement nécessaire : les tables thermodynamiques fournissent directement les <strong>entropies molaires standard</strong> <span class="math inline">\(S^\circ_{298}\)</span> à 298 K et 101,3 kPa, en <span class="math inline">\(\text{J·mol}^{-1}\text{·K}^{-1}\)</span>.</p>
+<p><strong>Attention :</strong> contrairement aux enthalpies de formation <span class="math inline">\(\Delta_f H^\circ\)</span>, les entropies standard <span class="math inline">\(S^\circ\)</span> des corps purs simples ne sont <em>pas</em> nulles — elles sont toutes positives, car à 298 K tout corps pur est déjà bien au-dessus de <span class="math inline">\(0\ \text{K}\)</span>. Confondre les deux conventions est l’erreur la plus fréquente dans le calcul de <span class="math inline">\(\Delta_r S^\circ\)</span>.</p>
+<p>Voici un extrait de table des entropies molaires standard à 298 K :</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Solides élémentaires</th>
+<th><span class="math inline">\(S^\circ_{298}\)</span></th>
+<th>Liquides</th>
+<th><span class="math inline">\(S^\circ_{298}\)</span></th>
+<th>Molécules gazeuses</th>
+<th><span class="math inline">\(S^\circ_{298}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{Al}\)</span></td>
+<td>28,3</td>
+<td><span class="math inline">\(\ce{H2O}\)</span> (l)</td>
+<td>70,0</td>
+<td><span class="math inline">\(\ce{H2}\)</span></td>
+<td>131</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{Fe}\)</span></td>
+<td>27,2</td>
+<td><span class="math inline">\(\ce{CH3OH}\)</span> (l)</td>
+<td>127</td>
+<td><span class="math inline">\(\ce{O2}\)</span></td>
+<td>205,1</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{Cu}\)</span></td>
+<td>33,3</td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(\ce{N2}\)</span></td>
+<td>191,5</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{C}\)</span> (graphite)</td>
+<td>5,69</td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(\ce{CO2}\)</span></td>
+<td>213,7</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(\ce{H2O}\)</span> (g)</td>
+<td>188,8</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(\ce{NH3}\)</span></td>
+<td>192,5</td>
+</tr>
+</tbody>
+</table>
+<p><em>(Valeurs en <span class="math inline">\(\text{J·mol}^{-1}\text{·K}^{-1}\)</span>)</em></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Pourquoi <span class="math inline">\(S^\circ_{298}(\ce{O2(g)}) \neq 0\)</span> alors que <span class="math inline">\(\Delta_f H^\circ(\ce{O2(g)}) = 0\)</span> ? Expliquez la différence de convention.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></li>
+<li>Parmi <span class="math inline">\(\ce{H2O(l)}\)</span> et <span class="math inline">\(\ce{H2O(g)}\)</span>, lequel a l’entropie molaire standard la plus élevée ? Justifiez sans consulter la table.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></li>
+<li>En utilisant la table, vérifiez qualitativement que <span class="math inline">\(S^\circ(\ce{C, graphite}) &lt; S^\circ(\ce{CO2(g)})\)</span> est cohérent avec les règles sur les états physiques.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></li>
+</ol>
+</section>
+<section id="variation-qualitative-dentropie-de-réaction" class="level3" data-number="12.0.4">
+<h3 data-number="12.0.4" class="anchored" data-anchor-id="variation-qualitative-dentropie-de-réaction"><span class="header-section-number">12.0.4</span> Variation qualitative d’entropie de réaction</h3>
+<p><strong>Conception courante :</strong> on croit parfois que l’entropie d’une réaction est imprévisible sans calcul. En réalité, deux règles simples permettent souvent de prédire le signe de <span class="math inline">\(\Delta_r S^\circ\)</span> sans aucune table.</p>
+<p><strong>Règle 1 — états physiques :</strong> le désordre particulaire augmente dans l’ordre solide &lt; liquide &lt; gaz. Toute réaction qui produit des espèces dans un état plus désordonné que les réactifs a <span class="math inline">\(\Delta_r S^\circ &gt; 0\)</span>.</p>
+<p><strong>Règle 2 — nombre de moles de gaz :</strong> lorsque le nombre de moles de gaz <em>augmente</em> au cours de la réaction, <span class="math inline">\(\Delta_r S^\circ &gt; 0\)</span> ; quand il <em>diminue</em>, <span class="math inline">\(\Delta_r S^\circ &lt; 0\)</span>. Les solides et les liquides contribuent beaucoup moins à l’entropie que les gaz — leur variation de nombre de moles est secondaire.</p>
+<p><strong>Au niveau symbolique :</strong> pour la réaction <span class="math inline">\(\ce{2 SO2(g) + O2(g) -&gt; 2 SO3(g)}\)</span>, on passe de 3 moles de gaz à 2 moles de gaz — le nombre de configurations particulaires diminue, donc <span class="math inline">\(\Delta_r S^\circ &lt; 0\)</span>, sans aucun calcul.</p>
+<p><strong>Exercice guidé :</strong> prédire qualitativement le signe de <span class="math inline">\(\Delta_r
+S^\circ\)</span> pour chacune des réactions suivantes, en justifiant avec les deux règles.</p>
+<ol type="a">
+<li><p><span class="math inline">\(\ce{2 SO2(g) + O2(g) -&gt; 2 SO3(g)}\)</span></p></li>
+<li><p><span class="math inline">\(\ce{2 SO2(g) + O2(g) + H2O(l) -&gt; 2 H2SO4(l)}\)</span></p></li>
+<li><p><span class="math inline">\(\ce{2 Al(s) + Fe2O3(s) -&gt; Al2O3(s) + 2 Fe(s)}\)</span></p></li>
+</ol>
+<p><em>Indications : comptez les moles de gaz de chaque côté de la flèche, puis comparez les états physiques.</em></p>
+<p><em>Réponses :</em> <em>a) 3 mol de gaz <span class="math inline">\(\to\)</span> 2 mol de gaz : <span class="math inline">\(\Delta_r S^\circ &lt; 0\)</span></em> <em>b) 3 mol de gaz <span class="math inline">\(\to\)</span> 0 mol de gaz : <span class="math inline">\(\Delta_r S^\circ \ll 0\)</span></em> <em>c) uniquement des solides des deux côtés : les règles 1 et 2 s’appliquent — elles prédisent une variation faible, proche de zéro. Un calcul quantitatif est nécessaire pour conclure sur le signe.</em></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Prédire qualitativement le signe de <span class="math inline">\(\Delta_r S^\circ\)</span> pour : (a) <span class="math inline">\(\ce{CaCO3(s) -&gt; CaO(s) + CO2(g)}\)</span> ; (b) <span class="math inline">\(\ce{H2(g) + I2(g) -&gt; 2HI(g)}\)</span> ; (c) <span class="math inline">\(\ce{AgNO3(aq) + NaCl(aq) -&gt; AgCl(s) + NaNO3(aq)}\)</span>.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></li>
+<li>La réaction <span class="math inline">\(\ce{N2(g) + O2(g) -&gt; 2NO(g)}\)</span> implique le même nombre de moles de gaz des deux côtés. Peut-on prédire le signe de <span class="math inline">\(\Delta_r S^\circ\)</span> sans calcul ? Que faut-il faire ?<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></li>
+<li>Classer par entropie molaire standard croissante, sans consulter de table : <span class="math inline">\(\ce{Fe(s)}\)</span>, <span class="math inline">\(\ce{Cl2(g)}\)</span>, <span class="math inline">\(\ce{H2O(l)}\)</span>.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></li>
+</ol>
+</section>
+<section id="variation-quantitative-dentropie-de-réaction" class="level3" data-number="12.0.5">
+<h3 data-number="12.0.5" class="anchored" data-anchor-id="variation-quantitative-dentropie-de-réaction"><span class="header-section-number">12.0.5</span> Variation quantitative d’entropie de réaction</h3>
+<p><strong>Formalisation :</strong> de la même manière que pour l’enthalpie, l’entropie standard de réaction <span class="math inline">\(\Delta_r S^\circ\)</span> se calcule à partir des entropies molaires standard tabulées :</p>
+<p><span class="math display">\[\Delta_r S^\circ = \sum \nu_\text{produits} \cdot S^\circ(\text{produits})
+- \sum \nu_\text{réactifs} \cdot S^\circ(\text{réactifs})
+\]</span> {#eq:entropie-reaction}</p>
+<p><strong>Exemple travaillé — formation de l’eau :</strong></p>
+<p><span class="math display">\[\ce{2 H2(g) + O2(g) -&gt; 2 H2O(g)}\]</span></p>
+<p><span class="math display">\[\Delta_r S^\circ = 2 \cdot S^\circ(\ce{H2O(g)}) - 2 \cdot S^\circ(\ce{H2(g)})
+- S^\circ(\ce{O2(g)})\]</span></p>
+<p><span class="math display">\[= 2 \cdot 188{,}8 - 2 \cdot 131 - 205{,}1
+= -89{,}5\ \text{J·mol}^{-1}\text{·K}^{-1}\]</span></p>
+<p>Le signe négatif était prévisible : le nombre de moles de gaz diminue (3 mol <span class="math inline">\(\to\)</span> 2 mol), donc le désordre particulaire diminue.</p>
+<p><strong>Exemple travaillé — spontanéité de la synthèse de l’ammoniac :</strong></p>
+<p><span class="math display">\[\ce{N2(g) + 3 H2(g) -&gt; 2 NH3(g)}
+\quad \Delta_r H^\circ = -92{,}2\ \text{kJ/mol}\]</span></p>
+<p><em>Étape 1 — <span class="math inline">\(\Delta_r S^\circ\)</span> du système :</em></p>
+<p><span class="math display">\[\Delta_r S^\circ = 2 \cdot S^\circ(\ce{NH3}) - S^\circ(\ce{N2})
+- 3 \cdot S^\circ(\ce{H2})\]</span></p>
+<p><span class="math display">\[= 2 \cdot 192{,}5 - 191{,}6 - 3 \cdot 130{,}7
+= -198{,}7\ \text{J·mol}^{-1}\text{·K}^{-1}\]</span></p>
+<p><em>Étape 2 — <span class="math inline">\(\Delta S_\text{ext}\)</span> (attention : convertir <span class="math inline">\(\Delta_r
+H^\circ\)</span> en J/mol) :</em></p>
+<p><span class="math display">\[\Delta S_\text{ext} = -\frac{\Delta H_\text{sys}}{T}
+= -\frac{-92{,}2 \times 10^3\ \text{J/mol}}{298\ \text{K}}
+= +309{,}4\ \text{J·mol}^{-1}\text{·K}^{-1}\]</span></p>
+<p><em>Étape 3 — bilan entropique global :</em></p>
+<p><span class="math display">\[S_\text{créée} = \Delta_r S^\circ + \Delta S_\text{ext}
+= -198{,}7 + 309{,}4 = +110{,}7\ \text{J·mol}^{-1}\text{·K}^{-1} &gt; 0\]</span></p>
+<p>La réaction est spontanée à 298 K.</p>
+<p><strong>Exercice autonome :</strong> calculer <span class="math inline">\(\Delta_r S^\circ\)</span> pour la réaction <span class="math inline">\(\ce{C3H8(g) + 5 O2(g) -&gt; 3 CO2(g) + 4 H2O(g)}\)</span>. Le signe était-il prévisible ?<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Calculer <span class="math inline">\(\Delta_r S^\circ\)</span> de la réaction <span class="math inline">\(\ce{2H2(g) + O2(g) -&gt; 2H2O(l)}\)</span>. Données : <span class="math inline">\(S^\circ(\ce{H2}) = 131\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span>, <span class="math inline">\(S^\circ(\ce{O2}) = 205{,}1\)</span>, <span class="math inline">\(S^\circ(\ce{H2O,l}) = 70{,}0\)</span>. Le signe était-il prévisible ?<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></li>
+<li>Pour la synthèse de l’ammoniac <span class="math inline">\(\ce{N2(g) + 3H2(g) -&gt; 2NH3(g)}\)</span>, calculer <span class="math inline">\(\Delta S_\text{ext}\)</span> à 298 K sachant <span class="math inline">\(\Delta_r H^\circ = -92{,}2\ \text{kJ/mol}\)</span>. Puis vérifier que <span class="math inline">\(S_\text{créée} &gt; 0\)</span>.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a></li>
+<li>Calculer <span class="math inline">\(\Delta_r S^\circ\)</span> de <span class="math inline">\(\ce{CO(g) + \frac{1}{2}O2(g) -&gt; CO2(g)}\)</span>. Données : <span class="math inline">\(S^\circ(\ce{CO}) = 197{,}9\)</span>, <span class="math inline">\(S^\circ(\ce{O2}) = 205{,}1\)</span>, <span class="math inline">\(S^\circ(\ce{CO2}) = 213{,}7\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span>.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></li>
+</ol>
+</section>
+<section id="lenthalpie-libre-de-gibbs" class="level3" data-number="12.0.6">
+<h3 data-number="12.0.6" class="anchored" data-anchor-id="lenthalpie-libre-de-gibbs"><span class="header-section-number">12.0.6</span> L’enthalpie libre de Gibbs</h3>
+<p><strong>Attention :</strong> cette section introduit deux nouveautés liées — la fonction de Gibbs <span class="math inline">\(\Delta_r G^\circ\)</span> et son lien avec la spontanéité. Lisez-la en deux temps : d’abord la dérivation, puis le tableau des 4 cas.</p>
+<p><strong>Conception courante :</strong> on croit souvent qu’il faut calculer <span class="math inline">\(S_\text{créée} = \Delta S_\text{sys} + \Delta S_\text{ext}\)</span> à chaque fois pour prédire la spontanéité — ce qui oblige à connaître les propriétés du milieu extérieur. W. Gibbs (1839-1903) a montré qu’on peut s’en passer : il existe une fonction qui intègre les deux contributions et ne dépend que des propriétés du système.</p>
+<p><strong>Dérivation depuis le deuxième principe :</strong></p>
+<p>On part de la condition de spontanéité :</p>
+<p><span class="math display">\[S_\text{créée} = \Delta S_\text{sys} + \Delta S_\text{ext} &gt; 0\]</span></p>
+<p>On substitue <span class="math inline">\(\Delta S_\text{ext} = -\Delta H_\text{sys}/T\)</span> :</p>
+<p><span class="math display">\[S_\text{créée} = \Delta S_\text{sys} - \frac{\Delta H_\text{sys}}{T} &gt; 0\]</span></p>
+<p>On multiplie tous les membres par <span class="math inline">\(-T\)</span> (attention : le sens de l’inégalité s’inverse car <span class="math inline">\(T &gt; 0\)</span>) :</p>
+<p><span class="math display">\[-T \cdot S_\text{créée} = \Delta H_\text{sys} - T \cdot \Delta S_\text{sys} &lt; 0\]</span></p>
+<p>On définit l’<strong>enthalpie libre de Gibbs</strong> <span class="math inline">\(\Delta_r G^\circ\)</span> comme :</p>
+<p><span class="math display">\[\Delta_r G^\circ = -T \cdot S_\text{créée}\]</span></p>
+<p>On obtient ainsi la <strong>fonction de Gibbs</strong> :</p>
+<p><span class="math display">\[\boxed{\Delta_r G^\circ = \Delta_r H^\circ - T \cdot \Delta_r S^\circ}
+\]</span> {#eq:gibbs}</p>
+<p><strong>Au niveau particulaire :</strong> <span class="math inline">\(\Delta_r G^\circ\)</span> représente l’énergie maximale qu’un système peut fournir sous forme de travail lors d’une transformation à température et pression constantes.</p>
+<p><strong>Analogie :</strong> imaginez un lac de montagne relié à une turbine par un tuyau. L’eau qui descend spontanément peut fournir du travail électrique — mais seulement si la différence d’altitude est suffisante. De même, une réaction chimique ne fournit du travail utile que si <span class="math inline">\(\Delta_r G^\circ\)</span> est suffisamment négatif. Limite de l’analogie : contrairement à l’eau, <span class="math inline">\(\Delta_r G^\circ\)</span> dépend à la fois de l’énergie <em>et</em> du désordre — pas uniquement d’une différence de niveau.</p>
+<p><strong>Représentation symbolique — le signe de <span class="math inline">\(\Delta_r G^\circ\)</span> :</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\Delta_r H^\circ\)</span></th>
+<th><span class="math inline">\(\Delta_r S^\circ\)</span></th>
+<th><span class="math inline">\(\Delta_r G^\circ\)</span></th>
+<th>Spontanéité</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(-\)</span></td>
+<td><span class="math inline">\(+\)</span></td>
+<td>Toujours <span class="math inline">\(-\)</span></td>
+<td>Spontanée de gauche à droite à toute température</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(+\)</span></td>
+<td><span class="math inline">\(-\)</span></td>
+<td>Toujours <span class="math inline">\(+\)</span></td>
+<td>Non spontanée de gauche à droite — spontanée en sens inverse à toute température</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(-\)</span></td>
+<td><span class="math inline">\(-\)</span></td>
+<td><span class="math inline">\(-\)</span> si <span class="math inline">\(T\)</span> petite</td>
+<td>Spontanée de gauche à droite à basse température uniquement</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(+\)</span></td>
+<td><span class="math inline">\(+\)</span></td>
+<td><span class="math inline">\(-\)</span> si <span class="math inline">\(T\)</span> grande</td>
+<td>Spontanée de gauche à droite à haute température uniquement</td>
+</tr>
+</tbody>
+</table>
+<p>Les cas 3 et 4 montrent qu’une réaction peut changer de sens spontané selon la température — c’est le terme <span class="math inline">\(T \cdot \Delta_r S^\circ\)</span> qui l’emporte à haute température.</p>
+<p><strong>Exemples illustratifs :</strong></p>
+<p><em>Cas 1 — <span class="math inline">\(\Delta_r H^\circ &lt; 0\)</span> et <span class="math inline">\(\Delta_r S^\circ &gt; 0\)</span> :</em> <span class="math inline">\(\ce{2 H2O2(l) -&gt; 2 H2O(l) + O2(g)}\)</span> — exothermique et gain de moles de gaz. <span class="math inline">\(\Delta_r G^\circ &lt; 0\)</span> à toute température.</p>
+<p><em>Cas 2 — <span class="math inline">\(\Delta_r H^\circ &gt; 0\)</span> et <span class="math inline">\(\Delta_r S^\circ &lt; 0\)</span> :</em> <span class="math inline">\(\ce{3 O2(g) -&gt; 2 O3(g)}\)</span> — endothermique et perte de moles de gaz. <span class="math inline">\(\Delta_r G^\circ &gt; 0\)</span> à toute température.</p>
+<p><em>Cas 3 — <span class="math inline">\(\Delta_r H^\circ &lt; 0\)</span> et <span class="math inline">\(\Delta_r S^\circ &lt; 0\)</span> :</em> <span class="math inline">\(\ce{H2O(g) -&gt; H2O(l)}\)</span> — condensation spontanée à basse température, non spontanée à haute température.</p>
+<p><em>Cas 4 — <span class="math inline">\(\Delta_r H^\circ &gt; 0\)</span> et <span class="math inline">\(\Delta_r S^\circ &gt; 0\)</span> :</em> <span class="math inline">\(\ce{H2O(s) -&gt; H2O(l)}\)</span> — fusion spontanée à haute température, non spontanée à basse température.</p>
+<p><strong>Exemple travaillé — réaction entre l’eau oxygénée et l’hydrazine :</strong></p>
+<p><span class="math display">\[\ce{N2H4(l) + 2 H2O2(l) -&gt; N2(g) + 4 H2O(g)}\]</span></p>
+<p>Données : <span class="math inline">\(\Delta_r H^\circ = -642{,}6\ \text{kJ/mol}\)</span> ; <span class="math inline">\(\Delta_r S^\circ = +605\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span></p>
+<p><span class="math display">\[\Delta_r G^\circ = \Delta_r H^\circ - T \cdot \Delta_r S^\circ\]</span></p>
+<p><span class="math display">\[= -642{,}6 \times 10^3 - 298 \cdot 605
+= -642{,}6 \times 10^3 - 180{,}3 \times 10^3
+= -822{,}9\ \text{kJ/mol}\]</span></p>
+<p><span class="math inline">\(\Delta_r G^\circ \ll 0\)</span> — réaction très fortement spontanée à 298 K. Cas 1 : <span class="math inline">\(\Delta_r H^\circ &lt; 0\)</span> et <span class="math inline">\(\Delta_r S^\circ &gt; 0\)</span>, favorable à toute température.</p>
+<p><strong>Calcul alternatif par les enthalpies libres de formation :</strong></p>
+<p>De la même manière que pour <span class="math inline">\(\Delta_r H^\circ\)</span>, on peut calculer <span class="math inline">\(\Delta_r G^\circ\)</span> directement à partir des enthalpies libres de formation standard <span class="math inline">\(\Delta_f G^\circ\)</span> tabulées. <strong>Attention :</strong> comme pour <span class="math inline">\(\Delta_f H^\circ\)</span>, l’enthalpie libre de formation d’un corps pur simple dans son état le plus stable est nulle : <span class="math inline">\(\Delta_f G^\circ(\ce{N2(g)}) = 0\)</span>.</p>
+<p><span class="math display">\[\Delta_r G^\circ = \sum \nu_\text{produits} \cdot \Delta_f G^\circ
+- \sum \nu_\text{réactifs} \cdot \Delta_f G^\circ
+\]</span> {#eq:gibbs-formation}</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Espèce</th>
+<th><span class="math inline">\(\Delta_f G^\circ\)</span> (kJ/mol)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{N2H4(l)}\)</span></td>
+<td><span class="math inline">\(+149{,}3\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{H2O2(l)}\)</span></td>
+<td><span class="math inline">\(-120{,}4\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{N2(g)}\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{H2O(g)}\)</span></td>
+<td><span class="math inline">\(-228{,}6\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[\Delta_r G^\circ = [0 + 4 \cdot (-228{,}6)]
+- [149{,}3 + 2 \cdot (-120{,}4)]\]</span></p>
+<p><span class="math display">\[= -914{,}4 - (-91{,}4) = -822{,}9\ \text{kJ/mol}\]</span></p>
+<p>Les deux méthodes donnent le même résultat — c’est une bonne vérification.</p>
+<p><strong>Exercice autonome :</strong> pour la réaction <span class="math inline">\(\ce{SOCl2(l) + H2O(l) -&gt; SO2(g) + 2 HCl(g)}\)</span>, avec <span class="math inline">\(\Delta_r H^\circ = +49{,}5\ \text{kJ/mol}\)</span> et <span class="math inline">\(\Delta_r S^\circ = +336{,}1\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span>, calculer <span class="math inline">\(\Delta_r G^\circ\)</span> à 298 K et à 500 K. Dans quel cas du tableau ces résultats se placent-ils ? Nous verrons dans la section suivante comment ces valeurs permettent de calculer la constante d’équilibre <span class="math inline">\(K\)</span>.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Pour une réaction avec <span class="math inline">\(\Delta_r H^\circ = -120\ \text{kJ/mol}\)</span> et <span class="math inline">\(\Delta_r S^\circ = +85\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span>, calculer <span class="math inline">\(\Delta_r G^\circ\)</span> à 298 K. Dans quel cas du tableau se place-t-elle ?<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></li>
+<li>La décomposition de <span class="math inline">\(\ce{N2O4(g) -&gt; 2NO2(g)}\)</span> a <span class="math inline">\(\Delta_r H^\circ = +57{,}2\ \text{kJ/mol}\)</span> et <span class="math inline">\(\Delta_r S^\circ = +175{,}8\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span>. Calculer la température d’inversion <span class="math inline">\(T_\text{inv}\)</span> et interpréter.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a></li>
+<li>Calculer <span class="math inline">\(\Delta_r G^\circ\)</span> à 298 K pour <span class="math inline">\(\ce{2SO2(g) + O2(g) -&gt; 2SO3(g)}\)</span> à partir des <span class="math inline">\(\Delta_f G^\circ\)</span> : <span class="math inline">\(\Delta_f G^\circ(\ce{SO2}) = -300{,}2\ \text{kJ/mol}\)</span>, <span class="math inline">\(\Delta_f G^\circ(\ce{SO3}) = -371{,}1\ \text{kJ/mol}\)</span>.<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a></li>
+<li>Une réaction a <span class="math inline">\(\Delta_r G^\circ = 0\)</span> à 350 K. Que vaut <span class="math inline">\(K\)</span> à cette température ? Que se passe-t-il si on chauffe davantage, sachant <span class="math inline">\(\Delta_r H^\circ &lt; 0\)</span> ?<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a></li>
+</ol>
+</section>
+<section id="lien-entre-lenthalpie-libre-et-la-constante-déquilibre" class="level3" data-number="12.0.7">
+<h3 data-number="12.0.7" class="anchored" data-anchor-id="lien-entre-lenthalpie-libre-et-la-constante-déquilibre"><span class="header-section-number">12.0.7</span> Lien entre l’enthalpie libre et la constante d’équilibre</h3>
+<p><strong>Conception courante :</strong> on croit parfois que <span class="math inline">\(\Delta_r G^\circ &lt; 0\)</span> signifie que la réaction va jusqu’au bout — que les réactifs sont entièrement convertis en produits. C’est faux : <span class="math inline">\(\Delta_r G^\circ &lt; 0\)</span> indique uniquement que la réaction est spontanée de gauche à droite. L’étendue de cette transformation — combien de réactifs sont effectivement convertis à l’équilibre — est donnée par la constante d’équilibre <span class="math inline">\(K\)</span>.</p>
+<p><strong>Formalisation :</strong> à température constante, l’enthalpie libre standard de réaction et la constante d’équilibre sont reliées par :</p>
+<p><span class="math display">\[\Delta_r G^\circ = -R \cdot T \cdot \ln(K)
+\]</span> {#eq:gibbs-equilibre}</p>
+<p>Avec : - <span class="math inline">\(R = 8{,}314\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span> : constante des gaz parfaits - <span class="math inline">\(T\)</span> : température absolue en kelvin - <span class="math inline">\(K\)</span> : constante de la loi d’action de masse aux conditions standards</p>
+<p>Pour une réaction <span class="math inline">\(a\ \ce{A} + b\ \ce{B} \rightleftharpoons
+c\ \ce{C} + d\ \ce{D}\)</span> :</p>
+<p><span class="math display">\[K = \frac{[\ce{C}]^c \cdot [\ce{D}]^d}{[\ce{A}]^a \cdot [\ce{B}]^b}\]</span></p>
+<p><strong>Au niveau particulaire :</strong> à l’équilibre, les réactions directe et inverse se produisent à la même vitesse — le système n’évolue plus macroscopiquement. La valeur de <span class="math inline">\(K\)</span> indique de quel côté de l’équilibre se trouvent majoritairement les espèces : si <span class="math inline">\(K \gg 1\)</span>, les produits dominent ; si <span class="math inline">\(K \ll 1\)</span>, les réactifs dominent.</p>
+<p><strong>Représentation symbolique — correspondance <span class="math inline">\(\Delta_r G^\circ\)</span> / <span class="math inline">\(K\)</span> :</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\Delta_r G^\circ\)</span> (kJ/mol)</th>
+<th><span class="math inline">\(K\)</span></th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(+200\)</span></td>
+<td><span class="math inline">\(9 \times 10^{-36}\)</span></td>
+<td>Réaction impossible de gauche à droite</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(+100\)</span></td>
+<td><span class="math inline">\(3 \times 10^{-18}\)</span></td>
+<td>Réaction très défavorable</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(+10\)</span></td>
+<td><span class="math inline">\(2 \times 10^{-2}\)</span></td>
+<td>Équilibre favorable vers les réactifs</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(1\)</span></td>
+<td>Équilibre parfait</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(-10\)</span></td>
+<td><span class="math inline">\(5 \times 10^{1}\)</span></td>
+<td>Équilibre favorable vers les produits</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(-100\)</span></td>
+<td><span class="math inline">\(3 \times 10^{17}\)</span></td>
+<td>Réaction très favorable</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(-200\)</span></td>
+<td><span class="math inline">\(1 \times 10^{35}\)</span></td>
+<td>Réaction totale de gauche à droite</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Attention :</strong> <span class="math inline">\(\Delta_r G^\circ = 0\)</span> ne signifie pas que la réaction est bloquée — cela signifie que <span class="math inline">\(K = 1\)</span> et que les réactifs et les produits sont présents en quantités égales à l’équilibre.</p>
+<p><strong>Exemple travaillé — combustion du propane :</strong></p>
+<p><span class="math display">\[\ce{C3H8(g) + 5 O2(g) -&gt; 3 CO2(g) + 4 H2O(g)}\]</span></p>
+<p>Données : <span class="math inline">\(\Delta_r G^\circ(298\ \text{K}) = -2073\ \text{kJ/mol}\)</span></p>
+<p><span class="math display">\[\ln(K) = -\frac{\Delta_r G^\circ}{R \cdot T}
+= -\frac{-2073 \times 10^3}{8{,}314 \cdot 298} = +836{,}7\]</span></p>
+<p><span class="math display">\[K = e^{836{,}7} \approx 10^{363}\]</span></p>
+<p><span class="math inline">\(K \gg 1\)</span> — la réaction est totale à 298 K.</p>
+<p><strong>Exemple travaillé — décomposition du peroxyde d’hydrogène :</strong></p>
+<p><span class="math display">\[\ce{2 H2O2(l) -&gt; 2 H2O(l) + O2(g)}\]</span></p>
+<p>Données : <span class="math inline">\(\Delta_r H^\circ = -195{,}7\ \text{kJ/mol}\)</span> ; <span class="math inline">\(\Delta_r S^\circ = +124{,}9\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span></p>
+<p><em>Étape 1 :</em></p>
+<p><span class="math display">\[\Delta_r G^\circ = -195{,}7 \times 10^3 - 298 \cdot 124{,}9
+= -232{,}9\ \text{kJ/mol}\]</span></p>
+<p><em>Étape 2 :</em></p>
+<p><span class="math display">\[\ln(K) = -\frac{-232{,}9 \times 10^3}{8{,}314 \cdot 298} = +94{,}0\]</span></p>
+<p><span class="math display">\[K = e^{94{,}0} \approx 6{,}7 \times 10^{40}\]</span></p>
+<p>Réaction totale. Le signe de <span class="math inline">\(\Delta_r G^\circ\)</span> était prévisible : cas 1 (<span class="math inline">\(\Delta_r H^\circ &lt; 0\)</span>, <span class="math inline">\(\Delta_r S^\circ &gt; 0\)</span>).</p>
+<p><strong>Exemple travaillé — synthèse de l’ammoniac à deux températures :</strong></p>
+<p><span class="math display">\[\ce{N2(g) + 3 H2(g) -&gt; 2 NH3(g)}\]</span></p>
+<p>Données : <span class="math inline">\(\Delta_r H^\circ = -92{,}2\ \text{kJ/mol}\)</span> ; <span class="math inline">\(\Delta_r S^\circ = -198{,}7\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span></p>
+<p><em>À 298 K :</em></p>
+<p><span class="math display">\[\Delta_r G^\circ(298) = -92{,}2 \times 10^3 - 298 \cdot (-198{,}7)
+= -33{,}0\ \text{kJ/mol}\]</span></p>
+<p><span class="math display">\[\ln(K) = -\frac{-33{,}0 \times 10^3}{8{,}314 \cdot 298} = +13{,}3\]</span></p>
+<p><span class="math display">\[K(298) = e^{+13{,}3} \approx 6 \times 10^5\]</span></p>
+<p><em>À 500 K :</em></p>
+<p><span class="math display">\[\Delta_r G^\circ(500) = -92{,}2 \times 10^3 - 500 \cdot (-198{,}7)
+= +7{,}2\ \text{kJ/mol}\]</span></p>
+<p><span class="math display">\[\ln(K) = -\frac{+7{,}2 \times 10^3}{8{,}314 \cdot 500} = -1{,}73\]</span></p>
+<p><span class="math display">\[K(500) = e^{-1{,}73} \approx 0{,}18\]</span></p>
+<p>À 298 K, <span class="math inline">\(K \gg 1\)</span> — les produits dominent. À 500 K, <span class="math inline">\(K &lt; 1\)</span> — les réactifs dominent. La synthèse de l’ammoniac est favorisée à basse température. Nous verrons dans la section suivante comment quantifier cette dépendance sans recalculer <span class="math inline">\(\Delta_r G^\circ\)</span> à chaque température.</p>
+<p><strong>Exercice autonome :</strong> calculer <span class="math inline">\(K\)</span> à 298 K pour la réaction <span class="math inline">\(\ce{3 O2(g) -&gt; 2 O3(g)}\)</span> avec <span class="math inline">\(\Delta_r H^\circ = +325{,}8\
+\text{kJ/mol}\)</span> et <span class="math inline">\(\Delta_r S^\circ = -137{,}5\
+\text{J·mol}^{-1}\text{·K}^{-1}\)</span>. Que peut-on dire sur cette réaction ?<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Calculer <span class="math inline">\(K\)</span> à 298 K pour la combustion du propane <span class="math inline">\(\ce{C3H8(g) + 5O2(g) -&gt; 3CO2(g) + 4H2O(g)}\)</span> sachant <span class="math inline">\(\Delta_r G^\circ = -2073\ \text{kJ/mol}\)</span>. Que conclure ?<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a></li>
+<li>Pour une réaction, <span class="math inline">\(K = 1{,}5 \times 10^{-8}\)</span> à 298 K. Calculer <span class="math inline">\(\Delta_r G^\circ\)</span>. La réaction est-elle spontanée de gauche à droite ?<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a></li>
+<li>La décomposition de <span class="math inline">\(\ce{HI(g)}\)</span> a <span class="math inline">\(K = 1{,}6 \times 10^{-3}\)</span> à 298 K. Les réactifs ou les produits dominent-ils à l’équilibre ?<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a></li>
+<li>Calculer <span class="math inline">\(K\)</span> à 298 K pour <span class="math inline">\(\ce{2NO2(g) -&gt; N2O4(g)}\)</span> sachant <span class="math inline">\(\Delta_r G^\circ = -4{,}8\ \text{kJ/mol}\)</span>.<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a></li>
+</ol>
+</section>
+<section id="variation-de-la-constante-déquilibre-avec-la-température" class="level3" data-number="12.0.8">
+<h3 data-number="12.0.8" class="anchored" data-anchor-id="variation-de-la-constante-déquilibre-avec-la-température"><span class="header-section-number">12.0.8</span> Variation de la constante d’équilibre avec la température</h3>
+<p><strong>Conception courante :</strong> on croit parfois que la constante d’équilibre <span class="math inline">\(K\)</span> est une constante au sens strict — qu’elle ne change pas avec les conditions. <span class="math inline">\(K\)</span> est bien indépendante des concentrations initiales et de la pression, mais elle dépend de la température. Chauffer un système à l’équilibre modifie <span class="math inline">\(K\)</span> — et donc la composition à l’équilibre.</p>
+<p><strong>Au niveau macroscopique :</strong> l’exemple de la synthèse de l’ammoniac l’illustre : <span class="math inline">\(K(298) \approx 6 \times 10^5\)</span> mais <span class="math inline">\(K(500) \approx 0{,}18\)</span>. Augmenter la température de 200 K fait chuter <span class="math inline">\(K\)</span> d’un facteur <span class="math inline">\(3 \times 10^6\)</span> — la réaction devient défavorable. Comprendre et quantifier cette dépendance est essentiel pour optimiser les procédés industriels.</p>
+<p>Deux méthodes permettent de calculer <span class="math inline">\(K\)</span> à une température <span class="math inline">\(T\)</span> différente de 298 K. Elles reposent toutes deux sur l’hypothèse que <span class="math inline">\(\Delta_r H^\circ\)</span> et <span class="math inline">\(\Delta_r S^\circ\)</span> restent constants avec la température — une approximation valable sur des intervalles modérés.</p>
+<p><strong>R4 — deux nouveautés dans cette section :</strong> les deux méthodes sont présentées ensemble car elles répondent à la même question. Lisez d’abord la méthode 1 jusqu’à l’exemple, puis revenez à la méthode 2.</p>
+<hr>
+<p><strong>Méthode 1 — Approximation d’Ellingham</strong></p>
+<p><strong>Formalisation :</strong> on considère que <span class="math inline">\(\Delta_r H^\circ\)</span> et <span class="math inline">\(\Delta_r S^\circ\)</span> sont indépendants de <span class="math inline">\(T\)</span>. L’enthalpie libre à toute température <span class="math inline">\(T\)</span> s’écrit alors :</p>
+<p><span class="math display">\[\Delta_r G^\circ(T) = \Delta_r H^\circ(298) - T \cdot \Delta_r S^\circ(298)
+\]</span> {#eq:ellingham}</p>
+<p>La constante <span class="math inline">\(K\)</span> à la température <span class="math inline">\(T\)</span> se déduit ensuite par :</p>
+<p><span class="math display">\[\ln(K(T)) = -\frac{\Delta_r G^\circ(T)}{R \cdot T}
+\]</span> {#eq:K-ellingham}</p>
+<p><strong>Analogie :</strong> imaginez une balance dont un plateau porte <span class="math inline">\(\Delta_r H^\circ\)</span> (fixe) et l’autre porte <span class="math inline">\(T \cdot \Delta_r S^\circ\)</span> (qui croît avec <span class="math inline">\(T\)</span>). C’est le plateau qui l’emporte à haute température qui détermine le signe de <span class="math inline">\(\Delta_r G^\circ\)</span>. Limite de l’analogie : en réalité, <span class="math inline">\(\Delta_r H^\circ\)</span> et <span class="math inline">\(\Delta_r S^\circ\)</span> varient légèrement avec <span class="math inline">\(T\)</span> — l’approximation d’Ellingham néglige ces variations.</p>
+<hr>
+<p><strong>Méthode 2 — Relation de Van’t Hoff</strong></p>
+<p><strong>Formalisation :</strong> la relation de Van’t Hoff relie directement <span class="math inline">\(\ln(K(T))\)</span> à <span class="math inline">\(\ln(K(298))\)</span> sans passer par <span class="math inline">\(\Delta_r G^\circ(T)\)</span> :</p>
+<p><span class="math display">\[\ln(K(T)) = \frac{\Delta_r H^\circ}{R} \cdot
+\left(\frac{1}{298} - \frac{1}{T}\right) + \ln(K_{298})
+\]</span> {#eq:vant-hoff}</p>
+<p><strong>Au niveau particulaire :</strong> cette relation montre que c’est l’enthalpie <span class="math inline">\(\Delta_r H^\circ\)</span> qui gouverne la sensibilité de <span class="math inline">\(K\)</span> à la température. Une réaction très exothermique (<span class="math inline">\(\Delta_r H^\circ
+\ll 0\)</span>) verra son <span class="math inline">\(K\)</span> chuter rapidement quand <span class="math inline">\(T\)</span> augmente ; une réaction peu enthalpique sera peu sensible à <span class="math inline">\(T\)</span>.</p>
+<p><strong>Représentation symbolique — effet de la température sur <span class="math inline">\(K\)</span> :</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\Delta_r H^\circ\)</span></th>
+<th><span class="math inline">\(T\)</span> augmente</th>
+<th><span class="math inline">\(T\)</span> diminue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(&lt; 0\)</span> (exothermique)</td>
+<td><span class="math inline">\(K\)</span> diminue</td>
+<td><span class="math inline">\(K\)</span> augmente</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(&gt; 0\)</span> (endothermique)</td>
+<td><span class="math inline">\(K\)</span> augmente</td>
+<td><span class="math inline">\(K\)</span> diminue</td>
+</tr>
+</tbody>
+</table>
+<p>Pour favoriser une réaction exothermique, on abaisse la température. Pour favoriser une réaction endothermique, on augmente la température.</p>
+<p><strong>Exemple travaillé — synthèse de l’ammoniac à 270 K :</strong></p>
+<p><span class="math display">\[\tfrac{1}{2}\ce{N2(g)} + \tfrac{3}{2}\ce{H2(g)} -&gt; \ce{NH3(g)}\]</span></p>
+<p>Données : <span class="math inline">\(\Delta_r H^\circ = -46{,}1\ \text{kJ/mol}\)</span> ; <span class="math inline">\(\Delta_r S^\circ = -99{,}2\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span> ; <span class="math inline">\(K(298) = 812{,}5\)</span></p>
+<p><em>Méthode 1 — Ellingham :</em></p>
+<p><span class="math display">\[\Delta_r G^\circ(270) = -46{,}1 \times 10^3 - 270 \cdot (-99{,}2)
+= -46100 + 26784 = -19316\ \text{J/mol}\]</span></p>
+<p><span class="math display">\[\ln(K(270)) = -\frac{-19316}{8{,}314 \cdot 270} = +8{,}61\]</span></p>
+<p><span class="math display">\[K(270) = e^{+8{,}61} \approx 5460\]</span></p>
+<p><em>Méthode 2 — Van’t Hoff :</em></p>
+<p><span class="math display">\[\ln(K(270)) = \frac{-46{,}1 \times 10^3}{8{,}314} \cdot
+\left(\frac{1}{298} - \frac{1}{270}\right) + \ln(812{,}5)\]</span></p>
+<p><span class="math display">\[= -5545 \cdot (-3{,}48 \times 10^{-4}) + 6{,}70
+= +1{,}93 + 6{,}70 = +8{,}63\]</span></p>
+<p><span class="math display">\[K(270) = e^{+8{,}63} \approx 5590\]</span></p>
+<p>Les deux méthodes donnent des résultats très proches (<span class="math inline">\(5460\)</span> vs <span class="math inline">\(5590\)</span>) — l’approximation d’Ellingham est ici valide. En refroidissant de 298 K à 270 K, <span class="math inline">\(K\)</span> passe de <span class="math inline">\(812{,}5\)</span> à environ <span class="math inline">\(5500\)</span> — la réaction est encore plus favorable à basse température, cohérent avec <span class="math inline">\(\Delta_r H^\circ &lt; 0\)</span>.</p>
+<p><strong>Exercice autonome :</strong> en utilisant les deux méthodes, calculer <span class="math inline">\(K\)</span> à 500 K pour la réaction <span class="math inline">\(\ce{SOCl2(l) + H2O(l) -&gt; SO2(g) + 2 HCl(g)}\)</span> avec <span class="math inline">\(\Delta_r H^\circ = +49{,}5\ \text{kJ/mol}\)</span>, <span class="math inline">\(\Delta_r S^\circ = +336{,}1\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span> et <span class="math inline">\(K(298) = 7{,}6 \times 10^{8}\)</span>. Comparez les deux résultats.<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Pour <span class="math inline">\(\ce{N2(g) + 3H2(g) -&gt; 2NH3(g)}\)</span> avec <span class="math inline">\(K(298) = 6 \times 10^5\)</span> et <span class="math inline">\(\Delta_r H^\circ = -92{,}2\ \text{kJ/mol}\)</span>, <span class="math inline">\(K\)</span> augmente-t-il ou diminue-t-il si on chauffe à 400 K ?<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a></li>
+<li>Calculer <span class="math inline">\(K\)</span> à 400 K pour la réaction précédente par la méthode d’Ellingham (<span class="math inline">\(\Delta_r S^\circ = -198{,}7\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span>).<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a></li>
+<li>Comparer les deux méthodes (Ellingham et Van’t Hoff) : laquelle utiliser si on ne dispose que de <span class="math inline">\(K(298)\)</span> mais pas de <span class="math inline">\(\Delta_r S^\circ\)</span> ?<a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a></li>
+</ol>
+<hr>
+<p><strong>Exercices de synthèse</strong></p>
+<ol type="1">
+<li>Pour la réaction <span class="math inline">\(\ce{2CO(g) + O2(g) -&gt; 2CO2(g)}\)</span>, prévoir qualitativement le signe de <span class="math inline">\(\Delta_r S^\circ\)</span> et le cas de Gibbs (<span class="math inline">\(\Delta_r H^\circ = -566\ \text{kJ/mol}\)</span>).<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a></li>
+<li>Calculer <span class="math inline">\(\Delta_r G^\circ\)</span> à 298 K pour <span class="math inline">\(\ce{CH4(g) + H2O(g) -&gt; CO(g) + 3H2(g)}\)</span> avec <span class="math inline">\(\Delta_r H^\circ = +206\ \text{kJ/mol}\)</span> et <span class="math inline">\(\Delta_r S^\circ = +215\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span>. La réaction est-elle spontanée à 298 K ? À quelle température le devient-elle ?<a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a></li>
+<li>La dissolution de <span class="math inline">\(\ce{NH4NO3(s)}\)</span> dans l’eau est endothermique (<span class="math inline">\(\Delta_r H^\circ = +25{,}7\ \text{kJ/mol}\)</span>) et spontanée à 25 °C. Quel signe doit avoir <span class="math inline">\(\Delta_r S^\circ\)</span> ? Calculer la valeur minimale de <span class="math inline">\(\Delta_r S^\circ\)</span> pour que <span class="math inline">\(\Delta_r G^\circ &lt; 0\)</span> à 298 K.<a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a></li>
+<li>Calculer <span class="math inline">\(K\)</span> à 298 K pour <span class="math inline">\(\ce{Fe2O3(s) + 3H2(g) -&gt; 2Fe(s) + 3H2O(g)}\)</span> avec <span class="math inline">\(\Delta_r G^\circ = -74{,}4\ \text{kJ/mol}\)</span>. La réaction est-elle favorable ?<a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a></li>
+<li>Pour la réaction <span class="math inline">\(\ce{PCl5(g) -&gt; PCl3(g) + Cl2(g)}\)</span>, <span class="math inline">\(\Delta_r H^\circ = +87{,}9\ \text{kJ/mol}\)</span> et <span class="math inline">\(\Delta_r S^\circ = +170\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span>. Calculer <span class="math inline">\(T_\text{inv}\)</span> et <span class="math inline">\(K\)</span> à <span class="math inline">\(T_\text{inv} + 100\ \text{K}\)</span>.<a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a></li>
+<li>Expliquer sans calcul pourquoi la constante d’équilibre de la réaction de Haber (<span class="math inline">\(\ce{N2 + 3H2 -&gt; 2NH3}\)</span>) diminue quand la température augmente, alors que la cinétique s’améliore. Quel compromis cela impose-t-il industriellement ?<a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a></li>
+<li>Pour <span class="math inline">\(\ce{2H2O2(l) -&gt; 2H2O(l) + O2(g)}\)</span>, <span class="math inline">\(\Delta_r H^\circ = -195{,}7\ \text{kJ/mol}\)</span> et <span class="math inline">\(\Delta_r S^\circ = +124{,}9\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span>. Calculer <span class="math inline">\(K\)</span> à 298 K et à 400 K par Ellingham.<a href="#fn37" class="footnote-ref" id="fnref37" role="doc-noteref"><sup>37</sup></a></li>
+<li>Une réaction a <span class="math inline">\(\Delta_r G^\circ(400\ \text{K}) = -8{,}0\ \text{kJ/mol}\)</span> et <span class="math inline">\(\Delta_r G^\circ(600\ \text{K}) = +4{,}0\ \text{kJ/mol}\)</span>. Estimer <span class="math inline">\(\Delta_r H^\circ\)</span> et <span class="math inline">\(\Delta_r S^\circ\)</span> en supposant l’approximation d’Ellingham valide.<a href="#fn38" class="footnote-ref" id="fnref38" role="doc-noteref"><sup>38</sup></a></li>
+<li>Calculer <span class="math inline">\(\Delta_r G^\circ\)</span> à 298 K et <span class="math inline">\(K\)</span> pour <span class="math inline">\(\ce{Zn(s) + Cu^{2+}(aq) -&gt; Zn^{2+}(aq) + Cu(s)}\)</span> avec <span class="math inline">\(\Delta_f G^\circ(\ce{Cu^{2+},aq}) = +65{,}5\ \text{kJ/mol}\)</span> et <span class="math inline">\(\Delta_f G^\circ(\ce{Zn^{2+},aq}) = -147{,}1\ \text{kJ/mol}\)</span>.<a href="#fn39" class="footnote-ref" id="fnref39" role="doc-noteref"><sup>39</sup></a></li>
+<li>La synthèse du méthanol <span class="math inline">\(\ce{CO(g) + 2H2(g) -&gt; CH3OH(g)}\)</span> a <span class="math inline">\(\Delta_r H^\circ = -90{,}2\ \text{kJ/mol}\)</span> et <span class="math inline">\(K(298) = 2{,}3 \times 10^4\)</span>. Calculer <span class="math inline">\(K\)</span> à 500 K par Van’t Hoff et commenter la viabilité industrielle à cette température.<a href="#fn40" class="footnote-ref" id="fnref40" role="doc-noteref"><sup>40</sup></a></li>
+</ol>
+<p>Ces défis s’adressent à ceux qui veulent aller réellement plus loin. Ils exigent de mobiliser les notions de Zone 2 dans des contextes nouveaux.</p>
+</section>
+<section id="défi-a-synthèse-industrielle-du-méthanol" class="level3" data-number="12.0.9">
+<h3 data-number="12.0.9" class="anchored" data-anchor-id="défi-a-synthèse-industrielle-du-méthanol"><span class="header-section-number">12.0.9</span> Défi A — Synthèse industrielle du méthanol</h3>
+<p>La synthèse industrielle du méthanol s’effectue selon la réaction :</p>
+<p><span class="math display">\[\ce{CO(g) + 2 H2(g) -&gt; CH3OH(g)}\]</span></p>
+<p>Données à 298 K :</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Espèce</th>
+<th><span class="math inline">\(\Delta_f H^\circ\)</span> (kJ/mol)</th>
+<th><span class="math inline">\(S^\circ\)</span> (J·mol<span class="math inline">\(^{-1}\)</span>·K<span class="math inline">\(^{-1}\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{CO(g)}\)</span></td>
+<td><span class="math inline">\(-110{,}5\)</span></td>
+<td><span class="math inline">\(197{,}5\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{H2(g)}\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(130{,}7\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{CH3OH(g)}\)</span></td>
+<td><span class="math inline">\(-200{,}7\)</span></td>
+<td><span class="math inline">\(239{,}8\)</span></td>
+</tr>
+</tbody>
+</table>
+<ol type="a">
+<li><p>Calculer <span class="math inline">\(\Delta_r H^\circ\)</span>, <span class="math inline">\(\Delta_r S^\circ\)</span> et <span class="math inline">\(\Delta_r G^\circ\)</span> à 298 K. Le signe de <span class="math inline">\(\Delta_r S^\circ\)</span> était-il prévisible ?</p></li>
+<li><p>Dans quel domaine de température la réaction est-elle spontanée aux conditions standards ?</p></li>
+<li><p>Calculer la constante d’équilibre <span class="math inline">\(K\)</span> à 298 K et à 250<span class="math inline">\(^\circ\)</span>C. Comparer les deux valeurs et commenter.<a href="#fn41" class="footnote-ref" id="fnref41" role="doc-noteref"><sup>41</sup></a></p></li>
+</ol>
+</section>
+<section id="défi-b-études-thermochimiques-comparées" class="level3" data-number="12.0.10">
+<h3 data-number="12.0.10" class="anchored" data-anchor-id="défi-b-études-thermochimiques-comparées"><span class="header-section-number">12.0.10</span> Défi B — Études thermochimiques comparées</h3>
+<p>Classer les réactions suivantes en redox, acido-basique ou combustion. Pour chacune, prévoir qualitativement si elle est impossible, défavorable, favorable ou totale, puis calculer <span class="math inline">\(K\)</span> à partir de <span class="math inline">\(\Delta_r G^\circ\)</span>.</p>
+<ol type="a">
+<li><p><span class="math inline">\(\ce{Zn(s) + 2 H^+(aq) -&gt; Zn^{2+}(aq) + H2(g)}\)</span> <span class="math inline">\(\quad \Delta_r G^\circ = -212{,}3\ \text{kJ/mol}\)</span></p></li>
+<li><p><span class="math inline">\(\ce{Cu(s) + 2 H^+(aq) -&gt; Cu^{2+}(aq) + H2(g)}\)</span> <span class="math inline">\(\quad \Delta_r G^\circ = +88{,}9\ \text{kJ/mol}\)</span></p></li>
+<li><p><span class="math inline">\(\ce{CH3COO^-(aq) + H2O(l) -&gt; CH3COOH(aq) + OH^-(aq)}\)</span> <span class="math inline">\(\quad \Delta_r G^\circ = +27{,}1\ \text{kJ/mol}\)</span></p></li>
+<li><p><span class="math inline">\(\ce{2 C5H10(g) + 15 O2(g) -&gt; 10 CO2(g) + 10 H2O(l)}\)</span> <span class="math inline">\(\quad \Delta_r G^\circ = -6354\ \text{kJ/mol}\)</span><a href="#fn42" class="footnote-ref" id="fnref42" role="doc-noteref"><sup>42</sup></a></p></li>
+</ol>
+</section>
+<section id="défi-c-température-dinversion-et-optimisation" class="level3" data-number="12.0.11">
+<h3 data-number="12.0.11" class="anchored" data-anchor-id="défi-c-température-dinversion-et-optimisation"><span class="header-section-number">12.0.11</span> Défi C — Température d’inversion et optimisation</h3>
+<p>On considère la réaction d’oxydation du dioxyde de soufre :</p>
+<p><span class="math display">\[\ce{2 SO2(g) + O2(g) -&gt; 2 SO3(g)}\]</span></p>
+<p>Données à 298 K : <span class="math inline">\(\Delta_r H^\circ = -197{,}8\ \text{kJ/mol}\)</span> ; <span class="math inline">\(\Delta_r S^\circ = -187{,}9\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span></p>
+<ol type="a">
+<li><p>Calculer <span class="math inline">\(\Delta_r G^\circ\)</span> et <span class="math inline">\(K\)</span> à 298 K.</p></li>
+<li><p>Déterminer la température d’inversion <span class="math inline">\(T_\text{inv}\)</span> au-delà de laquelle la réaction n’est plus spontanée. Cette réaction est une étape clé de la fabrication industrielle de l’acide sulfurique — pourquoi travaille-t-on industriellement à des températures supérieures à <span class="math inline">\(T_\text{inv}\)</span> malgré la défavorabilité thermodynamique ?</p></li>
+<li><p>Calculer <span class="math inline">\(K\)</span> à 700 K par les deux méthodes (Ellingham et Van’t Hoff) et comparer.<a href="#fn43" class="footnote-ref" id="fnref43" role="doc-noteref"><sup>43</sup></a></p></li>
+</ol>
+<hr>
+</section>
+<section id="mots-clés" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="mots-clés"><span class="header-section-number">12.1</span> Mots-clés</h2>
+<p><strong>Deuxième principe de la thermodynamique</strong> : tout processus spontané s’effectue avec augmentation de l’entropie globale <span class="math inline">\(S_\text{créée} &gt; 0\)</span>.</p>
+<p><strong>Troisième principe de la thermodynamique</strong> : l’entropie d’un cristal parfait est nulle à <span class="math inline">\(T = 0\ \text{K}\)</span> — origine absolue de l’entropie.</p>
+<p><strong>Entropie (<span class="math inline">\(S\)</span>)</strong> : grandeur thermodynamique extensive mesurant le degré de désordre particulaire d’un système ; exprimée en J/K.</p>
+<p><strong>Entropie créée (<span class="math inline">\(S_\text{créée}\)</span>)</strong> : somme <span class="math inline">\(\Delta S_\text{sys} +
+\Delta S_\text{ext}\)</span> ; positive pour tout processus spontané, nulle à l’équilibre.</p>
+<p><strong>Entropie molaire standard (<span class="math inline">\(S^\circ_{298}\)</span>)</strong> : entropie absolue d’un corps pur à 298 K et 101,3 kPa ; toujours positive, en J·mol<span class="math inline">\(^{-1}\)</span>·K<span class="math inline">\(^{-1}\)</span>.</p>
+<p><strong>Enthalpie libre de Gibbs (<span class="math inline">\(\Delta_r G^\circ\)</span>)</strong> : grandeur égale à <span class="math inline">\(\Delta_r H^\circ - T \cdot \Delta_r S^\circ\)</span> ; son signe prédit la spontanéité d’une réaction à température et pression constantes.</p>
+<p><strong>Température d’inversion (<span class="math inline">\(T_\text{inv}\)</span>)</strong> : température à laquelle <span class="math inline">\(\Delta_r G^\circ = 0\)</span> et <span class="math inline">\(K = 1\)</span> ; au-delà, le sens spontané de la réaction s’inverse.</p>
+<p><strong>Constante d’équilibre (<span class="math inline">\(K\)</span>)</strong> : grandeur reliée à <span class="math inline">\(\Delta_r G^\circ\)</span> par <span class="math inline">\(\Delta_r G^\circ = -R \cdot T \cdot \ln(K)\)</span> ; indique la composition du système à l’équilibre.</p>
+<p><strong>Approximation d’Ellingham</strong> : hypothèse que <span class="math inline">\(\Delta_r H^\circ\)</span> et <span class="math inline">\(\Delta_r S^\circ\)</span> sont indépendants de <span class="math inline">\(T\)</span>, permettant de calculer <span class="math inline">\(\Delta_r G^\circ(T)\)</span> par extrapolation linéaire.</p>
+<p><strong>Relation de Van’t Hoff</strong> : relation reliant <span class="math inline">\(\ln(K(T))\)</span> à <span class="math inline">\(\ln(K_{298})\)</span> via <span class="math inline">\(\Delta_r H^\circ\)</span> ; alternative à Ellingham ne nécessitant pas le calcul explicite de <span class="math inline">\(\Delta_r G^\circ(T)\)</span>.</p>
+<hr>
+<p><em>Projet-Balmer — Manuel de chimie pour les gymnases vaudois</em></p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Non spontanée — <span class="math inline">\(S_\text{créée} &lt; 0\)</span> indique un processus impossible dans ce sens.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><span class="math inline">\(S_\text{créée} &gt; 0\)</span> — tout processus spontané augmente l’entropie globale.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Oui, si <span class="math inline">\(\Delta S_\text{ext} &gt; +50\ \text{J/K}\)</span>, de sorte que <span class="math inline">\(S_\text{créée} = \Delta S_\text{sys} + \Delta S_\text{ext} &gt; 0\)</span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><span class="math inline">\(\Delta S_\text{ext} = -6010/298 = -20{,}2\ \text{J/K}\)</span> ; <span class="math inline">\(\Delta S_\text{sys}(\text{fusion}) = +22{,}0\ \text{J/K}\)</span> (tabulé) ; <span class="math inline">\(S_\text{créée} = +1{,}8\ \text{J/K} &gt; 0\)</span> — spontanée.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Seule (b) — la dissolution augmente le désordre (ions dispersés en solution). (a) diminue le désordre ; (c) réduit le nombre de moles de gaz.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>La relation <span class="math inline">\(\Delta S_\text{ext} = -\Delta H/T\)</span> montre que, à <span class="math inline">\(\Delta H\)</span> fixe, <span class="math inline">\(\Delta S_\text{ext}\)</span> est inversement proportionnel à <span class="math inline">\(T\)</span> — plus <span class="math inline">\(T\)</span> est petit, plus l’effet entropique est grand.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p><span class="math inline">\(\Delta_f H^\circ = 0\)</span> est une convention de référence (pas de réaction de formation pour un corps pur simple le plus stable). <span class="math inline">\(S^\circ_{298} \neq 0\)</span> car à 298 K le corps pur est bien au-dessus de 0 K — l’entropie absolue mesure l’accumulation depuis le zéro absolu.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p><span class="math inline">\(\ce{H2O(g)}\)</span> — l’état gazeux a un désordre particulaire bien supérieur à l’état liquide. Confirmé : <span class="math inline">\(S^\circ(\ce{H2O,g}) = 188{,}8\)</span> contre <span class="math inline">\(S^\circ(\ce{H2O,l}) = 70{,}0\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><span class="math inline">\(S^\circ(\ce{C, graphite}) = 5{,}69\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span> (solide très ordonné) vs <span class="math inline">\(S^\circ(\ce{CO2,g}) = 213{,}7\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span> (gaz polyatomique très désordonné) — cohérent.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><ol type="a">
+<li><span class="math inline">\(\Delta_r S^\circ &gt; 0\)</span> — production d’un gaz ; (b) <span class="math inline">\(\Delta_r S^\circ \approx 0\)</span> — même nombre de moles de gaz, impossible à prédire sans calcul ; (c) <span class="math inline">\(\Delta_r S^\circ &lt; 0\)</span> — formation d’un précipité solide depuis des ions en solution.</li>
+</ol>
+<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn11"><p>Non — les deux règles simples ne permettent pas de conclure quand <span class="math inline">\(\Delta n_\text{gaz} = 0\)</span>. Un calcul quantitatif à partir des <span class="math inline">\(S^\circ\)</span> tabulés est nécessaire.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p><span class="math inline">\(\ce{Fe(s)} &lt; \ce{H2O(l)} &lt; \ce{Cl2(g)}\)</span> — solide ordonné &lt; liquide &lt; gaz.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Réponse : <span class="math inline">\(\Delta_r S^\circ = +217{,}5\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span>.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p><span class="math inline">\(\Delta_r S^\circ = 2 \times 70{,}0 - 2 \times 131 - 205{,}1 = -327{,}1\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span>. Oui — 3 mol de gaz <span class="math inline">\(\to\)</span> 0 mol de gaz (liquide formé), <span class="math inline">\(\Delta_r S^\circ \ll 0\)</span> prévisible.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p><span class="math inline">\(\Delta S_\text{ext} = +92200/298 = +309{,}4\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span> ; <span class="math inline">\(S_\text{créée} = -198{,}7 + 309{,}4 = +110{,}7 &gt; 0\)</span> — spontanée.<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p><span class="math inline">\(\Delta_r S^\circ = 213{,}7 - 197{,}9 - \frac{1}{2} \times 205{,}1 = -86{,}8\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span>.<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p><span class="math inline">\(\Delta_r G^\circ(298\ \text{K}) = -50{,}6\ \text{kJ/mol}\)</span> ; <span class="math inline">\(\Delta_r G^\circ(500\ \text{K}) = -118{,}6\ \text{kJ/mol}\)</span>.<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p><span class="math inline">\(\Delta_r G^\circ = -120000 - 298 \times 85 = -145{,}3\ \text{kJ/mol}\)</span>. Cas 1 (<span class="math inline">\(\Delta_r H^\circ &lt; 0\)</span>, <span class="math inline">\(\Delta_r S^\circ &gt; 0\)</span>) — spontanée à toute température.<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p><span class="math inline">\(T_\text{inv} = 57200/175{,}8 = 325\ \text{K}\)</span> — au-dessus de 325 K, la réaction est spontanée (cas 4 : endothermique avec gain d’entropie).<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p><span class="math inline">\(\Delta_r G^\circ = 2 \times (-371{,}1) - [2 \times (-300{,}2) + 0] = -742{,}2 + 600{,}4 = -141{,}8\ \text{kJ/mol}\)</span>.<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p><span class="math inline">\(K = 1\)</span> quand <span class="math inline">\(\Delta_r G^\circ = 0\)</span>. Si <span class="math inline">\(\Delta_r H^\circ &lt; 0\)</span> (exothermique), augmenter <span class="math inline">\(T\)</span> défavorise la réaction — <span class="math inline">\(K\)</span> diminue en dessous de 1.<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p><span class="math inline">\(\Delta_r G^\circ = +366{,}8\ \text{kJ/mol}\)</span> ; <span class="math inline">\(K = 5{,}1 \times 10^{-65}\)</span>. Réaction quasi impossible de gauche à droite à 298 K.<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p><span class="math inline">\(\ln K = 2073000/(8{,}314 \times 298) = 836{,}6\)</span> ; <span class="math inline">\(K \approx 10^{363}\)</span> — réaction totale.<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p><span class="math inline">\(\Delta_r G^\circ = -8{,}314 \times 298 \times \ln(1{,}5 \times 10^{-8}) = +44{,}5\ \text{kJ/mol}\)</span> — non spontanée de gauche à droite.<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p><span class="math inline">\(K &lt; 1\)</span> — les réactifs (<span class="math inline">\(\ce{HI}\)</span>) dominent à l’équilibre.<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p><span class="math inline">\(\ln K = 4800/(8{,}314 \times 298) = 1{,}94\)</span> ; <span class="math inline">\(K = e^{1{,}94} \approx 6{,}9\)</span>.<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p>Ellingham : <span class="math inline">\(\Delta_r G^\circ(500) = -118{,}6\ \text{kJ/mol}\)</span>, <span class="math inline">\(K = 2{,}4 \times 10^{12}\)</span>. Van’t Hoff : <span class="math inline">\(\ln K(500) = \frac{49500}{8{,}314} \cdot \left(\frac{1}{298} -
+\frac{1}{500}\right) + \ln(7{,}6 \times 10^8) = 28{,}52\)</span>, <span class="math inline">\(K = 2{,}4 \times 10^{12}\)</span>.<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p><span class="math inline">\(K\)</span> diminue — réaction exothermique, une hausse de <span class="math inline">\(T\)</span> défavorise les produits (Le Châtelier).<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><p><span class="math inline">\(\Delta_r G^\circ(400) = -92200 - 400 \times (-198{,}7) = -92200 + 79480 = -12720\ \text{J/mol}\)</span> ; <span class="math inline">\(\ln K = 12720/(8{,}314 \times 400) = 3{,}82\)</span> ; <span class="math inline">\(K(400) \approx 46\)</span>.<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn30"><p>Si <span class="math inline">\(\Delta_r S^\circ\)</span> n’est pas connu, Van’t Hoff est préférable — elle ne requiert que <span class="math inline">\(K(298)\)</span> et <span class="math inline">\(\Delta_r H^\circ\)</span>. Ellingham exige <span class="math inline">\(\Delta_r S^\circ\)</span> pour calculer <span class="math inline">\(\Delta_r G^\circ(T)\)</span>.<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p><span class="math inline">\(\Delta_r S^\circ &lt; 0\)</span> (3 mol de gaz <span class="math inline">\(\to\)</span> 2 mol de gaz) ; cas 3 (<span class="math inline">\(\Delta_r H^\circ &lt; 0\)</span>, <span class="math inline">\(\Delta_r S^\circ &lt; 0\)</span>) — spontanée uniquement à basse température.<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p><span class="math inline">\(\Delta_r G^\circ(298) = +206000 - 298 \times 215 = +141{,}9\ \text{kJ/mol}\)</span> — non spontanée. <span class="math inline">\(T_\text{inv} = 206000/215 = 958\ \text{K}\)</span> — spontanée au-dessus de 685 °C.<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p><span class="math inline">\(\Delta_r S^\circ &gt; 0\)</span> nécessairement. Condition : <span class="math inline">\(\Delta_r S^\circ &gt; \Delta_r H^\circ/T = 25700/298 = +86{,}2\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span>.<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn34"><p><span class="math inline">\(\ln K = 74400/(8{,}314 \times 298) = 30{,}0\)</span> ; <span class="math inline">\(K = e^{30{,}0} \approx 1{,}1 \times 10^{13}\)</span> — très favorable.<a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn35"><p><span class="math inline">\(T_\text{inv} = 87900/170 = 517\ \text{K}\)</span> ; à 617 K : <span class="math inline">\(\Delta_r G^\circ = 87900 - 617 \times 170 = -17090\ \text{J/mol}\)</span> ; <span class="math inline">\(K = e^{17090/(8{,}314 \times 617)} \approx 28\)</span>.<a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn36"><p>Réaction exothermique : <span class="math inline">\(K\)</span> diminue avec <span class="math inline">\(T\)</span> (thermodynamique défavorable à haute <span class="math inline">\(T\)</span>) mais la cinétique est trop lente à basse <span class="math inline">\(T\)</span>. L’industrie choisit une température intermédiaire (~450 °C) avec catalyseur pour obtenir un rendement acceptable en un temps raisonnable.<a href="#fnref36" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn37"><p>À 298 K : <span class="math inline">\(\Delta_r G^\circ = -232{,}9\ \text{kJ/mol}\)</span>, <span class="math inline">\(K \approx 6{,}7 \times 10^{40}\)</span>. À 400 K : <span class="math inline">\(\Delta_r G^\circ = -195700 - 400 \times 124{,}9 = -245{,}7\ \text{kJ/mol}\)</span>, <span class="math inline">\(K \approx 10^{32}\)</span> — encore très favorable.<a href="#fnref37" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn38"><p><span class="math inline">\(\Delta_r G^\circ = \Delta_r H^\circ - T \cdot \Delta_r S^\circ\)</span> : deux équations, deux inconnues. <span class="math inline">\(\Delta_r H^\circ - 400\Delta_r S^\circ = -8000\)</span> et <span class="math inline">\(\Delta_r H^\circ - 600\Delta_r S^\circ = +4000\)</span>. Soustraction : <span class="math inline">\(200\Delta_r S^\circ = -12000\)</span>, donc <span class="math inline">\(\Delta_r S^\circ = -60\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span> et <span class="math inline">\(\Delta_r H^\circ = -8000 + 400 \times 60 = +16\ \text{kJ/mol}\)</span>.<a href="#fnref38" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn39"><p><span class="math inline">\(\Delta_r G^\circ = (-147{,}1 + 0) - (0 + 65{,}5) = -212{,}6\ \text{kJ/mol}\)</span> ; <span class="math inline">\(K = e^{212600/(8{,}314 \times 298)} \approx 10^{37}\)</span> — totale.<a href="#fnref39" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn40"><p><span class="math inline">\(\ln K(500) = \frac{-90200}{8{,}314}\left(\frac{1}{298} - \frac{1}{500}\right) + \ln(2{,}3 \times 10^4) = -10852 \times 1{,}356 \times 10^{-3} + 10{,}04 = -4{,}68\)</span> ; <span class="math inline">\(K(500) \approx 9 \times 10^{-3}\)</span> — très défavorable à 500 K ; industriellement, on travaille à plus basse température avec un catalyseur.<a href="#fnref40" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn41"><ol type="a">
+<li><span class="math inline">\(\Delta_r H^\circ = -90{,}2\ \text{kJ/mol}\)</span> ; <span class="math inline">\(\Delta_r S^\circ = -219{,}1\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span> ; <span class="math inline">\(\Delta_r G^\circ(298) = -24{,}9\ \text{kJ/mol}\)</span>. Oui : 3 mol de gaz <span class="math inline">\(\to\)</span> 1 mol de gaz, <span class="math inline">\(\Delta_r S^\circ &lt; 0\)</span> prévisible.</li>
+<li><span class="math inline">\(T_\text{inv} = \Delta_r H^\circ / \Delta_r S^\circ = 412\ \text{K}\)</span> <span class="math inline">\((139\ ^\circ\text{C})\)</span> — spontanée pour <span class="math inline">\(T &lt; 412\ \text{K}\)</span>.</li>
+<li><span class="math inline">\(K(298) = 2{,}3 \times 10^4\)</span> ; <span class="math inline">\(K(523\ \text{K}) = 3{,}7 \times 10^{-3}\)</span>. À 250<span class="math inline">\(^\circ\text{C}\)</span> la réaction est défavorable — la température industrielle est un compromis entre favorabilité thermodynamique et vitesse de réaction.</li>
+</ol>
+<a href="#fnref41" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn42"><ol type="a">
+<li>Redox — <span class="math inline">\(K \approx 10^{37}\)</span> — totale.</li>
+<li>Redox — <span class="math inline">\(K \approx 10^{-16}\)</span> — impossible de gauche à droite.</li>
+<li>Acido-basique — <span class="math inline">\(K \approx 10^{-5}\)</span> — très défavorable (base faible).</li>
+<li>Combustion — <span class="math inline">\(K \approx 10^{1113}\)</span> — totale.</li>
+</ol>
+<a href="#fnref42" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn43"><ol type="a">
+<li><span class="math inline">\(\Delta_r G^\circ(298) = -141{,}8\ \text{kJ/mol}\)</span> ; <span class="math inline">\(K(298) \approx 7{,}2 \times 10^{24}\)</span>.</li>
+<li><span class="math inline">\(T_\text{inv} = 1052\ \text{K}\)</span>. Raison cinétique : la réaction est trop lente à basse température malgré une thermodynamique favorable — compromis vitesse/rendement approfondi au chapitre Vitesse de réaction.</li>
+<li>Ellingham : <span class="math inline">\(\Delta_r G^\circ(700) = -66{,}3\ \text{kJ/mol}\)</span>, <span class="math inline">\(K(700) \approx 8{,}7 \times 10^4\)</span>. Van’t Hoff : <span class="math inline">\(\ln K(700) = \frac{-197800}{8{,}314}
+\cdot\left(\frac{1}{298}-\frac{1}{700}\right) + \ln(7{,}2 \times 10^{24})
+= -45{,}85 + 57{,}25 = 11{,}40\)</span>, <span class="math inline">\(K(700) \approx 8{,}9 \times 10^4\)</span>.</li>
+</ol>
+<a href="#fnref43" class="footnote-back" role="doc-backlink">↩︎</a></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapitres/thermochimie-1.html" class="pagination-link" aria-label="Thermochimie 1">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Thermochimie 1</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapitres/vitesse-de-reaction.html" class="pagination-link" aria-label="Vitesse de réaction">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Vitesse de réaction</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

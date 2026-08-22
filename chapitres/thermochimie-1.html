@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>11&nbsp; Thermochimie 1 – Projet-Balmer</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapitres/thermochimie-2.html" rel="next">
+<link href="../chapitres/historique-tome-2.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3d497cff885f6278d37568d0ef0763f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mhchem']},
+  tex: {packages: {'[+]': ['mhchem']}}
+};
+</script>
+<style>
+.quarto-figure img, main img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+.qcm-widget { margin: 1rem 0; padding: 0.75rem 1rem; border: 1px solid #ddd; border-radius: 8px; }
+.qcm-widget .qcm-label { font-size: 13px; color: #666; margin-bottom: 8px; }
+.qcm-widget button { display: block; width: 100%; text-align: left; margin: 4px 0; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; }
+.qcm-widget .qcm-feedback { margin-top: 8px; font-size: 14px; }
+.hist-note-name { color: inherit; text-decoration: none; border-bottom: 1px dotted #8a5a00; cursor: pointer; }
+.hist-note-name:hover { border-bottom-style: solid; }
+.hist-note { text-decoration: none; font-size: 0.75em; vertical-align: super; margin-left: 2px; color: #8a5a00; border-bottom: none; }
+.hist-note:hover { text-decoration: underline; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.qcm-widget').forEach(function(el) {
+    var options = JSON.parse(el.getAttribute('data-options'));
+    var correct = parseInt(el.getAttribute('data-correct'), 10);
+    var answered = false;
+    var label = document.createElement('div');
+    label.className = 'qcm-label';
+    label.textContent = 'Vérifier ma réponse';
+    el.appendChild(label);
+    var feedback = document.createElement('div');
+    feedback.className = 'qcm-feedback';
+    options.forEach(function(opt, i) {
+      var btn = document.createElement('button');
+      btn.textContent = opt;
+      btn.onclick = function() {
+        if (answered) return;
+        answered = true;
+        el.querySelectorAll('button').forEach(function(b) { b.disabled = true; });
+        if (i === correct) {
+          btn.style.borderColor = '#2e7d32';
+          btn.style.background = '#e8f5e9';
+          feedback.textContent = 'Correct.';
+          feedback.style.color = '#2e7d32';
+        } else {
+          btn.style.borderColor = '#c62828';
+          btn.style.background = '#ffebee';
+          feedback.textContent = 'Pas tout à fait — bonne réponse : ' + options[correct];
+          feedback.style.color = '#c62828';
+        }
+      };
+      el.appendChild(btn);
+    });
+    el.appendChild(feedback);
+  });
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapitres/thermochimie-1.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Thermochimie 1</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Recherche" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Projet-Balmer</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Recherche"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Historique Tome 1 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/atomes-quantite-de-matiere.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Atomes et quantité de matière</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-sels-molecules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Liaisons, sels et molécules</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-intermoleculaires.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Liaisons intermoléculaires</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-chimiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformations chimiques et stœchiométrie</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-physiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transformations physiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/oxydo-reduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Oxydoréduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/electrochimie-piles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Électrochimie et piles</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acido-basiques-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction aux équilibres acido-basiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Historique Tome 2 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Thermochimie 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Thermochimie 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/vitesse-de-reaction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Vitesse de réaction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Équilibre chimique 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Équilibre chimique 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acides-bases-ph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Acides, bases et pH</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/chimie-organique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Chimie organique</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#enthalpie-et-premier-principe-de-la-thermodynamique" id="toc-enthalpie-et-premier-principe-de-la-thermodynamique" class="nav-link active" data-scroll-target="#enthalpie-et-premier-principe-de-la-thermodynamique"><span class="header-section-number">11.0.1</span> Enthalpie et premier principe de la thermodynamique</a></li>
+  <li><a href="#processus-exothermiques-et-endothermiques" id="toc-processus-exothermiques-et-endothermiques" class="nav-link" data-scroll-target="#processus-exothermiques-et-endothermiques"><span class="header-section-number">11.0.2</span> Processus exothermiques et endothermiques</a></li>
+  <li><a href="#première-méthode-enthalpie-de-réaction-par-les-énergies-de-liaison" id="toc-première-méthode-enthalpie-de-réaction-par-les-énergies-de-liaison" class="nav-link" data-scroll-target="#première-méthode-enthalpie-de-réaction-par-les-énergies-de-liaison"><span class="header-section-number">11.0.3</span> Première méthode — enthalpie de réaction par les énergies de liaison</a></li>
+  <li><a href="#deuxième-méthode-enthalpies-de-formation-standard-delta_f-hcirc" id="toc-deuxième-méthode-enthalpies-de-formation-standard-delta_f-hcirc" class="nav-link" data-scroll-target="#deuxième-méthode-enthalpies-de-formation-standard-delta_f-hcirc"><span class="header-section-number">11.0.4</span> Deuxième méthode — enthalpies de formation standard <span class="math inline">\(\Delta_f H^\circ\)</span></a></li>
+  <li><a href="#loi-de-hess-calcul-de-delta_r-hcirc-par-les-enthalpies-de-formation" id="toc-loi-de-hess-calcul-de-delta_r-hcirc-par-les-enthalpies-de-formation" class="nav-link" data-scroll-target="#loi-de-hess-calcul-de-delta_r-hcirc-par-les-enthalpies-de-formation"><span class="header-section-number">11.0.5</span> Loi de Hess — calcul de <span class="math inline">\(\Delta_r H^\circ\)</span> par les enthalpies de formation</a></li>
+  <li><a href="#enthalpies-de-dissolution" id="toc-enthalpies-de-dissolution" class="nav-link" data-scroll-target="#enthalpies-de-dissolution"><span class="header-section-number">11.0.6</span> Enthalpies de dissolution</a></li>
+  <li><a href="#calorimétrie" id="toc-calorimétrie" class="nav-link" data-scroll-target="#calorimétrie"><span class="header-section-number">11.0.7</span> Calorimétrie</a></li>
+  <li><a href="#défi-b-le-mystère-de-la-chaufferette" id="toc-défi-b-le-mystère-de-la-chaufferette" class="nav-link" data-scroll-target="#défi-b-le-mystère-de-la-chaufferette"><span class="header-section-number">11.0.8</span> Défi B — Le mystère de la chaufferette</a></li>
+  <li><a href="#défi-a-deux-isomères-une-différence" id="toc-défi-a-deux-isomères-une-différence" class="nav-link" data-scroll-target="#défi-a-deux-isomères-une-différence"><span class="header-section-number">11.0.9</span> Défi A — Deux isomères, une différence</a></li>
+  <li><a href="#défi-c-calorimétrie-imparfaite" id="toc-défi-c-calorimétrie-imparfaite" class="nav-link" data-scroll-target="#défi-c-calorimétrie-imparfaite"><span class="header-section-number">11.0.10</span> Défi C — Calorimétrie imparfaite</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Thermochimie 1</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Confort —</strong> Vous savez déjà que les réactions chimiques transforment des réactifs en produits en rompant et en formant des liaisons chimiques. Vous avez appris que certaines liaisons — covalentes, ioniques ou métalliques — sont plus ou moins stables selon les atomes impliqués. Vous savez également qu’une transformation physique ou chimique conserve la masse totale du système (loi de Lavoisier).</p>
+<p><strong>Proximal —</strong> Ce chapitre introduit une nouvelle question : <em>combien d’énergie</em> est échangée lors d’une transformation chimique, et dans quel sens ? La grandeur centrale est l’<strong>enthalpie</strong> <span class="math inline">\(H\)</span>, dont seule la variation <span class="math inline">\(\Delta_r H^\circ\)</span> est accessible expérimentalement. Vous apprendrez à calculer cette variation par deux méthodes complémentaires : à partir des <strong>énergies de liaison</strong> des molécules impliquées, ou à partir des <strong>enthalpies de formation</strong> des corps purs via la <strong>loi de Hess</strong>. Vous découvrirez aussi comment mesurer expérimentalement une chaleur de réaction par <strong>calorimétrie</strong>.</p>
+<p><strong>Dépassement —</strong> À la fin de ce chapitre, vous serez capable de prédire si une réaction dégage ou absorbe de la chaleur, de calculer <span class="math inline">\(\Delta_r H^\circ\)</span> d’une réaction inconnue en combinant des données tabulées, et d’interpréter les résultats d’une expérience calorimétrique. Ces outils vous prépareront au chapitre suivant, qui introduira l’entropie <span class="math inline">\(\Delta_r S^\circ\)</span> et l’enthalpie libre <span class="math inline">\(\Delta_r G^\circ\)</span> pour prédire la spontanéité d’une réaction.</p>
+<!-- REF: ref:atomes-quantite-de-matiere-mole — notion de mole utilisée dans tous les calculs de ce chapitre -->
+<p><strong>Vous savez déjà que…</strong></p>
+<ul>
+<li>Une réaction chimique rompt des liaisons dans les réactifs et en forme de nouvelles dans les produits — ces deux processus impliquent des échanges d’énergie.</li>
+<li>La quantité de matière se mesure en moles et la masse molaire <span class="math inline">\(M\)</span> relie la masse d’un échantillon au nombre de moles : <span class="math inline">\(n = m / M\)</span>.</li>
+<li>Une transformation chimique conserve les éléments : les atomes sont redistribués, jamais créés ni détruits.</li>
+<li>L’état physique d’une substance — solide, liquide ou gazeux — influence ses propriétés et doit être précisé dans une équation chimique.</li>
+</ul>
+<p><strong>Mini-test de positionnement — répondez avant de continuer :</strong></p>
+<ol type="1">
+<li>La combustion du méthane <span class="math inline">\(\ce{CH4}\)</span> dans un brûleur chauffe la casserole posée dessus. L’énergie vient-elle du méthane, de l’oxygène, ou de la réaction entre les deux ?</li>
+<li>Combien de moles contient un échantillon de <span class="math inline">\(\ce{CO2}\)</span> de masse <span class="math inline">\(44{,}0\ \text{g}\)</span> ? (<span class="math inline">\(M(\ce{CO2}) = 44{,}0\ \text{g/mol}\)</span>)</li>
+<li>Une liaison <span class="math inline">\(\ce{C=O}\)</span> est-elle plus ou moins stable qu’une liaison <span class="math inline">\(\ce{C-O}\)</span> ? Comment le savez-vous ?</li>
+</ol>
+<p><em>Si vous répondez sans hésiter aux trois questions, vous êtes dans votre zone de confort — passez directement à la Zone 2.</em></p>
+<hr>
+<section id="enthalpie-et-premier-principe-de-la-thermodynamique" class="level3" data-number="11.0.1">
+<h3 data-number="11.0.1" class="anchored" data-anchor-id="enthalpie-et-premier-principe-de-la-thermodynamique"><span class="header-section-number">11.0.1</span> Enthalpie et premier principe de la thermodynamique</h3>
+<p>Posez votre main sur une casserole qui chauffe au gaz : vous sentez immédiatement que de l’énergie passe du brûleur vers votre peau. Cette énergie ne vient pas de nulle part — elle est libérée par la réaction chimique entre le méthane et l’oxygène. La thermochimie cherche précisément à quantifier ces échanges : combien d’énergie une réaction libère-t-elle ou absorbe-t-elle, et pourquoi ?</p>
+<p>Pour répondre à cette question, la thermodynamique introduit une grandeur appelée <strong>enthalpie</strong>, notée <span class="math inline">\(H\)</span>. Elle synthétise l’énergie interne du système <span class="math inline">\(U\)</span> — liée à l’agitation des molécules et à leurs interactions — et un terme de travail lié à la pression et au volume occupé par le système :</p>
+<p><span class="math display">\[H = U + P \cdot V\]</span></p>
+<p>En pratique, la valeur absolue de <span class="math inline">\(H\)</span> n’est jamais accessible. On ne peut pas mesurer l’enthalpie totale d’un système chimique, de la même façon qu’on ne peut pas connaître l’altitude absolue d’un point sur Terre sans choisir un référentiel. Ce qui est accessible, et seul utile, c’est la <strong>variation</strong> d’enthalpie lors d’une transformation :</p>
+<p><span class="math display">\[\Delta H = H_\text{final} - H_\text{initial}\]</span></p>
+<p>Cette variation correspond à l’énergie échangée entre le système chimique et son environnement sous forme de chaleur. Dans le cadre de ce cours, toutes les réactions sont considérées à <strong>pression constante</strong> — ce qui est le cas des réactions effectuées à l’air libre ou dans un récipient ouvert. Dans ces conditions, la chaleur échangée <span class="math inline">\(Q\)</span> est directement égale à la variation d’enthalpie :</p>
+<p><span class="math display">\[Q = \Delta H \quad \text{(à pression constante)}\]</span></p>
+<p>Ce résultat découle du <strong>premier principe de la thermodynamique</strong> :</p>
+<blockquote class="blockquote">
+<p><em>Au cours d’une transformation, l’énergie du tout — système chimique et environnement — n’est ni créée ni détruite : elle ne peut être que convertie.</em></p>
+</blockquote>
+<p>Autrement dit, si le système chimique gagne de l’enthalpie (<span class="math inline">\(\Delta H &gt; 0\)</span>), c’est l’environnement qui en fournit — et réciproquement. Le bilan global est toujours nul.</p>
+<p><strong>Attention :</strong> la variation d’enthalpie <span class="math inline">\(\Delta_r H^\circ\)</span> dépend des quantités de matière impliquées. Elle s’exprime en <span class="math inline">\(\text{kJ/mol}\)</span>, où “par mole” désigne une mole d’avancement de la réaction telle qu’elle est écrite — pas une mole de chaque réactif.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>La combustion d’une mole de propane dégage <span class="math inline">\(2220\ \text{kJ}\)</span>. Quelle est la valeur de <span class="math inline">\(\Delta_r H^\circ\)</span> pour cette réaction ?<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li>Une réaction a <span class="math inline">\(\Delta_r H^\circ = +85\ \text{kJ/mol}\)</span>. L’environnement se réchauffe-t-il ou se refroidit-il ? Justifiez.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
+<li>À pression constante, <span class="math inline">\(800\ \text{J}\)</span> de chaleur sont échangés lors d’une réaction. Quelle est la valeur de <span class="math inline">\(\Delta H\)</span> ?<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+<li>La formation de <span class="math inline">\(2\ \text{mol}\)</span> d’eau liquide dégage <span class="math inline">\(572\ \text{kJ}\)</span>. Quelle est la valeur de <span class="math inline">\(\Delta_r H^\circ\)</span> exprimée par mole d’eau formée ?<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
+</ol>
+<hr>
+</section>
+<section id="processus-exothermiques-et-endothermiques" class="level3" data-number="11.0.2">
+<h3 data-number="11.0.2" class="anchored" data-anchor-id="processus-exothermiques-et-endothermiques"><span class="header-section-number">11.0.2</span> Processus exothermiques et endothermiques</h3>
+<p>Toute réaction chimique implique simultanément deux processus énergétiques opposés : la <strong>rupture</strong> des liaisons dans les réactifs consomme de l’énergie, et la <strong>formation</strong> de nouvelles liaisons dans les produits en libère. Le signe de <span class="math inline">\(\Delta_r H^\circ\)</span> traduit le bilan net de ces deux processus.</p>
+<p>Avant d’aller plus loin, il est important de distinguer deux grandeurs que l’on confond fréquemment.</p>
+<p><strong>R3 — conception naïve fréquente :</strong> <em>“La chaleur et la température, c’est la même chose.”</em> Ce n’est pas le cas. La <strong>chaleur</strong> <span class="math inline">\(Q\)</span> est une quantité d’énergie échangée, qui se mesure en joules ou kilojoules. La <strong>température</strong> est une manifestation de l’agitation moléculaire moyenne, qui se mesure en kelvins ou degrés Celsius. Pour s’en convaincre, imaginez verser <span class="math inline">\(1\ \text{kJ}\)</span> de chaleur dans un verre d’eau et dans une piscine : la variation de température sera radicalement différente, alors que la chaleur apportée est identique. Ces deux grandeurs sont reliées — mais elles ne sont pas interchangeables.</p>
+<p>Deux cas sont possibles selon le signe de <span class="math inline">\(\Delta_r H^\circ\)</span> :</p>
+<p><strong>Réaction exothermique</strong> (<span class="math inline">\(\Delta_r H^\circ &lt; 0\)</span>) : au niveau particulaire, les liaisons formées dans les produits libèrent davantage d’énergie que les liaisons rompues dans les réactifs n’en ont consommé. Le système chimique perd de l’enthalpie ; l’environnement se réchauffe. Au niveau macroscopique, on observe une élévation de température du milieu environnant. Au niveau symbolique :</p>
+<p><span class="math display">\[\ce{CH4(g) + 2 O2(g) -&gt; CO2(g) + 2 H2O(l)} \qquad \Delta_r H^\circ = -890\ \text{kJ/mol}\]</span></p>
+<p>Notez que si l’eau est produite à l’état gazeux plutôt que liquide, la valeur de <span class="math inline">\(\Delta_r H^\circ\)</span> change :</p>
+<p><span class="math display">\[\ce{CH4(g) + 2 O2(g) -&gt; CO2(g) + 2 H2O(g)} \qquad \Delta_r H^\circ = -802\ \text{kJ/mol}\]</span></p>
+<p>L’écart de <span class="math inline">\(88\ \text{kJ/mol}\)</span> correspond à l’enthalpie de condensation de 2 moles d’eau (<span class="math inline">\(2 \times 44\ \text{kJ/mol}\)</span>). <strong>L’état physique de chaque espèce doit toujours être précisé</strong> dans une équation thermochimique — il influence directement la valeur de <span class="math inline">\(\Delta_r H^\circ\)</span>.</p>
+<p><strong>Réaction endothermique</strong> (<span class="math inline">\(\Delta_r H^\circ &gt; 0\)</span>) : au niveau particulaire, les liaisons rompues consomment plus d’énergie que les liaisons formées n’en libèrent. Le système chimique gagne de l’enthalpie en la puisant dans l’environnement. Au niveau macroscopique, on observe un refroidissement du milieu environnant. Au niveau symbolique :</p>
+<p><span class="math display">\[\frac{1}{2}\ce{N2(g) + O2(g) -&gt; NO2(g)} \qquad \Delta_r H^\circ = +34\ \text{kJ/mol}\]</span></p>
+<p><strong>Réaction athermique</strong> (<span class="math inline">\(\Delta_r H^\circ = 0\)</span>) : les deux bilans s’annulent exactement. L’environnement ne perçoit aucun échange thermique.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Classez les réactions suivantes en exothermique, endothermique ou athermique : (a) <span class="math inline">\(\Delta_r H^\circ = -46\ \text{kJ/mol}\)</span> ; (b) <span class="math inline">\(\Delta_r H^\circ = +180\ \text{kJ/mol}\)</span> ; (c) <span class="math inline">\(\Delta_r H^\circ = 0\)</span>.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
+<li>La combustion du méthane <span class="math inline">\(\ce{CH4(g) + 2 O2(g) -&gt; CO2(g) + 2 H2O(l)}\)</span> a <span class="math inline">\(\Delta_r H^\circ = -890\ \text{kJ/mol}\)</span>. Si l’on produit <span class="math inline">\(\ce{H2O(g)}\)</span> au lieu de <span class="math inline">\(\ce{H2O(l)}\)</span>, le <span class="math inline">\(\Delta_r H^\circ\)</span> sera-t-il plus ou moins négatif ? Justifiez sans calcul.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
+<li>Un comprimé effervescent plongé dans l’eau refroidit légèrement la solution. Quel est le signe de <span class="math inline">\(\Delta_r H^\circ\)</span> ? Que se passe-t-il au niveau particulaire ?<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></li>
+<li>La formation de <span class="math inline">\(\ce{NO2(g)}\)</span> à partir de <span class="math inline">\(\ce{N2(g)}\)</span> et <span class="math inline">\(\ce{O2(g)}\)</span> a <span class="math inline">\(\Delta_r H^\circ = +34\ \text{kJ/mol}\)</span> pour <span class="math inline">\(\frac{1}{2}\ \text{mol}\)</span> de <span class="math inline">\(\ce{N2}\)</span>. Quelle est la valeur de <span class="math inline">\(\Delta_r H^\circ\)</span> pour la formation de 2 moles de <span class="math inline">\(\ce{NO2}\)</span> ?<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></li>
+</ol>
+<hr>
+</section>
+<section id="première-méthode-enthalpie-de-réaction-par-les-énergies-de-liaison" class="level3" data-number="11.0.3">
+<h3 data-number="11.0.3" class="anchored" data-anchor-id="première-méthode-enthalpie-de-réaction-par-les-énergies-de-liaison"><span class="header-section-number">11.0.3</span> Première méthode — enthalpie de réaction par les énergies de liaison</h3>
+<section id="lénergie-de-liaison-rompre-pour-comprendre" class="level4" data-number="11.0.3.1">
+<h4 data-number="11.0.3.1" class="anchored" data-anchor-id="lénergie-de-liaison-rompre-pour-comprendre"><span class="header-section-number">11.0.3.1</span> L’énergie de liaison : rompre pour comprendre</h4>
+<p>La première méthode pour estimer <span class="math inline">\(\Delta_r H^\circ\)</span> repose sur les <strong>énergies de liaison</strong>, notées <span class="math inline">\(D_{A-B}\)</span>. Une énergie de liaison est la variation d’enthalpie nécessaire pour rompre une liaison covalente de manière <strong>homolytique</strong> : chacun des deux atomes récupère un des deux électrons de la liaison, formant deux radicaux libres. Ce processus se déroule toujours en phase gazeuse.</p>
+<p><span class="math display">\[\ce{H-H(g) -&gt; H^.(g) + ^.H(g)} \qquad D_{\ce{H-H}} = +436\ \text{kJ/mol}\]</span> <span class="math display">\[\ce{Br-Br(g) -&gt; Br^.(g) + ^.Br(g)} \qquad D_{\ce{Br-Br}} = +193\ \text{kJ/mol}\]</span></p>
+<p>Deux points essentiels découlent de cette définition :</p>
+<ul>
+<li><span class="math inline">\(D_{A-B}\)</span> est <strong>toujours positive</strong> : rompre une liaison demande de l’énergie. Une liaison se forme parce qu’elle stabilise le système — la défaire revient à lui restituer cette instabilité.</li>
+<li>Le processus inverse — la <strong>formation</strong> d’une liaison — est toujours exothermique : <span class="math inline">\(\Delta H = -D_{A-B} &lt; 0\)</span>.</li>
+</ul>
+<p>Au niveau particulaire, cela se visualise ainsi : deux atomes isolés se rapprochent, leurs nuages électroniques interagissent, et le système atteint un état d’énergie inférieure lorsque la liaison est formée. Pour revenir à l’état de départ, il faut fournir exactement l’énergie gagnée lors de la formation.</p>
+<p>Le tableau ci-dessous rassemble quelques énergies moyennes de liaison courantes :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Liaison</th>
+<th><span class="math inline">\(D_{A-B}\)</span> (kJ/mol)</th>
+<th>Liaison</th>
+<th><span class="math inline">\(D_{A-B}\)</span> (kJ/mol)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{H-H}\)</span></td>
+<td>436</td>
+<td><span class="math inline">\(\ce{C-H}\)</span></td>
+<td>412</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{O=O}\)</span></td>
+<td>496</td>
+<td><span class="math inline">\(\ce{C-C}\)</span></td>
+<td>348</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{N#N}\)</span></td>
+<td>944</td>
+<td><span class="math inline">\(\ce{C=C}\)</span></td>
+<td>612</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{Cl-Cl}\)</span></td>
+<td>242</td>
+<td><span class="math inline">\(\ce{C=O}\)</span></td>
+<td>743</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{O-H}\)</span></td>
+<td>463</td>
+<td><span class="math inline">\(\ce{C-O}\)</span></td>
+<td>360</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{N-H}\)</span></td>
+<td>388</td>
+<td><span class="math inline">\(\ce{C-N}\)</span></td>
+<td>305</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Attention :</strong> ces valeurs sont des <strong>moyennes</strong> établies sur de nombreuses molécules différentes. L’énergie exacte d’une liaison <span class="math inline">\(\ce{C-H}\)</span> dans le méthane diffère légèrement de celle dans l’éthanol. Cette méthode fournit donc une <strong>estimation</strong> de <span class="math inline">\(\Delta_r H^\circ\)</span>, moins précise que la méthode des enthalpies de formation présentée dans la section suivante.</p>
+</section>
+<section id="lénergie-de-cohésion-dun-corps-pur" class="level4" data-number="11.0.3.2">
+<h4 data-number="11.0.3.2" class="anchored" data-anchor-id="lénergie-de-cohésion-dun-corps-pur"><span class="header-section-number">11.0.3.2</span> L’énergie de cohésion d’un corps pur</h4>
+<p>Pour une molécule polyatomique, la somme de toutes les énergies de liaison qui la constituent s’appelle <strong>énergie de cohésion</strong>. Elle représente l’énergie totale qu’il faudrait fournir pour dissocier complètement la molécule en atomes isolés à l’état gazeux. Elle est toujours positive, et constitue une mesure de la stabilité globale de la molécule.</p>
+<p><em>Exemple :</em> pour l’éthanol <span class="math inline">\(\ce{CH3CH2OH(g)}\)</span>, dont la structure comporte 5 liaisons <span class="math inline">\(\ce{C-H}\)</span>, 1 liaison <span class="math inline">\(\ce{C-C}\)</span>, 1 liaison <span class="math inline">\(\ce{C-O}\)</span> et 1 liaison <span class="math inline">\(\ce{O-H}\)</span> :</p>
+<p><span class="math display">\[E_\text{cohésion} = 5 \times 412 + 1 \times 348 + 1 \times 360 + 1 \times 463 = 3231\ \text{kJ/mol}\]</span></p>
+</section>
+<section id="calculer-delta_r-hcirc-par-les-énergies-de-liaison" class="level4" data-number="11.0.3.3">
+<h4 data-number="11.0.3.3" class="anchored" data-anchor-id="calculer-delta_r-hcirc-par-les-énergies-de-liaison"><span class="header-section-number">11.0.3.3</span> Calculer <span class="math inline">\(\Delta_r H^\circ\)</span> par les énergies de liaison</h4>
+<p>Le calcul repose sur une image simple : on imagine que la réaction passe par un état intermédiaire fictif dans lequel tous les atomes sont isolés en phase gazeuse. Pour atteindre cet état depuis les réactifs, on rompt toutes les liaisons (processus endothermique). Depuis cet état, on forme ensuite toutes les liaisons des produits (processus exothermique). La variation d’enthalpie totale est la somme algébrique de ces deux étapes :</p>
+<p><span class="math display">\[\Delta_r H^\circ = \underbrace{\sum D_{A-B}(\text{réactifs})}_{E_\text{endo} &gt; 0} - \underbrace{\sum D_{A-B}(\text{produits})}_{E_\text{exo} &gt; 0}\]</span></p>
+<p><em>Exemple :</em> combustion du propane <span class="math inline">\(\ce{C3H8(g) + 5 O2(g) -&gt; 3 CO2(g) + 4 H2O(g)}\)</span></p>
+<p>La structure du propane comporte 2 liaisons <span class="math inline">\(\ce{C-C}\)</span> et 8 liaisons <span class="math inline">\(\ce{C-H}\)</span>. Chaque molécule de <span class="math inline">\(\ce{O2}\)</span> porte une double liaison <span class="math inline">\(\ce{O=O}\)</span>.</p>
+<p>Liaisons rompues dans les réactifs :</p>
+<p><span class="math display">\[E_\text{endo} = 2 \times 348 + 8 \times 412 + 5 \times 496 = 696 + 3296 + 2480 = +6472\ \text{kJ/mol}\]</span></p>
+<p>Chaque molécule de <span class="math inline">\(\ce{CO2}\)</span> comporte 2 liaisons <span class="math inline">\(\ce{C=O}\)</span>, soit 6 au total. Chaque molécule d’eau comporte 2 liaisons <span class="math inline">\(\ce{O-H}\)</span>, soit 8 au total.</p>
+<p>Liaisons formées dans les produits :</p>
+<p><span class="math display">\[E_\text{exo} = 6 \times 743 + 8 \times 463 = 4458 + 3704 = +8162\ \text{kJ/mol}\]</span></p>
+<p><span class="math display">\[\Delta_r H^\circ \approx 6472 - 8162 = -1690\ \text{kJ/mol}\]</span></p>
+<p>La valeur expérimentale est <span class="math inline">\(-2220\ \text{kJ/mol}\)</span>. L’écart illustre le caractère approximatif de la méthode — les énergies moyennes de liaison ne capturent pas toutes les subtilités des interactions réelles dans les molécules polyatomiques. Pour des calculs précis, on préfère la méthode des enthalpies de formation présentée dans les sections suivantes.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Calculez l’énergie de cohésion du méthane <span class="math inline">\(\ce{CH4}\)</span>, qui comporte 4 liaisons <span class="math inline">\(\ce{C-H}\)</span>.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></li>
+<li>Estimez <span class="math inline">\(\Delta_r H^\circ\)</span> de la réaction <span class="math inline">\(\ce{H2(g) + Cl2(g) -&gt; 2 HCl(g)}\)</span> en utilisant les énergies de liaison : <span class="math inline">\(D_{\ce{H-H}} = 436\ \text{kJ/mol}\)</span>, <span class="math inline">\(D_{\ce{Cl-Cl}} = 242\ \text{kJ/mol}\)</span>, <span class="math inline">\(D_{\ce{H-Cl}} = 431\ \text{kJ/mol}\)</span>.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></li>
+<li>La rupture d’une liaison <span class="math inline">\(\ce{C=C}\)</span> coûte <span class="math inline">\(612\ \text{kJ/mol}\)</span> et la formation d’une liaison <span class="math inline">\(\ce{C-C}\)</span> libère <span class="math inline">\(348\ \text{kJ/mol}\)</span>. Quel est le bilan enthalpique de ce processus seul ? Ce bilan est-il cohérent avec le fait qu’une double liaison est plus stable qu’une simple ?<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></li>
+<li>Lors de la combustion de l’éthylène <span class="math inline">\(\ce{C2H4(g) + 3 O2(g) -&gt; 2 CO2(g) + 2 H2O(g)}\)</span>, estimez <span class="math inline">\(\Delta_r H^\circ\)</span> par les énergies de liaison. La structure de <span class="math inline">\(\ce{C2H4}\)</span> comporte 1 liaison <span class="math inline">\(\ce{C=C}\)</span> et 4 liaisons <span class="math inline">\(\ce{C-H}\)</span>.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></li>
+<li>Expliquez en une phrase pourquoi la méthode des énergies de liaison donne une estimation moins précise que la méthode des enthalpies de formation.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="deuxième-méthode-enthalpies-de-formation-standard-delta_f-hcirc" class="level3" data-number="11.0.4">
+<h3 data-number="11.0.4" class="anchored" data-anchor-id="deuxième-méthode-enthalpies-de-formation-standard-delta_f-hcirc"><span class="header-section-number">11.0.4</span> Deuxième méthode — enthalpies de formation standard <span class="math inline">\(\Delta_f H^\circ\)</span></h3>
+<section id="définition-et-convention" class="level4" data-number="11.0.4.1">
+<h4 data-number="11.0.4.1" class="anchored" data-anchor-id="définition-et-convention"><span class="header-section-number">11.0.4.1</span> Définition et convention</h4>
+<p>Plutôt que de partir des atomes isolés, la deuxième méthode choisit un référentiel plus pratique : les <strong>corps purs simples</strong> dans leur état le plus stable à <span class="math inline">\(298\ \text{K}\)</span> et <span class="math inline">\(1\ \text{bar}\)</span>. L’<strong>enthalpie standard de formation</strong> d’un corps pur, notée <span class="math inline">\(\Delta_f H^\circ\)</span>, est la variation d’enthalpie mise en jeu lors de la formation d’<strong>une mole</strong> de ce corps pur à partir de ces corps purs simples de référence :</p>
+<p><span class="math display">\[\ce{H2(g) + \frac{1}{2} O2(g) -&gt; H2O(l)} \qquad \Delta_f H^\circ(\ce{H2O, l}) = -286\ \text{kJ/mol}\]</span></p>
+<p><span class="math display">\[\ce{C(graphite) + O2(g) -&gt; CO2(g)} \qquad \Delta_f H^\circ(\ce{CO2, g}) = -394\ \text{kJ/mol}\]</span></p>
+<p>Par définition, l’enthalpie standard de formation d’un <strong>corps pur simple dans son état le plus stable</strong> est <strong>nulle</strong> — il n’y a pas de réaction de formation à partir de lui-même :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Corps pur simple</th>
+<th><span class="math inline">\(\Delta_f H^\circ\)</span> (kJ/mol)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{H2(g)}\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{O2(g)}\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{N2(g)}\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{C(graphite)}\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Attention :</strong> cette convention ne s’applique qu’à la forme <strong>la plus stable</strong>. Le carbone diamant n’est pas la forme la plus stable du carbone dans les conditions standards — son enthalpie de formation vaut <span class="math inline">\(\Delta_f H^\circ(\ce{C, diamant}) = +1{,}88\ \text{kJ/mol}\)</span>, ce qui signifie que le diamant est légèrement moins stable que le graphite.</p>
+<p>De même, <span class="math inline">\(\Delta_f H^\circ\)</span> dépend de l’<strong>état physique</strong> de la substance. L’eau liquide et l’eau gazeuse n’ont pas la même enthalpie de formation :</p>
+<p><span class="math display">\[\Delta_f H^\circ(\ce{H2O, l}) = -286\ \text{kJ/mol} \qquad \Delta_f H^\circ(\ce{H2O, g}) = -242\ \text{kJ/mol}\]</span></p>
+<p>L’écart de <span class="math inline">\(44\ \text{kJ/mol}\)</span> correspond à l’enthalpie de vaporisation de l’eau à <span class="math inline">\(25\ ^\circ\text{C}\)</span>. Il faut donc toujours préciser l’état physique entre parenthèses.</p>
+<p>Quelques valeurs courantes :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Corps pur</th>
+<th><span class="math inline">\(\Delta_f H^\circ\)</span> (kJ/mol)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{CO2(g)}\)</span></td>
+<td><span class="math inline">\(-394\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{CH4(g)}\)</span></td>
+<td><span class="math inline">\(-75\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{NH3(g)}\)</span></td>
+<td><span class="math inline">\(-46\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{H2O(l)}\)</span></td>
+<td><span class="math inline">\(-286\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{H2O(g)}\)</span></td>
+<td><span class="math inline">\(-242\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{NaCl(s)}\)</span></td>
+<td><span class="math inline">\(-411\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{Na+(aq)}\)</span></td>
+<td><span class="math inline">\(-240\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{Cl-(aq)}\)</span></td>
+<td><span class="math inline">\(-167\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="identifier-une-réaction-de-formation" class="level4" data-number="11.0.4.2">
+<h4 data-number="11.0.4.2" class="anchored" data-anchor-id="identifier-une-réaction-de-formation"><span class="header-section-number">11.0.4.2</span> Identifier une réaction de formation</h4>
+<p>Une réaction de formation standard doit satisfaire trois critères simultanément :</p>
+<ul>
+<li>Les <strong>réactifs</strong> sont uniquement des corps purs simples dans leur état le plus stable.</li>
+<li>Le <strong>produit</strong> est un unique corps pur composé, formé à raison d’<strong>une mole</strong>.</li>
+<li>La réaction est écrite à <span class="math inline">\(T = 298\ \text{K}\)</span> et <span class="math inline">\(P = 1\ \text{bar}\)</span>.</li>
+</ul>
+<p><em>Contre-exemple fréquent :</em> la réaction <span class="math inline">\(\ce{C3H8(g) + 5 O2(g) -&gt; 3 CO2(g) + 4 H2O(l)}\)</span> n’est pas une réaction de formation — les réactifs ne sont pas tous des corps purs simples, et plusieurs moles de produits sont formées simultanément.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Parmi les réactions suivantes, laquelle est une réaction de formation standard ? (a) <span class="math inline">\(\ce{C(graphite) + O2(g) -&gt; CO2(g)}\)</span> ; (b) <span class="math inline">\(\ce{CO(g) + \frac{1}{2} O2(g) -&gt; CO2(g)}\)</span> ; (c) <span class="math inline">\(\ce{2 H2(g) + O2(g) -&gt; 2 H2O(l)}\)</span>.<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></li>
+<li><span class="math inline">\(\Delta_f H^\circ(\ce{NH3,g}) = -46\ \text{kJ/mol}\)</span>. Quelle est la valeur de <span class="math inline">\(\Delta_r H^\circ\)</span> de la réaction inverse : <span class="math inline">\(\ce{NH3(g) -&gt; \frac{1}{2} N2(g) + \frac{3}{2} H2(g)}\)</span> ?<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a></li>
+<li>Justifiez en une phrase pourquoi <span class="math inline">\(\Delta_f H^\circ(\ce{C, diamant}) = +1{,}88\ \text{kJ/mol}\)</span> et non zéro.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></li>
+<li>Calculez <span class="math inline">\(\Delta_r H^\circ\)</span> de la réaction <span class="math inline">\(\ce{CH4(g) + 2 O2(g) -&gt; CO2(g) + 2 H2O(l)}\)</span> en utilisant : <span class="math inline">\(\Delta_f H^\circ(\ce{CH4,g}) = -75\ \text{kJ/mol}\)</span>, <span class="math inline">\(\Delta_f H^\circ(\ce{CO2,g}) = -394\ \text{kJ/mol}\)</span>, <span class="math inline">\(\Delta_f H^\circ(\ce{H2O,l}) = -286\ \text{kJ/mol}\)</span>.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="loi-de-hess-calcul-de-delta_r-hcirc-par-les-enthalpies-de-formation" class="level3" data-number="11.0.5">
+<h3 data-number="11.0.5" class="anchored" data-anchor-id="loi-de-hess-calcul-de-delta_r-hcirc-par-les-enthalpies-de-formation"><span class="header-section-number">11.0.5</span> Loi de Hess — calcul de <span class="math inline">\(\Delta_r H^\circ\)</span> par les enthalpies de formation</h3>
+<section id="le-chemin-na-pas-dimportance" class="level4" data-number="11.0.5.1">
+<h4 data-number="11.0.5.1" class="anchored" data-anchor-id="le-chemin-na-pas-dimportance"><span class="header-section-number">11.0.5.1</span> Le chemin n’a pas d’importance</h4>
+<p>La <strong>loi de Hess</strong>, formulée par le chimiste suisse Germain Henri Hess en 1840, est une conséquence directe du premier principe : l’enthalpie est une <strong>fonction d’état</strong>. Cela signifie que sa variation dépend uniquement de l’état initial et de l’état final du système — pas du chemin emprunté pour y parvenir.</p>
+<p><strong>R3 — conception naïve fréquente :</strong> on imagine parfois qu’une réaction qui passe par un intermédiaire instable ou exothermique dégagerait plus de chaleur qu’une réaction directe. C’est faux. Si deux chemins relient le même état initial au même état final, ils donnent exactement le même <span class="math inline">\(\Delta_r H^\circ\)</span>. L’enthalpie ne se “perd” pas en chemin.</p>
+<p>Il en découle que l’enthalpie de réaction d’une transformation chimique est égale à la différence entre la somme des enthalpies de formation des <strong>produits</strong> et la somme des enthalpies de formation des <strong>réactifs</strong>, pondérées par leurs coefficients stœchiométriques <span class="math inline">\(\nu\)</span> :</p>
+<p><span class="math display">\[\boxed{\Delta_r H^\circ = \sum_i \nu_i \cdot \Delta_f H^\circ(\text{produits}) - \sum_j \nu_j \cdot \Delta_f H^\circ(\text{réactifs})}\]</span></p>
+<p><em>Exemple :</em> combustion de l’éthanol <span class="math inline">\(\ce{C2H5OH(l) + 3 O2(g) -&gt; 2 CO2(g) + 3 H2O(l)}\)</span></p>
+<p><span class="math display">\[\Delta_r H^\circ = \bigl[2 \times (-394) + 3 \times (-286)\bigr] - \bigl[(-278) + 3 \times 0\bigr]\]</span> <span class="math display">\[= (-788 - 858) - (-278) = -1368\ \text{kJ/mol}\]</span></p>
+<p><strong>R2 — Bootstrapping :</strong> cette formule sera réutilisée telle quelle au chapitre suivant pour calculer <span class="math inline">\(\Delta_r G^\circ\)</span> à partir des enthalpies libres de formation <span class="math inline">\(\Delta_f G^\circ\)</span>. Nous utiliserons ici la notion de <span class="math inline">\(\Delta_r G^\circ\)</span>, que nous approfondirons au chapitre Thermochimie 2.</p>
+<!-- REF: ref:thermochimie-2-enthalpie-libre — Delta_r G° et spontanéité formalisés au chapitre Thermochimie 2 -->
+</section>
+<section id="loi-de-hess-généralisée-combinaison-déquations" class="level4" data-number="11.0.5.2">
+<h4 data-number="11.0.5.2" class="anchored" data-anchor-id="loi-de-hess-généralisée-combinaison-déquations"><span class="header-section-number">11.0.5.2</span> Loi de Hess généralisée — combinaison d’équations</h4>
+<p>La loi de Hess s’applique aussi lorsque la réaction cible peut être obtenue par <strong>combinaison linéaire</strong> de réactions dont les enthalpies sont connues. Si la réaction cible s’obtient en additionnant, soustrayant ou multipliant des réactions intermédiaires, alors les enthalpies se combinent avec les mêmes opérations.</p>
+<p>Deux règles découlent directement de la nature de fonction d’état de <span class="math inline">\(H\)</span> :</p>
+<ul>
+<li>Si l’on <strong>inverse</strong> une réaction, on change le signe de <span class="math inline">\(\Delta_r H^\circ\)</span>.</li>
+<li>Si l’on <strong>multiplie</strong> les coefficients par un facteur <span class="math inline">\(\lambda\)</span>, on multiplie <span class="math inline">\(\Delta_r H^\circ\)</span> par le même facteur <span class="math inline">\(\lambda\)</span>.</li>
+</ul>
+<p><em>Exemple :</em> calcul de <span class="math inline">\(\Delta_f H^\circ(\ce{CO(g)})\)</span> — inaccessible directement car la combustion du carbone produit un mélange de <span class="math inline">\(\ce{CO}\)</span> et <span class="math inline">\(\ce{CO2}\)</span>, difficile à contrôler expérimentalement.</p>
+<p>On dispose de :</p>
+<p><span class="math display">\[\text{(a)}\ \ce{C(graphite) + O2(g) -&gt; CO2(g)} \qquad \Delta_r H^\circ_{(a)} = -394\ \text{kJ/mol}\]</span> <span class="math display">\[\text{(b)}\ \ce{CO(g) + \frac{1}{2} O2(g) -&gt; CO2(g)} \qquad \Delta_r H^\circ_{(b)} = -283\ \text{kJ/mol}\]</span></p>
+<p>On cherche : <span class="math inline">\(\ce{C(graphite) + \frac{1}{2} O2(g) -&gt; CO(g)}\)</span></p>
+<p>En soustrayant (b) de (a) — ce qui revient à additionner (a) et l’inverse de (b) :</p>
+<p><span class="math display">\[\Delta_f H^\circ(\ce{CO}) = \Delta_r H^\circ_{(a)} - \Delta_r H^\circ_{(b)} = -394 - (-283) = -111\ \text{kJ/mol}\]</span></p>
+<p><em>Second exemple :</em> calcul de <span class="math inline">\(\Delta_f H^\circ(\ce{SO3(g)})\)</span> à partir de deux réactions connues.</p>
+<p><span class="math display">\[\text{(1)}\ \ce{S(s) + O2(g) -&gt; SO2(g)} \qquad \Delta_r H^\circ_{(1)} = -297\ \text{kJ/mol}\]</span> <span class="math display">\[\text{(2)}\ \ce{2 SO2(g) + O2(g) -&gt; 2 SO3(g)} \qquad \Delta_r H^\circ_{(2)} = -196\ \text{kJ/mol}\]</span></p>
+<p>On cherche : <span class="math inline">\(\ce{S(s) + \frac{3}{2} O2(g) -&gt; SO3(g)}\)</span></p>
+<p>On prend (1) entière, et on prend la moitié de (2) :</p>
+<p><span class="math display">\[\Delta_f H^\circ(\ce{SO3}) = \Delta_r H^\circ_{(1)} + \frac{1}{2} \cdot \Delta_r H^\circ_{(2)} = -297 + \frac{1}{2} \times (-196) = -297 - 98 = -395\ \text{kJ/mol}\]</span></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Calculez <span class="math inline">\(\Delta_r H^\circ\)</span> de la réaction <span class="math inline">\(\ce{C2H5OH(l) + 3 O2(g) -&gt; 2 CO2(g) + 3 H2O(l)}\)</span>. Données : <span class="math inline">\(\Delta_f H^\circ(\ce{C2H5OH,l}) = -278\ \text{kJ/mol}\)</span>, <span class="math inline">\(\Delta_f H^\circ(\ce{CO2,g}) = -394\ \text{kJ/mol}\)</span>, <span class="math inline">\(\Delta_f H^\circ(\ce{H2O,l}) = -286\ \text{kJ/mol}\)</span>.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></li>
+<li>Calculez <span class="math inline">\(\Delta_f H^\circ(\ce{CO,g})\)</span> à partir des deux réactions : <span class="math inline">\(\ce{C(graphite) + O2(g) -&gt; CO2(g)}\)</span>, <span class="math inline">\(\Delta_r H^\circ = -394\ \text{kJ/mol}\)</span> ; <span class="math inline">\(\ce{CO(g) + \frac{1}{2} O2(g) -&gt; CO2(g)}\)</span>, <span class="math inline">\(\Delta_r H^\circ = -283\ \text{kJ/mol}\)</span>.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a></li>
+<li>Une réaction cible s’obtient en additionnant deux réactions (a) et (b) dont les enthalpies valent <span class="math inline">\(\Delta_r H^\circ_{(a)} = -120\ \text{kJ/mol}\)</span> et <span class="math inline">\(\Delta_r H^\circ_{(b)} = +45\ \text{kJ/mol}\)</span>. Calculez <span class="math inline">\(\Delta_r H^\circ\)</span> de la réaction cible.<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a></li>
+<li>La réaction <span class="math inline">\(\ce{N2(g) + 3 H2(g) -&gt; 2 NH3(g)}\)</span> a <span class="math inline">\(\Delta_r H^\circ = -92\ \text{kJ/mol}\)</span>. Calculez <span class="math inline">\(\Delta_r H^\circ\)</span> de <span class="math inline">\(\ce{2 NH3(g) -&gt; N2(g) + 3 H2(g)}\)</span>, puis de <span class="math inline">\(\ce{\frac{1}{2} N2(g) + \frac{3}{2} H2(g) -&gt; NH3(g)}\)</span>.<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a></li>
+<li>Calculez <span class="math inline">\(\Delta_r H^\circ\)</span> de la réaction <span class="math inline">\(\ce{2 C(graphite) + 3 H2(g) -&gt; C2H6(g)}\)</span>. Données : <span class="math inline">\(\Delta_f H^\circ(\ce{C2H6,g}) = -84\ \text{kJ/mol}\)</span>.<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="enthalpies-de-dissolution" class="level3" data-number="11.0.6">
+<h3 data-number="11.0.6" class="anchored" data-anchor-id="enthalpies-de-dissolution"><span class="header-section-number">11.0.6</span> Enthalpies de dissolution</h3>
+<section id="deux-étapes-opposées" class="level4" data-number="11.0.6.1">
+<h4 data-number="11.0.6.1" class="anchored" data-anchor-id="deux-étapes-opposées"><span class="header-section-number">11.0.6.1</span> Deux étapes opposées</h4>
+<p>Lorsqu’un sel ionique se dissout dans l’eau, le processus peut être décomposé en deux étapes conceptuellement distinctes, de signes opposés.</p>
+<p>Au niveau <strong>particulaire</strong>, les ions du cristal sont maintenus en place par des interactions électrostatiques fortes entre cations et anions — les liaisons ioniques que vous avez étudiées au chapitre Liaisons.</p>
+<!-- REF: ref:liaisons-sels-molecules-liaison-ionique — liaisons ioniques et énergie réticulaire formalisées au chapitre Liaisons, sels et molécules -->
+<p>Pour que le sel se dissolve, ces interactions doivent être vaincues :</p>
+<p><strong>Étape 1 — Dissociation :</strong> les ions s’éloignent les uns des autres, rompant les interactions ion–ion du cristal. Cette étape est toujours <strong>endothermique</strong> — il faut fournir de l’énergie pour séparer des charges attractives :</p>
+<p><span class="math display">\[\Delta H^\circ_\text{dissociation} &gt; 0\]</span></p>
+<p><strong>Étape 2 — Solvatation (hydratation) :</strong> chaque ion libéré est entouré de molécules d’eau qui s’orientent autour de lui — leurs dipôles pointant leur extrémité chargée négativement (<span class="math inline">\(\ce{O}\)</span>) vers les cations, et positivement (<span class="math inline">\(\ce{H}\)</span>) vers les anions. Ces interactions ion–dipôle libèrent de l’énergie. Cette étape est toujours <strong>exothermique</strong> :</p>
+<p><span class="math display">\[\Delta H^\circ_\text{solvatation} &lt; 0\]</span></p>
+<!-- REF: ref:liaisons-intermoleculaires-dipole — interactions dipôle-ion formalisées au chapitre Liaisons intermoléculaires -->
+<p>Au niveau <strong>macroscopique</strong>, on observe que la solution se réchauffe si la solvatation domine, et se refroidit si la dissociation domine. Au niveau <strong>symbolique</strong>, l’enthalpie de dissolution globale est la somme des deux contributions :</p>
+<p><span class="math display">\[\Delta H^\circ_\text{dissolution} = \Delta H^\circ_\text{dissociation} + \Delta H^\circ_\text{solvatation}\]</span></p>
+<p><strong>Attention :</strong> ne pas confondre <strong>dissolution</strong> (incorporer un soluté dans un solvant pour former une solution) et <strong>dilution</strong> (ajouter du solvant à une solution déjà formée pour en diminuer la concentration). Ces deux processus ont des enthalpies distinctes.</p>
+</section>
+<section id="calcul-par-la-loi-de-hess" class="level4" data-number="11.0.6.2">
+<h4 data-number="11.0.6.2" class="anchored" data-anchor-id="calcul-par-la-loi-de-hess"><span class="header-section-number">11.0.6.2</span> Calcul par la loi de Hess</h4>
+<p>L’enthalpie de dissolution se calcule comme une enthalpie de réaction ordinaire, en appliquant la loi de Hess : les produits sont les ions solvatés, le réactif est le sel à l’état cristallin.</p>
+<p><span class="math display">\[\Delta H^\circ_\text{diss} = \sum_i \nu_i \cdot \Delta_f H^\circ(\text{ions solvatés}) - \Delta_f H^\circ(\text{sel})\]</span></p>
+<p><strong>Convention importante :</strong> les enthalpies de formation du proton aqueux <span class="math inline">\(\ce{H+(aq)}\)</span> et de l’ion hydronium <span class="math inline">\(\ce{H3O+(aq)}\)</span> sont <strong>nulles par convention</strong> :</p>
+<p><span class="math display">\[\Delta_f H^\circ(\ce{H+(aq)}) = \Delta_f H^\circ(\ce{H3O+(aq)}) = 0\]</span></p>
+<p><em>Exemple :</em> dissolution du chlorure d’ammonium <span class="math inline">\(\ce{NH4Cl(s) -&gt; NH4+(aq) + Cl-(aq)}\)</span></p>
+<p><span class="math display">\[\Delta H^\circ_\text{diss} = \Delta_f H^\circ(\ce{NH4+(aq)}) + \Delta_f H^\circ(\ce{Cl-(aq)}) - \Delta_f H^\circ(\ce{NH4Cl(s)})\]</span> <span class="math display">\[= (-133) + (-167) - (-315) = +15\ \text{kJ/mol}\]</span></p>
+<p>La dissolution est légèrement endothermique — la solution se refroidit légèrement au contact. C’est précisément ce principe qu’exploitent les <strong>compresses froides instantanées</strong> : un sachet de <span class="math inline">\(\ce{NH4NO3}\)</span> se dissout dans de l’eau au moment de l’utilisation, absorbant de la chaleur du milieu environnant.</p>
+<p><em>Contre-exemple :</em> la dissolution du chlorure de calcium <span class="math inline">\(\ce{CaCl2(s) -&gt; Ca^{2+}(aq) + 2 Cl-(aq)}\)</span> est exothermique (<span class="math inline">\(\Delta H^\circ_\text{diss} = -82\ \text{kJ/mol}\)</span>) — la solvatation du cation <span class="math inline">\(\ce{Ca^{2+}}\)</span> est très favorable en raison de sa double charge, qui attire fortement les dipôles de l’eau.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Calculez <span class="math inline">\(\Delta H^\circ_\text{diss}\)</span> de <span class="math inline">\(\ce{NaCl(s)}\)</span>. Données : <span class="math inline">\(\Delta_f H^\circ(\ce{NaCl,s}) = -411\ \text{kJ/mol}\)</span>, <span class="math inline">\(\Delta_f H^\circ(\ce{Na+(aq)}) = -240\ \text{kJ/mol}\)</span>, <span class="math inline">\(\Delta_f H^\circ(\ce{Cl-(aq)}) = -167\ \text{kJ/mol}\)</span>.<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a></li>
+<li>La dissolution de <span class="math inline">\(\ce{NaCl}\)</span> est légèrement endothermique. Pourtant, le sel se dissout spontanément dans l’eau. Quel facteur — que vous étudierez au chapitre suivant — pourrait expliquer cette spontanéité ?<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a></li>
+<li>Expliquez en une phrase pourquoi la dissolution de <span class="math inline">\(\ce{CaCl2}\)</span> est plus exothermique que celle de <span class="math inline">\(\ce{NaCl}\)</span>, alors que les deux sels contiennent des ions <span class="math inline">\(\ce{Cl-}\)</span>.<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="calorimétrie" class="level3" data-number="11.0.7">
+<h3 data-number="11.0.7" class="anchored" data-anchor-id="calorimétrie"><span class="header-section-number">11.0.7</span> Calorimétrie</h3>
+<section id="mesurer-ce-quon-ne-peut-pas-voir" class="level4" data-number="11.0.7.1">
+<h4 data-number="11.0.7.1" class="anchored" data-anchor-id="mesurer-ce-quon-ne-peut-pas-voir"><span class="header-section-number">11.0.7.1</span> Mesurer ce qu’on ne peut pas voir</h4>
+<p>Les méthodes des sections précédentes permettent de <em>calculer</em> une enthalpie de réaction à partir de données tabulées. La <strong>calorimétrie</strong> permet quant à elle de la <em>mesurer</em> directement en laboratoire. Elle repose sur le premier principe : dans un système thermiquement isolé, la chaleur dégagée par la réaction est intégralement absorbée par l’environnement immédiat du calorimètre.</p>
+<p>Le bilan global s’écrit :</p>
+<p><span class="math display">\[Q_\text{réaction} + Q_\text{système} = 0\]</span></p>
+<p>Ce que la réaction perd en chaleur, le système (eau + parois) le gagne — et inversement.</p>
+</section>
+<section id="chaleur-et-capacité-thermique-massique" class="level4" data-number="11.0.7.2">
+<h4 data-number="11.0.7.2" class="anchored" data-anchor-id="chaleur-et-capacité-thermique-massique"><span class="header-section-number">11.0.7.2</span> Chaleur et capacité thermique massique</h4>
+<p>Lorsqu’une substance absorbe de la chaleur sans changer d’état ni réagir chimiquement, sa température augmente. La relation entre ces deux grandeurs fait intervenir la <strong>capacité thermique massique</strong> <span class="math inline">\(C_p\)</span> (en <span class="math inline">\(\text{J} \cdot \text{g}^{-1} \cdot \text{K}^{-1}\)</span>), qui mesure la quantité d’énergie nécessaire pour élever la température de <span class="math inline">\(1\ \text{g}\)</span> de substance de <span class="math inline">\(1\ \text{K}\)</span> :</p>
+<p><span class="math display">\[Q = m \cdot C_p \cdot \Delta T\]</span></p>
+<p>où <span class="math inline">\(m\)</span> est la masse en grammes et <span class="math inline">\(\Delta T = T_\text{final} - T_\text{initial}\)</span> la variation de température en kelvins ou degrés Celsius.</p>
+<p>Pour l’eau liquide : <span class="math inline">\(C_p(\ce{H2O, l}) = 4{,}18\ \text{J} \cdot \text{g}^{-1} \cdot \text{K}^{-1}\)</span>. Cette valeur élevée explique pourquoi l’eau est un excellent régulateur thermique — il faut beaucoup d’énergie pour en modifier la température.</p>
+<p><strong>R3 — conception naïve fréquente :</strong> on croit parfois qu’une réaction très exothermique produit nécessairement une grande variation de température. C’est faux si la masse d’eau est grande. Considérez deux calorimètres : l’un contient <span class="math inline">\(100\ \text{g}\)</span> d’eau, l’autre <span class="math inline">\(10\ \text{kg}\)</span> d’eau. La même réaction dégageant <span class="math inline">\(1\ \text{kJ}\)</span> élèvera la température du premier de <span class="math inline">\(2{,}4\ ^\circ\text{C}\)</span>, et du second de seulement <span class="math inline">\(0{,}024\ ^\circ\text{C}\)</span>. La chaleur échangée est identique — la variation de température, non.</p>
+</section>
+<section id="bilan-calorimétrique-complet-la-constante-calorimétrique" class="level4" data-number="11.0.7.3">
+<h4 data-number="11.0.7.3" class="anchored" data-anchor-id="bilan-calorimétrique-complet-la-constante-calorimétrique"><span class="header-section-number">11.0.7.3</span> Bilan calorimétrique complet — la constante calorimétrique</h4>
+<p>En pratique, le calorimètre lui-même — ses parois, son agitateur, son thermomètre — absorbe aussi une fraction de la chaleur. On lui associe une <strong>constante calorimétrique</strong> <span class="math inline">\(C_\text{cal}\)</span> (en <span class="math inline">\(\text{J} \cdot \text{K}^{-1}\)</span>), qui représente la quantité d’énergie absorbée par l’appareillage par kelvin de variation de température. Le bilan devient :</p>
+<p><span class="math display">\[Q_\text{réaction} + \bigl(m_\text{eau} \cdot C_p + C_\text{cal}\bigr) \cdot \Delta T = 0\]</span></p>
+<p>Si <span class="math inline">\(C_\text{cal}\)</span> n’est pas fournie ou est négligeable, le bilan se réduit à :</p>
+<p><span class="math display">\[Q_\text{réaction} = -m_\text{eau} \cdot C_p \cdot \Delta T\]</span></p>
+<p>L’enthalpie de réaction par mole de substance est alors :</p>
+<p><span class="math display">\[\Delta_r H^\circ = \frac{Q_\text{réaction}}{n}\]</span></p>
+<p>où <span class="math inline">\(n\)</span> est la quantité de matière (en mol) de la substance impliquée dans la réaction.</p>
+</section>
+<section id="la-bombe-calorimétrique" class="level4" data-number="11.0.7.4">
+<h4 data-number="11.0.7.4" class="anchored" data-anchor-id="la-bombe-calorimétrique"><span class="header-section-number">11.0.7.4</span> La bombe calorimétrique</h4>
+<p>Pour les réactions de combustion, on utilise une <strong>bombe calorimétrique</strong> : un réacteur en acier indéformable — à <strong>volume constant</strong> — plongé dans un réservoir d’eau muni d’un thermomètre et d’un agitateur. Le combustible est brûlé dans un excès d’oxygène sous pression. La mesure à volume constant donne strictement la variation d’énergie interne <span class="math inline">\(\Delta U\)</span> et non <span class="math inline">\(\Delta H\)</span> — mais dans le cadre de ce cours, cette correction est négligeable et les deux grandeurs sont assimilées.</p>
+<p><em>Exemple :</em> la combustion de <span class="math inline">\(1{,}0\ \text{g}\)</span> de graphite dans un calorimètre contenant <span class="math inline">\(500\ \text{g}\)</span> d’eau (<span class="math inline">\(C_\text{cal}\)</span> négligée) provoque une élévation de température de <span class="math inline">\(15\ ^\circ\text{C}\)</span>.</p>
+<p>Au niveau macroscopique, l’eau se réchauffe — la réaction est exothermique. Au niveau symbolique :</p>
+<p><span class="math display">\[Q_\text{eau} = 500 \times 4{,}18 \times 15 = +31\ 350\ \text{J} = +31{,}35\ \text{kJ}\]</span></p>
+<p><span class="math display">\[Q_\text{réaction} = -31{,}35\ \text{kJ}\]</span></p>
+<p><span class="math display">\[n(\text{graphite}) = \frac{1{,}0\ \text{g}}{12{,}0\ \text{g/mol}} = 0{,}083\ \text{mol}\]</span></p>
+<p><span class="math display">\[\Delta_r H^\circ = \frac{-31{,}35}{0{,}083} = -376\ \text{kJ/mol}\]</span></p>
+<p>La valeur tabulée est <span class="math inline">\(\Delta_f H^\circ(\ce{CO2, g}) = -394\ \text{kJ/mol}\)</span>. L’écart s’explique par la constante calorimétrique non prise en compte — la bombe elle-même a absorbé une fraction de la chaleur dégagée.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Un calorimètre contient <span class="math inline">\(200\ \text{g}\)</span> d’eau. Une réaction provoque une élévation de température de <span class="math inline">\(4{,}0\ ^\circ\text{C}\)</span> (<span class="math inline">\(C_\text{cal}\)</span> négligée). Calculez <span class="math inline">\(Q_\text{réaction}\)</span>.<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a></li>
+<li>On dissout <span class="math inline">\(5{,}35\ \text{g}\)</span> de <span class="math inline">\(\ce{NH4Cl}\)</span> (<span class="math inline">\(M = 53{,}5\ \text{g/mol}\)</span>) dans <span class="math inline">\(100\ \text{g}\)</span> d’eau. La température passe de <span class="math inline">\(20{,}0\ ^\circ\text{C}\)</span> à <span class="math inline">\(17{,}9\ ^\circ\text{C}\)</span>. Calculez <span class="math inline">\(\Delta H^\circ_\text{diss}\)</span> en kJ/mol.<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a></li>
+<li>La combustion de <span class="math inline">\(0{,}200\ \text{g}\)</span> de sucrose <span class="math inline">\(\ce{C12H22O11}\)</span> (<span class="math inline">\(M = 342\ \text{g/mol}\)</span>) dans une bombe calorimétrique contenant <span class="math inline">\(500\ \text{g}\)</span> d’eau élève la température de <span class="math inline">\(2{,}53\ ^\circ\text{C}\)</span>. La constante calorimétrique vaut <span class="math inline">\(1{,}10\ \text{kJ/K}\)</span>. Calculez <span class="math inline">\(\Delta_r H^\circ_c\)</span> du sucrose.<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a></li>
+<li>Expliquez pourquoi la chaleur mesurée par une bombe calorimétrique est strictement une variation d’énergie interne <span class="math inline">\(\Delta U\)</span> et non une variation d’enthalpie <span class="math inline">\(\Delta H\)</span>.<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a></li>
+</ol>
+<hr>
+<p><strong>Exercices de synthèse</strong></p>
+<ol type="1">
+<li>La combustion complète de <span class="math inline">\(1{,}00\ \text{g}\)</span> d’éthanol <span class="math inline">\(\ce{C2H5OH(l)}\)</span> (<span class="math inline">\(M = 46{,}1\ \text{g/mol}\)</span>, <span class="math inline">\(\Delta_r H^\circ_c = -1368\ \text{kJ/mol}\)</span>) dégage quelle quantité de chaleur ?<a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a></li>
+<li>Calculez l’énergie de cohésion du dioxyde de carbone <span class="math inline">\(\ce{CO2}\)</span>, qui comporte 2 liaisons <span class="math inline">\(\ce{C=O}\)</span>. Comparez à celle de l’eau <span class="math inline">\(\ce{H2O}\)</span> (2 liaisons <span class="math inline">\(\ce{O-H}\)</span>). Laquelle est la plus stable ?<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a></li>
+<li>On donne <span class="math inline">\(\Delta_f H^\circ(\ce{C2H4,g}) = +52\ \text{kJ/mol}\)</span>, <span class="math inline">\(\Delta_f H^\circ(\ce{CO2,g}) = -394\ \text{kJ/mol}\)</span>, <span class="math inline">\(\Delta_f H^\circ(\ce{H2O,l}) = -286\ \text{kJ/mol}\)</span>. Calculez <span class="math inline">\(\Delta_r H^\circ\)</span> de la combustion de l’éthylène <span class="math inline">\(\ce{C2H4(g) + 3 O2(g) -&gt; 2 CO2(g) + 2 H2O(l)}\)</span>.<a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a></li>
+<li>Un calorimètre contient <span class="math inline">\(300\ \text{g}\)</span> d’eau à <span class="math inline">\(22{,}0\ ^\circ\text{C}\)</span>. On y plonge <span class="math inline">\(50{,}0\ \text{g}\)</span> d’un métal inconnu à <span class="math inline">\(80{,}0\ ^\circ\text{C}\)</span>. La température d’équilibre atteinte est <span class="math inline">\(24{,}5\ ^\circ\text{C}\)</span>. Calculez la capacité thermique massique du métal (<span class="math inline">\(C_\text{cal}\)</span> négligée).<a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a></li>
+<li>La réaction de formation du méthanol <span class="math inline">\(\ce{CO(g) + 2 H2(g) -&gt; CH3OH(l)}\)</span> a <span class="math inline">\(\Delta_r H^\circ = -128\ \text{kJ/mol}\)</span>. En utilisant <span class="math inline">\(\Delta_f H^\circ(\ce{CO,g}) = -111\ \text{kJ/mol}\)</span> et <span class="math inline">\(\Delta_f H^\circ(\ce{H2}) = 0\)</span>, calculez <span class="math inline">\(\Delta_f H^\circ(\ce{CH3OH,l})\)</span>.<a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a></li>
+<li>Expliquez, sans calcul, pourquoi l’enthalpie de dissolution du <span class="math inline">\(\ce{NaCl}\)</span> est plus petite (en valeur absolue) que celle du <span class="math inline">\(\ce{CaCl2}\)</span>, en faisant intervenir les notions de dissociation et de solvatation.<a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a></li>
+<li>La réaction <span class="math inline">\(\ce{2 SO2(g) + O2(g) -&gt; 2 SO3(g)}\)</span> a <span class="math inline">\(\Delta_r H^\circ = -196\ \text{kJ/mol}\)</span>. Quelle chaleur est dégagée lors de la production de <span class="math inline">\(80{,}0\ \text{g}\)</span> de <span class="math inline">\(\ce{SO3}\)</span> (<span class="math inline">\(M = 80{,}1\ \text{g/mol}\)</span>) ?<a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a></li>
+<li>On dispose des données suivantes : <span class="math inline">\(\Delta_r H^\circ(\ce{C2H6,g -&gt; 2C + 3H2}) = +84\ \text{kJ/mol}\)</span> et <span class="math inline">\(\Delta_r H^\circ(\ce{C2H4,g -&gt; 2C + 2H2}) = -52\ \text{kJ/mol}\)</span>. Calculez <span class="math inline">\(\Delta_r H^\circ\)</span> de la réaction <span class="math inline">\(\ce{C2H6(g) -&gt; C2H4(g) + H2(g)}\)</span> (déshydrogénation).<a href="#fn37" class="footnote-ref" id="fnref37" role="doc-noteref"><sup>37</sup></a></li>
+<li>Une réaction exothermique (<span class="math inline">\(\Delta_r H^\circ = -250\ \text{kJ/mol}\)</span>) se déroule dans un calorimètre contenant <span class="math inline">\(500\ \text{g}\)</span> d’eau et de constante calorimétrique <span class="math inline">\(C_\text{cal} = 2{,}0\ \text{kJ/K}\)</span>. Si <span class="math inline">\(0{,}100\ \text{mol}\)</span> de réactif est consommée, calculez la variation de température observée.<a href="#fn38" class="footnote-ref" id="fnref38" role="doc-noteref"><sup>38</sup></a></li>
+<li>À partir des enthalpies de combustion standard <span class="math inline">\(\Delta_r H^\circ_c(\ce{C, graphite}) = -394\ \text{kJ/mol}\)</span>, <span class="math inline">\(\Delta_r H^\circ_c(\ce{H2,g}) = -286\ \text{kJ/mol}\)</span> et <span class="math inline">\(\Delta_r H^\circ_c(\ce{C2H2,g}) = -1300\ \text{kJ/mol}\)</span>, calculez <span class="math inline">\(\Delta_f H^\circ(\ce{C2H2,g})\)</span> (acétylène) par la loi de Hess généralisée.<a href="#fn39" class="footnote-ref" id="fnref39" role="doc-noteref"><sup>39</sup></a></li>
+</ol>
+<p>Ces défis s’adressent à ceux qui veulent aller réellement plus loin. Ils exigent de mobiliser les notions de Zone 2 dans des contextes nouveaux.</p>
+</section>
+</section>
+<section id="défi-b-le-mystère-de-la-chaufferette" class="level3" data-number="11.0.8">
+<h3 data-number="11.0.8" class="anchored" data-anchor-id="défi-b-le-mystère-de-la-chaufferette"><span class="header-section-number">11.0.8</span> Défi B — Le mystère de la chaufferette</h3>
+<p>Les chaufferettes réutilisables contiennent une solution aqueuse saturée d’acétate de sodium <span class="math inline">\(\ce{CH3COONa}\)</span> trihydraté. En tordant la pastille métallique à l’intérieur, on déclenche la cristallisation du sel dissous — la pochette se réchauffe immédiatement et atteint environ <span class="math inline">\(55\ ^\circ\text{C}\)</span>.</p>
+<p>On donne :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Espèce</th>
+<th><span class="math inline">\(\Delta_f H^\circ\)</span> (kJ/mol)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{CH3COONa * 3H2O(s)}\)</span></td>
+<td><span class="math inline">\(-1604\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{CH3COO-(aq)}\)</span></td>
+<td><span class="math inline">\(-486\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{Na+(aq)}\)</span></td>
+<td><span class="math inline">\(-240\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{H2O(l)}\)</span></td>
+<td><span class="math inline">\(-286\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>a)</strong> Écrivez l’équation de dissolution du sel trihydraté <span class="math inline">\(\ce{CH3COONa * 3H2O(s)}\)</span> dans l’eau.</p>
+<p><strong>b)</strong> Calculez <span class="math inline">\(\Delta H^\circ_\text{diss}\)</span> de cette réaction.</p>
+<p><strong>c)</strong> La dissolution est-elle exothermique ou endothermique ? Comment cela explique-t-il le fonctionnement de la chaufferette ?</p>
+<p><strong>d)</strong> Pour régénérer la chaufferette, on la plonge dans de l’eau bouillante. Expliquez qualitativement, à partir de votre résultat, pourquoi cette opération permet de redissoudre le sel.<a href="#fn40" class="footnote-ref" id="fnref40" role="doc-noteref"><sup>40</sup></a></p>
+<hr>
+</section>
+<section id="défi-a-deux-isomères-une-différence" class="level3" data-number="11.0.9">
+<h3 data-number="11.0.9" class="anchored" data-anchor-id="défi-a-deux-isomères-une-différence"><span class="header-section-number">11.0.9</span> Défi A — Deux isomères, une différence</h3>
+<p>Le n-butane et l’isobutane sont deux isomères de formule brute <span class="math inline">\(\ce{C4H10}\)</span>. Leurs enthalpies de combustion standard valent respectivement <span class="math inline">\(\Delta_r H^\circ_c(\text{n-butane}) = -2878\ \text{kJ/mol}\)</span> et <span class="math inline">\(\Delta_r H^\circ_c(\text{i-butane}) = -2871\ \text{kJ/mol}\)</span>.</p>
+<p><strong>a)</strong> Dessinez les structures développées du n-butane et de l’isobutane et identifiez le type de liaisons présentes dans chacune.</p>
+<p><strong>b)</strong> En combinant les deux réactions de combustion, calculez <span class="math inline">\(\Delta_r H^\circ\)</span> de la réaction de conversion :</p>
+<p><span class="math display">\[\ce{n-C4H10(g) -&gt; i-C4H10(g)}\]</span></p>
+<p><strong>c)</strong> Lequel des deux isomères est le plus stable thermodynamiquement ? Justifiez à partir du signe de <span class="math inline">\(\Delta_r H^\circ\)</span>.<a href="#fn41" class="footnote-ref" id="fnref41" role="doc-noteref"><sup>41</sup></a></p>
+<hr>
+</section>
+<section id="défi-c-calorimétrie-imparfaite" class="level3" data-number="11.0.10">
+<h3 data-number="11.0.10" class="anchored" data-anchor-id="défi-c-calorimétrie-imparfaite"><span class="header-section-number">11.0.10</span> Défi C — Calorimétrie imparfaite</h3>
+<p>Un étudiant brûle <span class="math inline">\(0{,}500\ \text{g}\)</span> d’acide benzoïque <span class="math inline">\(\ce{C6H5COOH}\)</span> (<span class="math inline">\(M = 122{,}1\ \text{g/mol}\)</span>, <span class="math inline">\(\Delta_r H^\circ_c = -3227\ \text{kJ/mol}\)</span>) dans une bombe calorimétrique contenant <span class="math inline">\(800\ \text{g}\)</span> d’eau. Il mesure une élévation de température de <span class="math inline">\(3{,}14\ ^\circ\text{C}\)</span>. La constante calorimétrique de la bombe est <span class="math inline">\(C_\text{cal} = 1{,}23\ \text{kJ} \cdot \text{K}^{-1}\)</span>.</p>
+<p><strong>a)</strong> Calculez la chaleur totale absorbée par le système eau + bombe.</p>
+<p><strong>b)</strong> Calculez la chaleur théorique que devrait dégager la combustion de <span class="math inline">\(0{,}500\ \text{g}\)</span> d’acide benzoïque.</p>
+<p><strong>c)</strong> L’étudiant constate un écart entre les deux valeurs. Nommez deux sources d’erreur expérimentales plausibles — sans invoquer une erreur de calcul.</p>
+<p><strong>d)</strong> La dissolution du chlorure d’ammonium <span class="math inline">\(\ce{NH4Cl}\)</span> est endothermique (<span class="math inline">\(\Delta_r H^\circ_\text{diss} = +15\ \text{kJ/mol}\)</span>) — pourtant, le sel se dissout spontanément à température ambiante. <span class="math inline">\(\Delta_r H^\circ\)</span> seul ne suffit donc pas à prédire la spontanéité. À votre avis, quel facteur manquant pourrait l’expliquer ? Formulez une hypothèse en une ou deux phrases.<a href="#fn42" class="footnote-ref" id="fnref42" role="doc-noteref"><sup>42</sup></a></p>
+<hr>
+<p><strong>Mots-clés</strong></p>
+<p><strong>Enthalpie</strong> <span class="math inline">\(H\)</span> : grandeur thermodynamique synthétisant l’énergie interne <span class="math inline">\(U\)</span> et le travail de pression-volume <span class="math inline">\(P \cdot V\)</span> ; seule sa variation <span class="math inline">\(\Delta H\)</span> est accessible expérimentalement.</p>
+<p><strong>Réaction exothermique</strong> : réaction pour laquelle <span class="math inline">\(\Delta_r H^\circ &lt; 0\)</span> — le système chimique cède de la chaleur à l’environnement, qui se réchauffe.</p>
+<p><strong>Réaction endothermique</strong> : réaction pour laquelle <span class="math inline">\(\Delta_r H^\circ &gt; 0\)</span> — le système chimique absorbe de la chaleur de l’environnement, qui se refroidit.</p>
+<p><strong>Énergie de liaison</strong> <span class="math inline">\(D_{A-B}\)</span> : enthalpie nécessaire pour rompre de façon homolytique une mole de liaisons <span class="math inline">\(A-B\)</span> en phase gazeuse ; toujours positive.</p>
+<p><strong>Énergie de cohésion</strong> : somme de toutes les énergies de liaison d’une molécule polyatomique ; mesure de sa stabilité globale.</p>
+<p><strong>Enthalpie de formation</strong> <span class="math inline">\(\Delta_f H^\circ\)</span> : variation d’enthalpie lors de la formation d’une mole d’un corps pur composé à partir de ses corps purs simples dans les conditions standards (<span class="math inline">\(298\ \text{K}\)</span>, <span class="math inline">\(1\ \text{bar}\)</span>) ; nulle pour les corps purs simples les plus stables.</p>
+<p><strong>Loi de Hess</strong> : l’enthalpie de réaction est indépendante du chemin suivi — elle ne dépend que des états initial et final du système.</p>
+<p><strong>Enthalpie de dissolution</strong> <span class="math inline">\(\Delta H^\circ_\text{diss}\)</span> : variation d’enthalpie globale lors de la dissolution d’une mole de soluté dans un solvant ; somme des contributions de dissociation (endothermique) et de solvatation (exothermique).</p>
+<p><strong>Capacité thermique massique</strong> <span class="math inline">\(C_p\)</span> : énergie nécessaire pour élever la température de <span class="math inline">\(1\ \text{g}\)</span> de substance de <span class="math inline">\(1\ \text{K}\)</span> ; pour l’eau liquide, <span class="math inline">\(C_p = 4{,}18\ \text{J} \cdot \text{g}^{-1} \cdot \text{K}^{-1}\)</span>.</p>
+<p><strong>Calorimétrie</strong> : technique expérimentale de mesure des chaleurs de réaction fondée sur le bilan <span class="math inline">\(Q_\text{réaction} + Q_\text{système} = 0\)</span> dans un système isolé.</p>
+<hr>
+<hr>
+<p><em>Projet-Balmer — Manuel de chimie pour les gymnases vaudois</em></p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p><span class="math inline">\(\Delta_r H^\circ = -2220\ \text{kJ/mol}\)</span> (exothermique, signe négatif).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>L’environnement se refroidit — la réaction endothermique absorbe de la chaleur de l’environnement.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><span class="math inline">\(\Delta H = +800\ \text{J}\)</span> si la chaleur est absorbée par le système, ou <span class="math inline">\(-800\ \text{J}\)</span> si elle est cédée. Le signe dépend du sens de l’échange — à préciser selon le contexte.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><span class="math inline">\(\Delta_r H^\circ = -286\ \text{kJ/mol}\)</span> par mole d’eau formée.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><ol type="a">
+<li>exothermique ; (b) endothermique ; (c) athermique.</li>
+</ol>
+<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn6"><p>Plus négatif en valeur absolue → moins négatif (valeur moins négative). La vaporisation de l’eau absorbe de l’énergie, donc le système libère moins de chaleur vers l’environnement. <span class="math inline">\(\Delta_r H^\circ(\ce{H2O,g}) = -802\ \text{kJ/mol}\)</span>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p><span class="math inline">\(\Delta_r H^\circ &gt; 0\)</span> — réaction endothermique. Au niveau particulaire, les liaisons rompues dans les réactifs consomment plus d’énergie que les liaisons formées dans les produits n’en libèrent.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p><span class="math inline">\(\Delta_r H^\circ = 2 \times 34 = +68\ \text{kJ/mol}\)</span>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><span class="math inline">\(E_\text{cohésion}(\ce{CH4}) = 4 \times 412 = 1648\ \text{kJ/mol}\)</span>.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p><span class="math inline">\(\Delta_r H^\circ = (436 + 242) - 2 \times 431 = 678 - 862 = -184\ \text{kJ/mol}\)</span>.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Bilan : <span class="math inline">\(-612 + 348 = -264\ \text{kJ/mol}\)</span> (exothermique). Oui, cohérent — la double liaison est plus stable que la simple, donc sa rupture demande plus d’énergie que la formation d’une simple liaison n’en libère.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p><span class="math inline">\(E_\text{endo} = 612 + 4 \times 412 + 3 \times 496 = 612 + 1648 + 1488 = 3748\ \text{kJ/mol}\)</span> ; <span class="math inline">\(E_\text{exo} = 4 \times 743 + 4 \times 463 = 2972 + 1852 = 4824\ \text{kJ/mol}\)</span> ; <span class="math inline">\(\Delta_r H^\circ \approx 3748 - 4824 = -1076\ \text{kJ/mol}\)</span>.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Les énergies de liaison sont des valeurs moyennes sur de nombreuses molécules différentes — elles ne reflètent pas l’environnement électronique exact de chaque liaison dans une molécule donnée.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>Seule (a) est une réaction de formation standard — un seul produit composé formé à raison d’une mole, à partir de corps purs simples dans leur état le plus stable.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p><span class="math inline">\(\Delta_r H^\circ = +46\ \text{kJ/mol}\)</span> — on inverse la réaction, donc on change le signe.<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>Le diamant n’est pas la forme la plus stable du carbone dans les conditions standards — le graphite l’est. Par convention, seul le corps pur simple le plus stable a <span class="math inline">\(\Delta_f H^\circ = 0\)</span>.<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p><span class="math inline">\(\Delta_r H^\circ = [(-394) + 2 \times (-286)] - [(-75) + 2 \times 0] = -966 - (-75) = -891\ \text{kJ/mol}\)</span>.<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p><span class="math inline">\(\Delta_r H^\circ = [2 \times (-394) + 3 \times (-286)] - [(-278) + 3 \times 0] = (-788 - 858) - (-278) = -1368\ \text{kJ/mol}\)</span>.<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p><span class="math inline">\(\Delta_f H^\circ(\ce{CO}) = -394 - (-283) = -111\ \text{kJ/mol}\)</span>.<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p><span class="math inline">\(\Delta_r H^\circ = -120 + 45 = -75\ \text{kJ/mol}\)</span>.<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p>Réaction inverse : <span class="math inline">\(+92\ \text{kJ/mol}\)</span> ; réaction divisée par 2 : <span class="math inline">\(-46\ \text{kJ/mol}\)</span>.<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p><span class="math inline">\(\Delta_r H^\circ = \Delta_f H^\circ(\ce{C2H6,g}) - [2 \times 0 + 3 \times 0] = -84\ \text{kJ/mol}\)</span> — cette réaction est la définition même de l’enthalpie de formation de l’éthane.<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p><span class="math inline">\(\Delta H^\circ_\text{diss} = (-240) + (-167) - (-411) = +4\ \text{kJ/mol}\)</span> (légèrement endothermique).<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p>L’entropie — le degré de désordre augmente fortement quand les ions se dispersent en solution, ce qui favorise la dissolution même si elle est endothermique.<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p>Le cation <span class="math inline">\(\ce{Ca^{2+}}\)</span> porte une double charge, ce qui crée des interactions ion–dipôle bien plus fortes avec les molécules d’eau que le cation <span class="math inline">\(\ce{Na+}\)</span> — l’enthalpie de solvatation est donc beaucoup plus négative.<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p><span class="math inline">\(Q_\text{eau} = 200 \times 4{,}18 \times 4{,}0 = +3344\ \text{J} = +3{,}34\ \text{kJ}\)</span> ; <span class="math inline">\(Q_\text{réaction} = -3{,}34\ \text{kJ}\)</span>.<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p><span class="math inline">\(n(\ce{NH4Cl}) = 5{,}35/53{,}5 = 0{,}100\ \text{mol}\)</span> ; <span class="math inline">\(Q_\text{eau} = 100 \times 4{,}18 \times (-2{,}1) = -878\ \text{J}\)</span> ; <span class="math inline">\(Q_\text{réaction} = +878\ \text{J}\)</span> ; <span class="math inline">\(\Delta H^\circ_\text{diss} = +878/0{,}100 = +8{,}78\ \text{kJ/mol}\)</span>.<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p><span class="math inline">\(Q_\text{sys} = (500 \times 4{,}18 \times 2{,}53)/1000 + 1{,}10 \times 2{,}53 = 5{,}29 + 2{,}78 = 8{,}07\ \text{kJ}\)</span> ; <span class="math inline">\(n = 0{,}200/342 = 5{,}85 \times 10^{-4}\ \text{mol}\)</span> ; <span class="math inline">\(\Delta_r H^\circ_c = -8{,}07/(5{,}85 \times 10^{-4}) \approx -13\ 800\ \text{kJ/mol}\)</span>.<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><p>La bombe est à volume constant — aucun travail de pression-volume n’est échangé. Or <span class="math inline">\(\Delta H = \Delta U + P \cdot \Delta V\)</span> ; à volume constant, <span class="math inline">\(\Delta V = 0\)</span>, donc la mesure donne directement <span class="math inline">\(\Delta U\)</span>.<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn30"><p><span class="math inline">\(n = 1{,}00/46{,}1 = 0{,}02169\ \text{mol}\)</span> ; <span class="math inline">\(Q = 0{,}02169 \times 1368 = 29{,}7\ \text{kJ}\)</span>.<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p><span class="math inline">\(E_\text{cohésion}(\ce{CO2}) = 2 \times 743 = 1486\ \text{kJ/mol}\)</span> ; <span class="math inline">\(E_\text{cohésion}(\ce{H2O}) = 2 \times 463 = 926\ \text{kJ/mol}\)</span>. Le <span class="math inline">\(\ce{CO2}\)</span> est plus stable en termes d’énergie de cohésion.<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p><span class="math inline">\(\Delta_r H^\circ = [2 \times (-394) + 2 \times (-286)] - [(+52) + 3 \times 0] = -1360 - 52 = -1412\ \text{kJ/mol}\)</span>.<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p><span class="math inline">\(Q_\text{eau} = 300 \times 4{,}18 \times 2{,}5 = 3135\ \text{J}\)</span> ; <span class="math inline">\(Q_\text{métal} = -3135\ \text{J}\)</span> ; <span class="math inline">\(C_p(\text{métal}) = 3135/(50{,}0 \times 55{,}5) = 1{,}13\ \text{J·g}^{-1}\text{·K}^{-1}\)</span>.<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn34"><p><span class="math inline">\(\Delta_f H^\circ(\ce{CH3OH,l}) = \Delta_r H^\circ + \Delta_f H^\circ(\ce{CO}) + 2 \times \Delta_f H^\circ(\ce{H2}) = -128 + (-111) + 0 = -239\ \text{kJ/mol}\)</span>.<a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn35"><p>Le <span class="math inline">\(\ce{CaCl2}\)</span> libère un cation <span class="math inline">\(\ce{Ca^{2+}}\)</span> de charge double — sa dissociation nécessite plus d’énergie mais sa solvatation est beaucoup plus exothermique que celle de <span class="math inline">\(\ce{Na+}\)</span>, ce qui rend le bilan global bien plus exothermique pour le <span class="math inline">\(\ce{CaCl2}\)</span>.<a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn36"><p><span class="math inline">\(n(\ce{SO3}) = 80{,}0/80{,}1 = 0{,}999\ \text{mol}\)</span> ; la réaction produit 2 mol de <span class="math inline">\(\ce{SO3}\)</span> pour <span class="math inline">\(-196\ \text{kJ}\)</span>, soit <span class="math inline">\(-98\ \text{kJ/mol}\)</span> de <span class="math inline">\(\ce{SO3}\)</span> ; <span class="math inline">\(Q = 0{,}999 \times 98 \approx 97{,}9\ \text{kJ}\)</span> dégagés.<a href="#fnref36" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn37"><p>Réaction cible = (a) + inverse de (b) : <span class="math inline">\(\Delta_r H^\circ = +84 + 52 = +136\ \text{kJ/mol}\)</span>.<a href="#fnref37" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn38"><p><span class="math inline">\(Q_\text{réaction} = -0{,}100 \times 250 = -25\ \text{kJ}\)</span> ; <span class="math inline">\(\Delta T = 25/(500 \times 4{,}18/1000 + 2{,}0) = 25/4{,}09 = 6{,}1\ \text{K}\)</span>.<a href="#fnref38" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn39"><p>Réaction cible : <span class="math inline">\(\ce{2 C(graphite) + H2(g) -&gt; C2H2(g)}\)</span>. Combinaison : <span class="math inline">\(2 \times (-394) + (-286) - (-1300) = -788 - 286 + 1300 = +226\ \text{kJ/mol}\)</span>.<a href="#fnref39" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn40"><p><span class="math inline">\(\Delta H^\circ_\text{diss}(\ce{CH3COONa * 3H2O}) = [(-486) + (-240) + 3 \times (-286)] - (-1604) = -1584 - (-1604) = +20\ \text{kJ/mol}\)</span> (endothermique). La cristallisation — processus inverse — est donc exothermique : elle libère de la chaleur et réchauffe la pochette. Plonger la chaufferette dans l’eau chaude fournit l’énergie nécessaire pour redissoudre le sel (processus endothermique) et régénérer la solution saturée.<a href="#fnref40" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn41"><p><span class="math inline">\(\Delta_r H^\circ(\text{n} \to \text{i}) = -2878 - (-2871) = -7\ \text{kJ/mol}\)</span>. L’isobutane est légèrement plus stable que le n-butane.<a href="#fnref41" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn42"><p>Valeur théorique : <span class="math inline">\(Q = 3227 \times (0{,}500/122{,}1) = 13{,}21\ \text{kJ}\)</span>. Valeur mesurée : <span class="math inline">\(Q = (800 \times 4{,}18 \times 3{,}14)/1000 + 1{,}23 \times 3{,}14 = 10{,}50 + 3{,}86 = 14{,}36\ \text{kJ}\)</span>. Sources d’erreur plausibles : pertes thermiques vers l’extérieur du calorimètre, combustion incomplète du solide. Piste pour (d) : l’entropie — le désordre augmente fortement quand les ions se dispersent en solution, ce qui peut favoriser la dissolution même si elle est endothermique.<a href="#fnref42" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapitres/historique-tome-2.html" class="pagination-link" aria-label="Historique Tome 2 - Une science qui se construit">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Historique Tome 2 - Une science qui se construit</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapitres/thermochimie-2.html" class="pagination-link" aria-label="Thermochimie 2">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Thermochimie 2</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

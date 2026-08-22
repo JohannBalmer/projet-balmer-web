@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1&nbsp; Historique Tome 1 - Une science qui se construit – Projet-Balmer</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapitres/atomes-quantite-de-matiere.html" rel="next">
+<link href="../index.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3d497cff885f6278d37568d0ef0763f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mhchem']},
+  tex: {packages: {'[+]': ['mhchem']}}
+};
+</script>
+<style>
+.quarto-figure img, main img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+.qcm-widget { margin: 1rem 0; padding: 0.75rem 1rem; border: 1px solid #ddd; border-radius: 8px; }
+.qcm-widget .qcm-label { font-size: 13px; color: #666; margin-bottom: 8px; }
+.qcm-widget button { display: block; width: 100%; text-align: left; margin: 4px 0; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; }
+.qcm-widget .qcm-feedback { margin-top: 8px; font-size: 14px; }
+.hist-note-name { color: inherit; text-decoration: none; border-bottom: 1px dotted #8a5a00; cursor: pointer; }
+.hist-note-name:hover { border-bottom-style: solid; }
+.hist-note { text-decoration: none; font-size: 0.75em; vertical-align: super; margin-left: 2px; color: #8a5a00; border-bottom: none; }
+.hist-note:hover { text-decoration: underline; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.qcm-widget').forEach(function(el) {
+    var options = JSON.parse(el.getAttribute('data-options'));
+    var correct = parseInt(el.getAttribute('data-correct'), 10);
+    var answered = false;
+    var label = document.createElement('div');
+    label.className = 'qcm-label';
+    label.textContent = 'Vérifier ma réponse';
+    el.appendChild(label);
+    var feedback = document.createElement('div');
+    feedback.className = 'qcm-feedback';
+    options.forEach(function(opt, i) {
+      var btn = document.createElement('button');
+      btn.textContent = opt;
+      btn.onclick = function() {
+        if (answered) return;
+        answered = true;
+        el.querySelectorAll('button').forEach(function(b) { b.disabled = true; });
+        if (i === correct) {
+          btn.style.borderColor = '#2e7d32';
+          btn.style.background = '#e8f5e9';
+          feedback.textContent = 'Correct.';
+          feedback.style.color = '#2e7d32';
+        } else {
+          btn.style.borderColor = '#c62828';
+          btn.style.background = '#ffebee';
+          feedback.textContent = 'Pas tout à fait — bonne réponse : ' + options[correct];
+          feedback.style.color = '#c62828';
+        }
+      };
+      el.appendChild(btn);
+    });
+    el.appendChild(feedback);
+  });
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapitres/historique-tome-1.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Historique Tome 1 - Une science qui se construit</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Recherche" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Projet-Balmer</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Recherche"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Historique Tome 1 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/atomes-quantite-de-matiere.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Atomes et quantité de matière</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-sels-molecules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Liaisons, sels et molécules</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-intermoleculaires.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Liaisons intermoléculaires</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-chimiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformations chimiques et stœchiométrie</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-physiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transformations physiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/oxydo-reduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Oxydoréduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/electrochimie-piles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Électrochimie et piles</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acido-basiques-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction aux équilibres acido-basiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Historique Tome 2 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Thermochimie 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Thermochimie 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/vitesse-de-reaction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Vitesse de réaction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Équilibre chimique 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Équilibre chimique 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acides-bases-ph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Acides, bases et pH</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/chimie-organique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Chimie organique</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#une-histoire-de-chimie" id="toc-une-histoire-de-chimie" class="nav-link active" data-scroll-target="#une-histoire-de-chimie"><span class="header-section-number">1.1</span> Une histoire de chimie</a></li>
+  <li><a href="#repères-pour-la-suite-du-cours" id="toc-repères-pour-la-suite-du-cours" class="nav-link" data-scroll-target="#repères-pour-la-suite-du-cours"><span class="header-section-number">1.2</span> Repères pour la suite du cours</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Historique Tome 1 - Une science qui se construit</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="une-histoire-de-chimie" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="une-histoire-de-chimie"><span class="header-section-number">1.1</span> Une histoire de chimie</h2>
+<p>Raconter l’histoire de la chimie dans l’ordre chronologique pose un défi de taille : certaines années voient converger plusieurs avancées à des niveaux de réalité très différents. Mais c’est précisément ce défi qui rend l’exercice utile — suivre les découvertes dans leur ordre réel, c’est se placer à hauteur du savant au moment où il travaille : voir ce qu’il pouvait savoir, et ce qu’il ne pouvait pas encore savoir. C’est aussi la seule manière de ressentir le choc que certaines découvertes ont représenté pour leurs contemporains.</p>
+<p>Un tableau en fin de chapitre indique, pour chaque savant, le ou les chapitres du cours où ses travaux sont mobilisés directement.</p>
+<hr>
+<p>Au V<sup>e</sup> siècle avant notre ère, <strong>Empédocle</strong> (v. 494 – v. 434 av. J.-C.) propose une première théorie sur la nature de la matière : celle des quatre éléments — terre, eau, air, feu. C’est une notion philosophique et qualitative, sans rapport avec la définition chimique moderne.</p>
+<p>Mais à la même époque, les textes de <strong>Leucippe</strong> (actif vers 440 av. J.-C.) et de <strong>Démocrite</strong> (v. 460 – v. 370 av. J.-C., né à Abdère) élaborent une théorie radicalement différente : si on divise la matière indéfiniment, on atteint nécessairement une particule indivisible — l’atomos. Leurs ouvrages originaux sont aujourd’hui perdus ; on ne les connaît que par des fragments et des témoignages transmis par des auteurs postérieurs, en particulier <strong>Diogène Laërce</strong> (III<sup>e</sup> siècle apr. J.-C.), qui recense dans ses <em>Vies et doctrines des philosophes illustres</em> (Livre IX) une liste d’ouvrages attribués à Démocrite.</p>
+<p><strong>Aristote</strong> (384–322 av. J.-C.) joue un rôle central dans la transmission de ces deux théories rivales : il systématise celle d’Empédocle des quatre éléments en y ajoutant un cinquième élément, l’éther — une synthèse qui dominera la pensée occidentale pendant deux mille ans —, tandis qu’il discute et critique la théorie atomiste dans sa <em>Physique</em> et dans <em>De la génération et de la corruption</em> — l’une des principales autres sources des ouvrages de Leucippe et de Démocrite.</p>
+<p>L’idée atomiste reste marginale pendant vingt siècles — éclipsée par la théorie des quatre éléments qui domine la pensée occidentale —, faute d’expérience capable de trancher entre les deux.</p>
+<p>Vingt siècles plus tard, la question de la matière retrouve un chemin expérimental.</p>
+<p>En 1661, <strong>Robert Boyle</strong> publie <em>The Sceptical Chymist</em>, où il rejette les quatre éléments d’Aristote et propose la définition moderne de l’élément chimique : une substance qu’on ne peut plus décomposer en substances plus simples par des moyens chimiques — sans toutefois en dresser de liste concrète.</p>
+<p>En 1662, <a href="transformations-chimiques.html#hist-transformations-chimiques-avogadro-boyle-gaylussac-gaz-parfaits" class="hist-note-name" title="mentionné au chapitre Transformations chimiques"><strong>Robert Boyle</strong></a> (1627–1691), assisté de <strong>Robert Hooke</strong> — qui donnera plus tard son nom à la loi de l’élasticité —, démontre que la pression et le volume d’un gaz sont inversement proportionnels.</p>
+<p>Vers 1660, <strong>Johann Joachim Becher</strong> (1635–1682), puis son élève <strong>Georg Ernst Stahl</strong> (1659–1734), formulent la théorie du phlogistique censée expliquer la combustion par la libération d’une substance invisible par les corps en brûlant.</p>
+<p>En 1789, <a href="transformations-chimiques.html#hist-transformations-chimiques-lavoisier-conservation-masse" class="hist-note-name" title="mentionné au chapitre Transformations chimiques"><strong>Antoine Lavoisier</strong></a> (1743–1794) démantèle la théorie du phlogistique en adoptant une approche rigoureuse : il pèse systématiquement les réactifs et les produits. Il constate que la masse se conserve, et ce de manière irréfutable — un principe qu’il résume dans une formule restée célèbre : « Dans la nature rien ne se crée, rien ne se perd, tout change ». Il démontre que l’oxygène est le véritable protagoniste des combustions. Grâce à sa rigueur et à son approche méthodique, Lavoisier invente une méthode qui jette les bases de la chimie quantitative — mais reste au niveau macroscopique : il ne dit rien de la structure ultime de la matière, seulement que sa masse totale ne varie pas. La même année, dans son <em>Traité élémentaire de chimie</em>, il applique le critère opérationnel de Boyle et dresse la première liste moderne d’éléments : 33 « substances simples », dont l’oxygène, l’hydrogène et l’azote.</p>
+<p>Vers 1794-1799, <strong>Joseph Proust</strong> (1754–1826) établit empiriquement la loi des proportions définies : les éléments se combinent toujours entre eux selon des proportions de masse fixes et constantes.</p>
+<p>En 1800, <a href="oxydo-reduction.html#hist-oxydo-reduction-volta-faraday-pile" class="hist-note-name" title="mentionné au chapitre Oxydoréduction"><strong>Alessandro Volta</strong></a> (1745–1827) construit la première pile en exploitant spontanément le transfert d’électrons entre deux métaux.</p>
+<p>En 1803, <strong>John Dalton</strong> (1766–1844) franchit un pas que Lavoisier n’avait pas fait. Dalton postule que la matière est faite d’atomes distincts, propres à chaque élément, qui se combinent en proportions numériques simples et fixes — une hypothèse qui explique enfin la loi des proportions définies, établie empiriquement quelques années plus tôt par Proust, mais que la seule conservation de la masse ne pouvait justifier. Au lieu de se contenter de spéculer, il adopte une approche empirique en mesurant les proportions dans lesquelles les éléments se combinent, et ses observations le conduisent à formuler cinq hypothèses fondamentales :</p>
+<ul>
+<li>La matière est composée d’atomes, des particules indivisibles et indestructibles.</li>
+<li>Tous les atomes d’un même élément sont identiques — même masse, mêmes propriétés chimiques.</li>
+<li>Les composés se forment par union d’atomes en proportions entières et simples (ex. 1:1, 1:2…).</li>
+<li>Les atomes sont indivisibles.</li>
+<li>Tous les atomes d’un même élément ont la même masse.</li>
+</ul>
+<p>Deux de ces cinq hypothèses se révéleront fausses.</p>
+<p>En 1808, <a href="transformations-chimiques.html#hist-transformations-chimiques-avogadro-boyle-gaylussac-gaz-parfaits" class="hist-note-name" title="mentionné au chapitre Transformations chimiques"><strong>Joseph Gay-Lussac</strong></a> (1778–1850) étend la découverte de Boyle en établissant une relation proportionnelle entre la pression et la température. Ces deux lois convergent enfin vers une équation unique : PV = nRT. Mais que signifie n dans cette équation ?</p>
+<p>En 1811, <a href="transformations-chimiques.html#hist-transformations-chimiques-avogadro-boyle-gaylussac-gaz-parfaits" class="hist-note-name" title="mentionné au chapitre Transformations chimiques"><strong>Amedeo Avogadro</strong></a> (1776–1856) répond à cette question, restée en suspens depuis Boyle : à température et pression égales, des volumes égaux de gaz contiennent le même nombre de molécules, quel que soit le gaz. Cette idée est à la base du concept de la mole, une unité de comptage universelle qui est au cœur de ce cours.</p>
+<p>En 1813, <strong>Jöns Jacob Berzelius</strong> (1779–1848) répond à une autre question soulevée par l’usage des balances — comment comparer des substances de natures différentes ? — en affinant les masses atomiques par analyse élémentaire et en introduisant la notation symbolique moderne : c’est grâce à lui que nous utilisons aujourd’hui les formules et .</p>
+<p>En 1833, <a href="oxydo-reduction.html#hist-oxydo-reduction-volta-faraday-pile" class="hist-note-name" title="mentionné au chapitre Oxydoréduction"><strong>Michael Faraday</strong></a><a href="electrochimie-piles.html#hist-electrochimie-piles-faraday-constante" class="hist-note" title="mentionné au chapitre Électrochimie et piles">→</a> (1791–1867) quantifie la relation entre matière et charge électrique lors d’une électrolyse : la masse déposée est proportionnelle à la charge écoulée, établissant la constante F = 96,500&nbsp;. L’année suivante, il invente dans un mémoire le vocabulaire que nous utilisons encore aujourd’hui : ion, cation, anion, électrode, cathode, anode, électrolyte.</p>
+<p>En 1869, <strong>Dmitri Mendeleïev</strong> (1834–1907) et <strong>Lothar Meyer</strong> (1830–1895) proposent indépendamment un tableau ordonnant les éléments par masse atomique croissante et propriétés récurrentes. Mendeleïev va au-delà de la simple classification en faisant des prédictions audacieuses. Il laisse des cases vides pour des éléments encore inconnus, dont la découverte du gallium (1875) puis du germanium (1886) confirmera les propriétés qu’il leur avait attribuées. Le tableau périodique n’est pas simplement un inventaire ; il s’agit d’une théorie déguisée en liste. Mendeleïev ne recevra jamais le prix Nobel — il en manquera la nomination décisive de peu, avant sa mort en 1907.</p>
+<p>La chimie macroscopique repose désormais sur quatre piliers fondamentaux : une méthode (la pesée, Lavoisier), un langage (les formules chimiques, Berzelius), une unité (la mole, Avogadro) et une carte (le tableau périodique, Mendeleïev). Mais une question reste ouverte depuis vingt-trois siècles : la matière est-elle infiniment divisible, ou existe-t-il une unité ultime, insécable ?</p>
+<p>En 1873, <a href="liaisons-intermoleculaires.html#hist-liaisons-intermoleculaires-van-der-waals-london-debye-keesom" class="hist-note-name" title="mentionné au chapitre Liaisons intermoléculaires"><strong>Johannes Diderik van der Waals</strong></a> (1837–1923) révèle, dans sa thèse <em>De la continuité des états liquides et gazeux</em>, l’existence de forces attractives entre molécules — un travail salué dès sa parution par James Clerk Maxwell dans la revue <em>Nature</em>. Il recevra le prix Nobel de physique en 1910 pour ces travaux.</p>
+<p>En 1884, <a href="acido-basiques-intro.html#hist-acido-basiques-intro-arrhenius-bronsted-lowry" class="hist-note-name" title="mentionné au chapitre Introduction aux équilibres acido-basiques"><strong>Svante Arrhenius</strong></a> (1859–1927) propose que les acides libèrent des ions en solution, et les bases des . Il recevra le prix Nobel de chimie en 1903 pour sa théorie de la dissociation électrolytique.</p>
+<p>En 1885, <strong>Johann Jakob Balmer</strong> (1825–1898) publie une formule empirique reproduisant avec une précision stupéfiante les raies du spectre visible de l’hydrogène. Le problème : il ne sait pas pourquoi elle fonctionne.</p>
+<p>En 1888, <strong>Johannes Rydberg</strong> (1854–1919) généralise cette formule à toutes les séries spectrales. Ces raies sont un message codé de l’atome — il reste à trouver le déchiffrage.</p>
+<p>En 1889, <a href="electrochimie-piles.html#hist-electrochimie-piles-nernst-equation" class="hist-note-name" title="mentionné au chapitre Électrochimie et piles"><strong>Walther Nernst</strong></a> (1864–1941) relie le potentiel d’électrode aux concentrations réelles par l’équation qui porte son nom — permettant de prédire la spontanéité d’une réaction rédox dans des conditions non standard. Il recevra le prix Nobel de chimie en 1920 pour ses travaux de thermochimie.</p>
+<p>La clé du déchiffrage des raies spectrales provient d’une source inattendue.</p>
+<p>En 1895, <a href="atomes-quantite-de-matiere.html#hist-atomes-quantite-de-matiere-rontgen-thomson-electron" class="hist-note-name" title="mentionné au chapitre Atomes et quantité de matière"><strong>Wilhelm Röntgen</strong></a> (1845–1923) découvre fortuitement les rayons X, une onde invisible capable de traverser la matière et de révéler sa structure interne. Ce signal clair indique que quelque chose se passe à l’intérieur de l’atome. Röntgen recevra, pour cette découverte, le tout premier prix Nobel de physique en 1901.</p>
+<p>En 1897, <a href="atomes-quantite-de-matiere.html#hist-atomes-quantite-de-matiere-rontgen-thomson-electron" class="hist-note-name" title="mentionné au chapitre Atomes et quantité de matière"><strong>Joseph Thomson</strong></a> (1856–1940) découvre, grâce au tube de Crookes, que l’atome contient des particules chargées négativement, bien plus légères que lui : les électrons. Il propose alors le modèle du plum-pudding, où les électrons sont noyés dans une sphère de charge positive diffuse. L’atome de Dalton, considéré comme indivisible depuis près d’un siècle, vient de s’effondrer. Thomson recevra le prix Nobel de physique en 1906.</p>
+<p>En 1900, <strong>Max Planck</strong> (1858–1947) démontre que l’énergie n’est pas échangée de manière continue, mais par paquets discrets appelés quanta, dont l’énergie est proportionnelle à la fréquence : E = h. Planck lui-même hésite à accepter cette idée, la considérant comme une simple astuce mathématique plutôt qu’une réalité physique. Il recevra le prix Nobel de physique en 1918.</p>
+<p>En 1905, <strong>Albert Einstein</strong> (1879–1955) frappe deux fois. D’une part, il établit un lien entre le défaut de masse nucléaire et l’énergie de liaison par l’équation emblématique E = m c^2 : la cohésion du noyau atomique a un coût massique mesurable. D’autre part, il généralise l’idée de Planck en proposant que la lumière elle-même est constituée de quanta — les <strong>photons</strong> — expliquant ainsi l’effet photoélectrique. Le quantum cesse d’être une astuce : il devient une réalité physique. C’est précisément pour cette explication de l’effet photoélectrique — et non pour la relativité — qu’Einstein recevra le prix Nobel de physique en 1921.</p>
+<p>En 1909, <a href="atomes-quantite-de-matiere.html#hist-atomes-quantite-de-matiere-millikan-charge-elementaire" class="hist-note-name" title="mentionné au chapitre Atomes et quantité de matière"><strong>Robert Millikan</strong></a> (1868–1953) mesure avec précision la charge de l’électron, ce qui permet de calculer sa masse. Il recevra le prix Nobel de physique en 1923.</p>
+<p>En 1909 toujours, <a href="atomes-quantite-de-matiere.html#hist-atomes-quantite-de-matiere-avogadro-perrin-mole" class="hist-note-name" title="mentionné au chapitre Atomes et quantité de matière"><strong>Jean Perrin</strong></a> (1870–1942) donne une réalité expérimentale au concept de mole en mesurant le nombre d’Avogadro grâce à l’observation du mouvement brownien. Il recevra le prix Nobel de physique en 1926 pour ces travaux.</p>
+<p>L’atome cesse d’être un simple modèle théorique pour devenir une entité quantifiable.</p>
+<p>En 1911, <strong>Ernest Rutherford</strong> (1871–1937) renverse le modèle du plum-pudding. Il bombarde une fine feuille d’or avec des particules alpha (des noyaux d’hélium). La plupart traversent la feuille sans dévier, mais quelques-unes rebondissent violemment. Cette observation conduit à une conclusion révolutionnaire : la masse de l’atome est concentrée dans un noyau minuscule et chargé positivement, entouré d’un espace immense et vide — cent mille fois plus petit que l’atome lui-même. Cette découverte est l’une des plus contre-intuitives de l’histoire de la physique. Rutherford avait déjà reçu, en 1908, le prix Nobel de chimie — à sa grande surprise, lui qui se considérait comme physicien.</p>
+<p>Il reste à comprendre ce qui structure ce noyau.</p>
+<p>En 1913, trois découvertes se succèdent : <strong>Henry Moseley</strong> (1887–1915) démontre que l’identité d’un élément est déterminée par son nombre de protons, ou numéro atomique Z, et non par sa masse — permettant de réorganiser le tableau de Mendeleïev en éliminant ses anomalies. Il mourra au combat en 1915, sans jamais recevoir le prix Nobel que plusieurs historiens des sciences jugent lui avoir été injustement refusé. <strong>Frederick Soddy</strong> (1877–1956) découvre que tous les atomes d’un même élément n’ont pourtant pas la même masse : ce sont les isotopes — le chlore naturel, par exemple, est un mélange de ^{35}Cl et ^{37}Cl. Il recevra le prix Nobel de chimie en 1921. <strong>Niels Bohr</strong> (1885–1962) révolutionne notre compréhension de l’atome en proposant un modèle où les électrons ne se déplacent que sur des orbites circulaires bien définies, correspondant à des niveaux d’énergie discrets. Lorsqu’un électron saute d’une orbite à une autre, il émet ou absorbe un photon d’énergie précisément égale à la différence entre les niveaux d’énergie, soit E = h. Bohr recevra le prix Nobel de physique en 1922.</p>
+<p>Les raies de Balmer sont enfin expliquées — vingt-huit ans après la formule, on comprend pourquoi elle fonctionne.</p>
+<p>En 1916, <a href="atomes-quantite-de-matiere.html#hist-atomes-quantite-de-matiere-lewis-doublet-liant" class="hist-note-name" title="mentionné au chapitre Atomes et quantité de matière"><strong>Gilbert Lewis</strong></a><a href="liaisons-sels-molecules.html#hist-liaisons-sels-molecules-lewis-octet-empirique" class="hist-note" title="mentionné au chapitre Liaisons, sels et molécules">→</a> (1875–1946) propose que deux atomes se lient en partageant une paire d’électrons — le <strong>doublet liant</strong>. Cette idée simple est le fondement de la liaison covalente. Il invente également une notation graphique qui porte son nom : les doublets non liants sont représentés par des points, les liaisons par des tirets. C’est la <strong>représentation de Lewis</strong>, que nous utilisons pour représenter toutes les molécules. Lewis reste, malgré de nombreuses nominations, l’un des grands absents du prix Nobel.</p>
+<p>En 1919, <a href="atomes-quantite-de-matiere.html#hist-atomes-quantite-de-matiere-isotopes-aston-chadwick" class="hist-note-name" title="mentionné au chapitre Atomes et quantité de matière"><strong>Francis Aston</strong></a> (1877–1945) construit le premier spectrographe de masse à focalisation. Il l’utilise pour prouver que les éléments peuvent exister sous forme d’isotopes et en calcule précisément les masses — ces travaux lui vaudront le Prix Nobel de chimie en 1922.</p>
+<p>En 1921, <a href="liaisons-intermoleculaires.html#hist-liaisons-intermoleculaires-van-der-waals-london-debye-keesom" class="hist-note-name" title="mentionné au chapitre Liaisons intermoléculaires"><strong>Peter Debye</strong></a> (1884–1966) et <a href="liaisons-intermoleculaires.html#hist-liaisons-intermoleculaires-van-der-waals-london-debye-keesom" class="hist-note-name" title="mentionné au chapitre Liaisons intermoléculaires"><strong>Willem Keesom</strong></a> (1876–1956) complètent la découverte de van der Waals en décrivant les interactions impliquant des dipôles permanents entre molécules. Ces forces déterminent les points de fusion et d’ébullition et expliquent pourquoi l’eau est liquide à température ambiante. Debye recevra le prix Nobel de chimie en 1936 ; Keesom, lui, ne sera jamais lauréat.</p>
+<p>En 1923, <a href="acido-basiques-intro.html#hist-acido-basiques-intro-arrhenius-bronsted-lowry" class="hist-note-name" title="mentionné au chapitre Introduction aux équilibres acido-basiques"><strong>Johannes Brønsted</strong></a> (1879–1947) et <a href="acido-basiques-intro.html#hist-acido-basiques-intro-arrhenius-bronsted-lowry" class="hist-note-name" title="mentionné au chapitre Introduction aux équilibres acido-basiques"><strong>Thomas Lowry</strong></a> (1874–1936) élargissent la vision d’Arrhenius : un acide est un donneur de proton, une base un accepteur — définition indépendante du solvant qui fonde l’ensemble de l’équilibre acido-basique.</p>
+<p>En 1925, deux avancées précisent la structure électronique. <strong>Wolfgang Pauli</strong> (1900–1958) impose que deux électrons ne peuvent occuper simultanément le même état quantique. La même année, <strong>Friedrich Hund</strong> (1896–1997) formule la règle de remplissage des sous-couches dégénérées. Pauli recevra le prix Nobel de physique en 1945 pour ce principe d’exclusion.</p>
+<p>Treize ans après son modèle des orbites circulaires, celui de Bohr ne tient plus la route.</p>
+<p>En 1926, <strong>Erwin Schrödinger</strong> (1887–1961) le remplace par des orbitales — des régions où la probabilité de présence de l’électron est élevée, plutôt que des trajectoires définies. Il partagera le prix Nobel de physique 1933 avec Paul Dirac.</p>
+<p>L’électron n’est plus perçu comme une bille se déplaçant sur un rail, mais comme une onde de probabilité.</p>
+<p>En 1930, <a href="liaisons-intermoleculaires.html#hist-liaisons-intermoleculaires-van-der-waals-london-debye-keesom" class="hist-note-name" title="mentionné au chapitre Liaisons intermoléculaires"><strong>Fritz London</strong></a> (1900–1954) identifie la nature quantique des forces découvertes par van der Waals : des fluctuations de densité électronique créant des dipôles instantanés, complétant le tableau des forces intermoléculaires aux côtés de Debye et Keesom.</p>
+<p>En 1932, deux avancées majeures : <a href="atomes-quantite-de-matiere.html#hist-atomes-quantite-de-matiere-isotopes-aston-chadwick" class="hist-note-name" title="mentionné au chapitre Atomes et quantité de matière"><strong>James Chadwick</strong></a> (1891–1974) découvre le neutron, résolvant ainsi le mystère des isotopes — ces atomes partageant le même numéro atomique (Z) mais différant par leur nombre de masse (A). Il recevra le prix Nobel de physique en 1935. <a href="liaisons-sels-molecules.html#hist-liaisons-sels-molecules-pauling-electronegativite" class="hist-note-name" title="mentionné au chapitre Liaisons, sels et molécules"><strong>Linus Pauling</strong></a> (1901–1994) quantifie l’électronégativité sur une échelle de 0,7 à 4,0 et montre que la différence entre deux atomes prédit le type de liaison — covalente, polarisée ou ionique. Pauling recevra le prix Nobel de chimie en 1954 pour ses travaux sur la nature de la liaison chimique — et, cas unique dans l’histoire du prix, un second Nobel non partagé, celui de la paix, en 1962.</p>
+<p>En 1934, <a href="liaisons-sels-molecules.html#hist-liaisons-sels-molecules-mulliken-electronegativite" class="hist-note-name" title="mentionné au chapitre Liaisons, sels et molécules"><strong>Robert Mulliken</strong></a> (1896–1986) propose une définition alternative de l’électronégativité par les énergies orbitales. Il recevra le prix Nobel de chimie en 1966 pour ses travaux sur la théorie des orbitales moléculaires.</p>
+<p>En 1936, <strong>Erwin Madelung</strong> (1893–1962) établit l’ordre de remplissage des sous-couches par énergie croissante — une règle en réalité déjà énoncée en 1929 par Charles Janet, sept ans plus tôt, sans que Madelung n’en ait eu connaissance. Sa justification théorique ne viendra qu’en 1962, sous la plume du chimiste soviétique Vsevolod Klechkovski — d’où le nom de « règle de Klechkowski » que lui donnent les sources francophones, bien après les évènements que nous venons de parcourir.</p>
+<p>Avec les règles de Pauli et Hund, ces trois principes permettent désormais d’écrire la configuration électronique de n’importe quel atome. C’est le fondement de toute la chimie des liaisons.</p>
+<p>En 1957, <a href="liaisons-sels-molecules.html#hist-liaisons-sels-molecules-gillespie-vsepr" class="hist-note-name" title="mentionné au chapitre Liaisons, sels et molécules"><strong>Ronald Gillespie</strong></a> (1924–2021) systématise, avec Ronald Nyholm, la géométrie des molécules avec le modèle VSEPR : les paires d’électrons de valence se repoussent et imposent une géométrie minimisant leurs interactions — tétraédrique, coudée, trigonale. Ce modèle nous permettra de prédire la forme de toute molécule à partir de sa formule de Lewis.</p>
+<p>Les chapitres suivants nous amènent à formaliser, approfondir et outiller les fondations posées par ces savants.</p>
+<hr>
+</section>
+<section id="repères-pour-la-suite-du-cours" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="repères-pour-la-suite-du-cours"><span class="header-section-number">1.2</span> Repères pour la suite du cours</h2>
+<p>Le tableau suivant indique, pour chaque savant présenté dans ce chapitre, le ou les chapitres du cours où ses travaux sont mobilisés directement.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Savant</th>
+<th>Contribution clé</th>
+<th>Chapitre</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Berzelius</td>
+<td>Masses atomiques, symboles chimiques</td>
+<td><strong>Atomes et quantité de matière</strong></td>
+</tr>
+<tr class="even">
+<td>Leucippe, Démocrite</td>
+<td>Concept d’atome indivisible</td>
+<td><strong>Atomes et quantité de matière</strong></td>
+</tr>
+<tr class="odd">
+<td>Dalton</td>
+<td>Modèle atomique, loi des proportions</td>
+<td><strong>Atomes et quantité de matière</strong></td>
+</tr>
+<tr class="even">
+<td>Mendeleïev, Meyer</td>
+<td>Tableau périodique</td>
+<td><strong>Atomes et quantité de matière</strong></td>
+</tr>
+<tr class="odd">
+<td>Röntgen, Thomson, Millikan</td>
+<td>Rayons X, électron, charge élémentaire</td>
+<td><strong>Atomes et quantité de matière</strong></td>
+</tr>
+<tr class="even">
+<td>Rutherford</td>
+<td>Noyau atomique</td>
+<td><strong>Atomes et quantité de matière</strong></td>
+</tr>
+<tr class="odd">
+<td>Moseley, Chadwick, Aston</td>
+<td>Numéro atomique Z, neutron, isotopes</td>
+<td><strong>Atomes et quantité de matière</strong></td>
+</tr>
+<tr class="even">
+<td>Einstein</td>
+<td>Défaut de masse et énergie de liaison <span class="math inline">\(E = \Delta m \cdot c^2\)</span></td>
+<td><strong>Atomes et quantité de matière</strong></td>
+</tr>
+<tr class="odd">
+<td>Avogadro, Perrin</td>
+<td>Définition et mesure expérimentale de la mole</td>
+<td><strong>Atomes et quantité de matière</strong></td>
+</tr>
+<tr class="even">
+<td>Balmer, Rydberg</td>
+<td>Raies spectrales de l’hydrogène</td>
+<td><strong>Atomes et quantité de matière</strong></td>
+</tr>
+<tr class="odd">
+<td>Planck, Einstein</td>
+<td>Quantification de l’énergie, photon</td>
+<td><strong>Atomes et quantité de matière</strong></td>
+</tr>
+<tr class="even">
+<td>Bohr</td>
+<td>Modèle des orbites électroniques</td>
+<td><strong>Atomes et quantité de matière</strong></td>
+</tr>
+<tr class="odd">
+<td>Schrödinger, Pauli, Hund, Klechkowski</td>
+<td>Orbitales, configuration électronique</td>
+<td><strong>Atomes et quantité de matière</strong></td>
+</tr>
+<tr class="even">
+<td>Pauling, Mulliken</td>
+<td>Électronégativité, types de liaisons</td>
+<td><strong>Liaisons, sels et molécules</strong></td>
+</tr>
+<tr class="odd">
+<td>Lewis</td>
+<td>Doublet électronique, liaison covalente, notation de Lewis</td>
+<td><strong>Liaisons, sels et molécules</strong></td>
+</tr>
+<tr class="even">
+<td>Gillespie</td>
+<td>Géométrie moléculaire (VSEPR)</td>
+<td><strong>Liaisons, sels et molécules</strong></td>
+</tr>
+<tr class="odd">
+<td>van der Waals, London, Debye, Keesom</td>
+<td>Forces intermoléculaires</td>
+<td><strong>Liaisons intermoléculaires</strong></td>
+</tr>
+<tr class="even">
+<td>Lavoisier</td>
+<td>Conservation de la masse, stœchiométrie</td>
+<td><strong>Transformations chimiques et stœchiométrie</strong></td>
+</tr>
+<tr class="odd">
+<td>Avogadro, Boyle, Gay-Lussac</td>
+<td>Loi des gaz parfaits <span class="math inline">\(PV = nRT\)</span></td>
+<td><strong>Transformations chimiques et stœchiométrie</strong></td>
+</tr>
+<tr class="even">
+<td>Volta, Faraday</td>
+<td>Pile électrochimique, électrolyse</td>
+<td><strong>Oxydoréduction</strong></td>
+</tr>
+<tr class="odd">
+<td>Faraday</td>
+<td>Constante de Faraday, électrolyse quantitative</td>
+<td><strong>Électrochimie et piles</strong></td>
+</tr>
+<tr class="even">
+<td>Nernst</td>
+<td>Potentiel d’électrode, équation de Nernst</td>
+<td><strong>Électrochimie et piles</strong></td>
+</tr>
+<tr class="odd">
+<td>Arrhenius, Brønsted, Lowry</td>
+<td>Théories acido-basiques</td>
+<td><strong>Introduction aux équilibres acido-basiques</strong></td>
+</tr>
+</tbody>
+</table>
+<!-- REF: ref:atomes-quantite-de-matiere — configuration électronique, mole, isotopes -->
+<!-- REF: ref:liaisons-sels-molecules — électronégativité, VSEPR, Lewis -->
+<!-- REF: ref:liaisons-intermoleculaires — London, Debye, Keesom -->
+<!-- REF: ref:transformations-chimiques — stœchiométrie, gaz parfaits -->
+<!-- REF: ref:oxydo-reduction — série électrochimique -->
+<!-- REF: ref:electrochimie-piles — Faraday, Nernst -->
+<!-- REF: ref:acido-basiques-intro — Brønsted-Lowry, acides forts -->
+<hr>
+<p><em>Projet-Balmer — Manuel de chimie pour les gymnases vaudois</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../index.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapitres/atomes-quantite-de-matiere.html" class="pagination-link" aria-label="Atomes et quantité de matière">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Atomes et quantité de matière</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balmer-Cloud — Entraînement</title>
+<!-- Rendu des formules chimiques $\ce{...}$ dans les questions/options/feedback
+     (qbank-liaisons-sels-molecules.md et suivants) — même MathJax que le livre
+     web (build-web.sh, write_quarto_yml), chargé depuis le même CDN. v1.8
+     avait corrigé un premier bug réel (délimiteurs $...$ jamais activés) mais
+     restait cassée en pratique : `loader: {load: ['[tex]/mhchem']}` fait
+     enregistrer par mhchem lui-même une dépendance différée vers une police
+     d'extension séparée (glyphes de liaisons multiples, ex. `\ce{C#C}`),
+     chargée depuis un chemin CDN à part (@mathjax/mathjax-mhchem-font-
+     extension). Tant que MathJax attend cette ressource annexe, il n'expose
+     jamais `MathJax.typesetPromise` — aucune erreur console, juste plus rien
+     ne se rend, ni la première formule ni les suivantes. Confirmé et corrigé
+     en v1.9 : mhchem est chargé nous-mêmes en <script src> classique (pas via
+     le loader dynamique de MathJax) le temps de son exécution, avec
+     `MathJax.loader` temporairement neutralisé — son propre code vérifie
+     `if (MathJax.loader)` avant d'enregistrer cette dépendance différée, donc
+     l'annuler pendant son chargement l'empêche d'être déclarée du tout, sans
+     rien retirer de son support de \ce{...} pour autant. `MathJax.startup`
+     est mis en pause (`ready: function(){}`) le temps de cette manœuvre, puis
+     relancé explicitement une fois mhchem chargé. Testé avec succès sur
+     plusieurs rendus successifs (question puis feedback) avant mise en ligne
+     — voir Charte_Balmer-Cloud.md pour le détail complet de l'investigation. -->
+<script>
+window.MathJax = {
+  startup: { ready: function() {} },
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    packages: {'[+]': ['mhchem']}
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+<script>
+// Neutralise temporairement MathJax.loader le temps du chargement de mhchem :
+// voir le commentaire ci-dessus, section "v1.9".
+window.__bcSavedLoader = window.MathJax.loader;
+window.MathJax.loader = null;
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@4/input/tex/extensions/mhchem.js"></script>
+<script>
+window.MathJax.loader = window.__bcSavedLoader;
+window.MathJax.startup.defaultReady();
+</script>
+<style>
+:root {
+  --green: #1D9E75; --green-d: #0F6E56; --green-l: #E1F5EE; --green-b: #5DCAA5;
+  --coral: #D85A30; --coral-l: #FAECE7; --coral-b: #F0997B; --coral-t: #4A1B0C;
+  --amber-l: #FAEEDA; --amber-b: #FAC775; --amber-t: #633806;
+  --blue-l: #E6F1FB; --blue: #185FA5;
+  --purple-l: #EEEDFE; --purple: #534AB7;
+  --bg: #ffffff; --bg2: #f7f6f3; --bg3: #efede8;
+  --text: #1a1918; --text2: #6b6963; --text3: #9c9890;
+  --border: rgba(0,0,0,0.1); --border2: rgba(0,0,0,0.2);
+  --radius: 8px; --radius-lg: 12px;
+  --font: 'Georgia', serif; --mono: 'Courier New', monospace;
+  /* Zones du profil de maîtrise (Charte_Balmer-Cloud.md §5.1) — alias vers
+     les tokens existants ; se réadaptent seuls en mode sombre puisque
+     --coral/--amber-b/--green-b/--green sont eux-mêmes redéfinis plus bas. */
+  --zone1: var(--coral); --zone2: var(--amber-b); --zone3: var(--green-b); --zone4: var(--green);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1b19; --bg2: #252421; --bg3: #2e2c29;
+    --text: #f0ede8; --text2: #9c9890; --text3: #6b6963;
+    --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.2);
+    --green-l: #04342C; --green-b: #0F6E56;
+    --coral-l: #4A1B0C; --coral-b: #993C1D; --coral-t: #F5C4B3;
+    --blue-l: #042C53; --blue: #85B7EB;
+    --purple-l: #26215C; --purple: #AFA9EC;
+  }
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--bg3); color: var(--text); min-height: 100vh; }
+
+/* ── IMPORT SCREEN ── */
+.import-screen {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem;
+}
+.import-card {
+  background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 3rem 2.5rem; max-width: 480px; width: 100%; text-align: center;
+}
+.import-logo { font-size: 24px; font-weight: normal; margin-bottom: 4px; }
+.import-logo em { color: var(--green); font-style: normal; }
+.import-sub { font-size: 12px; color: var(--text2); font-family: var(--mono); margin-bottom: 2.5rem; }
+.import-icon { font-size: 48px; margin-bottom: 1.5rem; }
+.import-title { font-size: 16px; color: var(--text); margin-bottom: 8px; }
+.import-desc { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 2rem; }
+.import-btn {
+  display: inline-block; padding: 12px 28px; background: var(--green); color: white;
+  border: none; border-radius: var(--radius); font-size: 15px; font-family: var(--font);
+  cursor: pointer; transition: background .15s;
+}
+.import-btn:hover { background: var(--green-d); }
+.import-error { margin-top: 1rem; font-size: 12px; color: var(--coral); font-family: var(--mono); }
+#file-input { display: none; }
+
+/* ── MAIN APP ── */
+.app { display: none; max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+
+/* header */
+.hdr { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+.logo { font-size: 20px; font-weight: normal; }
+.logo em { color: var(--green); font-style: normal; }
+.logo-sub { font-size: 11px; color: var(--text2); font-family: var(--mono); margin-top: 2px; }
+.hdr-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.chapter-badge { font-size: 11px; font-family: var(--mono); color: var(--text2); background: var(--bg2); border: 1px solid var(--border); padding: 3px 9px; border-radius: 20px; }
+.reset-btn { font-size: 11px; color: var(--text3); background: none; border: none; cursor: pointer; font-family: var(--mono); text-decoration: underline; }
+.reset-btn:hover { color: var(--text2); }
+
+/* stats */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 1.5rem; }
+.stat { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px; text-align: center; }
+.stat-v { font-size: 22px; color: var(--text); }
+.stat-l { font-size: 10px; color: var(--text2); font-family: var(--mono); text-transform: uppercase; letter-spacing: .5px; margin-top: 2px; }
+
+/* profile */
+.profile { margin-bottom: 1.5rem; }
+.profile-label { font-size: 10px; color: var(--text2); font-family: var(--mono); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+.concept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.cpill { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 7px 9px; }
+.cpill-name { font-size: 10px; color: var(--text2); font-family: var(--mono); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Piste segmentée à 4 zones fixes (Charte_Balmer-Cloud.md §5.1 : 0-0,3 lacune
+   critique / 0,3-0,6 à consolider / 0,6-0,8 bonne maîtrise / 0,8-1,0 maîtrisé)
+   avec un curseur qui indique la position exacte du score dans sa zone. */
+.cpill-track {
+  position: relative; height: 6px; border-radius: 3px; margin-top: 2px;
+  background: linear-gradient(to right,
+    var(--zone1) 0%, var(--zone1) 30%,
+    var(--zone2) 30%, var(--zone2) 60%,
+    var(--zone3) 60%, var(--zone3) 80%,
+    var(--zone4) 80%, var(--zone4) 100%);
+}
+.cpill-cursor {
+  position: absolute; top: 50%; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--text); transform: translate(-50%, -50%);
+  transition: left .5s; box-shadow: 0 0 0 1px var(--bg);
+}
+.cpill-status { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; margin-top: 5px; }
+.cpill-zone-label { font-size: 10px; font-family: var(--mono); }
+.cpill-zone-label.z1 { color: var(--coral); } .cpill-zone-label.z2 { color: var(--amber-t); }
+.cpill-zone-label.z3 { color: var(--green-d); } .cpill-zone-label.z4 { color: var(--green); }
+.cpill-pct { font-size: 10px; color: var(--text3); font-family: var(--mono); }
+
+/* card */
+.card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
+
+/* badges */
+.badges { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
+.badge { font-size: 11px; padding: 2px 9px; border-radius: 20px; font-family: var(--mono); }
+.b-macro { background: var(--blue-l); color: var(--blue); }
+.b-parti { background: var(--purple-l); color: var(--purple); }
+.b-symbo { background: var(--green-l); color: var(--green-d); }
+.b-t1 { background: var(--amber-l); color: var(--amber-t); }
+.b-t2 { background: var(--green-l); color: var(--green-d); }
+.b-t3 { background: var(--coral-l); color: var(--coral-t); }
+.b-concept { background: var(--bg2); color: var(--text2); }
+
+/* question */
+.qtext { font-size: 16px; line-height: 1.7; color: var(--text); margin-bottom: 1.25rem; }
+.opts-hint { font-size: 12px; color: var(--text2); font-style: italic; margin-bottom: 10px; }
+
+/* options */
+.opts { display: flex; flex-direction: column; gap: 8px; }
+.opt {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 14px; border: 1px solid var(--border); border-radius: var(--radius);
+  cursor: pointer; font-size: 14px; font-family: var(--font); color: var(--text);
+  background: var(--bg); transition: background .15s, border-color .15s;
+  text-align: left; width: 100%;
+}
+.opt:hover { background: var(--bg2); border-color: var(--border2); }
+.opt.answered { cursor: default; }
+.opt.answered:hover { background: var(--bg); border-color: var(--border); }
+.opt.correct { background: var(--green-l); border-color: var(--green-b); color: var(--green-d); }
+.opt.correct:hover { background: var(--green-l); border-color: var(--green-b); }
+.opt.wrong { background: var(--coral-l); border-color: var(--coral-b); color: var(--coral-t); }
+.opt.wrong:hover { background: var(--coral-l); border-color: var(--coral-b); }
+.opt.missed { background: var(--amber-l); border-color: var(--amber-b); color: var(--amber-t); }
+.opt.missed:hover { background: var(--amber-l); border-color: var(--amber-b); }
+.opt-check {
+  width: 17px; height: 17px; flex-shrink: 0; accent-color: var(--green); cursor: pointer;
+}
+.opt.answered .opt-check { cursor: default; }
+.opt-letter {
+  width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+  background: var(--bg2); display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-family: var(--mono); color: var(--text2);
+}
+.opt-text { flex: 1; }
+.opt.correct .opt-letter { background: var(--green); color: white; }
+.opt.wrong .opt-letter { background: var(--coral); color: white; }
+.opt.missed .opt-letter { background: var(--amber-b); color: var(--amber-t); }
+
+/* validate button */
+.validate-row { display: flex; justify-content: flex-end; margin-top: 1rem; }
+.btn-validate {
+  padding: 9px 20px; background: var(--green); color: white; border: none;
+  border-radius: var(--radius); font-size: 14px; font-family: var(--font); cursor: pointer;
+}
+.btn-validate:hover:not(:disabled) { background: var(--green-d); }
+.btn-validate:disabled { background: var(--bg3); color: var(--text3); cursor: not-allowed; }
+
+/* feedback */
+.fb { margin-top: 1rem; padding: 12px 14px; border-radius: var(--radius); font-size: 13px; line-height: 1.7; }
+.fb.ok { background: var(--green-l); border: 1px solid var(--green-b); color: var(--green-d); }
+.fb.ko { background: var(--coral-l); border: 1px solid var(--coral-b); color: var(--coral-t); }
+.fb-wrong { margin-top: 6px; }
+.fb-ref { font-size: 11px; font-family: var(--mono); margin-top: 6px; opacity: .85; }
+.fb-ref a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.fb-ref a:hover { opacity: .8; }
+.fb-ref-plain { opacity: .7; }
+.fb-next { font-size: 12px; font-style: italic; margin-top: 6px; }
+
+/* next button */
+.next-row { display: flex; justify-content: flex-end; margin-top: 1rem; }
+.btn-next {
+  padding: 9px 20px; background: var(--green); color: white; border: none;
+  border-radius: var(--radius); font-size: 14px; font-family: var(--font); cursor: pointer;
+}
+.btn-next:hover { background: var(--green-d); }
+
+/* done screen */
+.done-card { text-align: center; padding: 3rem 1.5rem; }
+.done-icon { font-size: 48px; margin-bottom: 1rem; }
+.done-title { font-size: 20px; color: var(--text); margin-bottom: 8px; }
+.done-sub { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 1.5rem; }
+.btn-restart { padding: 10px 24px; background: var(--green); color: white; border: none; border-radius: var(--radius); font-size: 14px; font-family: var(--font); cursor: pointer; }
+.btn-restart:hover { background: var(--green-d); }
+
+/* gap warning */
+.gap-card { text-align: center; padding: 2rem; }
+.gap-title { font-size: 15px; color: var(--text); margin-bottom: 8px; font-style: italic; }
+.gap-sub { font-size: 13px; color: var(--text2); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<!-- ── IMPORT SCREEN ── -->
+<div class="import-screen" id="import-screen">
+  <div class="import-card">
+    <div class="import-logo">Balmer<em>-Cloud</em></div>
+    <div class="import-sub">Outil élève — v1.9</div>
+    <div class="import-icon">📂</div>
+    <div class="import-title">Importer une banque de questions</div>
+    <div class="import-desc">
+      Sélectionnez le fichier <code style="font-family:var(--mono);font-size:12px">qbank-&lt;slug&gt;.md</code>
+      fourni par votre enseignant pour commencer votre session d'entraînement.
+    </div>
+    <button class="import-btn" onclick="document.getElementById('file-input').click()">
+      Choisir un fichier .md
+    </button>
+    <input type="file" id="file-input" accept=".md,.txt" onchange="loadFile(event)">
+    <div class="import-error" id="import-error" style="display:none"></div>
+  </div>
+</div>
+
+<!-- ── MAIN APP ── -->
+<div class="app" id="app">
+  <div class="hdr">
+    <div>
+      <div class="logo">Balmer<em>-Cloud</em></div>
+      <div class="logo-sub">Outil élève</div>
+    </div>
+    <div class="hdr-right">
+      <div class="chapter-badge" id="chapter-badge">—</div>
+      <button class="reset-btn" onclick="resetApp()">Changer de banque</button>
+      <button class="reset-btn" onclick="resetProgress()">Réinitialiser ma progression</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-v" id="s-cor">0</div><div class="stat-l">Correctes</div></div>
+    <div class="stat"><div class="stat-v" id="s-tot">0</div><div class="stat-l">Réponses</div></div>
+    <div class="stat"><div class="stat-v" id="s-mas">0</div><div class="stat-l">Maîtrisés</div></div>
+  </div>
+
+  <div class="profile">
+    <div class="profile-label">Profil de maîtrise</div>
+    <div class="concept-grid" id="concept-grid"></div>
+  </div>
+
+  <div id="q-area"></div>
+</div>
+
+<script>
+const LETTERS = ['A','B','C','D'];
+const R1L = { macro: 'Macroscopique', parti: 'Particulaire', symbo: 'Symbolique' };
+const TYL = { 1: 'Identification', 2: 'Application', 3: 'Transfert' };
+const ALGO = { score0: 0.3, gain: 0.15, gainApresErreur: 0.10, perte: 0.25, seuil: 0.8, streak: 3 };
+// Livre web public (Charte_Balmer-Cloud.md §7.1.1) — chaque chapitre y est un
+// fichier HTML frère nommé par son slug ; **Référence manuel** du qbank ne
+// porte que l'ancre {#...} de la sous-section Zone 2 ciblée (charte-balmer.md
+// v3.14.0), q.chapitre (frontmatter) fournit le nom de fichier.
+const MANUEL_BASE_URL = 'https://johannbalmer.github.io/projet-balmer-web/chapitres/';
+// Une ancre valide est un slug kebab-case ASCII (voir ANCHOR_FORMAT_RE côté
+// check-qbank-quality.py) — sert à distinguer une ancre migrée d'un ancien
+// champ "Section X.X.X" pas encore migré, qu'on affiche alors en texte brut
+// plutôt que comme un lien qui n'atterrirait nulle part de précis.
+const ANCHOR_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+function manuelRefHtml(q) {
+  if (!q.ref) return '';
+  if (q.chapitre && ANCHOR_RE.test(q.ref)) {
+    const url = MANUEL_BASE_URL + q.chapitre + '.html#' + q.ref;
+    return `<div class="fb-ref">📖 <a href="${url}" target="_blank" rel="noopener">Revoir dans le cours</a></div>`;
+  }
+  // Repli : ancienne référence texte libre ("Section X.X.X") pas encore
+  // migrée vers une ancre {#...} — affichée telle quelle, non cliquable.
+  return `<div class="fb-ref fb-ref-plain">📖 ${q.ref}</div>`;
+}
+
+let questions = [];
+let concepts = [];
+let scores = {};
+let streaks = {};
+let usedQ = {};
+// Vrai pour un concept dont la dernière réponse (dans la session en cours)
+// était incorrecte — fait passer le prochain gain de +0,15 à +0,10, puis se
+// réinitialise. Volontairement non persisté (ne survit pas à un rechargement
+// de page) : la charte parle d'une erreur "récente (même session)" (§5.2).
+let erreurRecente = {};
+let sessionCor = 0, sessionTot = 0;
+let currentQ = null, answered = false;
+let selected = new Set();
+let storageKey = '';
+
+// Retypeset MathJax sur un élément injecté dynamiquement (renderQuestion,
+// feedback de validateAnswer) — MathJax ne traite qu'automatiquement le
+// contenu présent au chargement de la page, pas ce qu'on insère ensuite via
+// innerHTML. Garde silencieuse si le script CDN n'est pas encore chargé
+// (connexion lente) : le texte brut $\ce{...}$ reste alors visible plutôt
+// que de faire échouer l'affichage de la question.
+function typesetMath(el) {
+  if (window.MathJax && window.MathJax.typesetPromise) {
+    window.MathJax.typesetPromise([el]).catch(() => {});
+  }
+}
+
+function parseMd(text) {
+  // Un nouveau bloc-question démarre à chaque "---" suivi directement de
+  // "id:" (le "---" qui clôt le frontmatter d'une question sert aussi de
+  // "---" d'ouverture pour la question suivante, cf. §5 de procedure-qbank.md).
+  // Un split naïf sur tout "---" isolé séparerait à tort le frontmatter
+  // (id, concept, ...) du corps (Question, Options, ...) de chaque question.
+  const blocks = text.split(/\n---\n(?=id:\s)/).map(b => b.trim()).filter(b => b.length > 0);
+  const qs = [];
+  for (let i = 0; i < blocks.length; i++) {
+    const b = blocks[i];
+    if (!b.includes('id:') || !b.includes('concept:')) continue;
+    try {
+      const get = (field) => {
+        const m = b.match(new RegExp(field + ':\\s*(.+)'));
+        return m ? m[1].trim() : '';
+      };
+      const textM = b.match(/\*\*Question\*\*\n([\s\S]+?)\n\n\*\*Options\*\*/);
+      const optsM = b.match(/\*\*Options\*\*\n([\s\S]+?)\n\n\*\*Réponse correcte\*\*/);
+      const ansM = b.match(/\*\*Réponse correcte\*\*\s*:\s*([ABCD](?:\s*,\s*[ABCD])*)/);
+      const fcM = b.match(/\*\*Feedback correct\*\*\n([\s\S]+?)\n\n\*\*Feedback incorrect\*\*/);
+      const fwM = b.match(/\*\*Feedback incorrect\*\*\n([\s\S]+?)\n\n\*\*Référence/);
+      const refM = b.match(/\*\*Référence manuel\*\*\s*:\s*(.+)/);
+      if (!textM || !optsM || !ansM) continue;
+      const opts = optsM[1].split('\n').filter(l => l.match(/^- [ABCD]\./)).map(l => l.replace(/^- [ABCD]\.\s*/, ''));
+      const fwLines = fwM ? fwM[1].split('\n').filter(l => l.match(/^- Si [ABCD]/)).map(l => l.replace(/^- Si [ABCD]\s*:\s*/, '')) : [];
+      const answerLetters = ansM[1].split(',').map(s => s.trim());
+      qs.push({
+        id: get('id'), concept: get('concept'), chapitre: get('chapitre'), r1: get('r1'),
+        type: parseInt(get('type')), niveau: get('niveau'),
+        text: textM[1].trim(), options: opts,
+        // Ensemble des index corrects (0-3), triés — une question peut porter
+        // de 1 à 3 bonnes réponses (jamais 4), cf. Charte_Balmer-Cloud.md §6.2.
+        answer: answerLetters.map(l => LETTERS.indexOf(l)).filter(i => i >= 0).sort((a,b) => a-b),
+        fc: fcM ? fcM[1].trim() : '',
+        fw: fwLines,
+        ref: refM ? refM[1].trim() : ''
+      });
+    } catch(e) { continue; }
+  }
+  return qs;
+}
+
+function getChapterName(text) {
+  const m = text.match(/# Banque de questions validées[^\n]*\n# ([^\n]+)/);
+  return m ? m[1].trim() : 'Chapitre';
+}
+
+function loadFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const text = e.target.result;
+    const parsed = parseMd(text);
+    if (!parsed.length) {
+      document.getElementById('import-error').textContent = 'Aucune question trouvée — vérifiez le format du fichier.';
+      document.getElementById('import-error').style.display = 'block';
+      return;
+    }
+    questions = parsed;
+    const chapterName = getChapterName(text);
+    storageKey = 'bc-eleve-' + (file.name.replace('.md',''));
+    initApp(chapterName);
+  };
+  reader.readAsText(file);
+}
+
+function initApp(chapterName) {
+  concepts = [...new Set(questions.map(q => q.concept))];
+  const saved = loadScores();
+  concepts.forEach(c => {
+    scores[c] = saved[c]?.score ?? ALGO.score0;
+    streaks[c] = saved[c]?.streak ?? 0;
+    usedQ[c] = new Set();
+    erreurRecente[c] = false;
+  });
+  sessionCor = 0; sessionTot = 0;
+  document.getElementById('import-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  document.getElementById('chapter-badge').textContent = chapterName;
+  renderProfile(); renderStats(); renderQuestion();
+}
+
+function loadScores() {
+  try { const d = localStorage.getItem(storageKey); return d ? JSON.parse(d) : {}; } catch(e) { return {}; }
+}
+function saveScores() {
+  try {
+    const d = {};
+    concepts.forEach(c => d[c] = { score: scores[c], streak: streaks[c] });
+    localStorage.setItem(storageKey, JSON.stringify(d));
+  } catch(e) {}
+}
+
+function mastered(c) { return scores[c] >= ALGO.seuil && streaks[c] >= ALGO.streak; }
+function mastCount() { return concepts.filter(c => mastered(c)).length; }
+
+// Zone d'appartenance du score (Charte_Balmer-Cloud.md §5.1) — le nom "Maîtrisé"
+// n'est utilisé que pour un concept réellement mastered() (score ET streak).
+// Un score ≥ 0,8 sans le streak requis reste affiché "Bonne maîtrise" : le
+// dire "maîtrisé" prématurément induirait l'élève en erreur, puisque
+// l'algorithme continuera à lui poser des questions sur ce concept.
+function zoneOf(c) {
+  if (mastered(c)) return { cls: 'z4', label: 'Maîtrisé' };
+  const s = scores[c];
+  if (s < 0.3) return { cls: 'z1', label: 'Lacune critique' };
+  if (s < 0.6) return { cls: 'z2', label: 'À consolider' };
+  return { cls: 'z3', label: 'Bonne maîtrise' };
+}
+
+function pickNext() {
+  const avail = concepts.filter(c => !mastered(c));
+  if (!avail.length) return null;
+  avail.sort((a,b) => scores[a] - scores[b]);
+  for (const c of avail) {
+    const used = usedQ[c];
+    const pool = questions.filter(q => q.concept === c && !used.has(q.id));
+    if (pool.length) return { q: pool[0], c };
+    usedQ[c] = new Set();
+    const pool2 = questions.filter(q => q.concept === c);
+    if (pool2.length) return { q: pool2[0], c };
+  }
+  return null;
+}
+
+function renderProfile() {
+  const g = document.getElementById('concept-grid'); if (!g) return; g.innerHTML = '';
+  concepts.forEach(c => {
+    const s = scores[c], pct = Math.min(100, Math.max(0, Math.round(s * 100)));
+    const zone = zoneOf(c);
+    const label = c.replace(/-/g, ' ');
+    const d = document.createElement('div'); d.className = 'cpill';
+    d.innerHTML = `<div class="cpill-name" title="${label}">${label}</div>
+      <div class="cpill-track"><div class="cpill-cursor" style="left:${pct}%"></div></div>
+      <div class="cpill-status">
+        <span class="cpill-zone-label ${zone.cls}">${zone.cls === 'z4' ? '✓ ' : ''}${zone.label}</span>
+        <span class="cpill-pct">${pct}%</span>
+      </div>`;
+    g.appendChild(d);
+  });
+}
+
+function renderStats() {
+  document.getElementById('s-cor').textContent = sessionCor;
+  document.getElementById('s-tot').textContent = sessionTot;
+  document.getElementById('s-mas').textContent = mastCount() + '/' + concepts.length;
+}
+
+function renderQuestion() {
+  const area = document.getElementById('q-area');
+  const next = pickNext();
+  if (!next) {
+    area.innerHTML = `<div class="card done-card">
+      <div class="done-icon">🎉</div>
+      <div class="done-title">Tous les concepts maîtrisés !</div>
+      <div class="done-sub">Score de session : ${sessionCor} / ${sessionTot}<br>Vous pouvez continuer pour consolider vos acquis.</div>
+      <button class="btn-restart" onclick="restartSession()">Continuer l'entraînement</button>
+    </div>`;
+    return;
+  }
+  currentQ = next.q; answered = false; selected = new Set();
+  const q = currentQ;
+  area.innerHTML = `<div class="card">
+    <div class="badges">
+      <span class="badge b-${q.r1}">${R1L[q.r1] || q.r1}</span>
+      <span class="badge b-t${q.type}">${TYL[q.type] || 'Type ' + q.type}</span>
+      <span class="badge b-concept">${q.concept.replace(/-/g,' ')}</span>
+    </div>
+    <div class="qtext">${q.text}</div>
+    <div class="opts-hint">Plusieurs réponses possibles — sélectionnez de 1 à 3 réponses correctes.</div>
+    <div class="opts">
+      ${q.options.map((o,i) => `<label class="opt" data-i="${i}">
+        <input type="checkbox" class="opt-check" data-i="${i}" onchange="toggleOpt(${i})">
+        <span class="opt-letter">${LETTERS[i]}</span><span class="opt-text">${o}</span>
+      </label>`).join('')}
+    </div>
+    <div class="validate-row"><button class="btn-validate" id="btn-validate" disabled onclick="validateAnswer()">Valider</button></div>
+    <div id="fb-area"></div>
+    <div id="next-row"></div>
+  </div>`;
+  typesetMath(area);
+}
+
+function toggleOpt(i) {
+  if (answered) return;
+  if (selected.has(i)) selected.delete(i); else selected.add(i);
+  const btn = document.getElementById('btn-validate');
+  if (btn) btn.disabled = selected.size === 0;
+}
+
+function validateAnswer() {
+  if (answered || selected.size === 0) return;
+  answered = true;
+  const q = currentQ;
+  const correctSet = new Set(q.answer);
+  // Tout ou rien : l'ensemble coché doit correspondre exactement à l'ensemble
+  // correct — ni case correcte manquante, ni case incorrecte cochée en trop
+  // (Charte_Balmer-Cloud.md §5.2).
+  const ok = selected.size === correctSet.size && [...selected].every(i => correctSet.has(i));
+  sessionTot++;
+  if (ok) {
+    sessionCor++;
+    // Une bonne réponse qui suit immédiatement une erreur (même session, même
+    // concept) ne rapporte que +0,10 au lieu de +0,15 — une seule bonne
+    // réponse ne suffit pas à effacer une lacune (Charte_Balmer-Cloud.md §5.2).
+    // Le palier ne s'applique qu'à cette première bonne réponse : le flag est
+    // levé aussitôt après, les bonnes réponses suivantes rapportent +0,15.
+    const gain = erreurRecente[q.concept] ? ALGO.gainApresErreur : ALGO.gain;
+    scores[q.concept] = Math.min(1, scores[q.concept] + gain);
+    streaks[q.concept]++;
+    erreurRecente[q.concept] = false;
+  } else {
+    scores[q.concept] = Math.max(0, scores[q.concept] - ALGO.perte);
+    streaks[q.concept] = 0;
+    erreurRecente[q.concept] = true;
+  }
+  usedQ[q.concept].add(q.id);
+  saveScores();
+
+  const errorIdx = [];
+  document.querySelectorAll('.opt').forEach(el => {
+    const i = parseInt(el.dataset.i);
+    el.classList.add('answered');
+    el.querySelector('.opt-check').disabled = true;
+    const isCorrect = correctSet.has(i);
+    const isChecked = selected.has(i);
+    if (isCorrect && isChecked) el.classList.add('correct');
+    else if (isCorrect && !isChecked) { el.classList.add('missed'); errorIdx.push(i); }
+    else if (!isCorrect && isChecked) { el.classList.add('wrong'); errorIdx.push(i); }
+  });
+
+  const correctLetters = [...correctSet].sort((a,b) => a-b).map(i => LETTERS[i]).join(', ');
+  const wrongMsgs = errorIdx.map(i => Array.isArray(q.fw) && q.fw[i] ? q.fw[i] : '').filter(Boolean);
+  const mastNow = mastered(q.concept);
+  document.getElementById('fb-area').innerHTML = ok
+    ? `<div class="fb ok"><strong>Correct.</strong> ${q.fc}${manuelRefHtml(q)}${mastNow ? '<div class="fb-next">✓ Ce concept est maîtrisé — nous passerons à autre chose.</div>' : ''}</div>`
+    : `<div class="fb ko"><strong>Réponse${correctSet.size > 1 ? 's correctes' : ' correcte'} : ${correctLetters}.</strong> ${q.fc}${wrongMsgs.length ? `<div class="fb-wrong">${wrongMsgs.join('<br>')}</div>` : ''}${manuelRefHtml(q)}<div class="fb-next">Ce concept sera retravaillé dans les prochaines questions.</div></div>`;
+
+  document.getElementById('btn-validate').style.display = 'none';
+  document.getElementById('next-row').innerHTML = `<div class="next-row"><button class="btn-next" onclick="nextQ()">Question suivante →</button></div>`;
+  typesetMath(document.getElementById('fb-area'));
+
+  renderProfile(); renderStats();
+}
+
+function nextQ() { renderQuestion(); }
+
+function restartSession() {
+  concepts.forEach(c => { usedQ[c] = new Set(); });
+  renderQuestion();
+}
+
+function resetProgress() {
+  // Efface la progression persistée (score + streak par concept) pour la
+  // banque en cours uniquement — n'affecte pas les autres qbank.md déjà
+  // ouverts dans ce navigateur (clé localStorage distincte par fichier).
+  if (!storageKey) return;
+  const ok = confirm('Réinitialiser votre progression sur cette banque de questions ? Cette action est irréversible.');
+  if (!ok) return;
+  try { localStorage.removeItem(storageKey); } catch(e) {}
+  concepts.forEach(c => { scores[c] = ALGO.score0; streaks[c] = 0; usedQ[c] = new Set(); erreurRecente[c] = false; });
+  sessionCor = 0; sessionTot = 0;
+  renderProfile(); renderStats(); renderQuestion();
+}
+
+function resetApp() {
+  questions = []; concepts = []; scores = {}; streaks = {}; usedQ = {};
+  sessionCor = 0; sessionTot = 0; currentQ = null; answered = false; selected = new Set();
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('import-screen').style.display = 'flex';
+  document.getElementById('import-error').style.display = 'none';
+  document.getElementById('file-input').value = '';
+}
+</script>
+</body>
+</html>

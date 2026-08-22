@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Liaisons intermoléculaires – Projet-Balmer</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapitres/transformations-chimiques.html" rel="next">
+<link href="../chapitres/liaisons-sels-molecules.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3d497cff885f6278d37568d0ef0763f8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mhchem']},
+  tex: {packages: {'[+]': ['mhchem']}}
+};
+</script>
+<style>
+.quarto-figure img, main img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+.qcm-widget { margin: 1rem 0; padding: 0.75rem 1rem; border: 1px solid #ddd; border-radius: 8px; }
+.qcm-widget .qcm-label { font-size: 13px; color: #666; margin-bottom: 8px; }
+.qcm-widget button { display: block; width: 100%; text-align: left; margin: 4px 0; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; }
+.qcm-widget .qcm-feedback { margin-top: 8px; font-size: 14px; }
+.hist-note-name { color: inherit; text-decoration: none; border-bottom: 1px dotted #8a5a00; cursor: pointer; }
+.hist-note-name:hover { border-bottom-style: solid; }
+.hist-note { text-decoration: none; font-size: 0.75em; vertical-align: super; margin-left: 2px; color: #8a5a00; border-bottom: none; }
+.hist-note:hover { text-decoration: underline; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.qcm-widget').forEach(function(el) {
+    var options = JSON.parse(el.getAttribute('data-options'));
+    var correct = parseInt(el.getAttribute('data-correct'), 10);
+    var answered = false;
+    var label = document.createElement('div');
+    label.className = 'qcm-label';
+    label.textContent = 'Vérifier ma réponse';
+    el.appendChild(label);
+    var feedback = document.createElement('div');
+    feedback.className = 'qcm-feedback';
+    options.forEach(function(opt, i) {
+      var btn = document.createElement('button');
+      btn.textContent = opt;
+      btn.onclick = function() {
+        if (answered) return;
+        answered = true;
+        el.querySelectorAll('button').forEach(function(b) { b.disabled = true; });
+        if (i === correct) {
+          btn.style.borderColor = '#2e7d32';
+          btn.style.background = '#e8f5e9';
+          feedback.textContent = 'Correct.';
+          feedback.style.color = '#2e7d32';
+        } else {
+          btn.style.borderColor = '#c62828';
+          btn.style.background = '#ffebee';
+          feedback.textContent = 'Pas tout à fait — bonne réponse : ' + options[correct];
+          feedback.style.color = '#c62828';
+        }
+      };
+      el.appendChild(btn);
+    });
+    el.appendChild(feedback);
+  });
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapitres/liaisons-intermoleculaires.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Liaisons intermoléculaires</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Recherche" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Projet-Balmer</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Recherche"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Historique Tome 1 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/atomes-quantite-de-matiere.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Atomes et quantité de matière</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-sels-molecules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Liaisons, sels et molécules</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-intermoleculaires.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Liaisons intermoléculaires</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-chimiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformations chimiques et stœchiométrie</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-physiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transformations physiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/oxydo-reduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Oxydoréduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/electrochimie-piles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Électrochimie et piles</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acido-basiques-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction aux équilibres acido-basiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Historique Tome 2 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Thermochimie 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Thermochimie 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/vitesse-de-reaction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Vitesse de réaction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Équilibre chimique 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Équilibre chimique 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acides-bases-ph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Acides, bases et pH</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/chimie-organique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Chimie organique</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#les-deux-familles-de-liaisons-primaires-et-secondaires" id="toc-les-deux-familles-de-liaisons-primaires-et-secondaires" class="nav-link active" data-scroll-target="#les-deux-familles-de-liaisons-primaires-et-secondaires"><span class="header-section-number">4.0.1</span> Les deux familles de liaisons : primaires et secondaires</a></li>
+  <li><a href="#interactions-iondipôle-et-iondipôle-induit" id="toc-interactions-iondipôle-et-iondipôle-induit" class="nav-link" data-scroll-target="#interactions-iondipôle-et-iondipôle-induit"><span class="header-section-number">4.0.2</span> Interactions ion–dipôle et ion–dipôle induit</a></li>
+  <li><a href="#le-pont-hydrogène" id="toc-le-pont-hydrogène" class="nav-link" data-scroll-target="#le-pont-hydrogène"><span class="header-section-number">4.0.3</span> Le pont hydrogène</a></li>
+  <li><a href="#interaction-dipôle-permanentdipôle-permanent-force-de-keesom" id="toc-interaction-dipôle-permanentdipôle-permanent-force-de-keesom" class="nav-link" data-scroll-target="#interaction-dipôle-permanentdipôle-permanent-force-de-keesom"><span class="header-section-number">4.0.4</span> Interaction dipôle permanent–dipôle permanent (force de Keesom)</a></li>
+  <li><a href="#la-force-de-debye-dipôle-permanentdipôle-induit" id="toc-la-force-de-debye-dipôle-permanentdipôle-induit" class="nav-link" data-scroll-target="#la-force-de-debye-dipôle-permanentdipôle-induit"><span class="header-section-number">4.0.5</span> La force de Debye (dipôle permanent–dipôle induit)</a></li>
+  <li><a href="#la-force-de-london-dispersion" id="toc-la-force-de-london-dispersion" class="nav-link" data-scroll-target="#la-force-de-london-dispersion"><span class="header-section-number">4.0.6</span> La force de London (dispersion)</a></li>
+  <li><a href="#récapitulatif-des-forces-intermoléculaires" id="toc-récapitulatif-des-forces-intermoléculaires" class="nav-link" data-scroll-target="#récapitulatif-des-forces-intermoléculaires"><span class="header-section-number">4.0.7</span> Récapitulatif des forces intermoléculaires</a></li>
+  <li><a href="#mots-clés" id="toc-mots-clés" class="nav-link" data-scroll-target="#mots-clés"><span class="header-section-number">4.1</span> Mots-clés</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Liaisons intermoléculaires</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Ce que nous savons déjà —</strong> Au chapitre précédent, nous avons appris à décrire les liaisons qui maintiennent les atomes ensemble à l’intérieur d’une molécule ou d’un cristal : liaisons covalentes, ioniques et métalliques. Nous maîtrisons la notion d’électronégativité, et nous savons reconnaître une molécule polaire d’une molécule apolaire. Ces acquis sont les fondations directes de ce chapitre.</p>
+<p><strong>Ce que ce chapitre construit —</strong> Les molécules ne sont jamais isolées. Entre elles agissent des interactions bien plus discrètes que les liaisons chimiques — appelées liaisons intermoléculaires — qui gouvernent pourtant tout ce qu’on observe à grande échelle : les températures de fusion et d’ébullition, la solubilité, la miscibilité. Pourquoi le sel se dissout-il dans l’eau mais pas dans l’huile ? Pourquoi l’éthanol et l’eau sont-ils miscibles en toutes proportions ? Ce chapitre répond à ces questions en identifiant six types de forces intermoléculaires, puis en les reliant aux mélanges et à la solubilité.</p>
+<p><strong>Ce que nous saurons faire —</strong> À la fin de ce chapitre, nous serons capables de classer des substances par ordre croissant de température d’ébullition en justifiant par les forces intermoléculaires en jeu, et d’expliquer pourquoi deux solvants sont miscibles ou non, et pourquoi un sel se dissout dans l’eau mais pas dans l’hexane.</p>
+<p><strong>Nous savons déjà que…</strong></p>
+<ul>
+<li>L’électronégativité mesure la tendance d’un atome à attirer les électrons d’une liaison ; plus la différence est grande, plus la liaison est polaire.</li>
+<li>Une molécule est polaire si ses moments dipolaires ne se compensent pas — le barycentre des charges positives ne coïncide pas avec celui des charges négatives.</li>
+<li>Les liaisons covalentes, ioniques et métalliques maintiennent les atomes ensemble à l’intérieur d’une molécule ou d’un cristal ; ce sont elles que l’on rompt lors d’une transformation chimique.</li>
+<li><span class="math inline">\(\ce{H2O}\)</span> et <span class="math inline">\(\ce{NH3}\)</span> sont polaires ; <span class="math inline">\(\ce{CO2}\)</span> est apolaire malgré la présence de liaisons polaires, grâce à leur géométrie symétrique.</li>
+</ul>
+<p><em>Ces acquis sont les points d’appui directs de ce chapitre — la polarité des molécules et la nature des liaisons intramoléculaires déterminent directement quelles forces intermoléculaires peuvent s’établir entre elles.</em></p>
+<p><strong>Mini-test — vérifions nos acquis avant de continuer :</strong></p>
+<ol type="1">
+<li>La molécule <span class="math inline">\(\ce{CCl4}\)</span> contient quatre liaisons <span class="math inline">\(\ce{C-Cl}\)</span> polaires. Est-elle pour autant polaire ? Justifions en invoquant sa géométrie.</li>
+<li>Classons par ordre croissant d’énergie de rupture : liaison <span class="math inline">\(\ce{O-H}\)</span> dans l’eau, liaison ionique dans <span class="math inline">\(\ce{NaCl}\)</span>, liaison <span class="math inline">\(\ce{C-C}\)</span> dans l’éthane.</li>
+<li>Vrai ou faux : quand on fait fondre de la glace, on rompt des liaisons <span class="math inline">\(\ce{O-H}\)</span>. Justifions.</li>
+</ol>
+<p><em>Si nous répondons sans hésiter, nous sommes prêts — passons à la Zone 2. Si certaines réponses hésitent, relisons les points ci-dessus avant de continuer.</em></p>
+<hr>
+<p><em>Projet-Balmer — Manuel de chimie pour les gymnases vaudois</em> <em>Dernière mise à jour : 2026-06-03</em></p>
+<section id="les-deux-familles-de-liaisons-primaires-et-secondaires" class="level3" data-number="4.0.1">
+<h3 data-number="4.0.1" class="anchored" data-anchor-id="les-deux-familles-de-liaisons-primaires-et-secondaires"><span class="header-section-number">4.0.1</span> Les deux familles de liaisons : primaires et secondaires</h3>
+<p>Au chapitre précédent, nous avons vu que les atomes s’assemblent en formant des liaisons intramoléculaires — covalentes, ioniques ou métalliques — parce que cet assemblage abaisse l’énergie du système. C’est le même principe qui gouverne ce chapitre : les substances s’attirent entre elles parce que cela les stabilise. Mais les interactions en jeu sont d’une tout autre nature.</p>
+<p>Ces interactions entre substances sont appelées <strong>liaisons intermoléculaires</strong> (ou <em>secondaires</em>, ou <em>physiques</em>). Leur énergie est sans commune mesure avec celle des liaisons primaires : de <span class="math inline">\(0{,}05\)</span> à <span class="math inline">\(40\ \text{kJ/mol}\)</span> selon le type, contre <span class="math inline">\(75\)</span> à <span class="math inline">\(4000\ \text{kJ/mol}\)</span> pour les liaisons intramoléculaires. Une conséquence immédiate : rompre des liaisons intermoléculaires ne modifie pas la nature chimique des espèces. Par exemple, après évaporation de l’eau, les molécules <span class="math inline">\(\ce{H2O}\)</span> sont intactes.</p>
+<p>Ces interactions intermoléculaires naissent toutes du même phénomène : l’attraction électrostatique entre des charges, permanentes ou temporaires. Trois acteurs suffisent à les décrire toutes :</p>
+<ul>
+<li>les <strong>ions</strong> (cations ou anions) — charges permanentes nettes ;</li>
+<li>les <strong>dipôles permanents</strong> — molécules polaires portant des charges partielles <span class="math inline">\(\delta+\)</span> et <span class="math inline">\(\delta-\)</span> stables ;</li>
+<li>les <strong>dipôles induits</strong> — molécules apolaires dans lesquelles une charge extérieure ou une fluctuation spontanée du nuage électronique crée momentanément un dipôle.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+</ul>
+<p>On distingue ainsi six types d’interactions selon la nature des partenaires :</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Partenaires</th>
+<th>Énergie (kJ/mol)</th>
+<th>Intensité</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ion–dipôle permanent</td>
+<td>ion + molécule polaire</td>
+<td>40–600</td>
+<td>forte</td>
+</tr>
+<tr class="even">
+<td>Pont hydrogène</td>
+<td><span class="math inline">\(\ce{H}\)</span> lié à <span class="math inline">\(\ce{N}\)</span>, <span class="math inline">\(\ce{O}\)</span> ou <span class="math inline">\(\ce{F}\)</span></td>
+<td>10–40</td>
+<td>modérée</td>
+</tr>
+<tr class="odd">
+<td>Keesom (dipôle–dipôle)</td>
+<td>molécule polaire + molécule polaire</td>
+<td>5–25</td>
+<td>modérée</td>
+</tr>
+<tr class="even">
+<td>Debye (dipôle–dipôle induit)</td>
+<td>molécule polaire + molécule apolaire</td>
+<td>2–10</td>
+<td>faible</td>
+</tr>
+<tr class="odd">
+<td>Ion–dipôle induit</td>
+<td>ion + molécule apolaire</td>
+<td>3–15</td>
+<td>faible</td>
+</tr>
+<tr class="even">
+<td>London (dispersion)</td>
+<td>tous atomes et molécules</td>
+<td>0,05–40</td>
+<td>faible à forte</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Attention :</strong> même si les liaisons intermoléculaires existent entre tous les atomes, elles sont quasi-insignifiantes entre deux atomes <em>partageant déjà</em> une liaison intramoléculaire.</p>
+<p>Voici maintenant le point le plus important de ce chapitre.</p>
+<p><strong>Les forces intermoléculaires s’additionnent.</strong> Une molécule ne choisit pas son type d’interaction — elle subit simultanément toutes les interactions auxquelles la nature de ses partenaires la rend éligible. La question n’est jamais <em>“quelle force agit ici ?”</em> mais <em>“laquelle domine ?”</em></p>
+<p>Illustrons cela avec un exemple concret : une molécule polaire face à une autre molécule polaire. Elle ressent simultanément :</p>
+<ul>
+<li>des interactions <strong>dipôle permanent–dipôle permanent</strong> avec la molécule polaire voisine (Keesom) ;</li>
+<li>des interactions <strong>dipôle permanent–dipôle induit</strong>, car toute molécule, même polaire, peut se laisser déformer par un dipôle voisin (Debye) ;</li>
+<li>des interactions <strong>dipôle induit–dipôle induit</strong>, présentes entre absolument toutes les molécules sans exception (London).</li>
+</ul>
+<p>Ces trois interactions coexistent. Elles ne se valent pas : dans ce cas, c’est l’interaction dipôle permanent–dipôle permanent qui domine. C’est elle qui détermine le comportement macroscopique — la température d’ébullition, la miscibilité, la solubilité. Les deux autres existent, mais leur contribution est secondaire.</p>
+<p><strong>La force dominante, c’est notre boussole.</strong> Dans tout le chapitre, nous nommons toujours la force dominante en premier — sans oublier que les autres sont présentes.</p>
+<p>Nous parcourons maintenant ces six types du plus énergétique au moins énergétique.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Une liaison <span class="math inline">\(\ce{O-H}\)</span> à l’intérieur d’une molécule d’eau nécessite environ 460 kJ/mol pour être rompue. Un pont hydrogène entre deux molécules d’eau représente environ 20 kJ/mol. Que concluons-nous sur la nature de la transformation qui se produit lors de l’ébullition de l’eau ?<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="2" type="1">
+<li>Vrai ou faux : après l’évaporation de l’éthanol <span class="math inline">\(\ce{CH3CH2OH}\)</span>, les molécules en phase gazeuse ont une formule chimique différente de celles en phase liquide. Justifions.[^3]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="3" type="1">
+<li>En nous appuyant sur le tableau ci-dessus, identifions le ou les types de forces intermoléculaires qui peuvent exister entre : (a) deux molécules de <span class="math inline">\(\ce{HCl}\)</span> ; (b) un ion <span class="math inline">\(\ce{K+}\)</span> et une molécule de <span class="math inline">\(\ce{H2O}\)</span> ; (c) deux atomes de <span class="math inline">\(\ce{Xe}\)</span>.[^4]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+</section>
+<section id="interactions-iondipôle-et-iondipôle-induit" class="level3" data-number="4.0.2">
+<h3 data-number="4.0.2" class="anchored" data-anchor-id="interactions-iondipôle-et-iondipôle-induit"><span class="header-section-number">4.0.2</span> Interactions ion–dipôle et ion–dipôle induit</h3>
+<p><strong>Ion–dipôle permanent</strong></p>
+<p>Lorsqu’un ion (<span class="math inline">\(\ce{Na+}\)</span>, <span class="math inline">\(\ce{Cl-}\)</span>…) est placé au voisinage d’une molécule polaire, il interagit fortement avec le dipôle permanent de la molécule. Un cation se positionne du côté de la charge <span class="math inline">\(\delta-\)</span> de la molécule ; un anion, du côté <span class="math inline">\(\delta+\)</span>. Cette interaction est à l’origine de la <strong>solvatation</strong> des composés ioniques dans les solvants polaires comme l’eau.</p>
+<p>C’est grâce à cette interaction ion–dipôle que <span class="math inline">\(\ce{NaCl}\)</span> se dissout dans l’eau : les ions <span class="math inline">\(\ce{Na+}\)</span> et <span class="math inline">\(\ce{Cl-}\)</span> sont arrachés au cristal et entourés de molécules d’eau orientées — on parle de <strong>sphère de solvatation</strong> et on les écrit symboliquement <span class="math inline">\(\ce{Na+(aq)}\)</span> et <span class="math inline">\(\ce{Cl-(aq)}\)</span></p>
+<p><strong>Ion–dipôle induit</strong></p>
+<p>Un ion peut également déformer le nuage électronique d’une molécule apolaire voisine et y induire un dipôle temporaire. Cette interaction est cependant <strong>trop faible</strong> pour dissoudre un sel dans un solvant apolaire : les sels ne se dissolvent pas dans les hydrocarbures comme l’hexane.</p>
+<section id="pourquoi-le-sel-se-dissout-dans-leau-et-pas-dans-lhuile" class="level4" data-number="4.0.2.1">
+<h4 data-number="4.0.2.1" class="anchored" data-anchor-id="pourquoi-le-sel-se-dissout-dans-leau-et-pas-dans-lhuile"><span class="header-section-number">4.0.2.1</span> Pourquoi le sel se dissout dans l’eau et pas dans l’huile ?</h4>
+<p>Pourquoi le sel de cuisine “disparaît-il” dans l’eau mais reste intact dans l’huile ? La réponse est dans la nature du solvant.</p>
+<p>Comparons la solubilité de quatre sels (composés ioniques) dans trois solvants du plus polaire au moins polaire : l’eau (polaire, <span class="math inline">\(\mu = 1{,}85\ \text{D}\)</span>), l’éthanol (polaire, <span class="math inline">\(\mu = 1{,}69\ \text{D}\)</span>) et l’hexane (apolaire, <span class="math inline">\(\mu = 0\ \text{D}\)</span>).</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Sel</th>
+<th>Ions</th>
+<th>Eau (g/100 mL)</th>
+<th>Éthanol (g/100 mL)</th>
+<th>Hexane (g/100 mL)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{NaCl}\)</span></td>
+<td><span class="math inline">\(\ce{Na+}\)</span>, <span class="math inline">\(\ce{Cl-}\)</span> (1+/1−)</td>
+<td>35,9</td>
+<td>0,065</td>
+<td>&lt; 0,001</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{KBr}\)</span></td>
+<td><span class="math inline">\(\ce{K+}\)</span>, <span class="math inline">\(\ce{Br-}\)</span> (1+/1−)</td>
+<td>67,8</td>
+<td>0,35</td>
+<td>&lt; 0,001</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{CaCl2}\)</span></td>
+<td><span class="math inline">\(\ce{Ca^{2+}}\)</span>, <span class="math inline">\(\ce{Cl-}\)</span> (2+/1−)</td>
+<td>74,5</td>
+<td>25,6</td>
+<td>&lt; 0,001</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{MgSO4}\)</span></td>
+<td><span class="math inline">\(\ce{Mg^{2+}}\)</span>, <span class="math inline">\(\ce{SO4^{2-}}\)</span> (2+/2−)</td>
+<td>35,1</td>
+<td>1,0</td>
+<td>&lt; 0,001</td>
+</tr>
+</tbody>
+</table>
+<p><em>Valeurs à 25 °C (298 K). Sources : Pinho &amp; Macedo, J. Chem. Eng. Data 2005 (NaCl, KBr) ; CRC Handbook of Chemistry and Physics, 105<sup>e</sup> éd. (CaCl<sub>2</sub>, MgSO<sub>4</sub>, hexane).</em></p>
+<p>Trois tendances se lisent directement dans ce tableau.</p>
+<p><strong>Première tendance : le solvant polaire dissout, le solvant apolaire ne dissout pas.</strong> Dans l’hexane, tous les sels affichent une solubilité inférieure à 0,001 g/100 mL — pratiquement nulle. L’hexane ne peut établir que de très faibles interactions ion–dipôle induit avec les ions, bien trop faibles pour arracher les ions à leur cristal. L’eau, elle, développe des interactions ion–dipôle permanent intenses (40–600 kJ/mol) qui compensent largement l’énergie de réseau du cristal. Les ions sont arrachés, solvatés, dispersés.</p>
+<p><strong>Deuxième tendance : la charge de l’ion détermine l’intensité de la dissolution.</strong> Comparer <span class="math inline">\(\ce{NaCl}\)</span> (ions 1+/1−) et <span class="math inline">\(\ce{CaCl2}\)</span> (ions 2+/1−) dans l’éthanol : 0,065 contre 25,6 g/100 mL — un facteur 400. <span class="math inline">\(\ce{Ca^{2+}}\)</span> porte une charge double, ce qui génère un champ électrique local deux fois plus intense. L’interaction ion–dipôle avec l’éthanol est suffisamment forte pour que <span class="math inline">\(\ce{CaCl2}\)</span> se dissolve significativement, là où <span class="math inline">\(\ce{NaCl}\)</span> reste presque insoluble.</p>
+<p><strong>Troisième tendance : à charge égale, le solvant le plus polaire dissout le mieux.</strong> <span class="math inline">\(\ce{NaCl}\)</span> se dissout 550 fois plus dans l’eau que dans l’éthanol. La densité du réseau de ponts hydrogène de l’eau la rend exceptionnellement efficace pour solvatater les ions — chaque ion est entouré d’une sphère de molécules d’eau rigoureusement orientées. L’éthanol est polaire, mais sa sphère de solvatation est moins efficace.</p>
+<p>Un sel ne “choisit” pas de se dissoudre. Il se dissout si et seulement si les interactions ion–dipôle avec le solvant sont suffisantes pour compenser la cohésion du cristal. <strong>Ce tableau, c’est cette condition rendue visible.</strong></p>
+<p><strong>Exercices :</strong></p>
+<ol start="4" type="1">
+<li>Dans la sphère de solvatation de <span class="math inline">\(\ce{Na+}\)</span>, les molécules d’eau sont orientées avec l’oxygène <span class="math inline">\(\ce{O}\)</span> pointant vers l’ion. Dans celle de <span class="math inline">\(\ce{Cl-}\)</span>, ce sont les hydrogènes <span class="math inline">\(\ce{H}\)</span> qui pointent vers l’ion. Expliquez cette différence d’orientation en termes de charges.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="5" type="1">
+<li>Le chlorure de sodium <span class="math inline">\(\ce{NaCl}\)</span> se dissout dans l’eau mais pas dans l’hexane <span class="math inline">\(\ce{C6H14}\)</span>. Identifiez les interactions en jeu dans chaque solvant et justifiez pourquoi seule l’eau dissout <span class="math inline">\(\ce{NaCl}\)</span>.[^6]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="6" type="1">
+<li>L’ion <span class="math inline">\(\ce{Li+}\)</span> est plus petit que l’ion <span class="math inline">\(\ce{Cs+}\)</span>. Lequel interagit plus fortement avec les molécules d’eau dans sa sphère de solvatation ? Justifiez en évoquant la relation entre distance et intensité d’une interaction électrostatique.[^7]</li>
+</ol>
+<!-- espace:5 -->
+<div class="qcm-widget" data-correct="0" data-options="[&quot;Li+&quot;, &quot;Cs+&quot;]">
+
+</div>
+<hr>
+</section>
+</section>
+<section id="le-pont-hydrogène" class="level3" data-number="4.0.3">
+<h3 data-number="4.0.3" class="anchored" data-anchor-id="le-pont-hydrogène"><span class="header-section-number">4.0.3</span> Le pont hydrogène</h3>
+<p>Le <strong>pont hydrogène</strong> (ou liaison hydrogène) est un cas particulier d’interaction dipôle–dipôle, si intense qu’il mérite une catégorie propre. Il se forme entre :</p>
+<ul>
+<li>un atome d’hydrogène lié par covalence à un atome très électronégatif et de petite taille — exclusivement <span class="math inline">\(\ce{N}\)</span>, <span class="math inline">\(\ce{O}\)</span> ou <span class="math inline">\(\ce{F}\)</span> — qui le rend fortement <span class="math inline">\(\delta+\)</span> ;</li>
+<li>un doublet non-liant d’un autre atome <span class="math inline">\(\ce{N}\)</span>, <span class="math inline">\(\ce{O}\)</span> ou <span class="math inline">\(\ce{F}\)</span>, portant une charge partielle <span class="math inline">\(\delta-\)</span>.</li>
+</ul>
+<p>L’hydrogène se retrouve ainsi <em>intercalé</em> entre deux atomes électronégatifs. On note cette interaction par des pointillés : <span class="math inline">\(\ce{O-H...O}\)</span>.</p>
+<p><strong>Pourquoi N, O et F uniquement ?</strong> Deux raisons se conjuguent :</p>
+<ol type="1">
+<li>Ces trois éléments sont les plus électronégatifs du tableau périodique, ce qui génère des charges partielles <span class="math inline">\(\delta+\)</span> et <span class="math inline">\(\delta-\)</span> très marquées sur l’hydrogène et le doublet accepteur.</li>
+<li>Ils sont de petite taille, ce qui permet aux partenaires de s’approcher à très courte distance — et les forces électrostatiques croissent rapidement quand la distance diminue.</li>
+</ol>
+<p><strong>Attention :</strong> tout hydrogène ne peut pas former un pont hydrogène. L’hydrogène doit être fortement <span class="math inline">\(\delta+\)</span>. Un <span class="math inline">\(\ce{H}\)</span> lié à <span class="math inline">\(\ce{C}\)</span> — même si le carbone est électronégatif — ne génère pas de charge partielle suffisante. Ainsi, <span class="math inline">\(\ce{CH4}\)</span> ne forme aucun pont hydrogène, alors que <span class="math inline">\(\ce{NH3}\)</span> en forme.</p>
+<p><strong>Exemples</strong></p>
+<p>Entre deux molécules d’eau : <span class="math inline">\(\ce{O-H...O}\)</span> — chaque molécule <span class="math inline">\(\ce{H2O}\)</span> peut former jusqu’à quatre ponts hydrogène (deux comme donneur, deux comme accepteur), ce qui confère à l’eau ses propriétés tout à fait exceptionnelles.</p>
+<p>Entre <span class="math inline">\(\ce{H2O}\)</span> et <span class="math inline">\(\ce{CH3OH}\)</span> : le méthanol peut former des ponts hydrogène avec l’eau, ce qui explique sa miscibilité totale.</p>
+<p>Entre <span class="math inline">\(\ce{HF}\)</span> et <span class="math inline">\(\ce{NH3}\)</span> : <span class="math inline">\(\ce{F-H...N}\)</span> — la forte électronégativité du fluor rend ce pont particulièrement intense.</p>
+<p><strong>Application biologique</strong></p>
+<p>Les ponts hydrogène jouent un rôle structural fondamental dans les organismes vivants. Dans l’ADN, les deux brins de la double hélice sont maintenus ensemble par des ponts hydrogène entre les bases azotées complémentaires (A–T et G–C). Ces liaisons sont individuellement faibles, mais leur grand nombre — des millions par molécule d’ADN — assure une cohésion remarquable, tout en permettant la séparation contrôlée des brins lors de la réplication.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>::: {.encadre data-latex=“{Watson, Crick &amp; Franklin (1953)}”} En 1953, James Watson et Francis Crick proposent la structure en double hélice de l’ADN. Leur modèle repose sur un pari chimique précis : les deux brins sont maintenus ensemble par des ponts hydrogène entre les bases azotées complémentaires — deux ponts pour la paire adénine–thymine (A–T), trois pour la paire guanine–cytosine (G–C). C’est exactement l’interaction que nous venons de formaliser.</p>
+<p>Ce modèle n’aurait pas été possible sans les clichés de diffraction aux rayons X obtenus par Rosalind Franklin, qui révélaient la géométrie hélicoïdale de la molécule. Franklin identifiait elle-même les ponts hydrogène comme contrainte structurale centrale — une intuition chimique que Watson et Crick ont intégrée dans leur modèle final.</p>
+<p>Une interaction énergétiquement modeste (10–40 kJ/mol) suffit, répétée des millions de fois, à encoder et protéger l’information génétique de tout être vivant. :::</p>
+<p><strong>Exercices :</strong></p>
+<ol start="7" type="1">
+<li>Parmi les molécules suivantes, indiquez lesquelles peuvent former des ponts hydrogène entre elles : <span class="math inline">\(\ce{CH3OH}\)</span>, <span class="math inline">\(\ce{CH4}\)</span>, <span class="math inline">\(\ce{NH3}\)</span>, <span class="math inline">\(\ce{HCl}\)</span>, <span class="math inline">\(\ce{H2O}\)</span>, <span class="math inline">\(\ce{CH3OCH3}\)</span> (éther diméthylique).<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="8" type="1">
+<li>L’éthanol <span class="math inline">\(\ce{CH3CH2OH}\)</span> (<span class="math inline">\(M = 46\ \text{g/mol}\)</span>, <span class="math inline">\(T_\text{éb} = 78\ ^\circ\text{C}\)</span>) et le diméthyléther <span class="math inline">\(\ce{CH3OCH3}\)</span> (<span class="math inline">\(M = 46\ \text{g/mol}\)</span>, <span class="math inline">\(T_\text{éb} = -24\ ^\circ\text{C}\)</span>) ont la même formule brute <span class="math inline">\(\ce{C2H6O}\)</span>. Expliquez l’écart de <span class="math inline">\(102\ ^\circ\text{C}\)</span> entre leurs températures d’ébullition.[^10]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="9" type="1">
+<li>Combien de ponts hydrogène une molécule <span class="math inline">\(\ce{H2O}\)</span> peut-elle former au maximum ? Précisez le rôle (donneur ou accepteur) dans chaque cas.[^11]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="10" type="1">
+<li>L’acide fluorhydrique <span class="math inline">\(\ce{HF}\)</span> (<span class="math inline">\(T_\text{éb} = 19{,}5\ ^\circ\text{C}\)</span>) a une température d’ébullition bien plus élevée que <span class="math inline">\(\ce{HCl}\)</span> (<span class="math inline">\(T_\text{éb} = -85\ ^\circ\text{C}\)</span>) malgré une masse molaire plus faible (20 vs 36,5 g/mol). Expliquez cette anomalie.[^12]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="11" type="1">
+<li>Dans l’ADN, les paires A–T sont reliées par 2 ponts hydrogène et les paires G–C par 3 ponts hydrogène. Quelle paire est plus difficile à dissocier lors de la dénaturation de l’ADN ? Justifiez par les forces en jeu.[^13]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+</section>
+<section id="interaction-dipôle-permanentdipôle-permanent-force-de-keesom" class="level3" data-number="4.0.4">
+<h3 data-number="4.0.4" class="anchored" data-anchor-id="interaction-dipôle-permanentdipôle-permanent-force-de-keesom"><span class="header-section-number">4.0.4</span> Interaction dipôle permanent–dipôle permanent (force de Keesom)</h3>
+<p>Deux molécules <strong>polaires</strong> s’orientent spontanément de façon à placer leurs charges partielles en opposition : <span class="math inline">\(\delta+\)</span> face à <span class="math inline">\(\delta-\)</span>. Cette attraction électrostatique entre dipôles permanents est appelée <strong>interaction de Keesom</strong>.</p>
+<p>Son intensité dépend de deux facteurs :</p>
+<ul>
+<li>l’amplitude des charges partielles <span class="math inline">\(\delta+\)</span> et <span class="math inline">\(\delta-\)</span>, liée à la différence d’électronégativité entre les atomes de la liaison ;</li>
+<li>la distance entre ces charges, liée à la taille des atomes : des atomes petits permettent des distances interatomiques très courtes et donc des interactions plus fortes.</li>
+</ul>
+<p>Les forces de Keesom expliquent pourquoi, à masse molaire comparable, une molécule polaire a une température d’ébullition plus élevée qu’une molécule apolaire. Elles ne suffisent cependant pas, à elles seules, à maintenir un corps à l’état liquide ou solide à température ambiante — sauf si elles s’additionnent à d’autres interactions.</p>
+<p>Dans les molécules très polaires comme <span class="math inline">\(\ce{H2O}\)</span>, les forces de Keesom sont prépondérantes parmi les interactions dipôle–dipôle. Mais l’eau doit son comportement exceptionnel à un type d’interaction encore plus fort, que nous verrons dans la section suivante.</p>
+<section id="à-masse-égale-la-polarité-fait-la-différence" class="level4" data-number="4.0.4.1">
+<h4 data-number="4.0.4.1" class="anchored" data-anchor-id="à-masse-égale-la-polarité-fait-la-différence"><span class="header-section-number">4.0.4.1</span> À masse égale, la polarité fait la différence</h4>
+<p>Les forces de Keesom ne se voient pas directement — mais elles se lisent dans les températures d’ébullition. Le raisonnement est simple : à masse molaire comparable, les forces de London sont similaires d’une substance à l’autre. Si une molécule polaire bout nettement plus haut qu’une molécule apolaire de même masse, c’est la force de Keesom qui fait la différence.</p>
+<p><strong>Paires à masse molaire comparable : polaire vs apolaire</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Molécule polaire</th>
+<th><span class="math inline">\(M\)</span> (g/mol)</th>
+<th><span class="math inline">\(T_\text{éb}\)</span> (°C)</th>
+<th>Molécule apolaire</th>
+<th><span class="math inline">\(M\)</span> (g/mol)</th>
+<th><span class="math inline">\(T_\text{éb}\)</span> (°C)</th>
+<th>Écart</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{HCl}\)</span></td>
+<td>36,5</td>
+<td>−85</td>
+<td><span class="math inline">\(\ce{Ar}\)</span></td>
+<td>40,0</td>
+<td>−186</td>
+<td>+101 °C</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{SO2}\)</span></td>
+<td>64,1</td>
+<td>−10</td>
+<td><span class="math inline">\(\ce{SiF4}\)</span></td>
+<td>104,1</td>
+<td>−86</td>
+<td>+76 °C</td>
+</tr>
+<tr class="odd">
+<td>Acétone <span class="math inline">\(\ce{(CH3)2CO}\)</span></td>
+<td>58,1</td>
+<td>+56</td>
+<td>Propane <span class="math inline">\(\ce{C3H8}\)</span></td>
+<td>44,1</td>
+<td>−42</td>
+<td>+98 °C</td>
+</tr>
+</tbody>
+</table>
+<p><em>À masse molaire comparable, la molécule polaire bout systématiquement plus haut. L’écart est attribuable aux forces de Keesom.</em></p>
+<p><strong>Série homologue : quand London prend le dessus</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Molécule</th>
+<th><span class="math inline">\(M\)</span> (g/mol)</th>
+<th><span class="math inline">\(T_\text{éb}\)</span> (°C)</th>
+<th>Remarque</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{H2O}\)</span></td>
+<td>18,0</td>
+<td>+100</td>
+<td>ponts hydrogène <span class="math inline">\(\ce{O-H...O}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{HF}\)</span></td>
+<td>20,0</td>
+<td>+19,5</td>
+<td>ponts hydrogène <span class="math inline">\(\ce{F-H...F}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{HCl}\)</span></td>
+<td>36,5</td>
+<td>−85</td>
+<td>référence</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{HBr}\)</span></td>
+<td>80,9</td>
+<td>−67</td>
+<td>London domine</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{HI}\)</span></td>
+<td>127,9</td>
+<td>−35</td>
+<td>London domine</td>
+</tr>
+</tbody>
+</table>
+<p><em>Valeurs à 1 atm. Sources : CRC Handbook of Chemistry and Physics, 105<sup>e</sup> éd. ; NIST WebBook.</em></p>
+<p>Cette série révèle une tension entre deux effets opposés. De <span class="math inline">\(\ce{HCl}\)</span> à <span class="math inline">\(\ce{HI}\)</span>, la polarité diminue. Mais la masse molaire augmente fortement : les forces de London s’intensifient. C’est London qui gagne — la température d’ébullition remonte de <span class="math inline">\(\ce{HCl}\)</span> à <span class="math inline">\(\ce{HI}\)</span> malgré la polarité décroissante.</p>
+<p><span class="math inline">\(\ce{HF}\)</span> et <span class="math inline">\(\ce{H2O}\)</span> déroge à cette tendance de manière spectaculaire. <span class="math inline">\(\ce{H2O}\)</span> bout à +100 °C alors que sa masse molaire (18 g/mol) est inférieure à celle de <span class="math inline">\(\ce{HCl}\)</span> (36,5 g/mol). Ce n’est pas Keesom seul qui explique cela — c’est l’addition des interactions. L’eau cumule des forces de Keesom <strong>et</strong> des ponts hydrogène, bien plus intenses. C’est exactement le principe de superposition que nous avons posé en début de chapitre : toutes les interactions autorisées coexistent, et leur somme détermine le comportement macroscopique. L’eau en est l’illustration la plus frappante.</p>
+<p><strong>La force dominante, c’est toujours celle qui l’emporte sur les autres.</strong> Keesom domine quand les molécules sont petites et polaires. London prend le dessus quand les molécules sont grosses et nombreuses en électrons. Les deux coexistent toujours — c’est leur rapport qui change.</p>
+<p><strong>Exercices :</strong></p>
+<ol start="12" type="1">
+<li>Le chlorure d’hydrogène <span class="math inline">\(\ce{HCl}\)</span> (<span class="math inline">\(M = 36{,}5\ \text{g/mol}\)</span>, <span class="math inline">\(T_\text{éb} = -85\ ^\circ\text{C}\)</span>) et l’argon <span class="math inline">\(\ce{Ar}\)</span> (<span class="math inline">\(M = 40\ \text{g/mol}\)</span>, <span class="math inline">\(T_\text{éb} = -186\ ^\circ\text{C}\)</span>) ont des masses molaires comparables. Expliquez l’écart de <span class="math inline">\(101\ ^\circ\text{C}\)</span> entre leurs températures d’ébullition.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="13" type="1">
+<li>L’acétone <span class="math inline">\(\ce{(CH3)2CO}\)</span> est une molécule polaire (<span class="math inline">\(T_\text{éb} = 56\ ^\circ\text{C}\)</span>). Le propane <span class="math inline">\(\ce{C3H8}\)</span> est apolaire (<span class="math inline">\(T_\text{éb} = -42\ ^\circ\text{C}\)</span>). Les deux ont une masse molaire de 58 g/mol. Quels types de forces supplémentaires expliquent la différence ?[^15]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="14" type="1">
+<li>Entre deux molécules de <span class="math inline">\(\ce{HF}\)</span> et entre deux molécules de <span class="math inline">\(\ce{HI}\)</span>, les forces de Keesom sont-elles plus intenses dans <span class="math inline">\(\ce{HF}\)</span> ou dans <span class="math inline">\(\ce{HI}\)</span> ? Justifiez en invoquant l’électronégativité et la taille des atomes.[^16]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+</section>
+</section>
+<section id="la-force-de-debye-dipôle-permanentdipôle-induit" class="level3" data-number="4.0.5">
+<h3 data-number="4.0.5" class="anchored" data-anchor-id="la-force-de-debye-dipôle-permanentdipôle-induit"><span class="header-section-number">4.0.5</span> La force de Debye (dipôle permanent–dipôle induit)</h3>
+<p>Lorsqu’une molécule <strong>polaire</strong> se trouve au voisinage d’une molécule <strong>apolaire</strong>, son dipôle permanent crée un champ électrique local qui déforme le nuage électronique de la molécule apolaire. Il se crée ainsi un dipôle induit, qui interagit avec le dipôle permanent de la première molécule : c’est la <strong>force de Debye</strong>.</p>
+<p>Cette interaction dépend du moment dipolaire de la molécule polarisante et de la polarisabilité de la molécule polarisée. Elle est <strong>assez faible</strong> — inférieure aux interactions entre deux dipôles permanents — mais suffisante pour expliquer, par exemple, la dissolution modeste de certains gaz apolaires dans l’eau.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Gaz</th>
+<th>Solubilité dans l’eau à <span class="math inline">\(10\ ^\circ\text{C}\)</span> (mmol/L)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{H2}\)</span></td>
+<td>0,80</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{N2}\)</span></td>
+<td>0,83</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{O2}\)</span></td>
+<td>1,70</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{CH4}\)</span></td>
+<td>2,03</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{CO2}\)</span></td>
+<td>52,67</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{H2S}\)</span></td>
+<td>150,01</td>
+</tr>
+</tbody>
+</table>
+<p>Notez que <span class="math inline">\(\ce{CO2}\)</span> et <span class="math inline">\(\ce{H2S}\)</span> sont bien plus solubles que <span class="math inline">\(\ce{O2}\)</span> ou <span class="math inline">\(\ce{N2}\)</span> : cela s’explique non seulement par leur polarisabilité plus élevée, mais aussi parce que <span class="math inline">\(\ce{CO2}\)</span> réagit partiellement avec l’eau (nous y reviendrons — notion d’équilibre acido-basique<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>) et que <span class="math inline">\(\ce{H2S}\)</span> est très peu polarisable.</p>
+<p><strong>Exercices :</strong></p>
+<ol start="15" type="1">
+<li>L’iode <span class="math inline">\(\ce{I2}\)</span> est apolaire mais se dissout légèrement dans l’eau. Quel type de force intermoléculaire permet cette dissolution partielle ? Pourquoi reste-t-elle limitée ?<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<div class="qcm-widget" data-correct="0" data-options="[&quot;Debye&quot;, &quot;Keesom&quot;, &quot;London&quot;, &quot;Ion-dipôle&quot;]">
+
+</div>
+<ol start="16" type="1">
+<li>Un mélange d’huile (apolaire) et d’eau (polaire) ne se dissout pas. En revanche, l’huile se dissout dans le tétrachlorure de carbone <span class="math inline">\(\ce{CCl4}\)</span> (apolaire). Identifiez les types de forces en jeu dans chaque cas et justifiez la différence de miscibilité.[^19]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="17" type="1">
+<li>Dans le tableau ci-dessus, <span class="math inline">\(\ce{O2}\)</span> (32 g/mol) est moins soluble que <span class="math inline">\(\ce{CH4}\)</span> (16 g/mol) malgré une masse molaire plus élevée. Proposez une explication en termes de polarisabilité et de structure moléculaire.[^20]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+</section>
+<section id="la-force-de-london-dispersion" class="level3" data-number="4.0.6">
+<h3 data-number="4.0.6" class="anchored" data-anchor-id="la-force-de-london-dispersion"><span class="header-section-number">4.0.6</span> La force de London (dispersion)</h3>
+<p>La force de London est la seule interaction intermoléculaire <strong>universelle</strong> : elle agit entre tous les atomes et toutes les molécules, qu’ils soient polaires ou non. C’est aussi la seule interaction possible entre molécules <strong>apolaires</strong> — gaz rares (<span class="math inline">\(\ce{He}\)</span>, <span class="math inline">\(\ce{Ar}\)</span>), molécules diatomiques homonucléaires (<span class="math inline">\(\ce{O2}\)</span>, <span class="math inline">\(\ce{N2}\)</span>, <span class="math inline">\(\ce{I2}\)</span>) ou polyatomiques symétriques (<span class="math inline">\(\ce{CO2}\)</span>, <span class="math inline">\(\ce{CCl4}\)</span>).</p>
+<p><strong>Conception naïve —</strong> On pourrait croire qu’une molécule apolaire n’exerce aucune attraction sur ses voisines, puisque son moment dipolaire est nul. C’est vrai <em>en moyenne</em> — mais à un instant donné, les électrons ne sont pas répartis parfaitement symétriquement. Il se crée alors un <strong>dipôle instantané</strong> non nul, qui déforme à son tour le nuage électronique de la molécule voisine et y induit un <strong>dipôle induit</strong>. Les deux dipôles s’attirent brièvement. Ces fluctuations sont permanentes et incessantes : leur effet <em>moyen</em> est une attraction nette entre les molécules.</p>
+<p><strong>Polarisabilité</strong></p>
+<p>L’intensité de la force de London dépend de la facilité avec laquelle le nuage électronique d’une molécule se laisse déformer : c’est la <strong>polarisabilité</strong>. Plus une molécule contient d’électrons — c’est-à-dire plus elle est lourde — plus son nuage est étendu, diffus, et donc facilement déformable. La force de London augmente donc avec le nombre d’électrons et, de manière approchée, avec la masse molaire.</p>
+<p>Conséquence directe : les températures de fusion et d’ébullition des substances apolaires augmentent avec leur masse molaire.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Gaz noble</th>
+<th>Nombre d’électrons</th>
+<th><span class="math inline">\(T_\text{éb}\)</span> (K)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{He}\)</span></td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{Ne}\)</span></td>
+<td>10</td>
+<td>27</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{Ar}\)</span></td>
+<td>18</td>
+<td>87</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{Kr}\)</span></td>
+<td>36</td>
+<td>120</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{Xe}\)</span></td>
+<td>54</td>
+<td>165</td>
+</tr>
+</tbody>
+</table>
+<p>La même tendance s’observe pour les alcanes : le pentane (<span class="math inline">\(\ce{C5H12}\)</span>, 42 électrons) bout à <span class="math inline">\(36\ ^\circ\text{C}\)</span>, tandis que le nonane (<span class="math inline">\(\ce{C9H20}\)</span>, 72 électrons) bout à <span class="math inline">\(151\ ^\circ\text{C}\)</span>.</p>
+<p><strong>Attention :</strong> pour de très grosses molécules apolaires, la force de London peut devenir suffisamment intense pour maintenir la substance à l’état liquide, voire solide, à température ambiante — comme c’est le cas pour le diiode <span class="math inline">\(\ce{I2}\)</span> (solide à <span class="math inline">\(25\ ^\circ\text{C}\)</span>).</p>
+<p><strong>Exercices :</strong></p>
+<ol start="18" type="1">
+<li>Le fluor <span class="math inline">\(\ce{F2}\)</span> (18 électrons, <span class="math inline">\(T_\text{éb} = -188\ ^\circ\text{C}\)</span>) et le chlore <span class="math inline">\(\ce{Cl2}\)</span> (34 électrons, <span class="math inline">\(T_\text{éb} = -34\ ^\circ\text{C}\)</span>) sont tous deux apolaires. Expliquez l’écart de <span class="math inline">\(154\ ^\circ\text{C}\)</span> entre leurs températures d’ébullition.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<div class="qcm-widget" data-correct="0" data-options="[&quot;London&quot;, &quot;Keesom&quot;, &quot;Pont hydrogène&quot;]">
+
+</div>
+<ol start="19" type="1">
+<li>Le méthane <span class="math inline">\(\ce{CH4}\)</span> (<span class="math inline">\(M = 16\ \text{g/mol}\)</span>) bout à <span class="math inline">\(-161\ ^\circ\text{C}\)</span> ; l’octane <span class="math inline">\(\ce{C8H18}\)</span> (<span class="math inline">\(M = 114\ \text{g/mol}\)</span>) bout à <span class="math inline">\(126\ ^\circ\text{C}\)</span>. Les deux sont apolaires. Quel facteur explique cet écart ?[^22]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="20" type="1">
+<li>Le diiode <span class="math inline">\(\ce{I2}\)</span> est un solide à température ambiante, alors que le dibrome <span class="math inline">\(\ce{Br2}\)</span> est liquide et le dichlore <span class="math inline">\(\ce{Cl2}\)</span> est gazeux. Ces trois molécules sont apolaires. Rangez-les par nombre d’électrons croissant et expliquez la tendance observée.[^23]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="21" type="1">
+<li>Un élève affirme que la force de London est négligeable devant les autres interactions et peut être ignorée dans les molécules polaires. Réfutez cette affirmation en vous appuyant sur la notion de polarisabilité.[^24]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+</section>
+<section id="récapitulatif-des-forces-intermoléculaires" class="level3" data-number="4.0.7">
+<h3 data-number="4.0.7" class="anchored" data-anchor-id="récapitulatif-des-forces-intermoléculaires"><span class="header-section-number">4.0.7</span> Récapitulatif des forces intermoléculaires</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Présent dans</th>
+<th>Énergie (kJ/mol)</th>
+<th>Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ion–dipôle</td>
+<td>mélanges ioniques et polaires</td>
+<td>40–600</td>
+<td><span class="math inline">\(\ce{Na+}\)</span> et <span class="math inline">\(\ce{H2O}\)</span></td>
+</tr>
+<tr class="even">
+<td>Pont hydrogène</td>
+<td>molécules avec <span class="math inline">\(\ce{H}\)</span> lié à <span class="math inline">\(\ce{N}\)</span>, <span class="math inline">\(\ce{O}\)</span>, <span class="math inline">\(\ce{F}\)</span></td>
+<td>10–40</td>
+<td><span class="math inline">\(\ce{H2O}\)</span> et <span class="math inline">\(\ce{H2O}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Keesom (dipôle–dipôle)</td>
+<td>molécules polaires</td>
+<td>5–25</td>
+<td><span class="math inline">\(\ce{HCl}\)</span> et <span class="math inline">\(\ce{HCl}\)</span></td>
+</tr>
+<tr class="even">
+<td>Debye (dipôle–dipôle induit)</td>
+<td>polaire + apolaire</td>
+<td>2–10</td>
+<td><span class="math inline">\(\ce{HCl}\)</span> et <span class="math inline">\(\ce{Cl2}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Ion–dipôle induit</td>
+<td>ions + apolaires</td>
+<td>3–15</td>
+<td><span class="math inline">\(\ce{Fe^{2+}}\)</span> et <span class="math inline">\(\ce{O2}\)</span></td>
+</tr>
+<tr class="even">
+<td>London (dispersion)</td>
+<td>tous atomes et molécules</td>
+<td>0,05–40</td>
+<td><span class="math inline">\(\ce{Ar}\)</span> et <span class="math inline">\(\ce{Ar}\)</span>, <span class="math inline">\(\ce{C8H18}\)</span> et <span class="math inline">\(\ce{C8H18}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Retenons l’ordre de grandeur suivant : pont hydrogène <span class="math inline">\(&gt;\)</span> Keesom <span class="math inline">\(&gt;\)</span> Debye <span class="math inline">\(\approx\)</span> London (pour les petites molécules). La force de London peut cependant dépasser les autres pour de très grosses molécules apolaires, en raison de leur polarisabilité élevée.</p>
+<blockquote class="blockquote">
+<p><strong>Dans l’histoire…</strong> En 1873, <strong>Johannes van der Waals</strong> postule dans sa thèse l’existence de forces attractives entre molécules — une intuition assez marquante pour que James Clerk Maxwell la salue dès sa parution. Il faudra ensuite près de soixante ans pour démêler cette force unique en plusieurs mécanismes distincts : <strong>Peter Debye et Willem Keesom (1921)</strong> décrivent les interactions impliquant un dipôle permanent, puis <strong>Fritz London (1930)</strong> identifie l’origine quantique de la force restante — la seule présente entre atomes ou molécules totalement apolaires. Ce que van der Waals avait perçu comme un seul phénomène s’est révélé être trois.</p>
+</blockquote>
+<p><span id="hist-liaisons-intermoleculaires-van-der-waals-london-debye-keesom"></span></p>
+<hr>
+<p><strong>Exercices de synthèse</strong></p>
+<ol start="25" type="1">
+<li>Le propan-1-ol <span class="math inline">\(\ce{CH3CH2CH2OH}\)</span> est miscible à l’eau, mais le pentan-1-ol <span class="math inline">\(\ce{CH3(CH2)4OH}\)</span> ne l’est pas. Les deux possèdent un groupe <span class="math inline">\(\ce{OH}\)</span>. Expliquez cette différence en termes de forces intermoléculaires et de structure moléculaire.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="26" type="1">
+<li>Classez les substances suivantes par ordre croissant de température d’ébullition et justifiez : <span class="math inline">\(\ce{CH4}\)</span>, <span class="math inline">\(\ce{NH3}\)</span>, <span class="math inline">\(\ce{NaCl}\)</span> (fondu), <span class="math inline">\(\ce{HCl}\)</span>.[^26]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="27" type="1">
+<li>Une solution de chlorure de potassium <span class="math inline">\(\ce{KCl}\)</span> dans l’eau conduit l’électricité. Une solution de saccharose <span class="math inline">\(\ce{C12H22O11}\)</span> dans l’eau ne la conduit pas. Expliquez cette différence en termes de dissolution et de forces intermoléculaires impliquées dans chaque cas.[^27]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="28" type="1">
+<li>À <span class="math inline">\(25\ ^\circ\text{C}\)</span>, le mercure <span class="math inline">\(\ce{Hg}\)</span> est liquide alors que le tungstène <span class="math inline">\(\ce{W}\)</span> est solide. Les deux sont des métaux. Quelle propriété des liaisons intermoléculaires (ou interatomiques) permet d’expliquer cet écart de plus de <span class="math inline">\(3400\ ^\circ\text{C}\)</span> entre leurs températures de fusion ?[^28]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="29" type="1">
+<li>L’acide acétique <span class="math inline">\(\ce{CH3COOH}\)</span> forme des dimères en phase gazeuse : deux molécules s’associent via deux ponts hydrogène symétriques. Représentez schématiquement cette interaction (notation pointillée) et expliquez pourquoi ce phénomène est plus fréquent en phase gazeuse qu’en phase liquide.[^29]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="30" type="1">
+<li>Le dioxyde de soufre <span class="math inline">\(\ce{SO2}\)</span> (<span class="math inline">\(T_\text{éb} = -10\ ^\circ\text{C}\)</span>) et le dioxyde de carbone <span class="math inline">\(\ce{CO2}\)</span> (<span class="math inline">\(T_\text{éb} = -78{,}5\ ^\circ\text{C}\)</span>, sublimation) ont des masses molaires proches (64 et 44 g/mol). Expliquez pourquoi <span class="math inline">\(\ce{SO2}\)</span> a une température de changement d’état bien plus élevée.[^30]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="31" type="1">
+<li>Un plongeur remonte trop rapidement d’une plongée profonde et souffre d’un accident de décompression : des bulles de gaz (principalement <span class="math inline">\(\ce{N2}\)</span>) se forment dans son sang. Expliquez ce phénomène en termes de solubilité et de pression.[^31]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="32" type="1">
+<li>La glycérine <span class="math inline">\(\ce{HOCH2CH(OH)CH2OH}\)</span> est un liquide visqueux miscible à l’eau, utilisé comme antigel. Identifiez tous les types de forces intermoléculaires présentes dans ce composé et expliquez sa miscibilité totale avec l’eau.[^32]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="33" type="1">
+<li>On compare deux isomères : le butane <span class="math inline">\(\ce{CH3CH2CH2CH3}\)</span> (chaîne linéaire, <span class="math inline">\(T_\text{éb} = -1\ ^\circ\text{C}\)</span>) et l’isobutane <span class="math inline">\(\ce{(CH3)3CH}\)</span> (ramifié, <span class="math inline">\(T_\text{éb} = -12\ ^\circ\text{C}\)</span>). Les deux sont apolaires et ont la même formule brute <span class="math inline">\(\ce{C4H10}\)</span>. Expliquez l’écart de température d’ébullition.[^33]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="34" type="1">
+<li>Un détergent industriel contient un composé amphiphile dont la partie hydrophobe est une chaîne de 16 carbones (<span class="math inline">\(\ce{C16}\)</span>) et dont la partie hydrophile est un groupe sulfonate <span class="math inline">\(\ce{SO3^{-}}\)</span>. (a) Identifiez les forces intermoléculaires entre la partie hydrophobe et une huile apolaire. (b) Identifiez les forces entre la partie hydrophile et l’eau. (c) Expliquez pourquoi ce composé est plus efficace qu’un savon à chaîne <span class="math inline">\(\ce{C8}\)</span> pour dégraisser à basse température.[^34]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+<p><em>Projet-Balmer — Manuel de chimie pour les gymnases vaudois</em> <em>Dernière mise à jour : 2026-06-02</em></p>
+<p>Ces défis s’adressent à ceux qui veulent aller réellement plus loin. Ils exigent de mobiliser les notions de Zone 2 dans des contextes nouveaux.</p>
+<p><strong>Défi A — Le mystère de l’ammoniaque</strong> <em>(approfondissement formel)</em></p>
+<p>À masse molaire comparable, <span class="math inline">\(\ce{NH3}\)</span> (<span class="math inline">\(M = 17\ \text{g/mol}\)</span>, <span class="math inline">\(T_\text{éb} = -33\ ^\circ\text{C}\)</span>) bout bien plus haut que <span class="math inline">\(\ce{CH4}\)</span> (<span class="math inline">\(M = 16\ \text{g/mol}\)</span>, <span class="math inline">\(T_\text{éb} = -161\ ^\circ\text{C}\)</span>), alors que les deux molécules ont presque la même masse.</p>
+<ol type="a">
+<li><p>Identifiez les types de forces intermoléculaires présentes dans chacune des deux substances.</p></li>
+<li><p>Expliquez l’écart de <span class="math inline">\(128\ ^\circ\text{C}\)</span> entre leurs températures d’ébullition.</p></li>
+<li><p><span class="math inline">\(\ce{PH3}\)</span> (<span class="math inline">\(M = 34\ \text{g/mol}\)</span>) bout à <span class="math inline">\(-87\ ^\circ\text{C}\)</span>, soit plus bas que <span class="math inline">\(\ce{NH3}\)</span> malgré une masse molaire double. Expliquez ce résultat apparemment paradoxal.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p></li>
+</ol>
+<hr>
+<p><strong>Défi B — Savon et amphiphilie</strong> <em>(transfert interdisciplinaire)</em></p>
+<p>Le stéarate de sodium est un savon de formule <span class="math inline">\(\ce{CH3(CH2)16COO^{-}Na^{+}}\)</span>. Il possède une longue chaîne carbonée apolaire et un groupe carboxylate ionique <span class="math inline">\(\ce{COO^{-}}\)</span>.</p>
+<ol type="a">
+<li><p>Identifiez la partie hydrophobe et la partie hydrophile de cette molécule.</p></li>
+<li><p>Expliquez, en termes de forces intermoléculaires, pourquoi l’eau seule ne dissout pas les graisses.</p></li>
+<li><p>Expliquez comment le savon permet de dissoudre les graisses dans l’eau. Quel type de structure les molécules de savon forment-elles en solution aqueuse en présence de graisse ?<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></p></li>
+</ol>
+<hr>
+<p><strong>Défi C — Le gecko et la physique des surfaces</strong> <em>(ouverture conceptuelle)</em></p>
+<p>Les pattes du gecko adhèrent à n’importe quelle surface lisse — vitre, plafond, paroi verticale — sans colle et sans ventouse. Des mesures ont montré que chaque patte est recouverte de millions de nanofils de kératine d’environ 200 nm de diamètre. La force d’adhésion totale d’un gecko de 70 g suffit à le maintenir suspendu à une vitre verticale.</p>
+<ol type="a">
+<li><p>Identifiez le type de force intermoléculaire en jeu entre les nanofils et la surface. Justifiez en rappelant de quelles propriétés moléculaires dépend cette force.</p></li>
+<li><p>Un seul nanofil développe une force de l’ordre du micronewton — individuellement négligeable. Expliquez qualitativement pourquoi la multiplication des contacts à l’échelle nanométrique change tout.</p></li>
+<li><p>Ce mécanisme fonctionne nettement moins bien lorsque les pattes du gecko sont mouillées. Proposez une hypothèse en termes de forces intermoléculaires.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></p></li>
+</ol>
+<hr>
+</section>
+<section id="mots-clés" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="mots-clés"><span class="header-section-number">4.1</span> Mots-clés</h2>
+<p><strong>Liaison intermoléculaire</strong> : interaction attractive entre molécules distinctes, plus faible que les liaisons intramoléculaires ; responsable de la cohésion de la matière en phase condensée.</p>
+<p><strong>Force de London</strong> : interaction entre dipôles induits instantanés, présente entre tous les atomes et molécules ; son intensité croît avec le nombre d’électrons et la polarisabilité.</p>
+<p><strong>Pont hydrogène</strong> : interaction intermoléculaire forte entre un hydrogène lié à <span class="math inline">\(\ce{N}\)</span>, <span class="math inline">\(\ce{O}\)</span> ou <span class="math inline">\(\ce{F}\)</span> et un doublet non-liant d’un autre atome <span class="math inline">\(\ce{N}\)</span>, <span class="math inline">\(\ce{O}\)</span> ou <span class="math inline">\(\ce{F}\)</span>.</p>
+<p><strong>Polarisabilité</strong> : facilité avec laquelle le nuage électronique d’une molécule se déforme sous l’effet d’un champ extérieur ; augmente avec le nombre d’électrons.</p>
+<p><strong>Solvatation</strong> : processus par lequel les molécules de solvant entourent et stabilisent un soluté dissous ; pour les sels dans l’eau, résulte des interactions ion–dipôle.</p>
+<p><strong>Hydrophile</strong> : qualifie une espèce chimique polaire ou ionique ayant une affinité pour l’eau.</p>
+<p><strong>Hydrophobe</strong> : qualifie une espèce chimique apolaire repoussée par l’eau.</p>
+<p><strong>Amphiphile</strong> : qualifie une espèce chimique possédant à la fois une partie hydrophile et une partie hydrophobe.</p>
+<hr>
+<hr>
+<p><em>Projet-Balmer — Manuel de chimie pour les gymnases vaudois</em> <em>Dernière mise à jour : 2026-06-02</em></p>
+<hr>
+<p><em>Projet-Balmer — Manuel de chimie pour les gymnases vaudois</em></p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Par convention dans ce chapitre, nous appelons “dipôle induit” toute molécule apolaire, par anticipation de l’effet qu’elle subit. Au sens strict, le dipôle induit désigne l’effet — la déformation temporaire du nuage électronique — et non la molécule elle-même.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>L’ébullition rompt uniquement les ponts hydrogène (liaisons intermoléculaires, ~20 kJ/mol) — c’est une transformation physique. La rupture des liaisons O–H intramoléculaires (~460 kJ/mol) ne se produit pas lors de l’ébullition. [^3]: Faux. Les liaisons intermoléculaires sont rompues lors de l’évaporation, mais les liaisons intramoléculaires restent intactes : les molécules de <span class="math inline">\(\ce{CH3CH2OH}\)</span> en phase gazeuse sont identiques à celles en phase liquide. [^4]: (a) <span class="math inline">\(\ce{HCl}\)</span> + <span class="math inline">\(\ce{HCl}\)</span> : London + Keesom (deux molécules polaires). (b) <span class="math inline">\(\ce{K+}\)</span> + <span class="math inline">\(\ce{H2O}\)</span> : ion–dipôle permanent (forte). (c) <span class="math inline">\(\ce{Xe}\)</span> + <span class="math inline">\(\ce{Xe}\)</span> : London uniquement (atomes apolaires).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><span class="math inline">\(\ce{Na+}\)</span> est un cation (charge positive) : il attire la partie <span class="math inline">\(\delta-\)</span> de l’eau, soit l’oxygène. <span class="math inline">\(\ce{Cl-}\)</span> est un anion (charge négative) : il attire la partie <span class="math inline">\(\delta+\)</span> de l’eau, soit les hydrogènes. [^6]: Dans l’eau : interactions ion–dipôle (40–600 kJ/mol) suffisamment fortes pour arracher les ions au cristal et les solvatater. Dans l’hexane (apolaire) : seules des interactions ion–dipôle induit (faibles) sont possibles — insuffisantes pour vaincre la cohésion du cristal ionique. [^7]: <span class="math inline">\(\ce{Li+}\)</span> interagit plus fortement : plus petit, il s’approche davantage des molécules d’eau. Les forces électrostatiques décroissent rapidement avec la distance (en <span class="math inline">\(1/r^2\)</span>) — une distance plus courte signifie une interaction nettement plus intense.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Nous utilisons ici la notion de structure de l’ADN, qui relève de la biologie moléculaire et sera approfondie dans le cours de biologie.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Forment des ponts hydrogène entre elles : <span class="math inline">\(\ce{CH3OH}\)</span> (O–H), <span class="math inline">\(\ce{NH3}\)</span> (N–H), <span class="math inline">\(\ce{H2O}\)</span> (O–H). <span class="math inline">\(\ce{CH4}\)</span> : H lié à C, pas de pont H. <span class="math inline">\(\ce{HCl}\)</span> : Cl trop grand et pas assez électronégatif. <span class="math inline">\(\ce{CH3OCH3}\)</span> : pas de H lié à N, O ou F — ne peut qu’accepter un pont H, pas en donner. [^10]: L’éthanol possède un groupe O–H qui lui permet de former des ponts hydrogène entre molécules (interaction forte, 10–40 kJ/mol). Le diméthyléther n’a pas de H lié à O : il ne peut pas former de ponts hydrogène donneur–accepteur entre ses propres molécules. La cohésion intermoléculaire de l’éthanol est donc bien supérieure. [^11]: 4 ponts hydrogène au maximum : 2 comme donneur (un par H de la molécule <span class="math inline">\(\ce{H2O}\)</span>, via O–H…O) et 2 comme accepteur (via les deux doublets non-liants de l’oxygène). [^12]: <span class="math inline">\(\ce{HF}\)</span> forme des ponts hydrogène grâce à la très forte électronégativité du fluor (F–H…F). Ces interactions supplémentaires augmentent considérablement la cohésion intermoléculaire, d’où une température d’ébullition bien plus élevée malgré la masse molaire inférieure. <span class="math inline">\(\ce{HCl}\)</span> ne forme pas de ponts hydrogène (Cl trop grand). [^13]: La paire G–C est plus difficile à dissocier : 3 ponts hydrogène contre 2 pour A–T. L’énergie totale à fournir pour rompre les interactions G–C est donc supérieure, ce qui rend les régions riches en G–C plus stables thermiquement.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><span class="math inline">\(\ce{HCl}\)</span> est polaire : en plus des forces de London présentes dans les deux substances, il s’y ajoutent des forces de Keesom (dipôle–dipôle permanent) qui augmentent significativement la cohésion intermoléculaire et donc la température d’ébullition. [^15]: L’acétone présente des forces de Keesom (dipôle–dipôle) en plus des forces de London communes aux deux. Ces interactions supplémentaires expliquent sa température d’ébullition bien plus élevée à masse molaire identique. [^16]: Plus intenses dans <span class="math inline">\(\ce{HF}\)</span> : le fluor est beaucoup plus électronégatif que l’iode, ce qui génère des charges partielles <span class="math inline">\(\delta+\)</span> et <span class="math inline">\(\delta-\)</span> plus marquées. De plus, les atomes de <span class="math inline">\(\ce{F}\)</span> et <span class="math inline">\(\ce{H}\)</span> sont petits, permettant une distance intermoléculaire très courte et donc une interaction plus forte.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Nous utilisons ici la notion d’équilibre acido-basique, que nous approfondirons au chapitre 8.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>La force de Debye : le dipôle permanent de <span class="math inline">\(\ce{H2O}\)</span> induit un dipôle temporaire dans <span class="math inline">\(\ce{I2}\)</span>. La dissolution reste limitée car cette interaction est faible — insuffisante pour compenser complètement la cohésion de Londres entre molécules de <span class="math inline">\(\ce{I2}\)</span>. [^19]: Huile–eau : l’huile ne peut établir que de faibles forces de London avec l’eau, insuffisantes pour vaincre les ponts hydrogène eau–eau. Huile–<span class="math inline">\(\ce{CCl4}\)</span> : London entre deux substances apolaires, interaction du même ordre que la cohésion interne de chacune — dissolution favorable. [^20]: <span class="math inline">\(\ce{O2}\)</span> est une molécule diatomique symétrique avec un nuage électronique plus compact que <span class="math inline">\(\ce{CH4}\)</span> malgré sa masse légèrement plus élevée. Sa polarisabilité est donc comparable ou inférieure à celle de <span class="math inline">\(\ce{CH4}\)</span>, d’où une solubilité similaire voire moindre.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><span class="math inline">\(\ce{Cl2}\)</span> possède 34 électrons contre 18 pour <span class="math inline">\(\ce{F2}\)</span> : son nuage électronique est plus étendu et plus polarisable. Les forces de London sont donc plus intenses dans <span class="math inline">\(\ce{Cl2}\)</span>, d’où une température d’ébullition bien plus élevée. [^22]: Le nombre d’électrons (et la masse molaire) : l’octane possède beaucoup plus d’électrons que le méthane, ce qui le rend bien plus polarisable et ses forces de London bien plus intenses. [^23]: <span class="math inline">\(\ce{Cl2}\)</span> : 34 électrons (gaz) ; <span class="math inline">\(\ce{Br2}\)</span> : 70 électrons (liquide) ; <span class="math inline">\(\ce{I2}\)</span> : 106 électrons (solide). Plus le nombre d’électrons augmente, plus la polarisabilité et les forces de London sont grandes, et plus la température d’ébullition est élevée. [^24]: La force de London est présente dans <em>toutes</em> les molécules, polaires ou non. Pour les grosses molécules polaires, sa contribution peut être comparable ou supérieure aux interactions dipôle–dipôle. Elle ne peut donc pas être ignorée.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Le propan-1-ol (3 carbones) : la partie polaire <span class="math inline">\(\ce{OH}\)</span> domine sur la courte chaîne carbonée — les ponts hydrogène avec l’eau compensent le coût énergétique de la dissolution. Le pentan-1-ol (5 carbones) : la chaîne apolaire est trop longue, les forces de London entre chaînes carbonées dominent et la molécule devient globalement hydrophobe — les ponts hydrogène ne suffisent plus. [^26]: Ordre croissant : <span class="math inline">\(\ce{CH4}\)</span> (<span class="math inline">\(-161\ ^\circ\text{C}\)</span>) &lt; <span class="math inline">\(\ce{HCl}\)</span> (<span class="math inline">\(-85\ ^\circ\text{C}\)</span>) &lt; <span class="math inline">\(\ce{NH3}\)</span> (<span class="math inline">\(-33\ ^\circ\text{C}\)</span>) &lt; <span class="math inline">\(\ce{NaCl}\)</span> fondu (<span class="math inline">\(1413\ ^\circ\text{C}\)</span>). <span class="math inline">\(\ce{CH4}\)</span> : London seul. <span class="math inline">\(\ce{HCl}\)</span> : London + Keesom. <span class="math inline">\(\ce{NH3}\)</span> : London + Keesom + ponts H. <span class="math inline">\(\ce{NaCl}\)</span> : liaisons ioniques (bien plus fortes que toutes les interactions moléculaires). [^27]: <span class="math inline">\(\ce{KCl}\)</span> se dissocie en ions <span class="math inline">\(\ce{K+}\)</span> et <span class="math inline">\(\ce{Cl-}\)</span> via des interactions ion–dipôle avec l’eau — les ions libres conduisent le courant. Le saccharose se dissout sans dissociation (interactions pont H et dipôle–dipôle avec l’eau) : aucun ion en solution, pas de conduction électrique. [^28]: L’intensité des liaisons métalliques (cohésion du réseau par délocalisation des électrons de valence) : dans <span class="math inline">\(\ce{Hg}\)</span>, la couche <span class="math inline">\(d\)</span> pleine limite la délocalisation et les liaisons métalliques sont très faibles (<span class="math inline">\(T_\text{fus} = -39\ ^\circ\text{C}\)</span>). Dans <span class="math inline">\(\ce{W}\)</span>, la forte délocalisation des électrons <span class="math inline">\(d\)</span> génère des liaisons métalliques extrêmement intenses (<span class="math inline">\(T_\text{fus} = 3422\ ^\circ\text{C}\)</span>). [^29]: Schéma : <span class="math inline">\(\ce{CH3-C(=O)-O-H...O=C(-OCH3)-H...O}\)</span> (deux ponts H symétriques entre les groupes <span class="math inline">\(\ce{COOH}\)</span>). En phase liquide, les molécules sont entourées de nombreuses voisines qui peuvent former d’autres interactions — la formation de dimères est en compétition. En phase gazeuse, les molécules sont rares et isolées : quand deux molécules se rencontrent, la formation de deux ponts H simultanés est énergétiquement très favorable. [^30]: <span class="math inline">\(\ce{SO2}\)</span> est polaire (géométrie coudée, moment dipolaire non nul) : il présente des forces de Keesom en plus des forces de London. <span class="math inline">\(\ce{CO2}\)</span> est apolaire (géométrie linéaire, moments dipolaires qui se compensent) : seules les forces de London sont présentes. Les interactions supplémentaires de <span class="math inline">\(\ce{SO2}\)</span> augmentent sa cohésion et donc sa température d’ébullition. [^31]: En profondeur, la pression élevée augmente la solubilité du <span class="math inline">\(\ce{N2}\)</span> dans le sang (loi de Henry : haute pression favorise la phase dissoute). En remontant trop vite, la pression chute brutalement : le <span class="math inline">\(\ce{N2}\)</span> dissous se retrouve en sursaturation et se dégage sous forme de bulles. [^32]: Forces présentes : ponts hydrogène nombreux (3 groupes <span class="math inline">\(\ce{OH}\)</span> par molécule, donneurs et accepteurs), Keesom, London. Miscibilité totale : la glycérine peut former de nombreux ponts hydrogène avec l’eau — l’énergie libérée compense largement le coût de séparation des molécules d’eau, rendant la dissolution très favorable. [^33]: À masse molaire identique et même composition, la différence vient de la surface de contact entre molécules : le butane linéaire offre une surface plus grande pour les interactions de London que l’isobutane ramifié (forme plus sphérique, surface réduite). Les forces de London sont donc légèrement plus intenses dans le butane linéaire, d’où une température d’ébullition un peu plus élevée. [^34]: (a) London (dispersion) entre les chaînes <span class="math inline">\(\ce{C16}\)</span> et l’huile apolaire. (b) Ion–dipôle (fort) entre <span class="math inline">\(\ce{SO3^{-}}\)</span> et <span class="math inline">\(\ce{H2O}\)</span>. (c) La chaîne <span class="math inline">\(\ce{C16}\)</span> est deux fois plus longue que <span class="math inline">\(\ce{C8}\)</span> : ses forces de London avec l’huile sont bien plus intenses, ce qui lui permet de pénétrer et de disperser des dépôts gras plus résistants. À basse température, les forces de London sont moins perturbées par l’agitation thermique — la chaîne longue conserve son efficacité là où la courte est insuffisante.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><ol type="a">
+<li><span class="math inline">\(\ce{NH3}\)</span> : London + Keesom + ponts hydrogène (<span class="math inline">\(\ce{N-H...N}\)</span>) ; <span class="math inline">\(\ce{CH4}\)</span> : London uniquement. b) Les ponts hydrogène de <span class="math inline">\(\ce{NH3}\)</span> ajoutent une interaction forte (10–40 kJ/mol) absente dans <span class="math inline">\(\ce{CH4}\)</span>, d’où une température d’ébullition bien plus élevée à masse comparable. c) <span class="math inline">\(\ce{PH3}\)</span> est plus lourd et possède plus d’électrons (forces de London plus importantes), mais le phosphore est moins électronégatif que l’azote : <span class="math inline">\(\ce{PH3}\)</span> ne forme pas de ponts hydrogène. L’absence de cette interaction compense largement le gain en masse molaire — d’où une température d’ébullition plus basse que <span class="math inline">\(\ce{NH3}\)</span> malgré une masse double.</li>
+</ol>
+<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn12"><ol type="a">
+<li>Partie hydrophobe : chaîne <span class="math inline">\(\ce{-(CH2)16-CH3}\)</span> (apolaire, London uniquement) ; partie hydrophile : <span class="math inline">\(\ce{COO^{-}Na^{+}}\)</span> (ionique, interaction ion–dipôle forte avec l’eau). b) Les graisses sont apolaires et n’interagissent avec l’eau que par de très faibles forces de London — insuffisantes pour vaincre les ponts hydrogène entre molécules d’eau. c) Les molécules de savon s’organisent en <strong>micelles</strong> : les chaînes hydrophobes se regroupent vers l’intérieur (en contact avec la graisse), tandis que les têtes hydrophiles <span class="math inline">\(\ce{COO^{-}}\)</span> pointent vers l’extérieur (en contact avec l’eau). La graisse est ainsi encapsulée et emportée par le rinçage.</li>
+</ol>
+<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn13"><p>Pistes de réflexion — a) Force de London : les nanofils de kératine (apolaires) interagissent avec toute surface par dipôles induits. Cette force dépend de la polarisabilité et de la surface de contact — deux paramètres que les nanofils optimisent. b) La force totale est la somme de millions de contributions individuelles : <span class="math inline">\(F_\text{tot} = N \times f\)</span>. Même si <span class="math inline">\(f\)</span> est microscopique, <span class="math inline">\(N \sim 10^6\)</span> par patte rend <span class="math inline">\(F_\text{tot}\)</span> macroscopiquement significative. C’est le principe de superposition appliqué à l’échelle biologique. c) L’eau s’intercale entre les nanofils et la surface, substituant les interactions London nanofil–surface par des interactions eau–surface (ponts H) et eau–nanofil (Debye). Ces nouvelles interactions sont moins spécifiques et perturbent l’alignement des nanofils, réduisant la surface de contact effective — et donc l’adhésion.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapitres/liaisons-sels-molecules.html" class="pagination-link" aria-label="Liaisons, sels et molécules">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Liaisons, sels et molécules</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapitres/transformations-chimiques.html" class="pagination-link" aria-label="Transformations chimiques et stœchiométrie">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformations chimiques et stœchiométrie</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
