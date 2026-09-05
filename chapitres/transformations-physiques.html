@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Transformations physiques – Projet-Balmer</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapitres/oxydo-reduction.html" rel="next">
+<link href="../chapitres/transformations-chimiques.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ed7344add5f1663e434276306a2aa159.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mhchem']},
+  tex: {packages: {'[+]': ['mhchem']}}
+};
+</script>
+<style>
+.quarto-figure img, main img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+.qcm-widget { margin: 1rem 0; padding: 0.75rem 1rem; border: 1px solid #ddd; border-radius: 8px; }
+.qcm-widget .qcm-label { font-size: 13px; color: #666; margin-bottom: 8px; }
+.qcm-widget button { display: block; width: 100%; text-align: left; margin: 4px 0; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; }
+.qcm-widget .qcm-feedback { margin-top: 8px; font-size: 14px; }
+.hist-note-name { color: inherit; text-decoration: none; border-bottom: 1px dotted #8a5a00; cursor: pointer; }
+.hist-note-name:hover { border-bottom-style: solid; }
+.hist-note { text-decoration: none; font-size: 0.75em; vertical-align: super; margin-left: 2px; color: #8a5a00; border-bottom: none; }
+.hist-note:hover { text-decoration: underline; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.qcm-widget').forEach(function(el) {
+    var options = JSON.parse(el.getAttribute('data-options'));
+    var correct = parseInt(el.getAttribute('data-correct'), 10);
+    var answered = false;
+    var label = document.createElement('div');
+    label.className = 'qcm-label';
+    label.textContent = 'Vérifier ma réponse';
+    el.appendChild(label);
+    var feedback = document.createElement('div');
+    feedback.className = 'qcm-feedback';
+    options.forEach(function(opt, i) {
+      var btn = document.createElement('button');
+      btn.textContent = opt;
+      btn.onclick = function() {
+        if (answered) return;
+        answered = true;
+        el.querySelectorAll('button').forEach(function(b) { b.disabled = true; });
+        if (i === correct) {
+          btn.style.borderColor = '#2e7d32';
+          btn.style.background = '#e8f5e9';
+          feedback.textContent = 'Correct.';
+          feedback.style.color = '#2e7d32';
+        } else {
+          btn.style.borderColor = '#c62828';
+          btn.style.background = '#ffebee';
+          feedback.textContent = 'Pas tout à fait — bonne réponse : ' + options[correct];
+          feedback.style.color = '#c62828';
+        }
+      };
+      el.appendChild(btn);
+    });
+    el.appendChild(feedback);
+  });
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapitres/transformations-physiques.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transformations physiques</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Recherche" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Projet-Balmer</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Recherche"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Historique Tome 1 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/atomes-quantite-de-matiere.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Atomes et quantité de matière</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-sels-molecules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Liaisons, sels et molécules</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-intermoleculaires.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Liaisons intermoléculaires</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-chimiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformations chimiques et stœchiométrie</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-physiques.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transformations physiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/oxydo-reduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Oxydoréduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/electrochimie-piles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Électrochimie et piles</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acido-basiques-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction aux équilibres acido-basiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Historique Tome 2 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Thermochimie 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Thermochimie 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/vitesse-de-reaction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Vitesse de réaction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Équilibre chimique 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Équilibre chimique 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acides-bases-ph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Acides, bases et pH</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/chimie-organique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Chimie organique</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#corps-purs-phases-et-mélanges" id="toc-corps-purs-phases-et-mélanges" class="nav-link active" data-scroll-target="#corps-purs-phases-et-mélanges"><span class="header-section-number">6.1</span> Corps purs, phases et mélanges</a></li>
+  <li><a href="#changements-détat-et-énergie" id="toc-changements-détat-et-énergie" class="nav-link" data-scroll-target="#changements-détat-et-énergie"><span class="header-section-number">6.2</span> Changements d’état et énergie</a>
+  <ul class="collapse">
+  <li><a href="#interprétation-microscopique-le-cas-de-leau" id="toc-interprétation-microscopique-le-cas-de-leau" class="nav-link" data-scroll-target="#interprétation-microscopique-le-cas-de-leau"><span class="header-section-number">6.2.1</span> Interprétation microscopique : le cas de l’eau</a></li>
+  </ul></li>
+  <li><a href="#le-diagramme-de-phase" id="toc-le-diagramme-de-phase" class="nav-link" data-scroll-target="#le-diagramme-de-phase"><span class="header-section-number">6.3</span> Le diagramme de phase</a>
+  <ul class="collapse">
+  <li><a href="#lanomalie-de-leau" id="toc-lanomalie-de-leau" class="nav-link" data-scroll-target="#lanomalie-de-leau"><span class="header-section-number">6.3.1</span> L’anomalie de l’eau</a></li>
+  </ul></li>
+  <li><a href="#solution-solvant-soluté" id="toc-solution-solvant-soluté" class="nav-link" data-scroll-target="#solution-solvant-soluté"><span class="header-section-number">6.4</span> Solution, solvant, soluté</a></li>
+  <li><a href="#solubilité-miscibilité-et-mélanges-hétérogènes" id="toc-solubilité-miscibilité-et-mélanges-hétérogènes" class="nav-link" data-scroll-target="#solubilité-miscibilité-et-mélanges-hétérogènes"><span class="header-section-number">6.5</span> Solubilité, miscibilité et mélanges hétérogènes</a></li>
+  <li><a href="#dissolution-simple-et-avec-dissociation" id="toc-dissolution-simple-et-avec-dissociation" class="nav-link" data-scroll-target="#dissolution-simple-et-avec-dissociation"><span class="header-section-number">6.6</span> Dissolution : simple et avec dissociation</a>
+  <ul class="collapse">
+  <li><a href="#dissolution-simple" id="toc-dissolution-simple" class="nav-link" data-scroll-target="#dissolution-simple"><span class="header-section-number">6.6.1</span> Dissolution simple</a></li>
+  <li><a href="#dissolution-avec-dissociation" id="toc-dissolution-avec-dissociation" class="nav-link" data-scroll-target="#dissolution-avec-dissociation"><span class="header-section-number">6.6.2</span> Dissolution avec dissociation</a></li>
+  </ul></li>
+  <li><a href="#concentration-et-dilution" id="toc-concentration-et-dilution" class="nav-link" data-scroll-target="#concentration-et-dilution"><span class="header-section-number">6.7</span> Concentration et dilution</a></li>
+  <li><a href="#électrolytes-équations-ioniques-et-précipitation" id="toc-électrolytes-équations-ioniques-et-précipitation" class="nav-link" data-scroll-target="#électrolytes-équations-ioniques-et-précipitation"><span class="header-section-number">6.8</span> Électrolytes, équations ioniques et précipitation</a>
+  <ul class="collapse">
+  <li><a href="#électrolytes-forts-et-faibles" id="toc-électrolytes-forts-et-faibles" class="nav-link" data-scroll-target="#électrolytes-forts-et-faibles"><span class="header-section-number">6.8.1</span> Électrolytes forts et faibles</a></li>
+  <li><a href="#équations-ioniques-et-précipitation" id="toc-équations-ioniques-et-précipitation" class="nav-link" data-scroll-target="#équations-ioniques-et-précipitation"><span class="header-section-number">6.8.2</span> Équations ioniques et précipitation</a></li>
+  </ul></li>
+  <li><a href="#exercices-de-synthèse" id="toc-exercices-de-synthèse" class="nav-link" data-scroll-target="#exercices-de-synthèse"><span class="header-section-number">6.9</span> <strong>Exercices de synthèse</strong></a></li>
+  <li><a href="#mots-clés" id="toc-mots-clés" class="nav-link" data-scroll-target="#mots-clés"><span class="header-section-number">6.10</span> Mots-clés</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transformations physiques</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Ce que nous savons déjà —</strong> Nous savons désormais pourquoi les molécules s’attirent : forces de London, Keesom, ponts hydrogène, interactions ion–dipôle. Nous savons aussi que rompre ces interactions ne modifie pas la nature des espèces chimiques — les molécules restent intactes. Ces acquis sont les fondations directes de ce chapitre.</p>
+<p><strong>Ce que ce chapitre construit —</strong> Que se passe-t-il au niveau particulaire quand l’eau gèle, ou quand le sel disparaît dans un verre d’eau ? Ces deux transformations ont un point commun : elles ne touchent jamais aux molécules elles-mêmes — seulement aux liens qui les unissent. Nous verrons comment décrire ces changements de phase et de mélange, puis comment une dissolution se déroule au niveau particulaire et pourquoi certaines substances libèrent des ions en solution.</p>
+<p><strong>Ce que nous saurons faire —</strong> À la fin de ce chapitre, nous serons capables de lire et d’interpréter un diagramme de phase, d’écrire l’équation de dissolution d’un sel ionique, de distinguer un électrolyte fort d’un électrolyte faible, et de rédiger une équation ionique nette pour une réaction de précipitation.</p>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-07-04</em></p>
+<p><strong>Nous savons déjà que…</strong></p>
+<ul>
+<li>Un ion est un atome ou un groupe d’atomes ayant perdu ou gagné un ou plusieurs électrons ; un cation est chargé positivement, un anion négativement.</li>
+<li>La mole est l’unité de quantité de matière : une mole de <span class="math inline">\(\ce{NaCl}\)</span> contient <span class="math inline">\(6{,}022 \cdot 10^{23}\)</span> paires d’ions, et sa masse vaut <span class="math inline">\(M(\ce{NaCl}) = 58{,}5\ \text{g/mol}\)</span>.</li>
+<li>Une molécule polaire possède un pôle <span class="math inline">\(\delta^+\)</span> et un pôle <span class="math inline">\(\delta^-\)</span> en raison d’une répartition asymétrique des charges — l’eau <span class="math inline">\(\ce{H2O}\)</span> en est l’exemple type.</li>
+<li>Lorsqu’un ion est placé dans l’eau, les molécules d’eau s’orientent autour de lui et le stabilisent : c’est la solvatation, ou hydratation dans le cas de l’eau.</li>
+<li>Un solvant polaire dissout préférentiellement des solutés polaires ou ioniques ; un solvant apolaire dissout préférentiellement des solutés apolaires — c’est la règle semblable dissout semblable, établie au chapitre 3.</li>
+</ul>
+<p><em>Ces acquis ne nous serviront pas dès les premières pages de ce chapitre — nous les retrouverons au cœur de ce chapitre, lorsque nous aborderons la dissolution des solutés dans l’eau : ions et solvatation y redeviendront centraux.</em></p>
+<p><strong>Mini-test — vérifions nos acquis avant de continuer :</strong></p>
+<ol type="1">
+<li>Quelle est la charge de l’ion sodium et celle de l’ion chlorure ?</li>
+<li>L’eau <span class="math inline">\(\ce{H2O}\)</span> est-elle une molécule polaire ou apolaire ? Justifions en une phrase.</li>
+<li>Pourquoi les molécules d’eau s’orientent-elles différemment autour d’un cation et autour d’un anion ?</li>
+</ol>
+<p><em>Si nous répondons sans hésiter, nous sommes prêts — passons à la Zone 2. Si certaines réponses hésitent, relisons les points ci-dessus avant de continuer.</em></p>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-07-04</em></p>
+<section id="corps-purs-phases-et-mélanges" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="corps-purs-phases-et-mélanges"><span class="header-section-number">6.1</span> Corps purs, phases et mélanges</h2>
+<p><strong>Formalisation :</strong> Un <strong>corps pur</strong> est constitué d’une seule espèce chimique — tous ses constituants sont identiques au niveau particulaire. Une <strong>phase</strong> est une région de matière physiquement et chimiquement uniforme, délimitée par une surface de séparation. Un corps pur peut exister sous plusieurs phases (glace, eau liquide, vapeur) ; un mélange peut également présenter plusieurs phases. Un <strong>mélange</strong> contient au moins deux espèces chimiques distinctes.</p>
+<p>On distingue deux types de mélanges :</p>
+<ul>
+<li>Un <strong>mélange homogène</strong> (ou solution) est visuellement uniforme — aucune séparation de phases n’est visible, même à l’microscope optique. Les constituants sont dispersés à l’échelle moléculaire.</li>
+<li>Un <strong>mélange hétérogène</strong> présente des phases distinctes visibles — deux liquides non miscibles, un solide dans un liquide, etc.</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Exemple</th>
+<th>Critère</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Corps pur</td>
+<td><span class="math inline">\(\ce{H2O}\)</span> distillée, <span class="math inline">\(\ce{O2}\)</span> pur</td>
+<td>Une seule espèce chimique</td>
+</tr>
+<tr class="even">
+<td>Mélange homogène</td>
+<td>Eau salée, air</td>
+<td>Dispersé à l’échelle moléculaire</td>
+</tr>
+<tr class="odd">
+<td>Mélange hétérogène</td>
+<td>Huile + eau, sable + eau</td>
+<td>Phases visibles distinctes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Classez les exemples suivants en corps pur, mélange homogène ou mélange hétérogène, et justifiez : (a) eau distillée ; (b) air sec ; (c) lait ; (d) eau gazeuse ; (e) granit.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="2" type="1">
+<li>Une phase est-elle nécessairement un corps pur ? Illustrez votre réponse par un exemple.[^2]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+</section>
+<section id="changements-détat-et-énergie" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="changements-détat-et-énergie"><span class="header-section-number">6.2</span> Changements d’état et énergie</h2>
+<p>Une <strong>transformation physique</strong> est le passage d’une substance d’un état à un autre, sans modification de sa structure moléculaire. Les liaisons intramoléculaires restent intactes — seules les liaisons intermoléculaires sont rompues ou formées.</p>
+<p>Les trois états de la matière se distinguent par le degré de cohésion entre les molécules :</p>
+<ul>
+<li><strong>Solide</strong> : les molécules sont maintenues en place par des liaisons intermoléculaires fortes ; elles vibrent autour d’une position fixe.</li>
+<li><strong>Liquide</strong> : les liaisons intermoléculaires sont partiellement rompues ; les molécules glissent les unes sur les autres.</li>
+<li><strong>Gaz</strong> : les liaisons intermoléculaires sont quasi inexistantes ; les molécules sont indépendantes et s’agitent librement.</li>
+</ul>
+<p>Chaque changement d’état met en jeu de l’énergie :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Transition</th>
+<th>Nom</th>
+<th>Énergie</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>solide <span class="math inline">\(\rightarrow\)</span> liquide</td>
+<td>fusion</td>
+<td>absorbée (endothermique)</td>
+</tr>
+<tr class="even">
+<td>liquide <span class="math inline">\(\rightarrow\)</span> solide</td>
+<td>solidification</td>
+<td>libérée (exothermique)</td>
+</tr>
+<tr class="odd">
+<td>liquide <span class="math inline">\(\rightarrow\)</span> gaz</td>
+<td>vaporisation</td>
+<td>absorbée (endothermique)</td>
+</tr>
+<tr class="even">
+<td>gaz <span class="math inline">\(\rightarrow\)</span> liquide</td>
+<td>condensation</td>
+<td>libérée (exothermique)</td>
+</tr>
+<tr class="odd">
+<td>solide <span class="math inline">\(\rightarrow\)</span> gaz</td>
+<td>sublimation</td>
+<td>absorbée (endothermique)</td>
+</tr>
+<tr class="even">
+<td>gaz <span class="math inline">\(\rightarrow\)</span> solide</td>
+<td>déposition</td>
+<td>libérée (exothermique)</td>
+</tr>
+</tbody>
+</table>
+<p>L’énergie absorbée lors d’une fusion ou d’une vaporisation sert exclusivement à vaincre les forces de cohésion intermoléculaires — elle ne fait pas augmenter la température. C’est pourquoi la température reste constante pendant un changement d’état : toute l’énergie fournie est consacrée à la transition de phase.</p>
+<p>Plus les liaisons intermoléculaires d’une substance sont intenses, plus il faut d’énergie pour les rompre, et plus les températures de fusion et d’ébullition sont élevées. Les types de forces intermoléculaires étudiés au chapitre 3 vous donnent donc directement un outil prédictif : connaître le type de forces d’une substance, c’est pouvoir anticiper l’ordre de grandeur de ses températures de changement d’état.</p>
+<hr>
+<section id="interprétation-microscopique-le-cas-de-leau" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="interprétation-microscopique-le-cas-de-leau"><span class="header-section-number">6.2.1</span> Interprétation microscopique : le cas de l’eau</h3>
+<p>Suivons une molécule <span class="math inline">\(\ce{H2O}\)</span> depuis le zéro absolu (<span class="math inline">\(-273\ ^\circ\text{C}\)</span>) jusqu’à très haute température, à pression normale (1 atm).</p>
+<p><strong>(1) Glace : <span class="math inline">\(-273\ ^\circ\text{C} \leq T \leq 0\ ^\circ\text{C}\)</span></strong></p>
+<p>Les molécules d’eau forment un réseau géométrique ordonné, maintenu par un réseau dense de ponts hydrogène. En apportant de la chaleur, on augmente l’agitation thermique : les molécules vibrent de plus en plus intensément autour de leur position d’équilibre, mais les ponts hydrogène sont encore suffisamment forts pour les maintenir en place. La température augmente progressivement.</p>
+<p><strong>(2) Fusion : <span class="math inline">\(T = 0\ ^\circ\text{C}\)</span></strong></p>
+<p>L’agitation thermique devient suffisante pour que certaines molécules s’éloignent de leurs voisines et rompent leurs ponts hydrogène. La structure cristalline s’effondre progressivement. Toute l’énergie fournie sert à ce travail de séparation — la température reste fixe à <span class="math inline">\(0\ ^\circ\text{C}\)</span> tant que la glace n’est pas entièrement fondue. Les molécules peuvent désormais glisser les unes sur les autres.</p>
+<p><strong>(3) Eau liquide : <span class="math inline">\(0\ ^\circ\text{C} \leq T \leq 100\ ^\circ\text{C}\)</span></strong></p>
+<p>Les molécules glissent librement : c’est le mouvement brownien. Les ponts hydrogène existent encore, mais ils se forment et se rompent en permanence, à une fréquence de l’ordre de <span class="math inline">\(10^{12}\)</span> fois par seconde. La pression atmosphérique et les forces intermoléculaires maintiennent encore les molécules ensemble. Les molécules les plus agitées s’échappent parfois à la surface du liquide : c’est l’<strong>évaporation</strong>.</p>
+<p><strong>(4) Ébullition : <span class="math inline">\(T = 100\ ^\circ\text{C}\)</span></strong></p>
+<p>L’agitation est devenue suffisante pour que des molécules se libèrent non plus seulement en surface, mais au sein même du liquide, formant des <strong>bulles de vapeur</strong>. Ces bulles se forment lorsque la pression de vapeur à l’intérieur du liquide égale la pression atmosphérique. La température reste fixe à <span class="math inline">\(100\ ^\circ\text{C}\)</span> tant que le liquide n’est pas entièrement vaporisé.</p>
+<p><strong>(5) Vapeur d’eau : <span class="math inline">\(T &gt; 100\ ^\circ\text{C}\)</span></strong></p>
+<p>Les molécules <span class="math inline">\(\ce{H2O}\)</span> sont désormais indépendantes, comme dans tout gaz. Les forces intermoléculaires sont quasi nulles — la distance entre molécules est trop grande pour qu’elles interagissent significativement. Chaque molécule se déplace librement et rapidement dans l’espace.</p>
+<p><strong>(6) Thermolyse : <span class="math inline">\(T &gt; 900\ ^\circ\text{C}\)</span></strong></p>
+<p>L’énergie apportée devient suffisante pour rompre les liaisons <strong>intramoléculaires</strong> <span class="math inline">\(\ce{O-H}\)</span> : les molécules <span class="math inline">\(\ce{H2O}\)</span> se dissocient en atomes ou en ions. Il ne s’agit plus d’une transformation physique, mais d’une transformation chimique.</p>
+<p><strong>Attention :</strong> la thermolyse ne se produit qu’à des températures bien supérieures à l’ébullition. Cela illustre la hiérarchie établie au chapitre 3 : les liaisons intermoléculaires cèdent en premier, à des énergies dix à cent fois plus faibles que les liaisons intramoléculaires.</p>
+<p><strong>Exercices :</strong></p>
+<ol start="3" type="1">
+<li>Lors de la fusion de la glace, la température reste constante à <span class="math inline">\(0\ ^\circ\text{C}\)</span> malgré l’apport continu d’énergie. Expliquez au niveau particulaire ce que fait cette énergie.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="4" type="1">
+<li>L’éthanol <span class="math inline">\(\ce{CH3CH2OH}\)</span> bout à <span class="math inline">\(78\ ^\circ\text{C}\)</span> et l’eau à <span class="math inline">\(100\ ^\circ\text{C}\)</span>. En vous appuyant sur les types de forces intermoléculaires, expliquez cet écart.[^4]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="5" type="1">
+<li>Vrai ou faux : lors de l’ébullition de l’eau, les liaisons <span class="math inline">\(\ce{O-H}\)</span> intramoléculaires sont rompues. Justifiez.[^5]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+</section>
+</section>
+<section id="le-diagramme-de-phase" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="le-diagramme-de-phase"><span class="header-section-number">6.3</span> Le diagramme de phase</h2>
+<p>Un <strong>diagramme de phase</strong> est une représentation graphique des domaines de stabilité des états physiques d’un corps pur en fonction de la température (axe horizontal) et de la pression (axe vertical). Il permet de lire directement dans quel état se trouve une substance pour des conditions données de <span class="math inline">\(T\)</span> et <span class="math inline">\(P\)</span>.</p>
+<p>Trois éléments sont à connaître :</p>
+<p><strong>Les courbes de transition</strong> séparent les domaines de stabilité. Chaque courbe représente les conditions (<span class="math inline">\(T\)</span>, <span class="math inline">\(P\)</span>) pour lesquelles deux phases coexistent à l’équilibre. Traverser une courbe correspond à un changement d’état.</p>
+<p><strong>Le point triple</strong> est l’unique point où les trois phases — solide, liquide et gaz — coexistent simultanément. Pour l’eau, il se situe à <span class="math inline">\(T = 0{,}01\ ^\circ\text{C}\)</span> et <span class="math inline">\(P = 0{,}006\ \text{atm}\)</span>.</p>
+<p><strong>Le point critique</strong> est le point au-delà duquel la distinction entre phase liquide et phase gazeuse disparaît. La substance entre dans un <strong>état supercritique</strong>, aux propriétés intermédiaires entre un liquide et un gaz. Pour l’eau, ce point se situe à <span class="math inline">\(374\ ^\circ\text{C}\)</span> et <span class="math inline">\(218\ \text{atm}\)</span>.</p>
+<p><strong>Lecture du diagramme de phase du <span class="math inline">\(\ce{CO2}\)</span></strong></p>
+<p>À pression atmosphérique (<span class="math inline">\(P = 1\ \text{atm}\)</span>), le <span class="math inline">\(\ce{CO2}\)</span> solide se sublime directement en gaz à <span class="math inline">\(-78{,}5\ ^\circ\text{C}\)</span>, sans passer par l’état liquide — car son point triple est à <span class="math inline">\(P = 5{,}1\ \text{atm}\)</span>, au-dessus de la pression atmosphérique. La phase liquide du <span class="math inline">\(\ce{CO2}\)</span> n’est accessible qu’à des pressions supérieures à <span class="math inline">\(5{,}1\ \text{atm}\)</span>. C’est pourquoi la neige carbonique (solide) se sublime directement à l’air libre.</p>
+<p><strong>Proximal —</strong> La variation du point d’ébullition avec la pression a des applications pratiques immédiates. En altitude, la pression atmosphérique est plus faible : l’eau bout à moins de <span class="math inline">\(100\ ^\circ\text{C}\)</span>, ce qui allonge les temps de cuisson. À l’inverse, un autocuiseur augmente la pression intérieure pour porter l’eau à plus de <span class="math inline">\(100\ ^\circ\text{C}\)</span> et accélérer la cuisson.</p>
+<hr>
+<section id="lanomalie-de-leau" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="lanomalie-de-leau"><span class="header-section-number">6.3.1</span> L’anomalie de l’eau</h3>
+<p>Pour la quasi-totalité des substances, augmenter la pression à température constante finit par solidifier le liquide : le solide occupe moins de volume que le liquide, la pente de la courbe de fusion dans le diagramme de phase est donc <strong>positive</strong>.</p>
+<p>L’eau est une exception remarquable : sa courbe de fusion a une <strong>pente négative</strong>. Augmenter la pression sur de la glace la fait <em>fondre</em>. Pourquoi ?</p>
+<p>La glace présente une <strong>structure lacunaire</strong> : les ponts hydrogène contraignent les molécules <span class="math inline">\(\ce{H2O}\)</span> à s’organiser en un réseau hexagonal rigide, avec de grands espaces vides entre les molécules. Ce réseau occupe <em>plus</em> de volume que l’eau liquide, où les molécules sont plus proches et moins ordonnées. La glace est donc moins dense que l’eau liquide — c’est pourquoi elle flotte.</p>
+<p><strong>Conception naïve —</strong> On pourrait s’attendre à ce qu’un solide soit toujours plus dense que son liquide, puisqu’il est « plus compact ». Pour l’eau, c’est l’inverse : la structure imposée par les ponts hydrogène en phase solide est <em>plus ouverte</em> que le désordre de la phase liquide. Ce n’est pas la rigidité qui détermine la densité, mais la géométrie du réseau.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Phase</th>
+<th>Densité (g/L)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Glace (<span class="math inline">\(0\ ^\circ\text{C}\)</span>)</td>
+<td>917</td>
+</tr>
+<tr class="even">
+<td>Eau liquide (<span class="math inline">\(4\ ^\circ\text{C}\)</span>)</td>
+<td>1000</td>
+</tr>
+<tr class="odd">
+<td>Vapeur (<span class="math inline">\(100\ ^\circ\text{C}\)</span>)</td>
+<td>0,958</td>
+</tr>
+</tbody>
+</table>
+<p>La densité de l’eau liquide est maximale à <span class="math inline">\(4\ ^\circ\text{C}\)</span> : en dessous de cette température, le nombre de ponts hydrogène augmente et la structure commence à s’ouvrir, faisant diminuer la densité. C’est pourquoi, en hiver, le fond des lacs reste à <span class="math inline">\(4\ ^\circ\text{C}\)</span> tandis que la surface gèle — ce qui permet la survie des organismes aquatiques.</p>
+<p><strong>Application : le ski</strong></p>
+<p>La pente négative de la courbe de fusion de l’eau explique en partie pourquoi le ski est possible. La pression exercée par les skis sur la neige abaisse localement le point de fusion de la glace, formant une fine pellicule d’eau liquide sur laquelle les skis glissent.</p>
+<p><strong>Exercices :</strong></p>
+<ol start="6" type="1">
+<li>La neige carbonique (<span class="math inline">\(\ce{CO2}\)</span> solide) se sublime directement à <span class="math inline">\(-78{,}5\ ^\circ\text{C}\)</span> à pression atmosphérique sans jamais fondre. Expliquez ce comportement à l’aide du diagramme de phase du <span class="math inline">\(\ce{CO2}\)</span> et de la position de son point triple.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="7" type="1">
+<li>Un alpiniste au sommet du Mont-Rose (<span class="math inline">\(4634\ \text{m}\)</span>, <span class="math inline">\(P \approx 0{,}58\ \text{atm}\)</span>) fait bouillir de l’eau. À quelle température approximative l’eau bout-elle ? Justifiez qualitativement à partir du diagramme de phase.[^7]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="8" type="1">
+<li>Expliquez pourquoi la glace flotte sur l’eau liquide, alors que pour presque tous les autres corps purs le solide coule dans son propre liquide.[^8]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="9" type="1">
+<li>La densité de l’eau est maximale à <span class="math inline">\(4\ ^\circ\text{C}\)</span>. Expliquez pourquoi ce fait est crucial pour la survie des organismes aquatiques en hiver.[^9]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+</section>
+</section>
+<section id="solution-solvant-soluté" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="solution-solvant-soluté"><span class="header-section-number">6.4</span> Solution, solvant, soluté</h2>
+<p><strong>Conception courante :</strong> on associe spontanément le mot « solution » à un liquide transparent — de l’eau avec quelque chose de dissous dedans.</p>
+<p><strong>Au niveau macroscopique :</strong> une solution est visuellement homogène — aucun dépôt, aucune séparation de phases, aucun trouble visible à l’oeil nu.</p>
+<p><strong>Formalisation IUPAC :</strong> une <em>solution</em> est un mélange homogène constitué d’au moins deux substances. La substance dispersante, présente en plus grande proportion, est le <em>solvant</em> ; la substance dispersée est le <em>soluté</em> — il peut être solide, liquide ou gazeux.</p>
+<p><strong>Au niveau particulaire :</strong> dans une solution, les particules de soluté (molécules ou ions) sont dispersées individuellement parmi les particules de solvant, à l’échelle moléculaire.</p>
+<p><strong>Représentation symbolique :</strong> l’état aqueux se note (aq) après la formule chimique :</p>
+<p><span class="math display">\[\ce{NaCl(s) -&gt; Na+(aq) + Cl-(aq)}\]</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gazeuse</td>
+<td>Air : <span class="math inline">\(\ce{O2(g)}\)</span> + <span class="math inline">\(\ce{N2(g)}\)</span></td>
+</tr>
+<tr class="even">
+<td>Liquide</td>
+<td>Eau salée : <span class="math inline">\(\ce{NaCl(s)}\)</span> dans <span class="math inline">\(\ce{H2O(l)}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Solide (alliage)</td>
+<td>Laiton : <span class="math inline">\(\ce{Zn(s)}\)</span> + <span class="math inline">\(\ce{Cu(s)}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>La règle générale qui gouverne la dissolution est la suivante : <em>semblable dissout semblable</em> — rappel du chapitre 3. Un solvant polaire dissout préférentiellement des solutés polaires ou ioniques ; un solvant apolaire dissout préférentiellement des solutés apolaires.</p>
+<!-- REF: ref:liaisons-intermoleculaires-solubilite — règle semblable dissout semblable établie au chapitre 3 -->
+<p><strong>Exercices :</strong></p>
+<ol start="10" type="1">
+<li>Classez les mélanges suivants en solution ou non-solution, et justifiez : (a) eau + éthanol <span class="math inline">\(\ce{CH3CH2OH}\)</span> ; (b) eau + huile d’olive ; (c) eau + sucre (après agitation complète) ; (d) laiton (alliage de cuivre et de zinc).<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="11" type="1">
+<li>L’air est une solution gazeuse composée principalement de <span class="math inline">\(\ce{N2}\)</span> (78 %) et de <span class="math inline">\(\ce{O2}\)</span> (21 %). Quel est le solvant et quel est le soluté principal ? Justifiez votre choix.[^11]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="12" type="1">
+<li>Le vernis à ongles se dissout dans l’acétone <span class="math inline">\(\ce{CH3COCH3}\)</span> mais pas dans l’eau. Le vernis est-il polaire ou apolaire ? Justifiez en appliquant la règle <em>semblable dissout semblable</em>, sachant que l’acétone est polaire.[^12]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+</section>
+<section id="solubilité-miscibilité-et-mélanges-hétérogènes" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="solubilité-miscibilité-et-mélanges-hétérogènes"><span class="header-section-number">6.5</span> Solubilité, miscibilité et mélanges hétérogènes</h2>
+<p><strong>Solvants polaires et solutés ioniques</strong></p>
+<p>L’eau est un solvant polaire capable de former des ponts hydrogène. Lorsqu’un cristal ionique comme <span class="math inline">\(\ce{NaCl}\)</span> est plongé dans l’eau, les molécules <span class="math inline">\(\ce{H2O}\)</span> exercent des interactions ion–dipôle sur les ions de surface. Ces interactions sont suffisamment fortes pour arracher les ions <span class="math inline">\(\ce{Na+}\)</span> et <span class="math inline">\(\ce{Cl-}\)</span> au cristal et les entourer d’une <strong>sphère de solvatation</strong>. Le sel se dissout.</p>
+<p>Dans un solvant apolaire comme l’hexane, les interactions ion–dipôle induit sont trop faibles pour compenser la cohésion ionique du cristal : les sels ne se dissolvent pas dans les hydrocarbures.</p>
+<p><strong>Solvants polaires et solutés covalents polaires</strong></p>
+<p>Pour qu’un composé covalent polaire se dissolve dans l’eau, il doit pouvoir séparer les molécules <span class="math inline">\(\ce{H2O}\)</span> — ce qui coûte de l’énergie — et établir à leur place des interactions avec le solvant. Si le soluté peut former des ponts hydrogène avec l’eau, l’énergie est restituée et la dissolution est favorable.</p>
+<p>C’est le cas du méthanol <span class="math inline">\(\ce{CH3OH}\)</span> (totalement miscible à l’eau), du glucose ou de l’éthanol. En revanche, plus la chaîne carbonée apolaire d’une molécule est longue, moins elle peut interagir avec l’eau, et plus elle risque d’être <strong>hydrophobe</strong>.</p>
+<p>De manière approchée, on considère qu’une chaîne de trois atomes de carbone constitue la limite : en deçà, la partie polaire domine et la molécule est soluble ; au-delà, la partie apolaire prend le dessus.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Alcool</th>
+<th>Solubilité dans l’eau</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Méthanol <span class="math inline">\(\ce{CH3OH}\)</span></td>
+<td>totalement miscible</td>
+</tr>
+<tr class="even">
+<td>Butanol <span class="math inline">\(\ce{C4H9OH}\)</span></td>
+<td>faiblement soluble</td>
+</tr>
+<tr class="odd">
+<td>Octanol <span class="math inline">\(\ce{C8H17OH}\)</span></td>
+<td>insoluble</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hydrophile, hydrophobe, amphiphile</strong></p>
+<ul>
+<li>Une espèce <strong>hydrophile</strong> (du grec <em>hydro</em>, eau, et <em>phileo</em>, aimer) a une affinité pour l’eau : elle est polaire ou ionique, et peut former des ponts hydrogène avec le solvant.</li>
+<li>Une espèce <strong>hydrophobe</strong> (du grec <em>phóbos</em>, peur) repousse l’eau : elle est apolaire et ne peut pas interagir avec les molécules <span class="math inline">\(\ce{H2O}\)</span>.</li>
+<li>Une espèce <strong>amphiphile</strong> (du grec <em>amphi</em>, double) possède à la fois une partie hydrophile et une partie hydrophobe. C’est le cas des savons et des phospholipides des membranes cellulaires.</li>
+</ul>
+<p><strong>Conception naïve —</strong> On croit parfois que l’eau dissout tout. C’est faux : l’eau est un excellent solvant pour les espèces polaires et ioniques, mais elle est inefficace pour les substances apolaires. Le phosphore blanc <span class="math inline">\(\ce{P4}\)</span>, apolaire, est insoluble dans l’eau mais se dissout dans le disulfure de carbone <span class="math inline">\(\ce{CS2}\)</span>, lui-même apolaire.</p>
+<p><strong>Mélanges gaz–liquide</strong></p>
+<p>Un gaz se dissout dans un liquide s’il partage des propriétés similaires avec lui. L’oxygène <span class="math inline">\(\ce{O2}\)</span>, faiblement polarisable, se dissout peu dans l’eau via des forces de Debye — mais suffisamment pour permettre la respiration des poissons. L’ammoniac <span class="math inline">\(\ce{NH3}\)</span>, polaire et capable de former des ponts hydrogène avec l’eau, s’y dissout au contraire très facilement — c’est ce qu’illustre l’expérience de la fontaine d’ammoniaque, où la dissolution rapide du gaz crée une dépression qui aspire l’eau dans le ballon.</p>
+<p><strong>Proximal —</strong> La solubilité des gaz dans l’eau diminue quand la température augmente : en chauffant, on apporte de l’énergie qui suffit à vaincre les faibles interactions gaz–eau. C’est pourquoi les poissons souffrent davantage de manque d’oxygène dans les eaux chaudes que dans les eaux froides.</p>
+<p><strong>Types de mélanges hétérogènes</strong></p>
+<p>Tous les mélanges hétérogènes ne se comportent pas de la même façon. On distingue trois catégories selon la taille des particules dispersées et la vitesse de séparation des phases :</p>
+<p><strong>Les mélanges hétérogènes simples</strong> se séparent spontanément en quelques secondes à quelques minutes par décantation. Les particules dispersées sont visibles à l’oeil nu. Exemple : sable dans l’eau, huile et eau dans un verre.</p>
+<p><strong>Les suspensions</strong> contiennent des particules de taille intermédiaire (entre 1 et 1000 µm) qui sédimentent lentement — en quelques heures à quelques jours. Exemple : lait entier non homogénéisé, sang, encre.</p>
+<p><strong>Les colloïdes</strong> contiennent des particules très fines (entre 1 nm et 1 µm) qui ne sédimentent pas à l’échelle humaine. À l’oeil nu, un colloïde ressemble à un mélange homogène. Exemple : lait homogénéisé, mayonnaise, brouillard, gélatine.</p>
+<p><strong>Attention :</strong> la distinction entre mélange homogène et colloïde n’est pas toujours évidente à l’oeil nu. Le critère décisif est l’échelle des particules : dans un mélange homogène, les constituants sont dispersés à l’échelle moléculaire (&lt; 1 nm) ; dans un colloïde, les particules sont plus grandes et diffusent la lumière — c’est l’<strong>effet Tyndall</strong>, visible quand un faisceau lumineux traverse le mélange.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Taille des particules</th>
+<th>Séparation spontanée</th>
+<th>Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mélange homogène</td>
+<td>&lt; 1 nm (échelle moléculaire)</td>
+<td>non</td>
+<td>eau salée</td>
+</tr>
+<tr class="even">
+<td>Colloïde</td>
+<td>1 nm – 1 µm</td>
+<td>très lente (mois)</td>
+<td>lait, brouillard</td>
+</tr>
+<tr class="odd">
+<td>Suspension</td>
+<td>1 µm – 1 mm</td>
+<td>lente (heures–jours)</td>
+<td>sang, encre</td>
+</tr>
+<tr class="even">
+<td>Hétérogène simple</td>
+<td>&gt; 1 mm</td>
+<td>rapide (secondes)</td>
+<td>huile–eau</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exercices :</strong></p>
+<ol start="13" type="1">
+<li>Classez les mélanges suivants en homogène, colloïde ou suspension : (a) eau et farine agitée ; (b) eau et sel de cuisine ; (c) lait homogénéisé ; (d) eau et huile d’olive.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="14" type="1">
+<li>Le brouillard et l’air humide (vapeur d’eau dissoute dans l’air) sont tous deux composés d’eau et d’air. Pourquoi le brouillard est-il visible alors que l’air humide est transparent ?[^14]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="15" type="1">
+<li>Un élève mélange de l’huile avec de l’eau puis ajoute du savon (amphiphile) et agite. Décrivez ce qui se passe à l’échelle moléculaire, en précisant quel type de mélange est obtenu et pourquoi il est stable.[^15]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="16" type="1">
+<li>Proposez une méthode physique pour séparer chacun des mélanges suivants, en justifiant votre choix : (a) eau salée ; (b) sable et eau ; (c) huile et eau.[^16]</li>
+</ol>
+<!-- espace:5 -->
+</section>
+<section id="dissolution-simple-et-avec-dissociation" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="dissolution-simple-et-avec-dissociation"><span class="header-section-number">6.6</span> Dissolution : simple et avec dissociation</h2>
+<p><strong>Conception courante :</strong> on confond souvent dissoudre, diluer et faire fondre. Ce sont trois phénomènes distincts. La fusion est un changement d’état physique : les liaisons intermoléculaires se rompent, mais les molécules restent intactes. La dissolution est une dispersion à l’échelle moléculaire dans un solvant. La dilution, elle, consiste simplement à ajouter du solvant à une solution déjà formée.</p>
+<section id="dissolution-simple" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="dissolution-simple"><span class="header-section-number">6.6.1</span> Dissolution simple</h3>
+<p>Le saccharose (sucre de table, <span class="math inline">\(\ce{C12H22O11}\)</span>) est un solide cristallin constitué de molécules covalentes polaires et neutres. Lorsqu’un cristal de sucre est placé dans l’eau, les molécules de surface sont attirées par les molécules d’eau polaires (interactions dipôle–dipôle et ponts hydrogène). Elles se détachent du solide et se dispersent dans le solvant, entourées de molécules d’eau : on dit qu’elles sont <em>hydratées</em>.</p>
+<p><span class="math display">\[\ce{C12H22O11(s) -&gt; C12H22O11(aq)}\]</span></p>
+<p><strong>Attention :</strong> les molécules d’eau participent au phénomène d’hydratation, mais elles ne sont pas consommées dans une réaction chimique. C’est pourquoi leur formule n’apparaît pas dans l’équation de dissolution.</p>
+</section>
+<section id="dissolution-avec-dissociation" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="dissolution-avec-dissociation"><span class="header-section-number">6.6.2</span> Dissolution avec dissociation</h3>
+<p>Le chlorure de sodium <span class="math inline">\(\ce{NaCl}\)</span> est un composé ionique. Lorsqu’il est placé dans l’eau, les molécules d’eau polaires exercent une attraction ion–dipôle sur les ions de surface. Ceux-ci se détachent du réseau cristallin — c’est la <em>dissociation</em> — puis sont immédiatement hydratés et dispersés dans le solvant.</p>
+<p><span class="math display">\[\ce{NaCl(s) -&gt; Na+(aq) + Cl-(aq)}\]</span></p>
+<p>Les molécules d’eau s’orientent différemment selon l’ion qu’elles entourent : le pôle <span class="math inline">\(\delta^-\)</span> (oxygène) se tourne vers les cations <span class="math inline">\(\ce{Na+}\)</span>, et le pôle <span class="math inline">\(\delta^+\)</span> (hydrogène) vers les anions <span class="math inline">\(\ce{Cl-}\)</span>.</p>
+<p><strong>Exercices :</strong></p>
+<ol start="17" type="1">
+<li>Distinguez dissolution simple et dissolution avec dissociation pour : (a) <span class="math inline">\(\ce{KBr}\)</span> dans l’eau ; (b) glucose <span class="math inline">\(\ce{C6H12O6}\)</span> dans l’eau ; (c) <span class="math inline">\(\ce{HCl}\)</span> dans l’eau (dissociation totale).<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="18" type="1">
+<li>Expliquez au niveau particulaire pourquoi <span class="math inline">\(\ce{NaCl}\)</span> se dissout dans l’eau mais pas dans l’hexane <span class="math inline">\(\ce{C6H14}\)</span>.[^18]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+</section>
+</section>
+<section id="concentration-et-dilution" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="concentration-et-dilution"><span class="header-section-number">6.7</span> Concentration et dilution</h2>
+<p><strong>Formalisation :</strong> La <strong>concentration molaire</strong> (ou molarité) d’une solution exprime le nombre de moles de soluté par litre de solution :</p>
+<p><span class="math display">\[c = \frac{n}{V} \quad \text{(mol/L)}\]</span></p>
+<p>La <strong>concentration massique</strong> exprime la masse de soluté par litre de solution :</p>
+<p><span class="math display">\[C_m = \frac{m}{V} \quad \text{(g/L)}\]</span></p>
+<p><strong>Préparation d’une solution :</strong> on dissout la quantité de soluté calculée dans un peu de solvant, on transvase dans un ballon jaugé, et on complète jusqu’au trait de jauge.</p>
+<p><strong>Dilution :</strong> ajouter du solvant à une solution existante conserve la quantité de matière de soluté :</p>
+<p><span class="math display">\[c_1 V_1 = c_2 V_2\]</span></p>
+<p><strong>Exercices :</strong></p>
+<ol start="19" type="1">
+<li>On dissout 5,85 g de <span class="math inline">\(\ce{NaCl}\)</span> (<span class="math inline">\(M = 58{,}5\ \text{g/mol}\)</span>) dans suffisamment d’eau pour obtenir 500 mL de solution. Calculez la concentration molaire.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<div class="qcm-widget" data-correct="1" data-options="[&quot;0,100 mol/L&quot;, &quot;0,200 mol/L&quot;, &quot;0,400 mol/L&quot;, &quot;1,00 mol/L&quot;]">
+
+</div>
+<ol start="20" type="1">
+<li>On prélève 25,0 mL d’une solution de <span class="math inline">\(\ce{HCl}\)</span> à 2,00 mol/L et on complète à 500 mL avec de l’eau. Quelle est la concentration de la solution diluée ?[^20]</li>
+</ol>
+<!-- espace:5 -->
+<div class="qcm-widget" data-correct="1" data-options="[&quot;0,0500 mol/L&quot;, &quot;0,100 mol/L&quot;, &quot;0,200 mol/L&quot;, &quot;0,400 mol/L&quot;]">
+
+</div>
+<ol start="21" type="1">
+<li>Exprimez en mol/L la concentration d’une solution de glucose <span class="math inline">\(\ce{C6H12O6}\)</span> à 90 g/L (<span class="math inline">\(M = 180\ \text{g/mol}\)</span>).[^21]</li>
+</ol>
+<!-- espace:5 -->
+<div class="qcm-widget" data-correct="1" data-options="[&quot;0,250 mol/L&quot;, &quot;0,500 mol/L&quot;, &quot;1,00 mol/L&quot;, &quot;2,00 mol/L&quot;]">
+
+</div>
+<hr>
+</section>
+<section id="électrolytes-équations-ioniques-et-précipitation" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="électrolytes-équations-ioniques-et-précipitation"><span class="header-section-number">6.8</span> Électrolytes, équations ioniques et précipitation</h2>
+<section id="électrolytes-forts-et-faibles" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="électrolytes-forts-et-faibles"><span class="header-section-number">6.8.1</span> Électrolytes forts et faibles</h3>
+<p>Un <strong>électrolyte</strong> est une substance capable de libérer des ions en solution, rendant celle-ci conductrice du courant électrique.</p>
+<ul>
+<li>Un <strong>électrolyte fort</strong> est entièrement dissocié en solution (dissociation totale, flèche simple <span class="math inline">\(\rightarrow\)</span>) : sels solubles, acides forts (<span class="math inline">\(\ce{HCl}\)</span>, <span class="math inline">\(\ce{HNO3}\)</span>, <span class="math inline">\(\ce{H2SO4}\)</span>), bases fortes (<span class="math inline">\(\ce{NaOH}\)</span>, <span class="math inline">\(\ce{KOH}\)</span>).</li>
+<li>Un <strong>électrolyte faible</strong> est partiellement dissocié (dissociation partielle, double flèche <span class="math inline">\(\rightleftharpoons\)</span>) : acides faibles (<span class="math inline">\(\ce{CH3COOH}\)</span>), bases faibles (<span class="math inline">\(\ce{NH3}\)</span>).</li>
+<li>Un <strong>non-électrolyte</strong> ne libère aucun ion : saccharose, glucose, éthanol.</li>
+</ul>
+</section>
+<section id="équations-ioniques-et-précipitation" class="level3" data-number="6.8.2">
+<h3 data-number="6.8.2" class="anchored" data-anchor-id="équations-ioniques-et-précipitation"><span class="header-section-number">6.8.2</span> Équations ioniques et précipitation</h3>
+<p>Lorsqu’on mélange deux solutions ioniques, certains ions peuvent s’associer pour former un <strong>précipité</strong> — un solide peu soluble. On décrit cette transformation par une <strong>équation ionique nette</strong>, qui ne fait apparaître que les ions participant à la réaction.</p>
+<p><strong>Méthode :</strong></p>
+<ol type="1">
+<li>Écrire l’équation moléculaire complète.</li>
+<li>Dissocier tous les électrolytes forts en ions.</li>
+<li>Simplifier les <strong>ions spectateurs</strong> (présents des deux côtés sans changer).</li>
+<li>Écrire l’équation ionique nette.</li>
+</ol>
+<p><strong>Exemple :</strong> Mélange de <span class="math inline">\(\ce{AgNO3(aq)}\)</span> et <span class="math inline">\(\ce{NaCl(aq)}\)</span> :</p>
+<p><span class="math display">\[\ce{Ag+(aq) + NO3-(aq) + Na+(aq) + Cl-(aq) -&gt; AgCl(s) + Na+(aq) + NO3-(aq)}\]</span></p>
+<p>Ions spectateurs : <span class="math inline">\(\ce{Na+}\)</span> et <span class="math inline">\(\ce{NO3-}\)</span>. Équation ionique nette :</p>
+<p><span class="math display">\[\ce{Ag+(aq) + Cl-(aq) -&gt; AgCl(s)}\]</span></p>
+<p><strong>Exercices :</strong></p>
+<ol start="22" type="1">
+<li>Classez les substances suivantes en électrolyte fort, électrolyte faible ou non-électrolyte : <span class="math inline">\(\ce{NaCl}\)</span>, <span class="math inline">\(\ce{CH3COOH}\)</span>, saccharose, <span class="math inline">\(\ce{HNO3}\)</span>, <span class="math inline">\(\ce{NH3}\)</span>.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="23" type="1">
+<li>On mélange <span class="math inline">\(\ce{Pb(NO3)2(aq)}\)</span> et <span class="math inline">\(\ce{KI(aq)}\)</span>. <span class="math inline">\(\ce{PbI2}\)</span> est peu soluble. Écrivez l’équation ionique nette.[^23]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="24" type="1">
+<li>On mélange <span class="math inline">\(\ce{Ca(OH)2(aq)}\)</span> et <span class="math inline">\(\ce{Na2SO4(aq)}\)</span>. <span class="math inline">\(\ce{CaSO4}\)</span> est peu soluble. Écrivez l’équation moléculaire, identifiez les ions spectateurs, et donnez l’équation ionique nette.[^24]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="25" type="1">
+<li>Une solution de <span class="math inline">\(\ce{FeCl3}\)</span> 0,100 mol/L a un volume de 200 mL. Calculez les concentrations réelles de <span class="math inline">\(\ce{Fe^{3+}}\)</span> et <span class="math inline">\(\ce{Cl-}\)</span>, et vérifiez le bilan de charges.[^25]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+</section>
+</section>
+<section id="exercices-de-synthèse" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="exercices-de-synthèse"><span class="header-section-number">6.9</span> <strong>Exercices de synthèse</strong></h2>
+<ol start="26" type="1">
+<li>On dissout 5,00 g de <span class="math inline">\(\ce{Na2SO4}\)</span> (<span class="math inline">\(M = 142\ \text{g/mol}\)</span>) dans suffisamment d’eau pour obtenir 250 mL de solution. Calculez : (a) la concentration analytique ; (b) les concentrations réelles <span class="math inline">\([\ce{Na+}]\)</span> et <span class="math inline">\([\ce{SO4^{2-}}]\)</span> ; (c) vérifiez le bilan de charges.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="27" type="1">
+<li>L’eau du Léman contient environ 67 mg/L de <span class="math inline">\(\ce{Ca^{2+}}\)</span> et 9 mg/L de <span class="math inline">\(\ce{Mg^{2+}}\)</span>. Exprimez ces concentrations en mol/L (<span class="math inline">\(M(\ce{Ca}) = 40{,}1\ \text{g/mol}\)</span>, <span class="math inline">\(M(\ce{Mg}) = 24{,}3\ \text{g/mol}\)</span>) et calculez la concentration totale en ions divalents.[^27]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="28" type="1">
+<li>On mélange 30,0 mL de <span class="math inline">\(\ce{AgNO3}\)</span> 0,200 mol/L avec 20,0 mL de <span class="math inline">\(\ce{MgCl2}\)</span> 0,150 mol/L. <span class="math inline">\(\ce{AgCl}\)</span> est peu soluble. (a) Écrivez l’équation ionique nette. (b) Identifiez le réactif limitant. (c) Calculez la masse de précipité formée (<span class="math inline">\(M(\ce{AgCl}) = 143{,}3\ \text{g/mol}\)</span>).[^28]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="29" type="1">
+<li>Une solution commerciale de <span class="math inline">\(\ce{HCl}\)</span> est à 37 % masse et a une densité de 1,19 g/mL. (a) Calculez la concentration molaire. (b) Quel volume de cette solution faut-il prélever pour préparer 500 mL de <span class="math inline">\(\ce{HCl}\)</span> à 0,100 mol/L ?[^29]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="30" type="1">
+<li>On mélange 50,0 mL de <span class="math inline">\(\ce{Ca(NO3)2}\)</span> 0,100 mol/L avec 50,0 mL de <span class="math inline">\(\ce{Na3PO4}\)</span> 0,100 mol/L. Le phosphate de calcium <span class="math inline">\(\ce{Ca3(PO4)2}\)</span> est peu soluble. (a) Écrivez l’équation ionique nette. (b) Identifiez le réactif limitant. (c) Calculez les concentrations de tous les ions restants en solution.[^30]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="31" type="1">
+<li>Un purificateur d’eau par osmose inverse réduit la concentration en <span class="math inline">\(\ce{NaCl}\)</span> de 450 mg/L à 15 mg/L. (a) Calculez les concentrations molaires initiale et finale. (b) Exprimez la concentration initiale en ppm masse (densité ≈ 1,00 g/mL). (c) Quel facteur de réduction l’appareil réalise-t-il ?[^31]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="32" type="1">
+<li>On souhaite déterminer la concentration d’une solution inconnue de <span class="math inline">\(\ce{HCl}\)</span> par précipitation. On prélève 25,0 mL de cette solution et on y ajoute un excès de <span class="math inline">\(\ce{AgNO3}\)</span>. On recueille et pèse le précipité de <span class="math inline">\(\ce{AgCl}\)</span> formé : sa masse est de 0,861 g (<span class="math inline">\(M(\ce{AgCl}) = 143{,}3\ \text{g/mol}\)</span>). Calculez la concentration molaire de la solution initiale de <span class="math inline">\(\ce{HCl}\)</span>.[^32]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="33" type="1">
+<li>La solubilité de <span class="math inline">\(\ce{BaSO4}\)</span> dans l’eau est de <span class="math inline">\(2{,}4 \cdot 10^{-4}\ \text{g}\)</span> par 100 mL d’eau à 25 <span class="math inline">\(^\circ\)</span>C (<span class="math inline">\(M(\ce{BaSO4}) = 233\ \text{g/mol}\)</span>). Calculez la concentration molaire d’une solution saturée de <span class="math inline">\(\ce{BaSO4}\)</span>.[^33]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="34" type="1">
+<li>L’acide phosphorique <span class="math inline">\(\ce{H3PO4}\)</span> est un acide polyprotique. La première dissociation est totale ; les deux suivantes sont partielles. Écrivez les trois équations de dissociation avec les flèches appropriées, et indiquez pour chaque étape si l’espèce est un électrolyte fort ou faible.[^34]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="35" type="1">
+<li>Un plongeur remonte trop rapidement d’une plongée profonde et souffre d’un accident de décompression. Expliquez ce phénomène en termes de solubilité, de pression et de diagramme de phase.[^35]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-06-02</em></p>
+<p>Ces défis s’adressent à ceux qui veulent aller réellement plus loin. Ils exigent de mobiliser les notions de Zone 2 dans des contextes nouveaux.</p>
+<p><strong>Défi A — Le diiode : sublimation ou illusion ?</strong> <em>(approfondissement formel)</em></p>
+<p>La Zone 2 a établi, pour le <span class="math inline">\(\ce{CO2}\)</span>, la règle suivante : si le point triple d’un corps pur se situe à une pression <em>supérieure</em> à <span class="math inline">\(1\ \text{atm}\)</span>, l’état liquide n’est jamais accessible à pression atmosphérique — seule la sublimation directe existe.</p>
+<p>Le diiode <span class="math inline">\(\ce{I2}\)</span> a un point triple à <span class="math inline">\(T = 114\ ^\circ\text{C}\)</span> et <span class="math inline">\(P = 0{,}12\ \text{atm}\)</span> — une pression <em>inférieure</em> à <span class="math inline">\(1\ \text{atm}\)</span>, contrairement au <span class="math inline">\(\ce{CO2}\)</span>.</p>
+<ol type="a">
+<li><p>En généralisant la règle vue pour le <span class="math inline">\(\ce{CO2}\)</span>, prévoyez si le diiode possède un état liquide accessible à pression atmosphérique.</p></li>
+<li><p>Dans les faits, le diiode solide est réputé se « sublimer » facilement à température ambiante — on observe une vapeur violette caractéristique sans jamais voir de diiode liquide se former. Cette observation courante semble contredire la réponse obtenue en a). Comment conciliez-vous les deux ?</p></li>
+<li><p>Expliquez, au niveau particulaire, ce qui permet à un solide de sembler se volatiliser directement, même lorsque le diagramme de phase indique qu’un état liquide existe bel et bien à pression atmosphérique.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p></li>
+</ol>
+<hr>
+<p><strong>Défi B — Le sérum physiologique</strong> <em>(transfert interdisciplinaire)</em></p>
+<p>Le sérum physiologique utilisé en perfusion médicale est une solution aqueuse de chlorure de sodium à 9 g/L, souvent étiquetée « <span class="math inline">\(\ce{NaCl}\)</span> 0,9 % ».</p>
+<ol type="a">
+<li><p>Calculez la concentration molaire analytique de cette solution (<span class="math inline">\(M(\ce{NaCl}) = 58{,}5\ \text{g/mol}\)</span>).</p></li>
+<li><p>Le <span class="math inline">\(\ce{NaCl}\)</span> étant un électrolyte fort, donnez les concentrations réelles de <span class="math inline">\(\ce{Na+}\)</span> et de <span class="math inline">\(\ce{Cl-}\)</span> dans le sérum.</p></li>
+<li><p>Le plasma sanguin humain contient environ <span class="math inline">\(0{,}140\ \text{mol/L}\)</span> d’ions <span class="math inline">\(\ce{Na+}\)</span>. Comparez cette valeur à celle obtenue en b) et expliquez pourquoi ce sérum est qualifié de solution « isotonique » — sans entrer dans le mécanisme de l’osmose, qui sera formalisé ultérieurement.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p></li>
+</ol>
+<hr>
+<p><strong>Défi C — Précipitation sélective</strong> <em>(ouverture conceptuelle)</em></p>
+<p>Une solution contient à la fois des ions <span class="math inline">\(\ce{Cl-}\)</span> et des ions <span class="math inline">\(\ce{I-}\)</span>, chacun à une concentration de 0,100 mol/L. On ajoute progressivement une solution de <span class="math inline">\(\ce{AgNO3}\)</span>.</p>
+<p>On donne : <span class="math inline">\(\ce{AgCl}\)</span> est peu soluble ; <span class="math inline">\(\ce{AgI}\)</span> est encore moins soluble que <span class="math inline">\(\ce{AgCl}\)</span>.</p>
+<ol type="a">
+<li><p>Lequel des deux précipités se forme en premier ? Justifier qualitativement.</p></li>
+<li><p>Écrire les deux équations ioniques nettes de précipitation.</p></li>
+<li><p>Ce phénomène de précipitation sélective est utilisé en chimie analytique pour identifier et séparer des ions. En quoi la notion d’électrolyte fort est-elle indispensable pour raisonner sur ce type de système ?<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></p></li>
+</ol>
+<hr>
+</section>
+<section id="mots-clés" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="mots-clés"><span class="header-section-number">6.10</span> Mots-clés</h2>
+<p><strong>Corps pur</strong> : substance constituée d’une seule espèce chimique ; tous les constituants sont identiques au niveau particulaire.</p>
+<p><strong>Phase</strong> : région de matière physiquement et chimiquement uniforme, délimitée par une surface de séparation.</p>
+<p><strong>Transformation physique</strong> : modification d’une substance qui n’affecte que les liaisons intermoléculaires — les espèces chimiques restent inchangées (ex. changements d’état, dissolution, précipitation).</p>
+<p><strong>Diagramme de phase</strong> : représentation graphique des domaines de stabilité des états physiques d’un corps pur en fonction de la température et de la pression.</p>
+<p><strong>Point triple</strong> : conditions uniques de température et de pression où les trois phases d’un corps pur coexistent à l’équilibre.</p>
+<p><strong>Solution</strong> : mélange homogène constitué d’au moins deux substances ; la substance dispersante est le solvant, la substance dispersée est le soluté.</p>
+<p><strong>Dissolution simple</strong> : dispersion à l’échelle moléculaire d’un soluté covalent polaire dans un solvant polaire, sans réaction chimique.</p>
+<p><strong>Dissolution avec dissociation</strong> : dissolution d’un composé ionique accompagnée d’une séparation des ions, qui sont ensuite hydratés et dispersés librement en solution.</p>
+<p><strong>Concentration molaire (molarité)</strong> : nombre de moles de soluté par litre de solution ; <span class="math inline">\(c = n/V\)</span>, exprimée en mol/L.</p>
+<p><strong>Dilution</strong> : ajout de solvant à une solution existante ; la quantité de matière est conservée selon <span class="math inline">\(c_1 V_1 = c_2 V_2\)</span>.</p>
+<p><strong>Électrolyte fort</strong> : électrolyte entièrement dissocié en solution (dissociation totale, flèche simple <span class="math inline">\(\rightarrow\)</span>).</p>
+<p><strong>Électrolyte faible</strong> : électrolyte partiellement dissocié en solution (dissociation partielle, double flèche <span class="math inline">\(\rightleftharpoons\)</span>).</p>
+<p><strong>Précipité</strong> : solide peu soluble formé lors du mélange de deux solutions ioniques dont certains ions s’associent.</p>
+<p><strong>Ions spectateurs</strong> : ions présents en solution qui ne participent pas à la réaction de précipitation ; ils n’apparaissent pas dans l’équation ionique nette.</p>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-07-04</em></p>
+<hr>
+<p><em>Projet-Balmer</em></p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><ol type="a">
+<li>Corps pur (<span class="math inline">\(\ce{H2O}\)</span> uniquement). (b) Mélange homogène (<span class="math inline">\(\ce{N2}\)</span>, <span class="math inline">\(\ce{O2}\)</span>, <span class="math inline">\(\ce{Ar}\)</span>… dispersés à l’échelle moléculaire). (c) Mélange hétérogène (colloïde : gouttelettes de graisse dispersées dans l’eau). (d) Mélange homogène (<span class="math inline">\(\ce{CO2}\)</span> dissous dans l’eau à l’échelle moléculaire). (e) Mélange hétérogène (minéraux distincts visibles à l’oeil nu). [^2]: Non. Une phase peut être un mélange homogène : l’eau salée est une solution (mélange) mais constitue une seule phase liquide uniforme. La notion de phase se réfère à l’uniformité physique et chimique, pas à la pureté.</li>
+</ol>
+<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn2"><p>L’énergie sert exclusivement à rompre les ponts hydrogène du réseau cristallin de la glace — elle ne fait pas augmenter l’agitation thermique des molécules. Tant que la transition de phase n’est pas achevée, la température reste constante. [^4]: L’eau (<span class="math inline">\(\ce{H2O}\)</span>) forme jusqu’à 4 ponts hydrogène par molécule (2 donneurs, 2 accepteurs). L’éthanol n’en forme qu’un seul par groupe <span class="math inline">\(\ce{OH}\)</span>. La cohésion intermoléculaire de l’eau est donc plus forte, d’où une température d’ébullition plus élevée. [^5]: Faux. L’ébullition est une transformation physique : seules les liaisons intermoléculaires (ponts hydrogène) sont rompues. Les liaisons intramoléculaires <span class="math inline">\(\ce{O-H}\)</span> restent intactes — les molécules <span class="math inline">\(\ce{H2O}\)</span> sont identiques en phase gazeuse et en phase liquide.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Le point triple du <span class="math inline">\(\ce{CO2}\)</span> se situe à <span class="math inline">\(5{,}1\ \text{atm}\)</span>, bien au-dessus de la pression atmosphérique (<span class="math inline">\(1\ \text{atm}\)</span>). À <span class="math inline">\(1\ \text{atm}\)</span>, on se trouve donc dans une région du diagramme où seules les phases solide et gaz peuvent exister — le liquide est inaccessible. Le <span class="math inline">\(\ce{CO2}\)</span> passe directement du solide au gaz par sublimation. [^7]: Inférieure à <span class="math inline">\(100\ ^\circ\text{C}\)</span> — environ <span class="math inline">\(85\ ^\circ\text{C}\)</span>. La courbe liquide–gaz du diagramme de phase a une pente positive : à pression plus faible, la température d’ébullition est plus basse. En altitude, la pression est réduite, donc l’eau bout plus tôt. [^8]: La glace a une structure lacunaire imposée par les ponts hydrogène : réseau hexagonal avec de grands espaces vides. Elle occupe donc <em>plus</em> de volume que l’eau liquide à la même masse — sa densité (917 g/L) est inférieure à celle de l’eau liquide (1000 g/L). Pour la plupart des corps purs, le solide est plus dense que le liquide car les molécules y sont plus proches. [^9]: L’eau la plus froide (0–4 <span class="math inline">\(^\circ\)</span>C), plus légère que l’eau à 4 <span class="math inline">\(^\circ\)</span>C, remonte en surface et gèle. L’eau à 4 <span class="math inline">\(^\circ\)</span>C, plus dense, reste au fond. Les organismes aquatiques survivent dans cette eau de fond, protégés de la glace par ce gradient de densité.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><ol type="a">
+<li>Solution (mélange homogène à l’échelle moléculaire, deux liquides miscibles). (b) Non-solution : mélange hétérogène, deux phases distinctes visibles. (c) Solution (le sucre est dispersé à l’échelle moléculaire). (d) Solution solide : les atomes de Zn sont dispersés dans le réseau de Cu à l’échelle atomique. [^11]: Le solvant est <span class="math inline">\(\ce{N2}\)</span> (substance présente en plus grande proportion, 78 %) ; le soluté principal est <span class="math inline">\(\ce{O2}\)</span> (21 %). Le solvant est toujours la substance majoritaire. [^12]: Le vernis est apolaire (ou peu polaire) : les résines du vernis sont apolaires — elles se dissolvent mieux dans des solvants organiques peu polaires comme l’acétate d’éthyle (constituant principal des dissolvants).</li>
+</ol>
+<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn5"><ol type="a">
+<li>Suspension (farine : particules &gt; 1 µm, sédimente). (b) Mélange homogène (sel dissous à l’échelle moléculaire). (c) Colloïde (gouttelettes de graisse 1 nm–1 µm, stable). (d) Mélange hétérogène simple (deux phases visibles, séparation rapide par décantation). [^14]: Le brouillard est un colloïde : des gouttelettes d’eau liquide de taille 1 nm–1 µm diffusent la lumière (effet Tyndall) et sont visibles. L’air humide est un mélange homogène : les molécules de vapeur d’eau sont dispersées à l’échelle moléculaire et ne diffusent pas la lumière. [^15]: Les molécules de savon (amphiphiles) s’organisent en micelles : leur partie hydrophobe emprisonne les gouttelettes d’huile au centre, tandis que leur partie hydrophile pointe vers l’eau. On obtient un colloïde (émulsion) stable : les micelles chargées se repoussent mutuellement et ne coalescent pas. [^16]: (a) Eau salée : distillation (évaporation de l’eau puis condensation). (b) Sable et eau : filtration (le sable est retenu par le filtre). (c) Huile et eau : décantation puis séparation à l’ampoule à décanter (deux phases non miscibles de densités différentes).</li>
+</ol>
+<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn6"><ol type="a">
+<li><span class="math inline">\(\ce{KBr}\)</span> : dissolution avec dissociation — <span class="math inline">\(\ce{KBr(s) -&gt; K+(aq) + Br-(aq)}\)</span>, composé ionique. (b) Glucose : dissolution simple — <span class="math inline">\(\ce{C6H12O6(s) -&gt; C6H12O6(aq)}\)</span>, molécules covalentes polaires hydratées sans dissociation. (c) <span class="math inline">\(\ce{HCl}\)</span> : dissolution avec dissociation totale — <span class="math inline">\(\ce{HCl(g) -&gt; H+(aq) + Cl-(aq)}\)</span>. [^18]: Dans l’eau : interactions ion–dipôle (40–600 kJ/mol) suffisamment fortes pour arracher les ions au cristal et les solvatater. Dans l’hexane (apolaire) : seules des interactions ion–dipôle induit (faibles) sont possibles — insuffisantes pour vaincre la cohésion du cristal ionique.</li>
+</ol>
+<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn7"><p><span class="math inline">\(n(\ce{NaCl}) = 5{,}85/58{,}5 = 0{,}100\ \text{mol}\)</span> ; <span class="math inline">\(c = 0{,}100/0{,}500 = 0{,}200\ \text{mol/L}\)</span>. [^20]: <span class="math inline">\(c_2 = c_1 V_1 / V_2 = (2{,}00 \times 25{,}0)/500 = 0{,}100\ \text{mol/L}\)</span>. [^21]: <span class="math inline">\(c = C_m / M = 90/180 = 0{,}500\ \text{mol/L}\)</span>.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p><span class="math inline">\(\ce{NaCl}\)</span> : électrolyte fort (sel, dissociation totale). <span class="math inline">\(\ce{CH3COOH}\)</span> : électrolyte faible (acide faible, dissociation partielle). Saccharose : non-électrolyte (composé covalent, pas d’ions libérés). <span class="math inline">\(\ce{HNO3}\)</span> : électrolyte fort (acide fort, dissociation totale). <span class="math inline">\(\ce{NH3}\)</span> : électrolyte faible (base faible, réaction partielle avec l’eau). [^23]: <span class="math inline">\(\ce{Pb^{2+}(aq) + 2I-(aq) -&gt; PbI2(s)}\)</span>. [^24]: Équation moléculaire : <span class="math inline">\(\ce{Ca(OH)2(aq) + Na2SO4(aq) -&gt; CaSO4(s) + 2NaOH(aq)}\)</span>. Ions spectateurs : <span class="math inline">\(\ce{Na+}\)</span> et <span class="math inline">\(\ce{OH-}\)</span>. Équation ionique nette : <span class="math inline">\(\ce{Ca^{2+}(aq) + SO4^{2-}(aq) -&gt; CaSO4(s)}\)</span>. [^25]: <span class="math inline">\(\ce{FeCl3(s) -&gt; Fe^{3+}(aq) + 3Cl-(aq)}\)</span> ; <span class="math inline">\([\ce{Fe^{3+}}] = 0{,}100\ \text{mol/L}\)</span> ; <span class="math inline">\([\ce{Cl-}] = 3 \times 0{,}100 = 0{,}300\ \text{mol/L}\)</span>. Bilan de charges : <span class="math inline">\(3 \times 0{,}100 = 0{,}300\ \text{mol/L}\)</span> (positif) = <span class="math inline">\(1 \times 0{,}300 = 0{,}300\ \text{mol/L}\)</span> (négatif) ✓.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><ol type="a">
+<li><span class="math inline">\(n(\ce{Na2SO4}) = 5{,}00/142 = 3{,}52 \cdot 10^{-2}\ \text{mol}\)</span> ; <span class="math inline">\(c = 3{,}52 \cdot 10^{-2}/0{,}250 = 0{,}141\ \text{mol/L}\)</span>. (b) <span class="math inline">\([\ce{Na+}] = 2 \times 0{,}141 = 0{,}282\ \text{mol/L}\)</span> ; <span class="math inline">\([\ce{SO4^{2-}}] = 0{,}141\ \text{mol/L}\)</span>. (c) Charges + : <span class="math inline">\(0{,}282\ \text{mol/L}\)</span> ; charges - : <span class="math inline">\(2 \times 0{,}141 = 0{,}282\ \text{mol/L}\)</span> ✓. [^27]: <span class="math inline">\([\ce{Ca^{2+}}] = 67 \cdot 10^{-3}/40{,}1 = 1{,}67 \cdot 10^{-3}\ \text{mol/L}\)</span> ; <span class="math inline">\([\ce{Mg^{2+}}] = 9 \cdot 10^{-3}/24{,}3 = 3{,}7 \cdot 10^{-4}\ \text{mol/L}\)</span> ; total <span class="math inline">\(= 2{,}04 \cdot 10^{-3}\ \text{mol/L}\)</span>. [^28]: (a) <span class="math inline">\(\ce{Ag+(aq) + Cl-(aq) -&gt; AgCl(s)}\)</span>. (b) <span class="math inline">\(n(\ce{Ag+}) = 6{,}00 \cdot 10^{-3}\ \text{mol}\)</span> ; <span class="math inline">\(n(\ce{Cl-}) = 6{,}00 \cdot 10^{-3}\ \text{mol}\)</span> — proportions stœchiométriques exactes. (c) <span class="math inline">\(m = 6{,}00 \cdot 10^{-3} \times 143{,}3 = 0{,}860\ \text{g}\)</span>. [^29]: (a) <span class="math inline">\(m(\ce{HCl}) = 0{,}37 \times 1190 = 440{,}3\ \text{g/L}\)</span> ; <span class="math inline">\(c = 440{,}3/36{,}5 = 12{,}1\ \text{mol/L}\)</span>. (b) <span class="math inline">\(V_1 = (0{,}100 \times 500)/12{,}1 = 4{,}13\ \text{mL}\)</span>. [^30]: (a) <span class="math inline">\(\ce{3Ca^{2+}(aq) + 2PO4^{3-}(aq) -&gt; Ca3(PO4)2(s)}\)</span>. (b) <span class="math inline">\(\ce{Ca^{2+}}\)</span> est limitant. (c) <span class="math inline">\([\ce{Ca^{2+}}] = 0\)</span> ; <span class="math inline">\([\ce{PO4^{3-}}]_{\text{excès}} = 1{,}67 \cdot 10^{-2}\ \text{mol/L}\)</span> ; <span class="math inline">\([\ce{Na+}] = 0{,}150\ \text{mol/L}\)</span> ; <span class="math inline">\([\ce{NO3-}] = 0{,}100\ \text{mol/L}\)</span>. [^31]: (a) <span class="math inline">\(c_i = 7{,}69 \cdot 10^{-3}\ \text{mol/L}\)</span> ; <span class="math inline">\(c_f = 2{,}56 \cdot 10^{-4}\ \text{mol/L}\)</span>. (b) 450 ppm. (c) Facteur = 30. [^32]: <span class="math inline">\(n(\ce{AgCl}) = 0{,}861/143{,}3 = 6{,}01 \cdot 10^{-3}\ \text{mol}\)</span> ; <span class="math inline">\(n(\ce{HCl}) = 6{,}01 \cdot 10^{-3}\ \text{mol}\)</span> ; <span class="math inline">\(c(\ce{HCl}) = 6{,}01 \cdot 10^{-3}/0{,}0250 = 0{,}240\ \text{mol/L}\)</span>. [^33]: <span class="math inline">\(c = (2{,}4 \cdot 10^{-4}\ \text{g}/0{,}100\ \text{L})/233\ \text{g/mol} = 1{,}03 \cdot 10^{-5}\ \text{mol/L}\)</span>. [^34]: Première : <span class="math inline">\(\ce{H3PO4(aq) + H2O(l) -&gt; H2PO4-(aq) + H3O+(aq)}\)</span> (flèche simple — électrolyte fort pour ce proton). Deuxième : <span class="math inline">\(\ce{H2PO4-(aq) + H2O(l) &lt;=&gt; HPO4^{2-}(aq) + H3O+(aq)}\)</span> (double flèche — électrolyte faible). Troisième : <span class="math inline">\(\ce{HPO4^{2-}(aq) + H2O(l) &lt;=&gt; PO4^{3-}(aq) + H3O+(aq)}\)</span> (double flèche — électrolyte très faible). [^35]: En profondeur, la pression élevée augmente la solubilité du <span class="math inline">\(\ce{N2}\)</span> dans le sang (loi de Henry). En remontant trop vite, la pression chute brutalement : sur le diagramme de phase, ce déplacement vers de basses pressions favorise la phase gazeuse. Le <span class="math inline">\(\ce{N2}\)</span> dissous se retrouve en sursaturation et se dégage sous forme de bulles dans le sang.</li>
+</ol>
+<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn10"><ol type="a">
+<li>Le point triple du diiode est à <span class="math inline">\(0{,}12\ \text{atm}\)</span>, en dessous de <span class="math inline">\(1\ \text{atm}\)</span> : à pression atmosphérique, on se situe donc au-dessus du point triple, dans une région du diagramme où l’état liquide est thermodynamiquement accessible entre la fusion (<span class="math inline">\(114\ ^\circ\text{C}\)</span>) et l’ébullition. b) Il n’y a pas de contradiction réelle : ce que l’on observe à température ambiante n’est pas une sublimation thermodynamique imposée par le diagramme de phase (comme pour le <span class="math inline">\(\ce{CO2}\)</span>), mais une évaporation de surface — exactement comme l’eau liquide s’évapore bien en dessous de <span class="math inline">\(100\ ^\circ\text{C}\)</span>. Le diiode solide possède une pression de vapeur suffisante à température ambiante pour qu’un flux constant de molécules quitte directement la surface du solide, sans jamais passer par une phase liquide visible en quantité notable. c) Au niveau particulaire, les molécules situées à la surface d’un solide sont moins retenues que celles du volume : si l’agitation thermique leur donne assez d’énergie, elles peuvent s’échapper directement en phase gazeuse, un peu comme les molécules les plus agitées d’un liquide s’évaporent en surface. Pour le diiode, les forces intermoléculaires (forces de London uniquement, car <span class="math inline">\(\ce{I2}\)</span> est apolaire) sont assez faibles pour que ce phénomène soit visible à température ambiante — même si, formellement, l’état liquide reste accessible si l’on chauffe jusqu’à <span class="math inline">\(114\ ^\circ\text{C}\)</span> sous <span class="math inline">\(1\ \text{atm}\)</span>.</li>
+</ol>
+<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn11"><ol type="a">
+<li><span class="math inline">\(c = 9\ \text{g/L} / 58{,}5\ \text{g/mol} = 0{,}154\ \text{mol/L}\)</span>. b) <span class="math inline">\(\ce{NaCl}\)</span> étant entièrement dissocié : <span class="math inline">\([\ce{Na+}] = 0{,}154\ \text{mol/L}\)</span> ; <span class="math inline">\([\ce{Cl-}] = 0{,}154\ \text{mol/L}\)</span>. c) La concentration en <span class="math inline">\(\ce{Na+}\)</span> du sérum (<span class="math inline">\(0{,}154\ \text{mol/L}\)</span>) est très proche de celle du plasma sanguin (<span class="math inline">\(0{,}140\ \text{mol/L}\)</span>). Cette proximité est précisément ce qui rend le sérum « isotonique » : sa concentration en particules dissoutes est comparable à celle du sang, ce qui évite les échanges d’eau massifs entre le sérum injecté et les cellules — un sérum trop concentré ou trop dilué provoquerait un déséquilibre.</li>
+</ol>
+<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn12"><ol type="a">
+<li><span class="math inline">\(\ce{AgI}\)</span> précipite en premier : comme il est moins soluble que <span class="math inline">\(\ce{AgCl}\)</span>, une concentration plus faible en <span class="math inline">\(\ce{Ag+}\)</span> suffit à provoquer sa précipitation — à concentration initiale égale en <span class="math inline">\(\ce{I-}\)</span> et <span class="math inline">\(\ce{Cl-}\)</span>, c’est donc <span class="math inline">\(\ce{AgI}\)</span> qui se forme dès les premières gouttes de <span class="math inline">\(\ce{AgNO3}\)</span> ajoutées. La quantification précise de ce seuil fera l’objet du chapitre Équilibre chimique 2 (produit de solubilité). b) <span class="math inline">\(\ce{Ag+(aq) + I-(aq) -&gt; AgI(s)}\)</span> et <span class="math inline">\(\ce{Ag+(aq) + Cl-(aq) -&gt; AgCl(s)}\)</span>. c) Raisonner sur les concentrations en ions libres suppose que les sels sont entièrement dissociés — ce qui est vrai uniquement pour les électrolytes forts. Pour un électrolyte faible, la concentration réelle en ions serait inférieure à la concentration analytique, et le raisonnement sur la précipitation serait faussé.</li>
+</ol>
+<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapitres/transformations-chimiques.html" class="pagination-link" aria-label="Transformations chimiques et stœchiométrie">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformations chimiques et stœchiométrie</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapitres/oxydo-reduction.html" class="pagination-link" aria-label="Oxydoréduction">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Oxydoréduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

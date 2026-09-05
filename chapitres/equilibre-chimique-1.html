@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>14&nbsp; Équilibre chimique 1 – Projet-Balmer</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapitres/equilibre-chimique-2.html" rel="next">
+<link href="../chapitres/vitesse-de-reaction.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ed7344add5f1663e434276306a2aa159.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mhchem']},
+  tex: {packages: {'[+]': ['mhchem']}}
+};
+</script>
+<style>
+.quarto-figure img, main img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+.qcm-widget { margin: 1rem 0; padding: 0.75rem 1rem; border: 1px solid #ddd; border-radius: 8px; }
+.qcm-widget .qcm-label { font-size: 13px; color: #666; margin-bottom: 8px; }
+.qcm-widget button { display: block; width: 100%; text-align: left; margin: 4px 0; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; }
+.qcm-widget .qcm-feedback { margin-top: 8px; font-size: 14px; }
+.hist-note-name { color: inherit; text-decoration: none; border-bottom: 1px dotted #8a5a00; cursor: pointer; }
+.hist-note-name:hover { border-bottom-style: solid; }
+.hist-note { text-decoration: none; font-size: 0.75em; vertical-align: super; margin-left: 2px; color: #8a5a00; border-bottom: none; }
+.hist-note:hover { text-decoration: underline; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.qcm-widget').forEach(function(el) {
+    var options = JSON.parse(el.getAttribute('data-options'));
+    var correct = parseInt(el.getAttribute('data-correct'), 10);
+    var answered = false;
+    var label = document.createElement('div');
+    label.className = 'qcm-label';
+    label.textContent = 'Vérifier ma réponse';
+    el.appendChild(label);
+    var feedback = document.createElement('div');
+    feedback.className = 'qcm-feedback';
+    options.forEach(function(opt, i) {
+      var btn = document.createElement('button');
+      btn.textContent = opt;
+      btn.onclick = function() {
+        if (answered) return;
+        answered = true;
+        el.querySelectorAll('button').forEach(function(b) { b.disabled = true; });
+        if (i === correct) {
+          btn.style.borderColor = '#2e7d32';
+          btn.style.background = '#e8f5e9';
+          feedback.textContent = 'Correct.';
+          feedback.style.color = '#2e7d32';
+        } else {
+          btn.style.borderColor = '#c62828';
+          btn.style.background = '#ffebee';
+          feedback.textContent = 'Pas tout à fait — bonne réponse : ' + options[correct];
+          feedback.style.color = '#c62828';
+        }
+      };
+      el.appendChild(btn);
+    });
+    el.appendChild(feedback);
+  });
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapitres/equilibre-chimique-1.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Équilibre chimique 1</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Recherche" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Projet-Balmer</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Recherche"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Historique Tome 1 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/atomes-quantite-de-matiere.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Atomes et quantité de matière</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-sels-molecules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Liaisons, sels et molécules</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-intermoleculaires.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Liaisons intermoléculaires</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-chimiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformations chimiques et stœchiométrie</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-physiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transformations physiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/oxydo-reduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Oxydoréduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/electrochimie-piles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Électrochimie et piles</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acido-basiques-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction aux équilibres acido-basiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Historique Tome 2 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Thermochimie 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Thermochimie 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/vitesse-de-reaction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Vitesse de réaction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Équilibre chimique 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Équilibre chimique 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acides-bases-ph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Acides, bases et pH</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/chimie-organique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Chimie organique</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#la-loi-daction-de-masse-et-les-activités-chimiques" id="toc-la-loi-daction-de-masse-et-les-activités-chimiques" class="nav-link active" data-scroll-target="#la-loi-daction-de-masse-et-les-activités-chimiques"><span class="header-section-number">14.0.1</span> La loi d’action de masse et les activités chimiques</a></li>
+  <li><a href="#k_p-et-k_c-deux-expressions-de-la-même-constante" id="toc-k_p-et-k_c-deux-expressions-de-la-même-constante" class="nav-link" data-scroll-target="#k_p-et-k_c-deux-expressions-de-la-même-constante"><span class="header-section-number">14.0.2</span> <span class="math inline">\(K_p\)</span> et <span class="math inline">\(K_c\)</span> — deux expressions de la même constante</a></li>
+  <li><a href="#manipulations-mathématiques-de-la-constante-k" id="toc-manipulations-mathématiques-de-la-constante-k" class="nav-link" data-scroll-target="#manipulations-mathématiques-de-la-constante-k"><span class="header-section-number">14.0.3</span> Manipulations mathématiques de la constante <span class="math inline">\(K\)</span></a></li>
+  <li><a href="#un-seul-k-une-infinité-de-compositions-à-léquilibre" id="toc-un-seul-k-une-infinité-de-compositions-à-léquilibre" class="nav-link" data-scroll-target="#un-seul-k-une-infinité-de-compositions-à-léquilibre"><span class="header-section-number">14.0.4</span> Un seul <span class="math inline">\(K\)</span>, une infinité de compositions à l’équilibre</a></li>
+  <li><a href="#interprétation-de-la-valeur-de-k" id="toc-interprétation-de-la-valeur-de-k" class="nav-link" data-scroll-target="#interprétation-de-la-valeur-de-k"><span class="header-section-number">14.0.5</span> Interprétation de la valeur de <span class="math inline">\(K\)</span></a></li>
+  <li><a href="#le-quotient-réactionnel-q" id="toc-le-quotient-réactionnel-q" class="nav-link" data-scroll-target="#le-quotient-réactionnel-q"><span class="header-section-number">14.0.6</span> Le quotient réactionnel <span class="math inline">\(Q\)</span></a></li>
+  <li><a href="#le-principe-de-le-châtelier" id="toc-le-principe-de-le-châtelier" class="nav-link" data-scroll-target="#le-principe-de-le-châtelier"><span class="header-section-number">14.0.7</span> Le principe de Le Châtelier</a></li>
+  <li><a href="#méthode-de-la-variable-x-calcul-quantitatif-des-concentrations" id="toc-méthode-de-la-variable-x-calcul-quantitatif-des-concentrations" class="nav-link" data-scroll-target="#méthode-de-la-variable-x-calcul-quantitatif-des-concentrations"><span class="header-section-number">14.0.8</span> Méthode de la variable <span class="math inline">\(x\)</span> — calcul quantitatif des concentrations</a></li>
+  <li><a href="#les-catalyseurs" id="toc-les-catalyseurs" class="nav-link" data-scroll-target="#les-catalyseurs"><span class="header-section-number">14.0.9</span> Les catalyseurs</a></li>
+  <li><a href="#défi-a-méthode-de-x-sans-approximation" id="toc-défi-a-méthode-de-x-sans-approximation" class="nav-link" data-scroll-target="#défi-a-méthode-de-x-sans-approximation"><span class="header-section-number">14.0.10</span> Défi A — Méthode de <span class="math inline">\(x\)</span> sans approximation</a></li>
+  <li><a href="#défi-b-perturbations-combinées" id="toc-défi-b-perturbations-combinées" class="nav-link" data-scroll-target="#défi-b-perturbations-combinées"><span class="header-section-number">14.0.11</span> Défi B — Perturbations combinées</a></li>
+  <li><a href="#défi-c-le-produit-de-solubilité-k_s" id="toc-défi-c-le-produit-de-solubilité-k_s" class="nav-link" data-scroll-target="#défi-c-le-produit-de-solubilité-k_s"><span class="header-section-number">14.0.12</span> Défi C — Le produit de solubilité <span class="math inline">\(K_s\)</span></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Équilibre chimique 1</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Confort —</strong> Vous savez que l’enthalpie libre standard <span class="math inline">\(\Delta_r G^\circ\)</span> prédit la spontanéité d’une réaction, et que cette grandeur est reliée à la constante d’équilibre <span class="math inline">\(K\)</span> par la relation <span class="math inline">\(\Delta_r G^\circ = -RT \ln(K)\)</span>, vue au chapitre sur la thermochimie. Vous avez peut-être l’intuition qu’une réaction s’arrête lorsque les réactifs sont épuisés — c’est vrai pour certaines réactions totales, mais pour beaucoup d’autres, réactifs et produits coexistent indéfiniment dans des proportions bien précises. Une bouteille d’eau gazeuse fermée illustre cela : le <span class="math inline">\(\ce{CO2}\)</span> dissous et le <span class="math inline">\(\ce{CO2}\)</span> gazeux s’échangent en permanence au niveau particulaire, et pourtant les quantités restent stables au niveau macroscopique. C’est un équilibre dynamique.</p>
+<p><strong>Proximal —</strong> Ce chapitre donne à <span class="math inline">\(K\)</span> un sens concret et opérationnel : la <strong>loi d’action de masse</strong> exprime <span class="math inline">\(K\)</span> à partir des activités chimiques des espèces à l’équilibre, en tenant compte de leur état physique (gaz, soluté, solide, liquide pur). Vous distinguerez <span class="math inline">\(K\)</span> — valeur fixe à une température donnée — du <strong>quotient réactionnel</strong> <span class="math inline">\(Q\)</span>, calculable à tout instant, qui indique dans quel sens un système hors équilibre va évoluer spontanément. Vous verrez enfin comment une perturbation extérieure — variation de température, de pression ou de concentration — déplace l’équilibre selon le <strong>principe de Le Châtelier</strong>.</p>
+<p><strong>Dépassement —</strong> À la fin de ce chapitre, vous saurez écrire l’expression de <span class="math inline">\(K\)</span> pour toute réaction, comparer <span class="math inline">\(Q\)</span> à <span class="math inline">\(K\)</span> pour prédire le sens d’évolution d’un système hors équilibre, appliquer le principe de Le Châtelier de manière qualitative, et calculer quantitativement les concentrations à l’équilibre par la <strong>méthode de</strong> <span class="math inline">\(x\)</span>.</p>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-05-11</em></p>
+<p><strong>Vous savez déjà que…</strong></p>
+<ul>
+<li>La relation <span class="math inline">\(\Delta_r G^\circ = -RT \ln(K)\)</span> relie l’enthalpie libre standard de réaction à la constante d’équilibre <span class="math inline">\(K\)</span> : plus <span class="math inline">\(\Delta_r G^\circ\)</span> est négatif, plus <span class="math inline">\(K\)</span> est grand, et plus la réaction est favorable dans le sens direct.</li>
+<li><span class="math inline">\(\Delta_r G^\circ\)</span> se calcule à partir des données tabulées par <span class="math inline">\(\Delta_r G^\circ = \Delta_r H^\circ - T \cdot \Delta_r S^\circ\)</span>.</li>
+<li>Certaines réactions sont <strong>totales</strong> — les réactifs sont entièrement consommés — tandis que d’autres sont <strong>réversibles</strong> : réactifs et produits coexistent dans le système jusqu’à ce qu’un état d’équilibre soit atteint.</li>
+<li>Les états physiques des espèces (gaz, soluté en solution, solide, liquide pur) déterminent comment elles participent à une réaction chimique et comment on quantifie leur présence dans le système.</li>
+</ul>
+<p><strong>Mini-test de positionnement — répondez avant de continuer :</strong></p>
+<ol type="1">
+<li>Que signifie <span class="math inline">\(\Delta_r G^\circ &lt; 0\)</span> pour une réaction chimique ?</li>
+<li>Quelle est la différence entre une réaction totale et une réaction réversible ?</li>
+<li>Si <span class="math inline">\(\Delta_r G^\circ = -33\ \text{kJ/mol}\)</span> à 298 K, la constante <span class="math inline">\(K\)</span> est-elle supérieure, égale ou inférieure à 1 ?</li>
+</ol>
+<p><em>Si vous répondez sans hésiter -&gt; vous êtes dans votre zone de confort, passez directement à la Zone 2.</em></p>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-05-11</em></p>
+<section id="la-loi-daction-de-masse-et-les-activités-chimiques" class="level3" data-number="14.0.1">
+<h3 data-number="14.0.1" class="anchored" data-anchor-id="la-loi-daction-de-masse-et-les-activités-chimiques"><span class="header-section-number">14.0.1</span> La loi d’action de masse et les activités chimiques</h3>
+<section id="au-niveau-macroscopique-un-état-stable-qui-nest-pas-une-fin" class="level4" data-number="14.0.1.1">
+<h4 data-number="14.0.1.1" class="anchored" data-anchor-id="au-niveau-macroscopique-un-état-stable-qui-nest-pas-une-fin"><span class="header-section-number">14.0.1.1</span> Au niveau macroscopique : un état stable qui n’est pas une fin</h4>
+<p>Versez du dioxyde d’azote <span class="math inline">\(\ce{NO2}\)</span> gazeux brun dans un récipient fermé. Vous observez d’abord la couleur s’atténuer progressivement, puis se stabiliser. Le système n’évolue plus — les concentrations des espèces chimiques sont devenues constantes dans le temps.</p>
+<p>Vous pourriez en conclure que la réaction s’est arrêtée faute de réactifs. C’est l’interprétation la plus fréquente à ce stade — et elle est incorrecte. Les réactifs ne sont pas épuisés : ils coexistent avec les produits dans des proportions stables. Ce n’est pas une fin, c’est un <strong>équilibre</strong>.</p>
+</section>
+<section id="au-niveau-particulaire-deux-réactions-simultanées" class="level4" data-number="14.0.1.2">
+<h4 data-number="14.0.1.2" class="anchored" data-anchor-id="au-niveau-particulaire-deux-réactions-simultanées"><span class="header-section-number">14.0.1.2</span> Au niveau particulaire : deux réactions simultanées</h4>
+<p>Au niveau des molécules, deux réactions opposées se déroulent simultanément :</p>
+<p><span class="math display">\[\ce{2 NO2(g) -&gt; N2O4(g)} \quad \text{(sens direct)}\]</span> <span class="math display">\[\ce{N2O4(g) -&gt; 2 NO2(g)} \quad \text{(sens inverse)}\]</span></p>
+<p>Au départ, seul le sens direct est actif. Au fur et à mesure que <span class="math inline">\(\ce{N2O4}\)</span> se forme, le sens inverse s’accélère. L’équilibre est atteint lorsque les deux vitesses deviennent égales — plus rien ne change macroscopiquement, mais les échanges particulaires se poursuivent sans relâche. C’est ce qu’on appelle un <strong>équilibre dynamique</strong>.</p>
+</section>
+<section id="au-niveau-symbolique-la-constante-k-et-la-loi-daction-de-masse" class="level4" data-number="14.0.1.3">
+<h4 data-number="14.0.1.3" class="anchored" data-anchor-id="au-niveau-symbolique-la-constante-k-et-la-loi-daction-de-masse"><span class="header-section-number">14.0.1.3</span> Au niveau symbolique : la constante <span class="math inline">\(K\)</span> et la loi d’action de masse</h4>
+<p>Au chapitre sur la thermochimie, vous avez établi la relation <span class="math inline">\(\Delta_r G^\circ = -RT \ln(K)\)</span>. <!-- REF: ref:thermochimie-2-enthalpie-libre — relation Delta_r G° = -RT ln(K)
+établie au chapitre Thermochimie 2 --> Cette relation définit <span class="math inline">\(K\)</span> comme une grandeur thermodynamique. Ce chapitre lui donne une expression concrète.</p>
+<p>Pour une réaction générale :</p>
+<p><span class="math display">\[a\ \ce{A} + b\ \ce{B} \rightleftharpoons c\ \ce{C} + d\ \ce{D}\]</span></p>
+<p>la constante d’équilibre s’écrit :</p>
+<p><span class="math display">\[K = \frac{(\alpha_C)^c \cdot (\alpha_D)^d}{(\alpha_A)^a \cdot (\alpha_B)^b}\]</span></p>
+<p>où <span class="math inline">\(\alpha_i\)</span> désigne l’<strong>activité chimique</strong> de l’espèce <span class="math inline">\(i\)</span> à l’équilibre, élevée à la puissance de son coefficient stœchiométrique. Cette expression est la <strong>loi d’action de masse</strong>.</p>
+<p><strong>Attention :</strong> <span class="math inline">\(K\)</span> ne dépend que de la température — jamais des concentrations initiales ni de la quantité de matière introduite.</p>
+</section>
+<section id="les-activités-chimiques-selon-létat-physique" class="level4" data-number="14.0.1.4">
+<h4 data-number="14.0.1.4" class="anchored" data-anchor-id="les-activités-chimiques-selon-létat-physique"><span class="header-section-number">14.0.1.4</span> Les activités chimiques selon l’état physique</h4>
+<p>L’activité chimique d’une espèce traduit son efficacité réelle dans le processus. Elle s’approxime selon l’état physique :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>État de l’espèce</th>
+<th>Activité <span class="math inline">\(\alpha_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Solide pur</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Liquide pur (solvant inclus)</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Gaz</td>
+<td><span class="math inline">\(P_i\)</span> en atm (pression partielle)</td>
+</tr>
+<tr class="even">
+<td>Soluté en solution</td>
+<td><span class="math inline">\([\ce{X}]\)</span> en mol/L</td>
+</tr>
+</tbody>
+</table>
+<p>Une erreur très fréquente consiste à inclure les solides et liquides purs dans l’expression de <span class="math inline">\(K\)</span>. Leur activité vaut 1 par définition — ils n’apparaissent donc <strong>pas</strong> dans l’expression de <span class="math inline">\(K\)</span>, et la valeur de <span class="math inline">\(K\)</span> ne dépend pas de leur quantité dans le système.</p>
+</section>
+<section id="exemples-dapplication" class="level4" data-number="14.0.1.5">
+<h4 data-number="14.0.1.5" class="anchored" data-anchor-id="exemples-dapplication"><span class="header-section-number">14.0.1.5</span> Exemples d’application</h4>
+<p><strong>Exemple 1 :</strong> <span class="math inline">\(\ce{N2(g) + 3 H2(g) &lt;=&gt; 2 NH3(g)}\)</span></p>
+<p>Tous les constituants sont gazeux — les activités sont des concentrations molaires :</p>
+<p><span class="math display">\[K_c = \frac{[\ce{NH3}]^2}{[\ce{N2}][\ce{H2}]^3}\]</span></p>
+<p><strong>Exemple 2 :</strong> <span class="math inline">\(\ce{CaCO3(s) &lt;=&gt; CaO(s) + CO2(g)}\)</span></p>
+<p><span class="math inline">\(\ce{CaCO3}\)</span> et <span class="math inline">\(\ce{CaO}\)</span> sont des solides purs (<span class="math inline">\(\alpha = 1\)</span>) et disparaissent de l’expression :</p>
+<p><span class="math display">\[K_p = P_{\ce{CO2}}\]</span></p>
+<p>La pression de <span class="math inline">\(\ce{CO2}\)</span> à l’équilibre ne dépend donc pas de la quantité de <span class="math inline">\(\ce{CaCO3}\)</span> ou de <span class="math inline">\(\ce{CaO}\)</span> présente — uniquement de la température.</p>
+<p><strong>Exemple 3 :</strong> <span class="math inline">\(\ce{CH3COOH(aq) + H2O(l) &lt;=&gt; CH3COO^-(aq) + H3O^+(aq)}\)</span></p>
+<p>L’eau est un liquide pur (<span class="math inline">\(\alpha = 1\)</span>) :</p>
+<p><span class="math display">\[K_c = \frac{[\ce{CH3COO^-}][\ce{H3O^+}]}{[\ce{CH3COOH}]}\]</span></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Écrivez l’expression de <span class="math inline">\(K_c\)</span> pour <span class="math inline">\(\ce{2 H2(g) + O2(g) &lt;=&gt; 2 H2O(g)}\)</span>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li>Écrivez l’expression de <span class="math inline">\(K_p\)</span> pour <span class="math inline">\(\ce{Fe2O3(s) + 3 CO(g) &lt;=&gt; 2 Fe(s) + 3 CO2(g)}\)</span>. Justifiez l’absence des solides.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
+<li>Pour <span class="math inline">\(\ce{NH3(aq) + H2O(l) &lt;=&gt; NH4+(aq) + OH-(aq)}\)</span>, écrivez <span class="math inline">\(K_c\)</span> en excluant l’eau. Pourquoi l’eau est-elle exclue ?<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+<li>La constante <span class="math inline">\(K_c = 54\)</span> pour <span class="math inline">\(\ce{H2(g) + I2(g) &lt;=&gt; 2 HI(g)}\)</span> à 425 °C. Quelle est la valeur de <span class="math inline">\(K_c\)</span> pour <span class="math inline">\(\ce{2 HI(g) &lt;=&gt; H2(g) + I2(g)}\)</span> à la même température ?<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
+</ol>
+</section>
+</section>
+<section id="k_p-et-k_c-deux-expressions-de-la-même-constante" class="level3" data-number="14.0.2">
+<h3 data-number="14.0.2" class="anchored" data-anchor-id="k_p-et-k_c-deux-expressions-de-la-même-constante"><span class="header-section-number">14.0.2</span> <span class="math inline">\(K_p\)</span> et <span class="math inline">\(K_c\)</span> — deux expressions de la même constante</h3>
+<section id="au-niveau-macroscopique-deux-façons-de-décrire-un-mélange-gazeux" class="level4" data-number="14.0.2.1">
+<h4 data-number="14.0.2.1" class="anchored" data-anchor-id="au-niveau-macroscopique-deux-façons-de-décrire-un-mélange-gazeux"><span class="header-section-number">14.0.2.1</span> Au niveau macroscopique : deux façons de décrire un mélange gazeux</h4>
+<p>Pour un système gazeux à l’équilibre, vous pouvez décrire la composition du mélange de deux manières équivalentes : par les <strong>concentrations molaires</strong> des gaz (en mol/L) ou par leurs <strong>pressions partielles</strong> (en atm). Ces deux descriptions donnent naissance à deux expressions de la constante d’équilibre : <span class="math inline">\(K_c\)</span> et <span class="math inline">\(K_p\)</span>.</p>
+</section>
+<section id="au-niveau-particulaire-pression-partielle-et-concentration" class="level4" data-number="14.0.2.2">
+<h4 data-number="14.0.2.2" class="anchored" data-anchor-id="au-niveau-particulaire-pression-partielle-et-concentration"><span class="header-section-number">14.0.2.2</span> Au niveau particulaire : pression partielle et concentration</h4>
+<p>La pression partielle d’un gaz dans un mélange est la pression qu’il exercerait s’il occupait seul le volume total du mélange à la même température. Plus un gaz est concentré dans le mélange, plus sa pression partielle est élevée. La loi des gaz parfaits relie directement les deux grandeurs :</p>
+<p><span class="math display">\[P_i = \frac{n_i}{V} \cdot R \cdot T = [\ce{X}_i] \cdot R \cdot T\]</span></p>
+<p>Chaque mole gazeuse supplémentaire introduit un facteur <span class="math inline">\(RT\)</span> dans l’expression de <span class="math inline">\(K_p\)</span> par rapport à <span class="math inline">\(K_c\)</span>. Si le nombre de moles gazeuses est identique des deux côtés de l’équation, ces facteurs se compensent exactement et <span class="math inline">\(K_p = K_c\)</span>. Dans le cas contraire, les deux constantes diffèrent — c’est l’erreur la plus fréquente que de les supposer toujours égales.</p>
+</section>
+<section id="au-niveau-symbolique-la-relation-entre-k_p-et-k_c" class="level4" data-number="14.0.2.3">
+<h4 data-number="14.0.2.3" class="anchored" data-anchor-id="au-niveau-symbolique-la-relation-entre-k_p-et-k_c"><span class="header-section-number">14.0.2.3</span> Au niveau symbolique : la relation entre <span class="math inline">\(K_p\)</span> et <span class="math inline">\(K_c\)</span></h4>
+<p><strong>Attention :</strong> seul <span class="math inline">\(K_p\)</span> est directement relié à <span class="math inline">\(\Delta_r G^\circ\)</span> par <span class="math inline">\(\Delta_r G^\circ = -RT \ln(K_p)\)</span>. <span class="math inline">\(K_c\)</span> n’est pas directement relié à <span class="math inline">\(\Delta_r G^\circ\)</span> — il faut passer par la conversion :</p>
+<p><span class="math display">\[\boxed{K_p = K_c \cdot (RT)^{\Delta n}}\]</span></p>
+<p>où <span class="math inline">\(\Delta n\)</span> est la variation du nombre de moles gazeuses entre produits et réactifs :</p>
+<p><span class="math display">\[\Delta n = \sum \nu_{\text{produits gazeux}} - \sum \nu_{\text{réactifs gazeux}}\]</span></p>
+<p>Trois cas se présentent :</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 20%">
+<col style="width: 66%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\Delta n\)</span></th>
+<th>Relation</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(= 0\)</span></td>
+<td><span class="math inline">\(K_p = K_c\)</span></td>
+<td>Même nombre de moles gazeuses des deux côtés</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(&gt; 0\)</span></td>
+<td><span class="math inline">\(K_p &gt; K_c\)</span></td>
+<td>Plus de moles gazeuses du côté des produits</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(&lt; 0\)</span></td>
+<td><span class="math inline">\(K_p &lt; K_c\)</span></td>
+<td>Plus de moles gazeuses du côté des réactifs</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="exemple-numérique" class="level4" data-number="14.0.2.4">
+<h4 data-number="14.0.2.4" class="anchored" data-anchor-id="exemple-numérique"><span class="header-section-number">14.0.2.4</span> Exemple numérique</h4>
+<p>Considérons la réaction <span class="math inline">\(\ce{PCl3(g) + Cl2(g) &lt;=&gt; PCl5(g)}\)</span> à 298 K, avec un mélange à l’équilibre de 4,00 mol de <span class="math inline">\(\ce{PCl3}\)</span>, 4,00 mol de <span class="math inline">\(\ce{Cl2}\)</span> et 1,455 mol de <span class="math inline">\(\ce{PCl5}\)</span> dans un volume de 2,00 L.</p>
+<p><strong>Calcul de <span class="math inline">\(K_c\)</span> :</strong></p>
+<p><span class="math display">\[[\ce{PCl3}] = \frac{4{,}00}{2{,}00} = 2{,}00\ \text{mol/L} \qquad
+[\ce{Cl2}] = 2{,}00\ \text{mol/L} \qquad
+[\ce{PCl5}] = \frac{1{,}455}{2{,}00} = 0{,}728\ \text{mol/L}\]</span></p>
+<p><span class="math display">\[K_c = \frac{[\ce{PCl5}]}{[\ce{PCl3}][\ce{Cl2}]}
+= \frac{0{,}728}{2{,}00 \times 2{,}00} = 0{,}182\]</span></p>
+<p><strong>Calcul de <span class="math inline">\(K_p\)</span> :</strong> <span class="math inline">\(\Delta n = 1 - 2 = -1\)</span></p>
+<p><span class="math display">\[K_p = K_c \cdot (RT)^{-1}
+= \frac{0{,}182}{0{,}0821 \times 298} = 7{,}43 \times 10^{-3}\ \text{atm}^{-1}\]</span></p>
+<p><span class="math inline">\(K_p &lt; K_c\)</span> — cohérent avec <span class="math inline">\(\Delta n &lt; 0\)</span> : il y a moins de moles gazeuses du côté des produits, donc la pression favorise les réactifs davantage que la concentration ne le suggère.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Pour <span class="math inline">\(\ce{N2(g) + 3 H2(g) &lt;=&gt; 2 NH3(g)}\)</span>, calculez <span class="math inline">\(\Delta n\)</span> et déterminez si <span class="math inline">\(K_p &gt; K_c\)</span>, <span class="math inline">\(K_p = K_c\)</span> ou <span class="math inline">\(K_p &lt; K_c\)</span>.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
+<li><span class="math inline">\(K_c = 0{,}182\)</span> à 298 K pour <span class="math inline">\(\ce{PCl3(g) + Cl2(g) &lt;=&gt; PCl5(g)}\)</span>. Calculez <span class="math inline">\(K_p\)</span> (<span class="math inline">\(R = 0{,}0821\ \text{L·atm·mol}^{-1}\text{·K}^{-1}\)</span>).<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
+<li>Pour <span class="math inline">\(\ce{H2(g) + I2(g) &lt;=&gt; 2 HI(g)}\)</span>, montrez que <span class="math inline">\(K_p = K_c\)</span> sans calcul.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></li>
+</ol>
+</section>
+</section>
+<section id="manipulations-mathématiques-de-la-constante-k" class="level3" data-number="14.0.3">
+<h3 data-number="14.0.3" class="anchored" data-anchor-id="manipulations-mathématiques-de-la-constante-k"><span class="header-section-number">14.0.3</span> Manipulations mathématiques de la constante <span class="math inline">\(K\)</span></h3>
+<section id="au-niveau-macroscopique-des-constantes-que-lon-ne-mesure-pas-toujours-directement" class="level4" data-number="14.0.3.1">
+<h4 data-number="14.0.3.1" class="anchored" data-anchor-id="au-niveau-macroscopique-des-constantes-que-lon-ne-mesure-pas-toujours-directement"><span class="header-section-number">14.0.3.1</span> Au niveau macroscopique : des constantes que l’on ne mesure pas toujours directement</h4>
+<p>En laboratoire ou en industrie, vous disposez rarement de la valeur de <span class="math inline">\(K\)</span> exactement pour la réaction qui vous intéresse. En revanche, des tables de valeurs existent pour un grand nombre de réactions élémentaires. Vous pouvez en déduire <span class="math inline">\(K\)</span> pour n’importe quelle réaction en combinant ces valeurs tabulées — à condition de maîtriser trois règles de manipulation.</p>
+<p>Cette démarche est l’analogue thermodynamique de la loi de Hess pour les enthalpies : de même qu’on combine des enthalpies de réactions connues pour en déduire une inconnue, on combine ici des constantes d’équilibre.</p>
+<!-- REF: ref:thermochimie-1-loi-hess — loi de Hess établie au chapitre
+Thermochimie 1 -->
+</section>
+<section id="au-niveau-particulaire-ce-que-signifie-inverser-ou-combiner" class="level4" data-number="14.0.3.2">
+<h4 data-number="14.0.3.2" class="anchored" data-anchor-id="au-niveau-particulaire-ce-que-signifie-inverser-ou-combiner"><span class="header-section-number">14.0.3.2</span> Au niveau particulaire : ce que signifie “inverser” ou “combiner”</h4>
+<p>Inverser une réaction, c’est échanger le rôle des réactifs et des produits : ce qui était produit devient réactif, et inversement. Au niveau particulaire, cela revient à décrire le même équilibre dynamique dans l’autre sens — les deux processus microscopiques opposés sont toujours présents, mais on choisit d’en faire le point de départ plutôt que le point d’arrivée.</p>
+<p>Combiner deux réactions, c’est les additionner : une espèce qui apparaît comme produit dans la première et comme réactif dans la seconde se simplifie, exactement comme un intermédiaire réactionnel.</p>
+</section>
+<section id="au-niveau-symbolique-les-trois-règles" class="level4" data-number="14.0.3.3">
+<h4 data-number="14.0.3.3" class="anchored" data-anchor-id="au-niveau-symbolique-les-trois-règles"><span class="header-section-number">14.0.3.3</span> Au niveau symbolique : les trois règles</h4>
+<p><strong>Règle 1 — Inversion de l’équation</strong></p>
+<p>Inverser une réaction échange numérateur et dénominateur dans l’expression de <span class="math inline">\(K\)</span>. Une erreur fréquente est de croire que la constante reste identique quel que soit le sens d’écriture — c’est incorrect.</p>
+<p><span class="math display">\[\ce{A &lt;=&gt; B} \quad K \qquad \Longrightarrow \qquad
+\ce{B &lt;=&gt; A} \quad K' = \frac{1}{K}\]</span></p>
+<p><strong>Exemple travaillé :</strong></p>
+<p><span class="math display">\[\ce{H2(g) + I2(g) &lt;=&gt; 2 HI(g)} \qquad K_c = 4{,}5\]</span></p>
+<p>Réaction inverse :</p>
+<p><span class="math display">\[\ce{2 HI(g) &lt;=&gt; H2(g) + I2(g)} \qquad
+K'_c = \frac{1}{4{,}5} = 0{,}22\]</span></p>
+<hr>
+<p><strong>Règle 2 — Multiplication des coefficients stœchiométriques par <span class="math inline">\(n\)</span></strong></p>
+<p>Multiplier tous les coefficients par <span class="math inline">\(n\)</span> élève la constante à la puissance <span class="math inline">\(n\)</span>. L’erreur la plus fréquente est de multiplier <span class="math inline">\(K\)</span> par <span class="math inline">\(n\)</span> — c’est incorrect : les coefficients apparaissent en exposant dans l’expression de <span class="math inline">\(K\)</span>, donc les multiplier revient à élever <span class="math inline">\(K\)</span> à une puissance.</p>
+<p><span class="math display">\[\ce{A &lt;=&gt; B} \quad K \qquad \Longrightarrow \qquad
+n\ \ce{A &lt;=&gt; }\ n\ \ce{B} \quad K' = K^n\]</span></p>
+<p><strong>Exemple travaillé :</strong></p>
+<p><span class="math display">\[\ce{N2(g) + 3 H2(g) &lt;=&gt; 2 NH3(g)} \qquad K_p = 6{,}1 \times 10^5
+\quad \text{(à 298 K)}\]</span></p>
+<p>En divisant tous les coefficients par 2 (<span class="math inline">\(n = 1/2\)</span>) :</p>
+<p><span class="math display">\[\ce{1/2 N2(g) + 3/2 H2(g) &lt;=&gt; NH3(g)} \qquad
+K'_p = (6{,}1 \times 10^5)^{1/2} = 7{,}81 \times 10^2\]</span></p>
+<hr>
+<p><strong>Règle 3 — Combinaison de plusieurs équilibres</strong></p>
+<p>Si une réaction globale s’obtient en additionnant plusieurs réactions, sa constante est le <strong>produit</strong> des constantes individuelles. Une erreur fréquente est d’additionner les constantes — c’est incorrect. Les constantes se multiplient parce que les expressions de <span class="math inline">\(K\)</span> sont des produits, et l’addition d’équations correspond à une multiplication de leurs expressions.</p>
+<p><span class="math display">\[K_{\text{global}} = K_1 \times K_2 \times \cdots\]</span></p>
+<p><strong>Exemple travaillé :</strong></p>
+<p><span class="math display">\[\text{(1)}\ \ce{H2O(g) + C(s) &lt;=&gt; CO(g) + H2(g)}
+\qquad K_{p,1} = 8{,}0\]</span> <span class="math display">\[\text{(2)}\ \ce{CO(g) + H2O(g) &lt;=&gt; CO2(g) + H2(g)}
+\qquad K_{p,2} = 5{,}0\]</span></p>
+<p>En additionnant (1) et (2), le <span class="math inline">\(\ce{CO(g)}\)</span> apparaît comme produit de (1) et comme réactif de (2) — il se simplifie :</p>
+<p><span class="math display">\[\ce{2 H2O(g) + C(s) &lt;=&gt; CO2(g) + 2 H2(g)}\]</span></p>
+<p><span class="math display">\[K_{p,\text{global}} = K_{p,1} \times K_{p,2}
+= 8{,}0 \times 5{,}0 = 40\]</span></p>
+<hr>
+<p><strong>Exercice guidé :</strong> On donne :</p>
+<p><span class="math display">\[\text{(1)}\ \ce{CO(g) + H2O(g) &lt;=&gt; CO2(g) + H2(g)}
+\qquad K_{p,1} = 5{,}0\]</span> <span class="math display">\[\text{(2)}\ \ce{CO2(g) + H2(g) &lt;=&gt; CO(g) + H2O(g)}
+\qquad K_{p,2} = 0{,}2\]</span></p>
+<ol type="a">
+<li><p>Vérifiez que la réaction (2) est l’inverse de la réaction (1) et que <span class="math inline">\(K_{p,2} = 1/K_{p,1}\)</span>.</p></li>
+<li><p>En combinant la réaction (1) et l’inverse de la réaction (2), donnez l’équation globale et calculez <span class="math inline">\(K_{p,\text{global}}\)</span>.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p></li>
+</ol>
+</section>
+<section id="synthèse-des-trois-règles" class="level4" data-number="14.0.3.4">
+<h4 data-number="14.0.3.4" class="anchored" data-anchor-id="synthèse-des-trois-règles"><span class="header-section-number">14.0.3.4</span> Synthèse des trois règles</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Opération sur l’équation</th>
+<th>Effet sur <span class="math inline">\(K\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Inversion du sens</td>
+<td><span class="math inline">\(K' = 1/K\)</span></td>
+</tr>
+<tr class="even">
+<td>Multiplication des coefficients par <span class="math inline">\(n\)</span></td>
+<td><span class="math inline">\(K' = K^n\)</span></td>
+</tr>
+<tr class="odd">
+<td>Addition de deux réactions</td>
+<td><span class="math inline">\(K' = K_1 \times K_2\)</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li><span class="math inline">\(K_c = 4{,}5\)</span> pour <span class="math inline">\(\ce{H2(g) + I2(g) &lt;=&gt; 2 HI(g)}\)</span>. Calculez <span class="math inline">\(K_c\)</span> pour <span class="math inline">\(\ce{HI(g) &lt;=&gt; 1/2 H2(g) + 1/2 I2(g)}\)</span>.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></li>
+<li>On donne : <span class="math inline">\(\ce{A &lt;=&gt; B}\)</span>, <span class="math inline">\(K_1 = 2{,}0\)</span> ; <span class="math inline">\(\ce{B &lt;=&gt; C}\)</span>, <span class="math inline">\(K_2 = 5{,}0\)</span>. Calculez <span class="math inline">\(K\)</span> pour <span class="math inline">\(\ce{A &lt;=&gt; C}\)</span>.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></li>
+<li>Pour <span class="math inline">\(\ce{2 SO2(g) + O2(g) &lt;=&gt; 2 SO3(g)}\)</span>, <span class="math inline">\(K_p = 6{,}2 \times 10^3\)</span> à 700 K. Calculez <span class="math inline">\(K_p\)</span> pour <span class="math inline">\(\ce{SO2(g) + 1/2 O2(g) &lt;=&gt; SO3(g)}\)</span>.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></li>
+</ol>
+</section>
+</section>
+<section id="un-seul-k-une-infinité-de-compositions-à-léquilibre" class="level3" data-number="14.0.4">
+<h3 data-number="14.0.4" class="anchored" data-anchor-id="un-seul-k-une-infinité-de-compositions-à-léquilibre"><span class="header-section-number">14.0.4</span> Un seul <span class="math inline">\(K\)</span>, une infinité de compositions à l’équilibre</h3>
+<p><strong>Note de lecture :</strong> cette section introduit deux idées liées qu’il est utile de distinguer : (a) <span class="math inline">\(K\)</span> est unique à une température donnée — il ne dépend pas de la composition initiale ; (b) les concentrations à l’équilibre, elles, dépendent de la composition initiale — elles sont infiniment variables, pourvu qu’elles satisfassent <span class="math inline">\(K\)</span>.</p>
+<section id="au-niveau-macroscopique-k-fixe-compositions-variables" class="level4" data-number="14.0.4.1">
+<h4 data-number="14.0.4.1" class="anchored" data-anchor-id="au-niveau-macroscopique-k-fixe-compositions-variables"><span class="header-section-number">14.0.4.1</span> Au niveau macroscopique : <span class="math inline">\(K\)</span> fixe, compositions variables</h4>
+<p>Une erreur fréquente est de croire que <span class="math inline">\(K\)</span> change selon la façon dont on prépare le système — en partant uniquement de réactifs, uniquement de produits, ou d’un mélange des deux. C’est incorrect : <span class="math inline">\(K\)</span> ne dépend que de la température. Ce qui change selon la composition initiale, ce sont les concentrations à l’équilibre — pas la valeur de <span class="math inline">\(K\)</span> qu’elles doivent satisfaire.</p>
+<p>Autrement dit : il existe une infinité de combinaisons de concentrations qui vérifient la même valeur de <span class="math inline">\(K\)</span>. Le système chimique en choisit une — celle dictée par son point de départ.</p>
+</section>
+<section id="analogie-avec-une-balance-à-deux-plateaux" class="level4" data-number="14.0.4.2">
+<h4 data-number="14.0.4.2" class="anchored" data-anchor-id="analogie-avec-une-balance-à-deux-plateaux"><span class="header-section-number">14.0.4.2</span> Analogie avec une balance à deux plateaux</h4>
+<p>Imaginez une balance à deux plateaux : le plateau gauche représente les réactifs, le plateau droit les produits. L’équilibre est atteint lorsque les deux plateaux sont de même poids — c’est-à-dire lorsque <span class="math inline">\(K\)</span> est satisfait.</p>
+<p>Pour <span class="math inline">\(K = 1\)</span>, la balance est horizontale. Mais il existe une infinité de façons d’obtenir cet équilibre :</p>
+<ul>
+<li>5 kg à gauche, 5 kg à droite</li>
+<li>2 kg + 3 kg à gauche, 4 kg + 1 kg à droite</li>
+<li>0,5 kg + 4,5 kg à gauche, 2 kg + 3 kg à droite</li>
+<li>…</li>
+</ul>
+<p>De même, un système chimique peut atteindre l’équilibre à partir de compositions initiales très variées.</p>
+<p><strong>Limite de l’analogie :</strong> dans une balance, les poids s’additionnent simplement. Dans l’expression de <span class="math inline">\(K\)</span>, les activités sont multipliées et élevées à des puissances stœchiométriques — la balance ne rend pas compte de cette structure. Elle illustre l’idée de compensation, pas la forme mathématique de <span class="math inline">\(K\)</span>.</p>
+</section>
+<section id="au-niveau-particulaire-des-chemins-différents-une-même-destination" class="level4" data-number="14.0.4.3">
+<h4 data-number="14.0.4.3" class="anchored" data-anchor-id="au-niveau-particulaire-des-chemins-différents-une-même-destination"><span class="header-section-number">14.0.4.3</span> Au niveau particulaire : des chemins différents, une même destination</h4>
+<p>Quel que soit le point de départ, le système évolue spontanément : si vous ne partez que de réactifs, la réaction directe domine d’abord, et la réaction inverse s’accélère au fur et à mesure que les produits se forment. Si vous ne partez que de produits, c’est l’inverse. Dans tous les cas, le système atteint l’équilibre lorsque les deux vitesses s’égalisent — c’est-à-dire lorsque <span class="math inline">\(Q = K\)</span>.</p>
+<p>Les concentrations à l’équilibre sont différentes selon le point de départ, mais elles vérifient toutes la même valeur de <span class="math inline">\(K\)</span> à température donnée.</p>
+</section>
+<section id="au-niveau-symbolique-vérification-numérique" class="level4" data-number="14.0.4.4">
+<h4 data-number="14.0.4.4" class="anchored" data-anchor-id="au-niveau-symbolique-vérification-numérique"><span class="header-section-number">14.0.4.4</span> Au niveau symbolique : vérification numérique</h4>
+<p>Le tableau suivant présente quatre expériences indépendantes pour la réaction <span class="math inline">\(\ce{H2(g) + I2(g) &lt;=&gt; 2 HI(g)}\)</span> à 425 <span class="math inline">\(^\circ\)</span>C :</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Exp.</th>
+<th><span class="math inline">\([\ce{H2}]_0\)</span></th>
+<th><span class="math inline">\([\ce{I2}]_0\)</span></th>
+<th><span class="math inline">\([\ce{HI}]_0\)</span></th>
+<th><span class="math inline">\([\ce{H2}]_{éq}\)</span></th>
+<th><span class="math inline">\([\ce{I2}]_{éq}\)</span></th>
+<th><span class="math inline">\([\ce{HI}]_{éq}\)</span></th>
+<th><span class="math inline">\(K_c\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>4,646</td>
+<td>0,4953</td>
+<td>0,4953</td>
+<td>3,655</td>
+<td>54,46</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>5,346</td>
+<td>5,346</td>
+<td>0</td>
+<td>1,141</td>
+<td>1,141</td>
+<td>8,410</td>
+<td>54,33</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>11,36</td>
+<td>9,045</td>
+<td>0</td>
+<td>3,560</td>
+<td>1,250</td>
+<td>15,59</td>
+<td>54,62</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>9,752</td>
+<td>9,836</td>
+<td>1,850</td>
+<td>2,252</td>
+<td>2,336</td>
+<td>16,85</td>
+<td>53,97</td>
+</tr>
+</tbody>
+</table>
+<p>Les quatre expériences convergent toutes vers <span class="math inline">\(K_c \approx 54\)</span>, quel que soit le point de départ. Les légères différences sont dues aux arrondis de mesure.</p>
+<p><strong>Exemple travaillé :</strong> Le système <span class="math inline">\(\ce{PCl3(g) + Cl2(g) &lt;=&gt; PCl5(g)}\)</span> est-il à l’équilibre dans chacune des quatre expériences suivantes ?</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 32%">
+<col style="width: 32%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Exp.</th>
+<th><span class="math inline">\([\ce{PCl3}]\)</span> / mol<span class="math inline">\(\cdot\)</span>L<span class="math inline">\(^{-1}\)</span></th>
+<th><span class="math inline">\([\ce{Cl2}]\)</span> / mol<span class="math inline">\(\cdot\)</span>L<span class="math inline">\(^{-1}\)</span></th>
+<th><span class="math inline">\([\ce{PCl5}]\)</span> / mol<span class="math inline">\(\cdot\)</span>L<span class="math inline">\(^{-1}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>I</td>
+<td>0,23</td>
+<td>0,055</td>
+<td>0,0023</td>
+</tr>
+<tr class="even">
+<td>II</td>
+<td>0,15</td>
+<td>0,37</td>
+<td>0,010</td>
+</tr>
+<tr class="odd">
+<td>III</td>
+<td>0,99</td>
+<td>0,47</td>
+<td>0,085</td>
+</tr>
+<tr class="even">
+<td>IV</td>
+<td>3,66</td>
+<td>1,50</td>
+<td>1,00</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[K_c = \frac{[\ce{PCl5}]}{[\ce{PCl3}][\ce{Cl2}]}\]</span></p>
+<p><span class="math display">\[K_{c,\text{I}} = \frac{0{,}0023}{0{,}23 \times 0{,}055} = 0{,}182
+\qquad K_{c,\text{II}} = \frac{0{,}010}{0{,}15 \times 0{,}37} = 0{,}180\]</span></p>
+<p><span class="math display">\[K_{c,\text{III}} = \frac{0{,}085}{0{,}99 \times 0{,}47} = 0{,}183
+\qquad K_{c,\text{IV}} = \frac{1{,}00}{3{,}66 \times 1{,}50} = 0{,}182\]</span></p>
+<p>Toutes les expériences donnent <span class="math inline">\(K_c \approx 0{,}182\)</span> — elles sont toutes à l’équilibre, malgré des concentrations très différentes. La note en marge de votre professeur l’exprime bien : <em>“plusieurs concentrations peuvent être à l’équilibre !”</em></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Pour <span class="math inline">\(\ce{H2(g) + I2(g) &lt;=&gt; 2 HI(g)}\)</span>, <span class="math inline">\(K_c = 54\)</span>. Les concentrations <span class="math inline">\([\ce{H2}] = 0{,}50\)</span>, <span class="math inline">\([\ce{I2}] = 0{,}50\)</span>, <span class="math inline">\([\ce{HI}] = 3{,}67\ \text{mol/L}\)</span> correspondent-elles à un état d’équilibre ?<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></li>
+<li>Deux mélanges différents du même système atteignent l’équilibre avec des concentrations très différentes. Que peut-on affirmer sur leurs valeurs de <span class="math inline">\(K_c\)</span> à même température ?<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></li>
+<li>Pourquoi la quantité de solide présente n’a-t-elle aucun effet sur la position de l’équilibre pour <span class="math inline">\(\ce{CaCO3(s) &lt;=&gt; CaO(s) + CO2(g)}\)</span> ?<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></li>
+</ol>
+</section>
+</section>
+<section id="interprétation-de-la-valeur-de-k" class="level3" data-number="14.0.5">
+<h3 data-number="14.0.5" class="anchored" data-anchor-id="interprétation-de-la-valeur-de-k"><span class="header-section-number">14.0.5</span> Interprétation de la valeur de <span class="math inline">\(K\)</span></h3>
+<p><strong>Note de lecture :</strong> cette section introduit deux idées complémentaires : (a) comment lire la valeur de <span class="math inline">\(K\)</span> pour situer l’équilibre ; (b) la correspondance entre <span class="math inline">\(\Delta_r G^\circ\)</span> et <span class="math inline">\(K\)</span>. Les deux sont nécessaires pour interpréter les tableaux de données thermodynamiques.</p>
+<section id="au-niveau-macroscopique-k-indique-une-position-pas-une-vitesse" class="level4" data-number="14.0.5.1">
+<h4 data-number="14.0.5.1" class="anchored" data-anchor-id="au-niveau-macroscopique-k-indique-une-position-pas-une-vitesse"><span class="header-section-number">14.0.5.1</span> Au niveau macroscopique : <span class="math inline">\(K\)</span> indique une position, pas une vitesse</h4>
+<p>Une erreur très fréquente consiste à interpréter une grande valeur de <span class="math inline">\(K\)</span> comme signifiant que la réaction est rapide ou facile à réaliser. <span class="math inline">\(K\)</span> ne dit rien sur la vitesse — il indique uniquement où se situe l’équilibre.</p>
+<p>Un contre-exemple concret : la synthèse de l’ammoniac <span class="math inline">\(\ce{N2(g) + 3H2(g) &lt;=&gt; 2NH3(g)}\)</span> a <span class="math inline">\(K \approx 5{,}9 \times 10^5\)</span> à 298 K — une valeur très favorable. Pourtant, à température ambiante, pratiquement aucun <span class="math inline">\(\ce{NH3}\)</span> ne se forme en temps utile, car la liaison <span class="math inline">\(\ce{N#N}\)</span> est trop forte pour être rompue sans apport d’énergie. <span class="math inline">\(K\)</span> grand ne signifie pas réaction rapide.</p>
+<p>Nous utilisons ici la notion de vitesse de réaction, formalisée au chapitre sur la cinétique chimique. <!-- REF: ref:vitesse-de-reaction-constante-vitesse — notion de vitesse
+de réaction formalisée au chapitre Vitesse de réaction --></p>
+</section>
+<section id="analogie-avec-la-balance-à-deux-plateaux" class="level4" data-number="14.0.5.2">
+<h4 data-number="14.0.5.2" class="anchored" data-anchor-id="analogie-avec-la-balance-à-deux-plateaux"><span class="header-section-number">14.0.5.2</span> Analogie avec la balance à deux plateaux</h4>
+<p>Reprenez la balance introduite à la section 2.4 : le plateau gauche représente les réactifs, le plateau droit les produits. Cette fois, faisons varier la valeur de <span class="math inline">\(K\)</span> :</p>
+<ul>
+<li><span class="math inline">\(K \ll 10^{-10}\)</span> : la balance est fortement inclinée vers les réactifs. Presque aucun produit ne se forme.</li>
+<li><span class="math inline">\(K &lt; 1\)</span> : la balance est légèrement inclinée vers les réactifs. Peu de produit est présent.</li>
+<li><span class="math inline">\(K = 1\)</span> : la balance est horizontale. Réactifs et produits coexistent en quantités comparables.</li>
+<li><span class="math inline">\(K &gt; 1\)</span> : la balance est inclinée vers les produits. Les produits sont majoritaires.</li>
+<li><span class="math inline">\(K \gg 10^{10}\)</span> : la balance est fortement inclinée vers les produits. Les réactifs sont pratiquement entièrement consommés.</li>
+</ul>
+<p><strong>Limite de l’analogie :</strong> la balance suggère une progression visuelle continue et symétrique. En réalité, l’échelle de <span class="math inline">\(K\)</span> est logarithmique : passer de <span class="math inline">\(K = 10^{10}\)</span> à <span class="math inline">\(K = 10^{20}\)</span> ne change rien visuellement sur la balance, alors que chimiquement la différence est immense — dans le second cas, la quantité de réactifs résiduels est un milliard de fois plus faible. La balance illustre la direction de l’équilibre, pas son ampleur.</p>
+</section>
+<section id="au-niveau-particulaire-où-se-trouvent-les-espèces" class="level4" data-number="14.0.5.3">
+<h4 data-number="14.0.5.3" class="anchored" data-anchor-id="au-niveau-particulaire-où-se-trouvent-les-espèces"><span class="header-section-number">14.0.5.3</span> Au niveau particulaire : où se trouvent les espèces ?</h4>
+<p>Un <span class="math inline">\(K\)</span> très grand signifie qu’à l’équilibre, presque toutes les particules se trouvent du côté des produits — la réaction directe a converti la quasi-totalité des réactifs. Un <span class="math inline">\(K\)</span> très petit signifie l’inverse : les particules restent majoritairement sous forme de réactifs.</p>
+<p>Pour <span class="math inline">\(K \approx 1\)</span>, les deux populations coexistent en proportions comparables à l’équilibre.</p>
+</section>
+<section id="au-niveau-symbolique-tableau-de-correspondance-delta_r-gcirc-k" class="level4" data-number="14.0.5.4">
+<h4 data-number="14.0.5.4" class="anchored" data-anchor-id="au-niveau-symbolique-tableau-de-correspondance-delta_r-gcirc-k"><span class="header-section-number">14.0.5.4</span> Au niveau symbolique : tableau de correspondance <span class="math inline">\(\Delta_r G^\circ\)</span> / <span class="math inline">\(K\)</span></h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 21%">
+<col style="width: 12%">
+<col style="width: 32%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type de réaction</th>
+<th><span class="math inline">\(\Delta_r G^\circ\)</span> (kJ/mol)</th>
+<th><span class="math inline">\(K\)</span></th>
+<th>Position de l’équilibre</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Réaction directe impossible</td>
+<td><span class="math inline">\(&gt; +50\)</span></td>
+<td><span class="math inline">\(\ll 10^{-10}\)</span></td>
+<td>Fortement inclinée vers les réactifs</td>
+</tr>
+<tr class="even">
+<td>Réaction directe peu favorable</td>
+<td>Entre <span class="math inline">\(+1\)</span> et <span class="math inline">\(+50\)</span></td>
+<td><span class="math inline">\(\ll 1\)</span></td>
+<td>Inclinée vers les réactifs</td>
+</tr>
+<tr class="odd">
+<td>Réactifs et produits en quantités égales</td>
+<td><span class="math inline">\(\approx 0\)</span></td>
+<td><span class="math inline">\(\approx 1\)</span></td>
+<td>Balance horizontale</td>
+</tr>
+<tr class="even">
+<td>Réaction directe favorable</td>
+<td>Entre <span class="math inline">\(-1\)</span> et <span class="math inline">\(-50\)</span></td>
+<td><span class="math inline">\(\gg 1\)</span></td>
+<td>Inclinée vers les produits</td>
+</tr>
+<tr class="odd">
+<td>Réaction directe totale</td>
+<td><span class="math inline">\(&lt; -50\)</span></td>
+<td><span class="math inline">\(\gg 10^{10}\)</span></td>
+<td>Fortement inclinée vers les produits</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Attention :</strong> pour chaque système, il n’existe qu’un seul <span class="math inline">\(K\)</span> à une température donnée, mais une infinité de combinaisons d’activités satisfaisant ce <span class="math inline">\(K\)</span> — comme établi à la section 2.4.</p>
+</section>
+<section id="application-synthèses-industrielles" class="level4" data-number="14.0.5.5">
+<h4 data-number="14.0.5.5" class="anchored" data-anchor-id="application-synthèses-industrielles"><span class="header-section-number">14.0.5.5</span> Application : synthèses industrielles</h4>
+<p>Le tableau suivant illustre comment <span class="math inline">\(\Delta_r G^\circ\)</span> et <span class="math inline">\(K\)</span> permettent de classer des réactions industrielles courantes. Classez chacune en utilisant les termes : impossible, peu favorable, favorable ou totale.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 44%">
+<col style="width: 17%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Synthèse</th>
+<th>Réaction</th>
+<th><span class="math inline">\(\Delta_r G^\circ\)</span></th>
+<th><span class="math inline">\(K\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ammoniac</td>
+<td><span class="math inline">\(\ce{N2 + 3H2 &lt;=&gt; 2NH3}\)</span></td>
+<td><span class="math inline">\(-33\)</span> kJ/mol</td>
+<td><span class="math inline">\(5{,}9 \times 10^{5}\)</span></td>
+</tr>
+<tr class="even">
+<td>Éthanol</td>
+<td><span class="math inline">\(\ce{C6H12O6 -&gt; 2C2H5OH + 2CO2}\)</span></td>
+<td><span class="math inline">\(-123\)</span> kJ/mol</td>
+<td><span class="math inline">\(3{,}8 \times 10^{21}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Acide sulfurique</td>
+<td><span class="math inline">\(\ce{2SO2 + O2 &lt;=&gt; 2SO3}\)</span></td>
+<td><span class="math inline">\(-141\)</span> kJ/mol</td>
+<td><span class="math inline">\(5{,}6 \times 10^{24}\)</span></td>
+</tr>
+<tr class="even">
+<td>Acide acétique</td>
+<td><span class="math inline">\(\ce{CH3OH + CO &lt;=&gt; CH3COOH}\)</span></td>
+<td><span class="math inline">\(-13{,}2\)</span> kJ/mol</td>
+<td><span class="math inline">\(2{,}1 \times 10^{2}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Méthanol</td>
+<td><span class="math inline">\(\ce{CO + 2H2 &lt;=&gt; CH3OH}\)</span></td>
+<td><span class="math inline">\(-26\)</span> kJ/mol</td>
+<td><span class="math inline">\(2{,}6 \times 10^{5}\)</span></td>
+</tr>
+<tr class="even">
+<td>Chlore / NaOH</td>
+<td><span class="math inline">\(\ce{2NaCl + 2H2O -&gt; Cl2 + H2 + 2NaOH}\)</span></td>
+<td><span class="math inline">\(+237\)</span> kJ/mol</td>
+<td><span class="math inline">\(\ll 1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Remarques importantes :</strong></p>
+<ul>
+<li>La fermentation du glucose est une réaction totale en conditions standard (<span class="math inline">\(\Delta_r G^\circ = -123\)</span> kJ/mol), mais en milieu biologique réel, les enzymes et les conditions cellulaires ramènent la valeur effective de <span class="math inline">\(K\)</span> bien plus proche de 1. La valeur thermodynamique pure n’est pas directement applicable ici.</li>
+<li>L’électrolyse du <span class="math inline">\(\ce{NaCl}\)</span> est une réaction non spontanée (<span class="math inline">\(\Delta_r G^\circ &gt; 0\)</span>) — elle requiert un apport d’énergie électrique externe et ne peut pas être comparée directement aux autres réactions du tableau.</li>
+</ul>
+<p><strong>Exercice autonome :</strong> Classez chacune des synthèses du tableau ci-dessus.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li><span class="math inline">\(\Delta_r G^\circ = -33\ \text{kJ/mol}\)</span> à 298 K. Calculez <span class="math inline">\(K\)</span> et classez la réaction.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></li>
+<li>Une réaction a <span class="math inline">\(K = 1{,}5 \times 10^{-15}\)</span> à 298 K. Les réactifs ou les produits dominent-ils à l’équilibre ?<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></li>
+<li>La synthèse de l’ammoniac a <span class="math inline">\(K \approx 6 \times 10^5\)</span> à 298 K mais pratiquement aucun <span class="math inline">\(\ce{NH3}\)</span> ne se forme à température ambiante. Quelle grandeur manquante explique ce paradoxe ?<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></li>
+</ol>
+</section>
+</section>
+<section id="le-quotient-réactionnel-q" class="level3" data-number="14.0.6">
+<h3 data-number="14.0.6" class="anchored" data-anchor-id="le-quotient-réactionnel-q"><span class="header-section-number">14.0.6</span> Le quotient réactionnel <span class="math inline">\(Q\)</span></h3>
+<section id="au-niveau-macroscopique-comment-savoir-si-un-système-est-à-léquilibre" class="level4" data-number="14.0.6.1">
+<h4 data-number="14.0.6.1" class="anchored" data-anchor-id="au-niveau-macroscopique-comment-savoir-si-un-système-est-à-léquilibre"><span class="header-section-number">14.0.6.1</span> Au niveau macroscopique : comment savoir si un système est à l’équilibre ?</h4>
+<p>Lorsque vous observez un système chimique à un instant donné, la première question à poser est : ce système est-il à l’équilibre ? Une erreur fréquente est de croire que tout système chimique est nécessairement à l’équilibre — c’est incorrect. Un système peut se trouver dans un état transitoire, en train d’évoluer vers l’équilibre. Pour le savoir, il vous faut une grandeur calculable à tout instant et comparable à <span class="math inline">\(K\)</span> : c’est le <strong>quotient réactionnel</strong> <span class="math inline">\(Q\)</span>.</p>
+<p><span class="math inline">\(K\)</span> est une constante à température donnée — il caractérise l’état d’équilibre. <span class="math inline">\(Q\)</span> est une variable — il caractérise l’état instantané du système. <span class="math inline">\(Q\)</span> devient égal à <span class="math inline">\(K\)</span> uniquement lorsque l’équilibre est atteint.</p>
+<p>Le temps nécessaire pour que <span class="math inline">\(Q\)</span> rejoigne <span class="math inline">\(K\)</span> dépend de la cinétique de la réaction — une notion formalisée au chapitre sur la vitesse de réaction. Ce chapitre ne traite que de la position finale de l’équilibre, pas de la durée pour l’atteindre.</p>
+<!-- REF: ref:vitesse-de-reaction-constante-vitesse — durée pour atteindre
+l'équilibre liée à la cinétique, formalisée au chapitre Vitesse de
+réaction -->
+</section>
+<section id="au-niveau-particulaire-trop-de-produits-ou-trop-de-réactifs" class="level4" data-number="14.0.6.2">
+<h4 data-number="14.0.6.2" class="anchored" data-anchor-id="au-niveau-particulaire-trop-de-produits-ou-trop-de-réactifs"><span class="header-section-number">14.0.6.2</span> Au niveau particulaire : trop de produits ou trop de réactifs ?</h4>
+<p>Imaginez le système <span class="math inline">\(\ce{A + B &lt;=&gt; C + D}\)</span>. Si à un instant donné il y a trop de produits par rapport à l’équilibre (<span class="math inline">\(Q &gt; K\)</span>), le système contient plus de particules <span class="math inline">\(\ce{C}\)</span> et <span class="math inline">\(\ce{D}\)</span> que ce que <span class="math inline">\(K\)</span> tolère — la réaction inverse est favorisée pour les consommer et reformer <span class="math inline">\(\ce{A}\)</span> et <span class="math inline">\(\ce{B}\)</span>. Si au contraire il y a trop de réactifs (<span class="math inline">\(Q &lt; K\)</span>), la réaction directe est favorisée. Le système évolue toujours dans le sens qui rapproche <span class="math inline">\(Q\)</span> de <span class="math inline">\(K\)</span>.</p>
+</section>
+<section id="au-niveau-symbolique-définition-lien-à-delta_r-g-et-comparaison-à-k" class="level4" data-number="14.0.6.3">
+<h4 data-number="14.0.6.3" class="anchored" data-anchor-id="au-niveau-symbolique-définition-lien-à-delta_r-g-et-comparaison-à-k"><span class="header-section-number">14.0.6.3</span> Au niveau symbolique : définition, lien à <span class="math inline">\(\Delta_r G\)</span> et comparaison à <span class="math inline">\(K\)</span></h4>
+<p>Pour la réaction <span class="math inline">\(a\ \ce{A} + b\ \ce{B} \rightleftharpoons
+c\ \ce{C} + d\ \ce{D}\)</span>, le quotient réactionnel s’écrit :</p>
+<p><span class="math display">\[Q = \frac{(\alpha_C)^c \cdot (\alpha_D)^d}{(\alpha_A)^a \cdot (\alpha_B)^b}\]</span></p>
+<p>L’expression est identique à celle de <span class="math inline">\(K\)</span> — mais les activités utilisées sont celles de l’état instantané du système. Les mêmes conventions d’activité s’appliquent : <span class="math inline">\(\alpha = 1\)</span> pour les solides et liquides purs, <span class="math inline">\(\alpha = P_i\)</span> (en atm) pour les gaz, <span class="math inline">\(\alpha = [\ce{X}]\)</span> (en mol/L) pour les solutés.</p>
+<p><span class="math inline">\(Q\)</span> s’inscrit dans l’expression de l’enthalpie libre :</p>
+<p><span class="math display">\[\Delta_r G = \Delta_r G^\circ + RT \ln(Q)\]</span></p>
+<p>À l’équilibre, <span class="math inline">\(\Delta_r G = 0\)</span> et <span class="math inline">\(Q = K\)</span>, ce qui donne :</p>
+<p><span class="math display">\[0 = \Delta_r G^\circ + RT \ln(K) \quad \Rightarrow \quad
+\Delta_r G^\circ = -RT \ln(K)\]</span></p>
+<p>On retrouve ainsi la relation établie au chapitre sur la thermochimie. Hors équilibre, le signe de <span class="math inline">\(\Delta_r G\)</span> indique le sens d’évolution :</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 12%">
+<col style="width: 28%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Comparaison</th>
+<th><span class="math inline">\(\Delta_r G\)</span></th>
+<th>Sens d’évolution spontané</th>
+<th>Interprétation particulaire</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(Q &lt; K\)</span></td>
+<td><span class="math inline">\(&lt; 0\)</span></td>
+<td>Sens direct (<span class="math inline">\(\rightarrow\)</span>)</td>
+<td>Trop de réactifs — les produits se forment</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(Q = K\)</span></td>
+<td><span class="math inline">\(= 0\)</span></td>
+<td>Aucune évolution</td>
+<td>Système à l’équilibre</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(Q &gt; K\)</span></td>
+<td><span class="math inline">\(&gt; 0\)</span></td>
+<td>Sens inverse (<span class="math inline">\(\leftarrow\)</span>)</td>
+<td>Trop de produits — les réactifs se reforment</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exemple travaillé :</strong></p>
+<p>Pour la réaction <span class="math inline">\(\ce{2 NH3(g) &lt;=&gt; N2(g) + 3 H2(g)}\)</span> avec <span class="math inline">\(K_c = 17\)</span>, les concentrations initiales sont <span class="math inline">\([\ce{NH3}]_0 = 0{,}20\)</span> mol/L, <span class="math inline">\([\ce{N2}]_0 = 1{,}00\)</span> mol/L, <span class="math inline">\([\ce{H2}]_0 = 1{,}00\)</span> mol/L.</p>
+<p><span class="math display">\[Q_c = \frac{[\ce{N2}][\ce{H2}]^3}{[\ce{NH3}]^2}
+= \frac{1{,}00 \times (1{,}00)^3}{(0{,}20)^2} = \frac{1{,}00}{0{,}040}
+= 25\]</span></p>
+<p><span class="math inline">\(Q_c = 25 &gt; K_c = 17\)</span> : trop de produits. Le système évolue dans le sens inverse — vers la reformation de <span class="math inline">\(\ce{NH3}\)</span>.</p>
+<p><strong>Exercice guidé :</strong></p>
+<p>Les concentrations ou pressions initiales sont données pour chacun des systèmes suivants. Calculez <span class="math inline">\(Q\)</span> et déterminez le sens d’évolution.</p>
+<ol type="a">
+<li><p><span class="math inline">\(\ce{2 SO3(g) &lt;=&gt; 2 SO2(g) + O2(g)}\)</span>, <span class="math inline">\(K_c = 0{,}23\)</span> ; <span class="math inline">\([\ce{SO3}]_0 = 2{,}00\)</span> mol/L, <span class="math inline">\([\ce{SO2}]_0 = 2{,}00\)</span> mol/L, <span class="math inline">\([\ce{O2}]_0 = 2{,}00\)</span> mol/L.</p></li>
+<li><p><span class="math inline">\(\ce{2 SO3(g) &lt;=&gt; 2 SO2(g) + O2(g)}\)</span>, <span class="math inline">\(K_p = 6{,}5\)</span> ; <span class="math inline">\(p(\ce{SO3})_0 = 0\)</span> atm, <span class="math inline">\(p(\ce{SO2})_0 = 1{,}13\)</span> atm, <span class="math inline">\(p(\ce{O2})_0 = 1{,}13\)</span> atm.</p></li>
+<li><p><span class="math inline">\(\ce{2 NO(g) + Cl2(g) &lt;=&gt; 2 NOCl(g)}\)</span>, <span class="math inline">\(K_p = 2{,}5 \times 10^3\)</span> ; <span class="math inline">\(p(\ce{NO})_0 = 1{,}00\)</span> atm, <span class="math inline">\(p(\ce{Cl2})_0 = 1{,}00\)</span> atm, <span class="math inline">\(p(\ce{NOCl})_0 = 0\)</span> atm.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a></p></li>
+</ol>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Pour <span class="math inline">\(\ce{N2(g) + 3 H2(g) &lt;=&gt; 2 NH3(g)}\)</span>, <span class="math inline">\(K_c = 2{,}4 \times 10^{-3}\)</span> à 500 K. Concentrations : <span class="math inline">\([\ce{N2}] = 0{,}50\)</span>, <span class="math inline">\([\ce{H2}] = 0{,}80\)</span>, <span class="math inline">\([\ce{NH3}] = 0{,}010\ \text{mol/L}\)</span>. Calculez <span class="math inline">\(Q_c\)</span> et déterminez le sens d’évolution.<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a></li>
+<li>Pour <span class="math inline">\(\ce{CO(g) + H2O(g) &lt;=&gt; CO2(g) + H2(g)}\)</span>, <span class="math inline">\(K_c = 5{,}10\)</span> à 700 K. Si <span class="math inline">\([\ce{CO}] = [\ce{H2O}] = [\ce{CO2}] = [\ce{H2}] = 1{,}00\ \text{mol/L}\)</span>, le système est-il à l’équilibre ?<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a></li>
+<li>Quelle est la différence fondamentale entre <span class="math inline">\(Q\)</span> et <span class="math inline">\(K\)</span> ?<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a></li>
+</ol>
+</section>
+</section>
+<section id="le-principe-de-le-châtelier" class="level3" data-number="14.0.7">
+<h3 data-number="14.0.7" class="anchored" data-anchor-id="le-principe-de-le-châtelier"><span class="header-section-number">14.0.7</span> Le principe de Le Châtelier</h3>
+<section id="au-niveau-macroscopique-un-système-qui-sadapte-aux-perturbations" class="level4" data-number="14.0.7.1">
+<h4 data-number="14.0.7.1" class="anchored" data-anchor-id="au-niveau-macroscopique-un-système-qui-sadapte-aux-perturbations"><span class="header-section-number">14.0.7.1</span> Au niveau macroscopique : un système qui s’adapte aux perturbations</h4>
+<p>Un système à l’équilibre peut être perturbé par une modification extérieure — une variation de température, de pression, ou de concentration d’un constituant. Dès que cette perturbation survient, <span class="math inline">\(Q \neq K\)</span> : le système évolue spontanément vers un nouvel état d’équilibre.</p>
+<p>Une erreur fréquente est de croire que le système “revient” à son état initial après une perturbation. C’est incorrect : le nouvel équilibre atteint est différent de l’état initial. Le système s’adapte — il ne revient pas en arrière.</p>
+<p>Le <strong>principe de Le Châtelier</strong> (1884) généralise ce comportement :</p>
+<blockquote class="blockquote">
+<p><em>Lorsqu’une perturbation extérieure est appliquée à un système en équilibre, celui-ci évolue dans le sens qui tend à s’opposer à cette perturbation et à en modérer l’effet.</em></p>
+</blockquote>
+<p>Ce principe permet de prédire <strong>qualitativement</strong> le sens de déplacement sans calcul. Pour les prédictions quantitatives, on utilise <span class="math inline">\(Q\)</span> (section 2.6) et la méthode de <span class="math inline">\(x\)</span> (section 2.8).</p>
+</section>
+<section id="a.-variation-de-température-la-seule-perturbation-qui-modifie-k" class="level4" data-number="14.0.7.2">
+<h4 data-number="14.0.7.2" class="anchored" data-anchor-id="a.-variation-de-température-la-seule-perturbation-qui-modifie-k"><span class="header-section-number">14.0.7.2</span> A. Variation de température — la seule perturbation qui modifie <span class="math inline">\(K\)</span></h4>
+<p>Une erreur fréquente est de croire que toute perturbation modifie <span class="math inline">\(K\)</span>. C’est incorrect : <strong>seule la température agit sur <span class="math inline">\(K\)</span></strong>, via la relation <span class="math inline">\(\Delta_r G^\circ = \Delta_r H^\circ - T \cdot \Delta_r S^\circ\)</span> et <span class="math inline">\(\Delta_r G^\circ = -RT \ln(K)\)</span>.</p>
+<!-- REF: ref:thermochimie-2-enthalpie-libre — relation Delta_r G° =
+Delta_r H° - T·Delta_r S° et lien à K, établis au chapitre
+Thermochimie 2 -->
+<p>La règle qualitative est la suivante :</p>
+<ul>
+<li><strong>Si <span class="math inline">\(T\)</span> augmente</strong> : l’équilibre se déplace dans le sens <strong>endothermique</strong> — le système absorbe de la chaleur pour modérer l’augmentation de température. <span class="math inline">\(K\)</span> augmente si le sens direct est endothermique, diminue s’il est exothermique.</li>
+<li><strong>Si <span class="math inline">\(T\)</span> diminue</strong> : l’équilibre se déplace dans le sens <strong>exothermique</strong> — le système libère de la chaleur pour modérer la baisse de température.</li>
+</ul>
+<p><strong>Exemple travaillé :</strong> <span class="math inline">\(\ce{2 NO2(g) &lt;=&gt; N2O4(g)}\)</span>, <span class="math inline">\(\Delta_r H^\circ = -57{,}20\)</span> kJ/mol (sens direct exothermique).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 23%">
+<col style="width: 16%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Perturbation</th>
+<th>Sens de déplacement</th>
+<th>Effet sur <span class="math inline">\(K\)</span></th>
+<th>Observation macroscopique</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(T\)</span> augmente</td>
+<td>Sens inverse</td>
+<td><span class="math inline">\(K\)</span> diminue</td>
+<td>Plus de <span class="math inline">\(\ce{NO2}\)</span> brun formé</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(T\)</span> diminue</td>
+<td>Sens direct</td>
+<td><span class="math inline">\(K\)</span> augmente</td>
+<td>Plus de <span class="math inline">\(\ce{N2O4}\)</span> incolore formé</td>
+</tr>
+</tbody>
+</table>
+<p>Données numériques : à <span class="math inline">\(-196\ ^\circ\)</span>C, <span class="math inline">\(K_p = 3{,}7 \times 10^{29}\)</span> — le mélange est quasi entièrement <span class="math inline">\(\ce{N2O4}\)</span>, incolore. À <span class="math inline">\(+100\ ^\circ\)</span>C, <span class="math inline">\(K_p = 0{,}066\)</span> — le mélange est dominé par <span class="math inline">\(\ce{NO2}\)</span>, brun. La couleur observable est un indicateur direct de la position de l’équilibre.</p>
+</section>
+<section id="b.-variation-de-pression-déplacement-sans-modification-de-k" class="level4" data-number="14.0.7.3">
+<h4 data-number="14.0.7.3" class="anchored" data-anchor-id="b.-variation-de-pression-déplacement-sans-modification-de-k"><span class="header-section-number">14.0.7.3</span> B. Variation de pression — déplacement sans modification de <span class="math inline">\(K\)</span></h4>
+<p>Une erreur fréquente est de croire qu’augmenter la pression déplace toujours l’équilibre vers les produits. C’est incorrect : l’équilibre se déplace vers le côté qui possède le <strong>moins de moles gazeuses</strong>, qu’il s’agisse des réactifs ou des produits.</p>
+<p>Une augmentation de pression déplace l’équilibre dans le sens qui diminue <span class="math inline">\(\Delta n\)</span> — c’est-à-dire vers le côté avec moins de moles gazeuses. <span class="math inline">\(K\)</span> reste inchangé : seules les pressions partielles se réajustent.</p>
+<p><strong>La variation de pression est sans effet dans trois cas :</strong></p>
+<ul>
+<li>Systèmes sans constituant gazeux.</li>
+<li>Systèmes où <span class="math inline">\(\Delta n = 0\)</span>.</li>
+<li>Ajout d’un gaz inerte à volume constant : les pressions partielles des espèces réactives ne changent pas.</li>
+</ul>
+<p><strong>Au niveau particulaire :</strong> comprimer le système augmente la densité particulaire. Pour modérer cette augmentation, le système favorise la réaction qui réduit le nombre de particules gazeuses — c’est-à-dire le sens qui diminue <span class="math inline">\(\Delta n\)</span>.</p>
+<p><strong>Exemple travaillé — procédé Haber-Bosch :</strong> <span class="math inline">\(\ce{N2(g) + 3 H2(g) &lt;=&gt; 2 NH3(g)}\)</span>, <span class="math inline">\(\Delta n = 2 - 4 = -2\)</span>.</p>
+<p>À 298 K, l’équilibre est très favorable (<span class="math inline">\(K\)</span> grand), mais la réaction est trop lente — la liaison <span class="math inline">\(\ce{N#N}\)</span> est très difficile à rompre. En augmentant la température (450–500 <span class="math inline">\(^\circ\)</span>C), on accélère la cinétique, mais <span class="math inline">\(K\)</span> diminue (réaction exothermique) et le rendement chute. Pour compenser, on augmente la pression (150–300 bar) : cela déplace indépendamment l’équilibre vers <span class="math inline">\(\ce{NH3}\)</span> (<span class="math inline">\(\Delta n &lt; 0\)</span>). Les deux effets jouent dans des directions opposées — c’est ce compromis qui dicte les conditions industrielles.</p>
+<p><strong>Exercice guidé :</strong> Déterminez le sens de déplacement de l’équilibre lors d’une augmentation de pression :</p>
+<ol type="1">
+<li><span class="math inline">\(\ce{C(s) + CO2(g) &lt;=&gt; 2 CO(g)}\)</span></li>
+<li><span class="math inline">\(\ce{N2O4(g) &lt;=&gt; 2 NO2(g)}\)</span></li>
+<li><span class="math inline">\(\ce{N2(g) + 3 H2(g) &lt;=&gt; 2 NH3(g)}\)</span></li>
+<li><span class="math inline">\(\ce{H2(g) + I2(g) &lt;=&gt; 2 HI(g)}\)</span></li>
+<li><span class="math inline">\(\ce{H2(g) + CO2(g) &lt;=&gt; CO(g) + H2O(g)}\)</span><a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a></li>
+</ol>
+</section>
+<section id="c.-variation-de-concentration-déplacement-sans-modification-de-k" class="level4" data-number="14.0.7.4">
+<h4 data-number="14.0.7.4" class="anchored" data-anchor-id="c.-variation-de-concentration-déplacement-sans-modification-de-k"><span class="header-section-number">14.0.7.4</span> C. Variation de concentration — déplacement sans modification de <span class="math inline">\(K\)</span></h4>
+<p>Une erreur fréquente est de croire que retirer un produit “empêche” la réaction de progresser. C’est l’inverse : retirer un produit déplace l’équilibre vers les produits — le système en produit davantage pour compenser le retrait. De même, ajouter un réactif déplace l’équilibre vers les produits — le système consomme l’excès ajouté. Dans les deux cas, <span class="math inline">\(K\)</span> reste inchangé.</p>
+<p><strong>Au niveau particulaire :</strong> modifier la concentration d’un constituant crée un déséquilibre local entre les vitesses des réactions directe et inverse. Le système réajuste les concentrations de toutes les espèces jusqu’à ce que <span class="math inline">\(Q = K\)</span> soit à nouveau satisfait.</p>
+<p><strong>Expérience illustrative :</strong></p>
+<p><span class="math display">\[\ce{Co(H2O)6^{2+}(aq) + 4 Cl^-(aq) &lt;=&gt; CoCl4^{2-}(aq) + 6 H2O(l)}\]</span> <span class="math display">\[\hspace{1.5cm}\text{(rose)} \hspace{5.8cm} \text{(bleu)}\]</span></p>
+<p>Au départ, la solution est rose — l’équilibre est situé côté gauche.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 61%">
+<col style="width: 20%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Modification</th>
+<th>Sens de déplacement</th>
+<th>Couleur observée</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ajout de <span class="math inline">\(\ce{HCl}\)</span> conc. (augmente <span class="math inline">\([\ce{Cl^-}]\)</span>)</td>
+<td>Vers la droite</td>
+<td>Bleuit</td>
+</tr>
+<tr class="even">
+<td>Ajout d’eau (augmente <span class="math inline">\([\ce{H2O}]\)</span>, produit)</td>
+<td>Vers la gauche</td>
+<td>Rosit</td>
+</tr>
+<tr class="odd">
+<td>Ajout de <span class="math inline">\(\ce{AgNO3}\)</span> (précipite <span class="math inline">\(\ce{Cl^-}\)</span>, diminue <span class="math inline">\([\ce{Cl^-}]\)</span>)</td>
+<td>Vers la gauche</td>
+<td>Rosit</td>
+</tr>
+<tr class="even">
+<td>Ajout d’acétone (forme ponts H avec <span class="math inline">\(\ce{H2O}\)</span>, diminue <span class="math inline">\([\ce{H2O}]\)</span> disponible)</td>
+<td>Vers la droite</td>
+<td>Bleuit</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exercice guidé :</strong></p>
+<p>Pour <span class="math inline">\(\ce{CO2(g) + H2(g) &lt;=&gt; CO(g) + H2O(g)}\)</span>, <span class="math inline">\(\Delta_r H^\circ = +41{,}38\)</span> kJ/mol, prédisez le sens de déplacement :</p>
+<ol type="a">
+<li>on ajoute du <span class="math inline">\(\ce{CO2(g)}\)</span></li>
+<li>on ajoute du <span class="math inline">\(\ce{H2O(g)}\)</span></li>
+<li>on retire du <span class="math inline">\(\ce{CO(g)}\)</span></li>
+<li>on augmente la température</li>
+<li>on réduit le volume du récipient à température constante</li>
+<li>on ajoute du <span class="math inline">\(\ce{He}\)</span> sans changement de volume<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a></li>
+</ol>
+</section>
+<section id="synthèse-ce-qui-modifie-k-et-ce-qui-ne-le-modifie-pas" class="level4" data-number="14.0.7.5">
+<h4 data-number="14.0.7.5" class="anchored" data-anchor-id="synthèse-ce-qui-modifie-k-et-ce-qui-ne-le-modifie-pas"><span class="header-section-number">14.0.7.5</span> Synthèse : ce qui modifie <span class="math inline">\(K\)</span> et ce qui ne le modifie pas</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 45%">
+<col style="width: 33%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Perturbation</th>
+<th>Déplacement de l’équilibre</th>
+<th>Modification de <span class="math inline">\(K\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Variation de température</td>
+<td>Oui</td>
+<td>Oui</td>
+</tr>
+<tr class="even">
+<td>Variation de pression (<span class="math inline">\(\Delta n \neq 0\)</span>)</td>
+<td>Oui</td>
+<td>Non</td>
+</tr>
+<tr class="odd">
+<td>Variation de concentration</td>
+<td>Oui</td>
+<td>Non</td>
+</tr>
+<tr class="even">
+<td>Ajout d’un catalyseur</td>
+<td>Non</td>
+<td>Non</td>
+</tr>
+<tr class="odd">
+<td>Ajout d’un gaz inerte (<span class="math inline">\(V\)</span> constant)</td>
+<td>Non</td>
+<td>Non</td>
+</tr>
+</tbody>
+</table>
+<p>Le catalyseur figure dans ce tableau à titre d’anticipation — il est formalisé à la section 2.9.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Pour <span class="math inline">\(\ce{2 SO2(g) + O2(g) &lt;=&gt; 2 SO3(g)}\)</span>, <span class="math inline">\(\Delta_r H^\circ = -198\ \text{kJ/mol}\)</span>. Prédisez l’effet d’une hausse de température sur <span class="math inline">\(K\)</span> et sur la composition du système.<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a></li>
+<li>Pour la même réaction, l’industrie travaille à haute pression (plusieurs centaines de bars). Justifiez ce choix par le principe de Le Châtelier (<span class="math inline">\(\Delta n = ?\)</span>).<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a></li>
+<li>Un élève affirme qu’ajouter un catalyseur à <span class="math inline">\(\ce{N2(g) + 3 H2(g) &lt;=&gt; 2 NH3(g)}\)</span> augmente le rendement en <span class="math inline">\(\ce{NH3}\)</span>. Êtes-vous d’accord ?<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a></li>
+</ol>
+</section>
+</section>
+<section id="méthode-de-la-variable-x-calcul-quantitatif-des-concentrations" class="level3" data-number="14.0.8">
+<h3 data-number="14.0.8" class="anchored" data-anchor-id="méthode-de-la-variable-x-calcul-quantitatif-des-concentrations"><span class="header-section-number">14.0.8</span> Méthode de la variable <span class="math inline">\(x\)</span> — calcul quantitatif des concentrations</h3>
+<p>à l’équilibre</p>
+<p><strong>Note de lecture :</strong> cette section est la plus exigeante du chapitre. Elle introduit une méthode de calcul en cinq étapes que vous appliquerez à tout système hors équilibre. Prenez le temps de comprendre chaque étape sur les exemples travaillés avant de passer à l’exercice guidé.</p>
+<section id="au-niveau-macroscopique-prédire-des-concentrations-pas-seulement-un-sens" class="level4" data-number="14.0.8.1">
+<h4 data-number="14.0.8.1" class="anchored" data-anchor-id="au-niveau-macroscopique-prédire-des-concentrations-pas-seulement-un-sens"><span class="header-section-number">14.0.8.1</span> Au niveau macroscopique : prédire des concentrations, pas seulement un sens</h4>
+<p>Le principe de Le Châtelier vous permet de prédire qualitativement le sens d’évolution d’un système perturbé, mais pas de combien les concentrations changent. Pour répondre à cette question, vous avez besoin de la <strong>méthode de la variable <span class="math inline">\(x\)</span></strong>.</p>
+<p>Une erreur fréquente est de croire qu’on peut lire les concentrations à l’équilibre directement à partir des concentrations initiales et de <span class="math inline">\(K\)</span>. C’est incorrect : les concentrations à l’équilibre dépendent de l’avancement de la réaction — précisément ce qu’on cherche. La variable <span class="math inline">\(x\)</span> représente cet avancement inconnu.</p>
+</section>
+<section id="au-niveau-particulaire-un-avancement-commun-à-toutes-les-espèces" class="level4" data-number="14.0.8.2">
+<h4 data-number="14.0.8.2" class="anchored" data-anchor-id="au-niveau-particulaire-un-avancement-commun-à-toutes-les-espèces"><span class="header-section-number">14.0.8.2</span> Au niveau particulaire : un avancement commun à toutes les espèces</h4>
+<p>Lorsqu’une réaction avance d’une quantité <span class="math inline">\(x\)</span> mol/L, chaque espèce voit sa concentration évoluer proportionnellement à son coefficient stœchiométrique. Pour <span class="math inline">\(\ce{A &lt;=&gt; 2B}\)</span>, si <span class="math inline">\(x\)</span> mol/L de <span class="math inline">\(\ce{A}\)</span> sont consommées, alors <span class="math inline">\(2x\)</span> mol/L de <span class="math inline">\(\ce{B}\)</span> sont formées. Toutes les espèces sont reliées par le même <span class="math inline">\(x\)</span> — c’est ce qui permet d’exprimer <span class="math inline">\(K\)</span> en fonction d’une seule inconnue.</p>
+</section>
+<section id="au-niveau-symbolique-méthode-générale-en-cinq-étapes" class="level4" data-number="14.0.8.3">
+<h4 data-number="14.0.8.3" class="anchored" data-anchor-id="au-niveau-symbolique-méthode-générale-en-cinq-étapes"><span class="header-section-number">14.0.8.3</span> Au niveau symbolique : méthode générale en cinq étapes</h4>
+<p><strong>Étape 1 — Vérifier si le système est à l’équilibre</strong></p>
+<p>Calculez <span class="math inline">\(Q\)</span> et comparez à <span class="math inline">\(K\)</span>. Si <span class="math inline">\(Q = K\)</span> : équilibre atteint, aucun calcul supplémentaire. Si <span class="math inline">\(Q \neq K\)</span> : déterminez le sens d’évolution.</p>
+<p><strong>Étape 2 — Construire le tableau d’avancement</strong></p>
+<p>Posez <span class="math inline">\(x\)</span> comme la variation de concentration du réactif (ou produit) de référence. Exprimez les concentrations de toutes les espèces à l’équilibre en fonction de <span class="math inline">\(x\)</span> et des concentrations initiales.</p>
+<p><strong>Étape 3 — Exprimer <span class="math inline">\(K\)</span> en fonction de <span class="math inline">\(x\)</span></strong></p>
+<p>Substituez les expressions de l’étape 2 dans l’expression de <span class="math inline">\(K\)</span>.</p>
+<p><strong>Étape 4 — Résoudre l’équation en <span class="math inline">\(x\)</span></strong></p>
+<p>Résolvez l’équation obtenue. Selon le degré de l’équation, cela peut nécessiter une racine carrée, la formule quadratique<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a>, ou une résolution numérique.</p>
+<p><strong>Étape 5 — Calculer et vérifier les concentrations</strong></p>
+<p>Substituez <span class="math inline">\(x\)</span> dans les expressions de l’étape 2. Vérifiez que toutes les concentrations sont positives et cohérentes avec le sens d’évolution.</p>
+<hr>
+<p><strong>Exemple travaillé 1 : mélange initial de réactifs et produits</strong></p>
+<p>Considérez <span class="math inline">\(\ce{H2(g) + I2(g) &lt;=&gt; 2 HI(g)}\)</span>, <span class="math inline">\(K_c = 54{,}0\)</span> à 425 <span class="math inline">\(^\circ\)</span>C.</p>
+<p>Concentrations initiales : <span class="math inline">\([\ce{H2}]_0 = 1{,}0\)</span> mol/L, <span class="math inline">\([\ce{I2}]_0 = 1{,}0\)</span> mol/L, <span class="math inline">\([\ce{HI}]_0 = 0{,}5\)</span> mol/L.</p>
+<p>Au niveau macroscopique, ce mélange est observable par la couleur violette de <span class="math inline">\(\ce{I2}\)</span> : si le système évolue vers la droite, la couleur s’atténue au fur et à mesure que <span class="math inline">\(\ce{I2}\)</span> est consommé.</p>
+<p><strong>Étape 1 :</strong></p>
+<p><span class="math display">\[Q_c = \frac{(0{,}5)^2}{1{,}0 \times 1{,}0} = 0{,}25 \ll K_c = 54{,}0\]</span></p>
+<p><span class="math inline">\(Q &lt; K\)</span> : sens direct — formation de <span class="math inline">\(\ce{HI}\)</span>, consommation de <span class="math inline">\(\ce{I2}\)</span> (décoloration observable).</p>
+<p><strong>Étape 2 :</strong> tableau d’avancement (concentrations en mol/L) :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th><span class="math inline">\(\ce{H2}\)</span></th>
+<th><span class="math inline">\(\ce{I2}\)</span></th>
+<th><span class="math inline">\(\ce{2HI}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Initial</td>
+<td><span class="math inline">\(1{,}0\)</span></td>
+<td><span class="math inline">\(1{,}0\)</span></td>
+<td><span class="math inline">\(0{,}5\)</span></td>
+</tr>
+<tr class="even">
+<td>Variation</td>
+<td><span class="math inline">\(-x\)</span></td>
+<td><span class="math inline">\(-x\)</span></td>
+<td><span class="math inline">\(+2x\)</span></td>
+</tr>
+<tr class="odd">
+<td>Équilibre</td>
+<td><span class="math inline">\(1{,}0 - x\)</span></td>
+<td><span class="math inline">\(1{,}0 - x\)</span></td>
+<td><span class="math inline">\(0{,}5 + 2x\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Étape 3 :</strong></p>
+<p><span class="math display">\[K_c = \frac{(0{,}5 + 2x)^2}{(1{,}0 - x)^2} = 54{,}0\]</span></p>
+<p><strong>Étape 4 :</strong> les deux membres sont des carrés parfaits — on prend la racine carrée :</p>
+<p><span class="math display">\[\frac{0{,}5 + 2x}{1{,}0 - x} = \sqrt{54{,}0} = 7{,}35\]</span></p>
+<p><span class="math display">\[0{,}5 + 2x = 7{,}35 - 7{,}35x \quad \Rightarrow \quad
+9{,}35x = 6{,}85 \quad \Rightarrow \quad x = 0{,}733\ \text{mol/L}\]</span></p>
+<p><strong>Étape 5 :</strong></p>
+<p><span class="math display">\[[\ce{H2}]_{éq} = [\ce{I2}]_{éq} = 1{,}0 - 0{,}733 = 0{,}267
+\ \text{mol/L}\]</span> <span class="math display">\[[\ce{HI}]_{éq} = 0{,}5 + 2 \times 0{,}733 = 1{,}966\ \text{mol/L}\]</span></p>
+<p>Vérification : <span class="math inline">\(K_c = (1{,}966)^2 / (0{,}267)^2 = 54{,}2 \approx
+54{,}0\)</span> ✓</p>
+<hr>
+<p><strong>Exemple travaillé 2 : acide faible en solution</strong></p>
+<p>Considérez <span class="math inline">\(\ce{CH3COOH(aq) + H2O(l) &lt;=&gt; CH3COO^-(aq) + H3O^+(aq)}\)</span>, <span class="math inline">\(K_a = 1{,}8 \times 10^{-5}\)</span>.</p>
+<p>Vous dissolvez 0,10 mol d’acide acétique pur dans 1,00 L d’eau distillée. Au niveau macroscopique, la solution reste incolore, mais son pH diminue progressivement jusqu’à l’équilibre.</p>
+<p><strong>Étape 1 :</strong> les produits sont initialement absents — <span class="math inline">\(Q = 0 &lt; K_a\)</span> : sens direct.</p>
+<p><strong>Étape 2 :</strong> tableau d’avancement :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th><span class="math inline">\(\ce{CH3COOH}\)</span></th>
+<th><span class="math inline">\(\ce{CH3COO^-}\)</span></th>
+<th><span class="math inline">\(\ce{H3O^+}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Initial</td>
+<td><span class="math inline">\(0{,}10\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+</tr>
+<tr class="even">
+<td>Variation</td>
+<td><span class="math inline">\(-x\)</span></td>
+<td><span class="math inline">\(+x\)</span></td>
+<td><span class="math inline">\(+x\)</span></td>
+</tr>
+<tr class="odd">
+<td>Équilibre</td>
+<td><span class="math inline">\(0{,}10 - x\)</span></td>
+<td><span class="math inline">\(x\)</span></td>
+<td><span class="math inline">\(x\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Étape 3 :</strong></p>
+<p><span class="math display">\[K_a = \frac{x^2}{0{,}10 - x} = 1{,}8 \times 10^{-5}\]</span></p>
+<p><strong>Étape 4 :</strong> <span class="math inline">\(K_a \ll 1\)</span> — l’acide faible se dissocie très peu, donc <span class="math inline">\(x \ll 0{,}10\)</span>. On peut approximer <span class="math inline">\(0{,}10 - x \approx 0{,}10\)</span> si <span class="math inline">\(x / 0{,}10 &lt; 5\ \%\)</span> (règle des 5% : l’approximation est valide si l’avancement représente moins de 5% de la concentration initiale) :</p>
+<p><span class="math display">\[x^2 \approx 1{,}8 \times 10^{-5} \times 0{,}10 = 1{,}8 \times 10^{-6}
+\quad \Rightarrow \quad x \approx 1{,}34 \times 10^{-3}\ \text{mol/L}\]</span></p>
+<p>Vérification : <span class="math inline">\(x / 0{,}10 = 1{,}34\ \% &lt; 5\ \%\)</span> — approximation valide ✓</p>
+<p><strong>Étape 5 :</strong></p>
+<p><span class="math display">\[[\ce{CH3COOH}]_{éq} \approx 0{,}10\ \text{mol/L} \qquad
+[\ce{CH3COO^-}]_{éq} = [\ce{H3O^+}]_{éq} = 1{,}34 \times 10^{-3}
+\ \text{mol/L}\]</span></p>
+<hr>
+<p><strong>Exercice guidé :</strong></p>
+<p>On introduit 0,625 mol de <span class="math inline">\(\ce{N2O4}\)</span> dans un récipient de 5,00 L, initialement sans <span class="math inline">\(\ce{NO2}\)</span>. On attend que l’équilibre s’établisse selon <span class="math inline">\(\ce{2 NO2(g) &lt;=&gt; N2O4(g)}\)</span>. On mesure à l’équilibre <span class="math inline">\([\ce{N2O4}]_{éq} = 0{,}075\)</span> mol/L.</p>
+<ol type="a">
+<li><p>Calculez <span class="math inline">\([\ce{N2O4}]_0\)</span> et déterminez le sens d’évolution.</p></li>
+<li><p>Construisez le tableau d’avancement et exprimez <span class="math inline">\([\ce{NO2}]_{éq}\)</span> en fonction de <span class="math inline">\(x\)</span>.</p></li>
+<li><p>Déduisez <span class="math inline">\([\ce{NO2}]_{éq}\)</span> à partir de <span class="math inline">\([\ce{N2O4}]_{éq}\)</span> mesuré, puis calculez <span class="math inline">\(K_c\)</span>.<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a></p></li>
+</ol>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Pour <span class="math inline">\(\ce{CO(g) + H2O(g) &lt;=&gt; CO2(g) + H2(g)}\)</span>, <span class="math inline">\(K_c = 5{,}10\)</span> à 700 K. On place 1{,}00 mol de <span class="math inline">\(\ce{CO}\)</span> et 1{,}00 mol de <span class="math inline">\(\ce{H2O}\)</span> dans un récipient de 1{,}00 L. Calculez les concentrations à l’équilibre.<a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a></li>
+<li>Pour <span class="math inline">\(\ce{I2(g) &lt;=&gt; 2 I(g)}\)</span>, <span class="math inline">\(K_c = 3{,}8 \times 10^{-5}\)</span> à 727 °C. On place 0{,}100 mol de <span class="math inline">\(\ce{I2}\)</span> dans 2{,}00 L. Calculez <span class="math inline">\([\ce{I}]_{éq}\)</span> en utilisant l’approximation des 5% et vérifiez sa validité.<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a></li>
+<li>Expliquez en une phrase pourquoi l’approximation <span class="math inline">\(0{,}10 - x \approx 0{,}10\)</span> est valide quand <span class="math inline">\(K_a \ll 1\)</span> mais pas quand <span class="math inline">\(K \approx 1\)</span>.<a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a></li>
+</ol>
+</section>
+</section>
+<section id="les-catalyseurs" class="level3" data-number="14.0.9">
+<h3 data-number="14.0.9" class="anchored" data-anchor-id="les-catalyseurs"><span class="header-section-number">14.0.9</span> Les catalyseurs</h3>
+<section id="au-niveau-macroscopique-plus-vite-mais-pas-plus-loin" class="level4" data-number="14.0.9.1">
+<h4 data-number="14.0.9.1" class="anchored" data-anchor-id="au-niveau-macroscopique-plus-vite-mais-pas-plus-loin"><span class="header-section-number">14.0.9.1</span> Au niveau macroscopique : plus vite, mais pas plus loin</h4>
+<p>Une erreur très fréquente est de croire qu’un catalyseur permet d’obtenir davantage de produits à l’équilibre — qu’il “améliore le rendement” d’une réaction. C’est incorrect : un catalyseur accélère l’atteinte de l’équilibre, mais ne modifie ni la position de l’équilibre ni la valeur de <span class="math inline">\(K\)</span>. Les concentrations finales à l’équilibre sont identiques avec ou sans catalyseur.</p>
+<p>Au niveau macroscopique, l’effet observable est uniquement une question de temps : avec un catalyseur, l’équilibre est atteint plus rapidement. Sans catalyseur, le même état final est atteint — mais après un délai plus long.</p>
+</section>
+<section id="au-niveau-particulaire-un-chemin-alternatif-pas-une-destination-différente" class="level4" data-number="14.0.9.2">
+<h4 data-number="14.0.9.2" class="anchored" data-anchor-id="au-niveau-particulaire-un-chemin-alternatif-pas-une-destination-différente"><span class="header-section-number">14.0.9.2</span> Au niveau particulaire : un chemin alternatif, pas une destination différente</h4>
+<p>Sans catalyseur, la réaction suit un chemin énergétique présentant une barrière d’activation <span class="math inline">\(E_a\)</span> élevée — peu de particules possèdent l’énergie suffisante pour franchir cette barrière, et la réaction est lente.</p>
+<p>Un catalyseur introduit un nouveau mécanisme réactionnel — une succession d’étapes intermédiaires dont aucune ne présente une barrière d’activation aussi élevée que la réaction non catalysée. L’énergie totale libérée ou absorbée par la réaction reste identique — c’est une fonction d’état, indépendante du chemin suivi.</p>
+<!-- REF: ref:thermochimie-1-loi-hess — notion de fonction d'état et
+indépendance du chemin, établie au chapitre Thermochimie 1 -->
+<p>Dans un système réversible, le catalyseur accélère autant la réaction directe que la réaction inverse — les deux barrières d’activation sont abaissées dans les mêmes proportions. C’est pour cette raison que la position de l’équilibre n’est pas modifiée.</p>
+</section>
+<section id="au-niveau-symbolique-effet-sur-k-et-sur-delta_r-gcirc" class="level4" data-number="14.0.9.3">
+<h4 data-number="14.0.9.3" class="anchored" data-anchor-id="au-niveau-symbolique-effet-sur-k-et-sur-delta_r-gcirc"><span class="header-section-number">14.0.9.3</span> Au niveau symbolique : effet sur <span class="math inline">\(K\)</span> et sur <span class="math inline">\(\Delta_r G^\circ\)</span></h4>
+<p>Le catalyseur n’apparaît pas dans le bilan de la réaction — il est consommé dans une étape intermédiaire et régénéré dans une étape ultérieure. Il n’apparaît donc pas non plus dans l’expression de <span class="math inline">\(K\)</span>.</p>
+<p>Comme <span class="math inline">\(\Delta_r G^\circ\)</span> est une fonction d’état qui ne dépend que des états initial et final du système, et que le catalyseur ne modifie ni l’un ni l’autre, on a :</p>
+<p><span class="math display">\[\Delta_r G^\circ_{\text{cat}} = \Delta_r G^\circ_{\text{sans cat}}
+\quad \Rightarrow \quad K_{\text{cat}} = K_{\text{sans cat}}\]</span></p>
+<p>Le tableau suivant résume l’effet du catalyseur par rapport aux autres perturbations vues à la section 2.7 :</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 40%">
+<col style="width: 28%">
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Perturbation</th>
+<th>Vitesse d’atteinte de l’équilibre</th>
+<th>Position de l’équilibre</th>
+<th><span class="math inline">\(K\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Catalyseur</td>
+<td>Augmente</td>
+<td>Inchangée</td>
+<td>Inchangé</td>
+</tr>
+<tr class="even">
+<td>Variation de <span class="math inline">\(T\)</span></td>
+<td>Augmente (en général)</td>
+<td>Modifiée</td>
+<td>Modifié</td>
+</tr>
+<tr class="odd">
+<td>Variation de <span class="math inline">\(P\)</span></td>
+<td>Inchangée</td>
+<td>Modifiée (si <span class="math inline">\(\Delta n \neq 0\)</span>)</td>
+<td>Inchangé</td>
+</tr>
+<tr class="even">
+<td>Variation de <span class="math inline">\([\ce{X}]\)</span></td>
+<td>Inchangée</td>
+<td>Modifiée</td>
+<td>Inchangé</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="application-le-pot-catalytique" class="level4" data-number="14.0.9.4">
+<h4 data-number="14.0.9.4" class="anchored" data-anchor-id="application-le-pot-catalytique"><span class="header-section-number">14.0.9.4</span> Application : le pot catalytique</h4>
+<p>Dans un moteur à combustion, les températures peuvent atteindre 2800 <span class="math inline">\(^\circ\)</span>C. À ces températures, des réactions normalement défavorables deviennent possibles, notamment :</p>
+<p><span class="math display">\[\ce{N2(g) + O2(g) -&gt; 2 NO(g)}\]</span></p>
+<p>Le <span class="math inline">\(\ce{NO}\)</span> est ensuite oxydé dans l’atmosphère en <span class="math inline">\(\ce{NO2}\)</span>, qui forme en présence d’humidité des acides nitreux et nitrique responsables des pluies acides.</p>
+<p>Le pot catalytique accélère la réaction de réduction du <span class="math inline">\(\ce{NO}\)</span> par le monoxyde de carbone <span class="math inline">\(\ce{CO}\)</span> (lui-même toxique) :</p>
+<p><span class="math display">\[\ce{2 NO(g) + 2 CO(g) -&gt; N2(g) + 2 CO2(g)}\]</span></p>
+<p>Les produits <span class="math inline">\(\ce{N2}\)</span> et <span class="math inline">\(\ce{CO2}\)</span> sont bien moins nocifs que <span class="math inline">\(\ce{NO}\)</span> et <span class="math inline">\(\ce{CO}\)</span>. Le catalyseur — à base de métaux précieux (platine, palladium, rhodium) — abaisse <span class="math inline">\(E_a\)</span> de cette réaction, permettant qu’elle se produise à une vitesse utile dans les conditions d’échappement. Il ne modifie pas <span class="math inline">\(\Delta_r G^\circ\)</span> de la réaction — celle-ci est spontanée (<span class="math inline">\(\Delta_r G^\circ &lt; 0\)</span>) avec ou sans catalyseur. Sans catalyseur, elle serait trop lente pour être efficace.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Un catalyseur permet d’atteindre l’équilibre 1000 fois plus vite. Les concentrations à l’équilibre sont-elles modifiées ?<a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a></li>
+<li>Expliquez pourquoi un catalyseur abaisse <span class="math inline">\(E_a\)</span> de la réaction directe et de la réaction inverse dans les mêmes proportions.<a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a></li>
+<li>Pour la réaction <span class="math inline">\(\ce{2 SO2(g) + O2(g) &lt;=&gt; 2 SO3(g)}\)</span>, <span class="math inline">\(\Delta_r G^\circ &lt; 0\)</span>. Avec ou sans catalyseur, <span class="math inline">\(K\)</span> est-il différent ? Que change le catalyseur concrètement ?<a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a></li>
+</ol>
+<hr>
+<p><strong>Exercices de synthèse</strong></p>
+<ol type="1">
+<li>Écrivez <span class="math inline">\(K_c\)</span> pour <span class="math inline">\(\ce{2 NO(g) + O2(g) &lt;=&gt; 2 NO2(g)}\)</span> et <span class="math inline">\(K_p\)</span> pour <span class="math inline">\(\ce{CaCO3(s) &lt;=&gt; CaO(s) + CO2(g)}\)</span>. Que vaut <span class="math inline">\(K_p\)</span> pour la seconde réaction si <span class="math inline">\(P_{\ce{CO2}} = 0{,}043\ \text{atm}\)</span> à l’équilibre ?<a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a></li>
+<li>Pour <span class="math inline">\(\ce{PCl5(g) &lt;=&gt; PCl3(g) + Cl2(g)}\)</span>, <span class="math inline">\(K_c = 0{,}0211\)</span> à 250 °C. On part de 0{,}100 mol de <span class="math inline">\(\ce{PCl5}\)</span> dans 1{,}00 L. Calculez les concentrations à l’équilibre.<a href="#fn37" class="footnote-ref" id="fnref37" role="doc-noteref"><sup>37</sup></a></li>
+<li>Le système <span class="math inline">\(\ce{Fe(s) + CO2(g) &lt;=&gt; FeO(s) + CO(g)}\)</span> est à l’équilibre avec <span class="math inline">\(P_{\ce{CO2}} = 0{,}80\ \text{atm}\)</span> et <span class="math inline">\(P_{\ce{CO}} = 0{,}20\ \text{atm}\)</span>. Calculez <span class="math inline">\(K_p\)</span>, puis prédisez le sens d’évolution si on ajoute du <span class="math inline">\(\ce{CO2}\)</span> pour porter sa pression à 2{,}00 atm.<a href="#fn38" class="footnote-ref" id="fnref38" role="doc-noteref"><sup>38</sup></a></li>
+<li>Pour <span class="math inline">\(\ce{N2O4(g) &lt;=&gt; 2 NO2(g)}\)</span>, <span class="math inline">\(K_c = 4{,}63 \times 10^{-3}\)</span> à 25 °C et <span class="math inline">\(K_c = 0{,}344\)</span> à 75 °C. La réaction est-elle endo- ou exothermique ? Justifiez.<a href="#fn39" class="footnote-ref" id="fnref39" role="doc-noteref"><sup>39</sup></a></li>
+<li>À l’équilibre <span class="math inline">\(\ce{H2(g) + F2(g) &lt;=&gt; 2 HF(g)}\)</span> : <span class="math inline">\([\ce{H2}] = 0{,}47\)</span>, <span class="math inline">\([\ce{F2}] = 0{,}47\)</span>, <span class="math inline">\([\ce{HF}] = 7{,}13\ \text{mol/L}\)</span>. Calculez <span class="math inline">\(K_c\)</span>. Si l’on double le volume du récipient, dans quel sens le système évolue-t-il ?<a href="#fn40" class="footnote-ref" id="fnref40" role="doc-noteref"><sup>40</sup></a></li>
+<li>Pour <span class="math inline">\(\ce{CO(g) + 3 H2(g) &lt;=&gt; CH4(g) + H2O(g)}\)</span>, <span class="math inline">\(K_c = 3{,}92\)</span> à 500 K. On donne <span class="math inline">\([\ce{CO}] = 0{,}30\)</span>, <span class="math inline">\([\ce{H2}] = 0{,}90\)</span>, <span class="math inline">\([\ce{CH4}] = 0{,}20\)</span>, <span class="math inline">\([\ce{H2O}] = 0{,}20\ \text{mol/L}\)</span>. Calculez <span class="math inline">\(Q_c\)</span> et déterminez le sens d’évolution.<a href="#fn41" class="footnote-ref" id="fnref41" role="doc-noteref"><sup>41</sup></a></li>
+<li>La synthèse de l’acide chlorhydrique <span class="math inline">\(\ce{H2(g) + Cl2(g) &lt;=&gt; 2 HCl(g)}\)</span> a <span class="math inline">\(K_p = 2{,}4 \times 10^{33}\)</span> à 25 °C. Classez cette réaction et calculez <span class="math inline">\(\Delta_r G^\circ\)</span>.<a href="#fn42" class="footnote-ref" id="fnref42" role="doc-noteref"><sup>42</sup></a></li>
+<li>Pour <span class="math inline">\(\ce{N2(g) + O2(g) &lt;=&gt; 2 NO(g)}\)</span>, <span class="math inline">\(\Delta_r H^\circ = +181\ \text{kJ/mol}\)</span>. Prédisez qualitativement l’effet d’une hausse de température, d’une augmentation de pression et de l’ajout d’un catalyseur sur la composition du système.<a href="#fn43" class="footnote-ref" id="fnref43" role="doc-noteref"><sup>43</sup></a></li>
+<li>On introduit 1{,}00 mol de <span class="math inline">\(\ce{HI}\)</span> dans 1{,}00 L pour <span class="math inline">\(\ce{2 HI(g) &lt;=&gt; H2(g) + I2(g)}\)</span>, <span class="math inline">\(K_c = 0{,}0184\)</span> à 425 °C. Calculez les concentrations à l’équilibre.<a href="#fn44" class="footnote-ref" id="fnref44" role="doc-noteref"><sup>44</sup></a></li>
+<li>Pour la réaction <span class="math inline">\(\ce{SO2Cl2(g) &lt;=&gt; SO2(g) + Cl2(g)}\)</span>, <span class="math inline">\(K_c = 0{,}045\)</span> à 375 °C. On part de <span class="math inline">\([\ce{SO2Cl2}]_0 = 0{,}500\ \text{mol/L}\)</span>. En utilisant l’approximation des 5%, calculez les concentrations à l’équilibre et vérifiez la validité de l’approximation.<a href="#fn45" class="footnote-ref" id="fnref45" role="doc-noteref"><sup>45</sup></a></li>
+</ol>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-05-11</em></p>
+<p>Ces défis s’adressent à ceux qui veulent aller réellement plus loin. Ils exigent de mobiliser les notions de Zone 2 dans des contextes nouveaux.</p>
+</section>
+</section>
+<section id="défi-a-méthode-de-x-sans-approximation" class="level3" data-number="14.0.10">
+<h3 data-number="14.0.10" class="anchored" data-anchor-id="défi-a-méthode-de-x-sans-approximation"><span class="header-section-number">14.0.10</span> Défi A — Méthode de <span class="math inline">\(x\)</span> sans approximation</h3>
+<p>Considérez la réaction <span class="math inline">\(\ce{2 NO2(g) &lt;=&gt; N2O4(g)}\)</span> avec <span class="math inline">\(K_c = 7{,}5\)</span> à 25 <span class="math inline">\(^\circ\)</span>C. On introduit 0,500 mol de <span class="math inline">\(\ce{NO2}\)</span> dans un récipient de 1,00 L, sans <span class="math inline">\(\ce{N2O4}\)</span> initial.</p>
+<ol type="a">
+<li><p>Vérifiez que l’approximation des 5% n’est pas applicable ici.</p></li>
+<li><p>Écrivez l’expression de <span class="math inline">\(K_c\)</span> en fonction de <span class="math inline">\(x\)</span> et montrez qu’elle conduit à une équation du second degré de la forme <span class="math inline">\(ax^2 + bx + c = 0\)</span>. Identifiez les coefficients <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> et <span class="math inline">\(c\)</span>.</p></li>
+<li><p>Résolvez cette équation et calculez les concentrations à l’équilibre de <span class="math inline">\(\ce{NO2}\)</span> et <span class="math inline">\(\ce{N2O4}\)</span>. Justifiez le rejet de l’une des deux solutions.</p></li>
+<li><p>Vérifiez votre résultat en substituant dans l’expression de <span class="math inline">\(K_c\)</span>.<a href="#fn46" class="footnote-ref" id="fnref46" role="doc-noteref"><sup>46</sup></a></p></li>
+</ol>
+<hr>
+</section>
+<section id="défi-b-perturbations-combinées" class="level3" data-number="14.0.11">
+<h3 data-number="14.0.11" class="anchored" data-anchor-id="défi-b-perturbations-combinées"><span class="header-section-number">14.0.11</span> Défi B — Perturbations combinées</h3>
+<p>Considérez le système à l’équilibre :</p>
+<p><span class="math display">\[\ce{N2(g) + 3 H2(g) &lt;=&gt; 2 NH3(g)} \qquad
+\Delta_r H^\circ = -92\ \text{kJ/mol}\]</span></p>
+<p>avec <span class="math inline">\([\ce{N2}]_{éq} = 0{,}683\)</span> mol/L, <span class="math inline">\([\ce{H2}]_{éq} = 8{,}80\)</span> mol/L, <span class="math inline">\([\ce{NH3}]_{éq} = 1{,}05\)</span> mol/L.</p>
+<ol type="a">
+<li><p>Calculez <span class="math inline">\(K_c\)</span> dans ces conditions.</p></li>
+<li><p>On ajoute brutalement du <span class="math inline">\(\ce{NH3}\)</span> pour porter <span class="math inline">\([\ce{NH3}]\)</span> à 3{,}65 mol/L, sans modifier les autres concentrations. Calculez le nouveau <span class="math inline">\(Q_c\)</span> et déterminez le sens d’évolution.</p></li>
+<li><p>Indépendamment de la perturbation (b), on augmente maintenant la température. Précisez l’effet sur <span class="math inline">\(K\)</span> et le sens d’évolution induit, en distinguant soigneusement cet effet de celui de l’ajout de <span class="math inline">\(\ce{NH3}\)</span>.</p></li>
+<li><p>Les deux perturbations (b) et (c) agissent-elles dans le même sens ou dans des sens opposés sur la composition du système ?<a href="#fn47" class="footnote-ref" id="fnref47" role="doc-noteref"><sup>47</sup></a></p></li>
+</ol>
+<hr>
+</section>
+<section id="défi-c-le-produit-de-solubilité-k_s" class="level3" data-number="14.0.12">
+<h3 data-number="14.0.12" class="anchored" data-anchor-id="défi-c-le-produit-de-solubilité-k_s"><span class="header-section-number">14.0.12</span> Défi C — Le produit de solubilité <span class="math inline">\(K_s\)</span></h3>
+<p>Le chapitre suivant généralisera la loi d’action de masse à des équilibres hétérogènes plus complexes. Voici un avant-goût avec le <strong>produit de solubilité</strong> <span class="math inline">\(K_s\)</span> — une constante d’équilibre particulière s’appliquant à la dissolution d’un sel peu soluble.</p>
+<p>Considérez la dissolution du chlorure d’argent dans l’eau :</p>
+<p><span class="math display">\[\ce{AgCl(s) &lt;=&gt; Ag^+(aq) + Cl^-(aq)}\]</span></p>
+<ol type="a">
+<li><p>En appliquant les règles d’activité vues en Zone 2, écrivez l’expression de <span class="math inline">\(K_s\)</span>. Justifiez l’absence de <span class="math inline">\(\ce{AgCl(s)}\)</span> dans cette expression.</p></li>
+<li><p>Sachant que <span class="math inline">\(K_s(\ce{AgCl}) = 1{,}8 \times 10^{-10}\)</span> à 25 <span class="math inline">\(^\circ\)</span>C, calculez la concentration de <span class="math inline">\(\ce{Ag^+}\)</span> et de <span class="math inline">\(\ce{Cl^-}\)</span> à l’équilibre dans de l’eau distillée pure.</p></li>
+<li><p>On ajoute du <span class="math inline">\(\ce{NaCl}\)</span> soluble à la solution jusqu’à <span class="math inline">\([\ce{Cl^-}] = 0{,}10\)</span> mol/L. Appliquez le principe de Le Châtelier pour prédire qualitativement l’effet sur la solubilité de <span class="math inline">\(\ce{AgCl}\)</span>, puis calculez la nouvelle concentration de <span class="math inline">\(\ce{Ag^+}\)</span>. Comparez au résultat de (b). Cet effet porte le nom d’<strong>effet d’ion commun</strong>.<a href="#fn48" class="footnote-ref" id="fnref48" role="doc-noteref"><sup>48</sup></a></p></li>
+</ol>
+<hr>
+<p><strong>Mots-clés</strong></p>
+<p><strong>Équilibre dynamique</strong> : état où les réactions directe et inverse se produisent simultanément à la même vitesse — concentrations macroscopiques stables, échanges particulaires incessants.</p>
+<p><strong>Loi d’action de masse</strong> : expression de <span class="math inline">\(K\)</span> comme rapport des activités chimiques des produits sur celles des réactifs, élevées à leurs coefficients stœchiométriques.</p>
+<p><strong>Activité chimique</strong> : grandeur traduisant l’efficacité réelle d’une espèce dans un processus chimique ; vaut 1 pour un solide ou liquide pur, <span class="math inline">\(P_i\)</span> (en atm) pour un gaz, <span class="math inline">\([\ce{X}]\)</span> (en mol/L) pour un soluté.</p>
+<p><strong><span class="math inline">\(K_p\)</span></strong> : constante d’équilibre exprimée en pressions partielles (en atm) ; reliée à <span class="math inline">\(\Delta_r G^\circ\)</span> par <span class="math inline">\(\Delta_r G^\circ = -RT\ln(K_p)\)</span>.</p>
+<p><strong><span class="math inline">\(K_c\)</span></strong> : constante d’équilibre exprimée en concentrations molaires (en mol/L) ; reliée à <span class="math inline">\(K_p\)</span> par <span class="math inline">\(K_p = K_c \cdot (RT)^{\Delta n}\)</span>.</p>
+<p><strong>Quotient réactionnel (<span class="math inline">\(Q\)</span>)</strong> : grandeur de même expression que <span class="math inline">\(K\)</span> calculée à tout instant ; <span class="math inline">\(Q &lt; K\)</span> : sens direct, <span class="math inline">\(Q &gt; K\)</span> : sens inverse, <span class="math inline">\(Q = K\)</span> : équilibre atteint.</p>
+<p><strong>Principe de Le Châtelier</strong> : tout système en équilibre perturbé évolue dans le sens qui s’oppose à la perturbation et en modère l’effet.</p>
+<p><strong>Méthode de la variable <span class="math inline">\(x\)</span></strong> : méthode quantitative de calcul des concentrations à l’équilibre via un tableau d’avancement où <span class="math inline">\(x\)</span> représente la variation de concentration d’une espèce de référence.</p>
+<p><strong>Catalyseur</strong> : substance accélérant l’atteinte de l’équilibre en abaissant l’énergie d’activation sans modifier la position de l’équilibre ni la valeur de <span class="math inline">\(K\)</span>.</p>
+<hr>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-05-11</em></p>
+<hr>
+<p><em>Projet-Balmer</em></p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p><span class="math inline">\(K_c = [\ce{H2O}]^2 / ([\ce{H2}]^2 [\ce{O2}])\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><span class="math inline">\(K_p = P_{\ce{CO2}}^3 / P_{\ce{CO}}^3\)</span> — <span class="math inline">\(\ce{Fe2O3}\)</span> et <span class="math inline">\(\ce{Fe}\)</span> sont des solides purs, leur activité vaut 1.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><span class="math inline">\(K_c = [\ce{NH4+}][\ce{OH-}] / [\ce{NH3}]\)</span> — l’eau est un liquide pur, son activité vaut 1.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><span class="math inline">\(K_c = 1/54 \approx 0{,}019\)</span> — inverser la réaction prend l’inverse de <span class="math inline">\(K\)</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><span class="math inline">\(\Delta n = 2 - 4 = -2\)</span> ; <span class="math inline">\(K_p = K_c \cdot (RT)^{-2} &lt; K_c\)</span>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><span class="math inline">\(K_p = 0{,}182 \times (0{,}0821 \times 298)^{-1} = 7{,}43 \times 10^{-3}\ \text{atm}^{-1}\)</span>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p><span class="math inline">\(\Delta n = 2 - 2 = 0\)</span> donc <span class="math inline">\((RT)^0 = 1\)</span> et <span class="math inline">\(K_p = K_c\)</span>.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>La réaction globale est <span class="math inline">\(\ce{CO(g) + H2O(g) &lt;=&gt; CO2(g) + H2(g)}\)</span> avec <span class="math inline">\(K_{p,\text{global}} = K_{p,1} \times K_{p,1} = 25\)</span>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Inverser et diviser par 2 : <span class="math inline">\(K' = (1/4{,}5)^{1/2} = 0{,}47\)</span>.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p><span class="math inline">\(K = K_1 \times K_2 = 2{,}0 \times 5{,}0 = 10\)</span>.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Diviser par 2 : <span class="math inline">\(K'_p = (6{,}2 \times 10^3)^{1/2} = 78{,}7\)</span>.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p><span class="math inline">\(Q_c = (3{,}67)^2/(0{,}50 \times 0{,}50) = 53{,}9 \approx 54\)</span> ✓ — oui, à l’équilibre.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Leurs valeurs de <span class="math inline">\(K_c\)</span> sont identiques — <span class="math inline">\(K\)</span> ne dépend que de la température, pas de la composition initiale.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>L’activité d’un solide pur vaut 1 par définition — elle n’apparaît pas dans <span class="math inline">\(K_p = P_{\ce{CO2}}\)</span>, qui ne dépend donc que de la température.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>Ammoniac : favorable. Éthanol : totale en conditions standard (voir remarque). Acide sulfurique : totale. Acide acétique : favorable. Méthanol : favorable. Chlore / NaOH : impossible spontanément — électrolyse requise.<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p><span class="math inline">\(\ln K = 33000/(8{,}314 \times 298) = 13{,}3\)</span> ; <span class="math inline">\(K = e^{13{,}3} \approx 6 \times 10^5\)</span> — réaction favorable.<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>Les réactifs dominent très largement — <span class="math inline">\(K \ll 1\)</span> indique que l’équilibre est fortement déplacé vers les réactifs.<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>La vitesse de réaction (cinétique) — <span class="math inline">\(K\)</span> grand indique une position d’équilibre favorable mais ne dit rien sur la vitesse d’atteinte de cet équilibre.<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><ol type="a">
+<li><span class="math inline">\(Q_c = (2{,}00)^2 \times 2{,}00 / (2{,}00)^2 = 2 &gt; K_c =
+0{,}23\)</span> : sens inverse (reformation de <span class="math inline">\(\ce{SO3}\)</span>). b) <span class="math inline">\(p(\ce{SO3}) = 0\)</span> donc <span class="math inline">\(Q_p \to \infty &gt; K_p\)</span> : sens inverse — le système forme du <span class="math inline">\(\ce{SO3}\)</span> en consommant <span class="math inline">\(\ce{SO2}\)</span> et <span class="math inline">\(\ce{O2}\)</span>. c) <span class="math inline">\(Q_p =
+0 / (1{,}00)^2 \times 1{,}00 = 0 &lt; K_p\)</span> : sens direct (formation de <span class="math inline">\(\ce{NOCl}\)</span>).</li>
+</ol>
+<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn20"><p><span class="math inline">\(Q_c = (0{,}010)^2/(0{,}50 \times (0{,}80)^3) = 3{,}9 \times 10^{-4} &lt; K_c\)</span> : sens direct (formation de <span class="math inline">\(\ce{NH3}\)</span>).<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p><span class="math inline">\(Q_c = (1{,}00)(1{,}00)/((1{,}00)(1{,}00)) = 1{,}00 \neq 5{,}10\)</span> : le système n’est pas à l’équilibre — sens direct.<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p><span class="math inline">\(K\)</span> est une constante à température fixée, caractérisant l’état d’équilibre. <span class="math inline">\(Q\)</span> est calculable à tout instant et caractérise l’état instantané ; <span class="math inline">\(Q = K\)</span> uniquement à l’équilibre.<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><ol type="1">
+<li><span class="math inline">\(\Delta n = 2 - 1 = +1\)</span> : sens inverse (vers les réactifs, côté avec moins de moles gazeuses). 2. <span class="math inline">\(\Delta n = 2 - 1 = +1\)</span> : sens inverse. 3. <span class="math inline">\(\Delta n = 2 - 4 = -2\)</span> : sens direct (vers <span class="math inline">\(\ce{NH3}\)</span>).</li>
+<li><span class="math inline">\(\Delta n = 2 - 2 = 0\)</span> : aucun effet. 5. <span class="math inline">\(\Delta n = 2 - 2 = 0\)</span> : aucun effet.</li>
+</ol>
+<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn24"><ol type="a">
+<li>Sens direct — consommation de l’excès de <span class="math inline">\(\ce{CO2}\)</span>.</li>
+<li>Sens inverse — consommation de l’excès de <span class="math inline">\(\ce{H2O}\)</span> (produit ajouté). c) Sens direct — production de <span class="math inline">\(\ce{CO}\)</span> pour compenser le retrait. d) Sens direct — la réaction est endothermique (<span class="math inline">\(\Delta_r H^\circ &gt; 0\)</span>) : une hausse de T favorise le sens qui absorbe de la chaleur. e) <span class="math inline">\(\Delta n = 2 - 2 = 0\)</span> : aucun effet sur l’équilibre.</li>
+<li>Gaz inerte à volume constant : pressions partielles des réactifs inchangées — aucun déplacement.</li>
+</ol>
+<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn25"><p>Réaction exothermique : hausse de <span class="math inline">\(T\)</span> déplace l’équilibre vers les réactifs (<span class="math inline">\(\ce{SO2}\)</span> et <span class="math inline">\(\ce{O2}\)</span>), <span class="math inline">\(K\)</span> diminue.<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p><span class="math inline">\(\Delta n = 2 - 3 = -1\)</span> : moins de moles gazeuses du côté des produits. Augmenter la pression déplace l’équilibre vers <span class="math inline">\(\ce{SO3}\)</span> — favorable à la production.<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p>Non — un catalyseur accélère l’atteinte de l’équilibre mais ne modifie ni <span class="math inline">\(K\)</span> ni les concentrations à l’équilibre. Le rendement thermodynamique est inchangé.<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p>Rappel de la formule quadratique : pour <span class="math inline">\(ax^2 + bx + c = 0\)</span>, <span class="math inline">\(x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}\)</span>. Rejetez la solution qui donne une concentration négative.<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><ol type="a">
+<li><span class="math inline">\([\ce{N2O4}]_0 = 0{,}625/5{,}00 = 0{,}125\)</span> mol/L ; <span class="math inline">\([\ce{NO2}]_0 = 0\)</span> donc <span class="math inline">\(Q = 0 &lt; K\)</span> : sens inverse de la réaction écrite, c’est-à-dire décomposition de <span class="math inline">\(\ce{N2O4}\)</span> en <span class="math inline">\(\ce{NO2}\)</span>.</li>
+<li>Tableau : <span class="math inline">\([\ce{N2O4}]_{éq} = 0{,}125 - x\)</span> ; <span class="math inline">\([\ce{NO2}]_{éq} = 2x\)</span>. c) <span class="math inline">\(0{,}125 - x = 0{,}075\)</span> donc <span class="math inline">\(x = 0{,}050\)</span> mol/L ; <span class="math inline">\([\ce{NO2}]_{éq} = 0{,}100\)</span> mol/L ; <span class="math inline">\(K_c = 0{,}075 / (0{,}100)^2 = 7{,}5\)</span>.</li>
+</ol>
+<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn30"><p><span class="math inline">\(Q = 0 &lt; K\)</span> : sens direct. Tableau : <span class="math inline">\([\ce{CO}]_{éq} = [\ce{H2O}]_{éq} = 1{,}00 - x\)</span> ; <span class="math inline">\([\ce{CO2}]_{éq} = [\ce{H2}]_{éq} = x\)</span>. <span class="math inline">\(K_c = x^2/(1-x)^2 = 5{,}10\)</span> ; <span class="math inline">\(x/(1-x) = \sqrt{5{,}10} = 2{,}26\)</span> ; <span class="math inline">\(x = 0{,}693\ \text{mol/L}\)</span>.<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p><span class="math inline">\([\ce{I2}]_0 = 0{,}0500\ \text{mol/L}\)</span>. <span class="math inline">\(K_c = (2x)^2/(0{,}0500) = 3{,}8 \times 10^{-5}\)</span> ; <span class="math inline">\(x = \sqrt{3{,}8 \times 10^{-5} \times 0{,}0500/4} = 6{,}9 \times 10^{-4}\ \text{mol/L}\)</span>. Vérification : <span class="math inline">\(2x/0{,}0500 = 2{,}75\% &lt; 5\%\)</span> ✓.<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p>Quand <span class="math inline">\(K \ll 1\)</span>, l’avancement <span class="math inline">\(x\)</span> est très petit devant la concentration initiale, rendant l’approximation valide ; quand <span class="math inline">\(K \approx 1\)</span>, <span class="math inline">\(x\)</span> est comparable à la concentration initiale et l’approximation introduit une erreur inacceptable.<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p>Non — le catalyseur ne modifie pas la position de l’équilibre ni <span class="math inline">\(K\)</span>, seulement la vitesse d’atteinte de l’état final.<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn34"><p>Le catalyseur offre un chemin réactionnel alternatif (mécanisme modifié) dont la barrière globale est plus basse. Comme <span class="math inline">\(\Delta_r G^\circ\)</span> est une fonction d’état indépendante du chemin, les niveaux d’énergie des réactifs et des produits restent inchangés — les deux barrières (directe et inverse) sont abaissées d’autant.<a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn35"><p><span class="math inline">\(K\)</span> est identique avec ou sans catalyseur. Le catalyseur permet d’atteindre l’équilibre en un temps industriellement acceptable sans modifier <span class="math inline">\(\Delta_r G^\circ\)</span> ni les concentrations finales.<a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn36"><p><span class="math inline">\(K_c = [\ce{NO2}]^2/([\ce{NO}]^2[\ce{O2}])\)</span> ; <span class="math inline">\(K_p = P_{\ce{CO2}} = 0{,}043\ \text{atm}\)</span>.<a href="#fnref36" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn37"><p><span class="math inline">\(Q = 0 &lt; K\)</span> : sens direct. Tableau : <span class="math inline">\([\ce{PCl5}]_{éq} = 0{,}100 - x\)</span>, <span class="math inline">\([\ce{PCl3}]_{éq} = [\ce{Cl2}]_{éq} = x\)</span>. <span class="math inline">\(K_c = x^2/(0{,}100-x) = 0{,}0211\)</span>. Résolution quadratique : <span class="math inline">\(x^2 + 0{,}0211x - 0{,}00211 = 0\)</span> ; <span class="math inline">\(x = 0{,}0371\ \text{mol/L}\)</span>. <span class="math inline">\([\ce{PCl5}]_{éq} = 0{,}0629\)</span>, <span class="math inline">\([\ce{PCl3}]_{éq} = [\ce{Cl2}]_{éq} = 0{,}0371\ \text{mol/L}\)</span>.<a href="#fnref37" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn38"><p><span class="math inline">\(K_p = P_{\ce{CO}}/P_{\ce{CO2}} = 0{,}20/0{,}80 = 0{,}25\)</span>. Après ajout : <span class="math inline">\(Q_p = 0{,}20/2{,}00 = 0{,}10 &lt; K_p\)</span> : sens direct (production de <span class="math inline">\(\ce{CO}\)</span>).<a href="#fnref38" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn39"><p><span class="math inline">\(K_c\)</span> augmente avec <span class="math inline">\(T\)</span> : la réaction est endothermique — une hausse de <span class="math inline">\(T\)</span> favorise le sens direct (décomposition de <span class="math inline">\(\ce{N2O4}\)</span>).<a href="#fnref39" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn40"><p><span class="math inline">\(K_c = (7{,}13)^2/(0{,}47 \times 0{,}47) = 230\)</span>. <span class="math inline">\(\Delta n = 2-2 = 0\)</span> : doubler le volume ne modifie pas l’équilibre.<a href="#fnref40" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn41"><p><span class="math inline">\(Q_c = (0{,}20 \times 0{,}20)/(0{,}30 \times (0{,}90)^3) = 0{,}037 &lt; K_c = 3{,}92\)</span> : sens direct.<a href="#fnref41" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn42"><p>Totale (<span class="math inline">\(K_p \gg 10^{10}\)</span>) ; <span class="math inline">\(\Delta_r G^\circ = -RT\ln K_p = -8{,}314 \times 298 \times \ln(2{,}4 \times 10^{33}) = -191\ \text{kJ/mol}\)</span>.<a href="#fnref42" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn43"><p>Hausse <span class="math inline">\(T\)</span> : endothermique → sens direct (plus de <span class="math inline">\(\ce{NO}\)</span>), <span class="math inline">\(K\)</span> augmente. Augmentation <span class="math inline">\(P\)</span> : <span class="math inline">\(\Delta n = 2-2 = 0\)</span> → aucun effet. Catalyseur : aucun effet sur la composition, <span class="math inline">\(K\)</span> inchangé.<a href="#fnref43" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn44"><p>Tableau : <span class="math inline">\([\ce{HI}]_{éq} = 1{,}00 - 2x\)</span>, <span class="math inline">\([\ce{H2}]_{éq} = [\ce{I2}]_{éq} = x\)</span>. <span class="math inline">\(K_c = x^2/(1{,}00-2x)^2 = 0{,}0184\)</span> ; <span class="math inline">\(x/(1-2x) = 0{,}1356\)</span> ; <span class="math inline">\(x = 0{,}1168\ \text{mol/L}\)</span>. <span class="math inline">\([\ce{HI}]_{éq} = 0{,}766\)</span>, <span class="math inline">\([\ce{H2}]_{éq} = [\ce{I2}]_{éq} = 0{,}117\ \text{mol/L}\)</span>.<a href="#fnref44" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn45"><p>Tableau : <span class="math inline">\(x^2/(0{,}500) \approx 0{,}045\)</span> ; <span class="math inline">\(x = 0{,}150\ \text{mol/L}\)</span>. Vérification : <span class="math inline">\(x/0{,}500 = 30\% &gt; 5\%\)</span> — approximation invalide. Résolution exacte : <span class="math inline">\(x^2 + 0{,}045x - 0{,}0225 = 0\)</span> ; <span class="math inline">\(x = 0{,}129\ \text{mol/L}\)</span>. <span class="math inline">\([\ce{SO2Cl2}]_{éq} = 0{,}371\)</span>, <span class="math inline">\([\ce{SO2}]_{éq} = [\ce{Cl2}]_{éq} = 0{,}129\ \text{mol/L}\)</span>.<a href="#fnref45" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn46"><p><span class="math inline">\([\ce{N2O4}]_{éq} = 0{,}174\ \text{mol/L}\)</span> ; <span class="math inline">\([\ce{NO2}]_{éq} = 0{,}152\ \text{mol/L}\)</span>. Vérification : <span class="math inline">\(K_c = 0{,}174/(0{,}152)^2 = 7{,}5\)</span> ✓.<a href="#fnref46" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn47"><ol type="a">
+<li><span class="math inline">\(K_c = (1{,}05)^2 / (0{,}683 \times (8{,}80)^3) = 2{,}37 \times 10^{-3}\)</span>. b) <span class="math inline">\(Q_c = (3{,}65)^2 / (0{,}683 \times (8{,}80)^3) = 2{,}86 \times 10^{-2} &gt; K_c\)</span> : sens inverse (décomposition de <span class="math inline">\(\ce{NH3}\)</span>). c) Réaction exothermique : augmentation de <span class="math inline">\(T\)</span> diminue <span class="math inline">\(K\)</span> et déplace l’équilibre vers les réactifs — sens inverse. d) Les deux perturbations agissent dans le même sens : toutes deux déplacent l’équilibre vers la décomposition de <span class="math inline">\(\ce{NH3}\)</span>.</li>
+</ol>
+<a href="#fnref47" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn48"><ol type="a">
+<li><span class="math inline">\(K_s = [\ce{Ag^+}][\ce{Cl^-}]\)</span> — <span class="math inline">\(\ce{AgCl}\)</span> est un solide pur, son activité vaut 1. b) <span class="math inline">\(x^2 = 1{,}8 \times 10^{-10}\)</span> ; <span class="math inline">\([\ce{Ag^+}] = [\ce{Cl^-}] = 1{,}34 \times 10^{-5}\ \text{mol/L}\)</span>. c) L’ajout de <span class="math inline">\(\ce{Cl^-}\)</span> augmente <span class="math inline">\(Q &gt; K_s\)</span> : équilibre déplacé vers la gauche, solubilité diminuée. Nouvelle concentration : <span class="math inline">\([\ce{Ag^+}] = 1{,}8 \times 10^{-10}/0{,}10 = 1{,}8 \times 10^{-9}\ \text{mol/L}\)</span> — environ <span class="math inline">\(7{,}4 \times 10^3\)</span> fois plus faible qu’en eau pure.</li>
+</ol>
+<a href="#fnref48" class="footnote-back" role="doc-backlink">↩︎</a></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapitres/vitesse-de-reaction.html" class="pagination-link" aria-label="Vitesse de réaction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Vitesse de réaction</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapitres/equilibre-chimique-2.html" class="pagination-link" aria-label="Équilibre chimique 2">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Équilibre chimique 2</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

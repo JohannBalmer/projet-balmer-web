@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>16&nbsp; Acides, bases et pH – Projet-Balmer</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapitres/chimie-organique.html" rel="next">
+<link href="../chapitres/equilibre-chimique-2.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ed7344add5f1663e434276306a2aa159.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mhchem']},
+  tex: {packages: {'[+]': ['mhchem']}}
+};
+</script>
+<style>
+.quarto-figure img, main img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+.qcm-widget { margin: 1rem 0; padding: 0.75rem 1rem; border: 1px solid #ddd; border-radius: 8px; }
+.qcm-widget .qcm-label { font-size: 13px; color: #666; margin-bottom: 8px; }
+.qcm-widget button { display: block; width: 100%; text-align: left; margin: 4px 0; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; }
+.qcm-widget .qcm-feedback { margin-top: 8px; font-size: 14px; }
+.hist-note-name { color: inherit; text-decoration: none; border-bottom: 1px dotted #8a5a00; cursor: pointer; }
+.hist-note-name:hover { border-bottom-style: solid; }
+.hist-note { text-decoration: none; font-size: 0.75em; vertical-align: super; margin-left: 2px; color: #8a5a00; border-bottom: none; }
+.hist-note:hover { text-decoration: underline; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.qcm-widget').forEach(function(el) {
+    var options = JSON.parse(el.getAttribute('data-options'));
+    var correct = parseInt(el.getAttribute('data-correct'), 10);
+    var answered = false;
+    var label = document.createElement('div');
+    label.className = 'qcm-label';
+    label.textContent = 'Vérifier ma réponse';
+    el.appendChild(label);
+    var feedback = document.createElement('div');
+    feedback.className = 'qcm-feedback';
+    options.forEach(function(opt, i) {
+      var btn = document.createElement('button');
+      btn.textContent = opt;
+      btn.onclick = function() {
+        if (answered) return;
+        answered = true;
+        el.querySelectorAll('button').forEach(function(b) { b.disabled = true; });
+        if (i === correct) {
+          btn.style.borderColor = '#2e7d32';
+          btn.style.background = '#e8f5e9';
+          feedback.textContent = 'Correct.';
+          feedback.style.color = '#2e7d32';
+        } else {
+          btn.style.borderColor = '#c62828';
+          btn.style.background = '#ffebee';
+          feedback.textContent = 'Pas tout à fait — bonne réponse : ' + options[correct];
+          feedback.style.color = '#c62828';
+        }
+      };
+      el.appendChild(btn);
+    });
+    el.appendChild(feedback);
+  });
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapitres/acides-bases-ph.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Acides, bases et pH</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Recherche" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Projet-Balmer</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Recherche"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Historique Tome 1 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/atomes-quantite-de-matiere.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Atomes et quantité de matière</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-sels-molecules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Liaisons, sels et molécules</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-intermoleculaires.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Liaisons intermoléculaires</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-chimiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformations chimiques et stœchiométrie</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-physiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transformations physiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/oxydo-reduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Oxydoréduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/electrochimie-piles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Électrochimie et piles</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acido-basiques-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction aux équilibres acido-basiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Historique Tome 2 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Thermochimie 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Thermochimie 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/vitesse-de-reaction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Vitesse de réaction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Équilibre chimique 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Équilibre chimique 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acides-bases-ph.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Acides, bases et pH</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/chimie-organique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Chimie organique</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#les-théories-acido-basiques-rappel-et-extension" id="toc-les-théories-acido-basiques-rappel-et-extension" class="nav-link active" data-scroll-target="#les-théories-acido-basiques-rappel-et-extension"><span class="header-section-number">16.0.1</span> Les théories acido-basiques — rappel et extension</a></li>
+  <li><a href="#le-produit-ionique-de-leau-k_e-et-lamphotérisme" id="toc-le-produit-ionique-de-leau-k_e-et-lamphotérisme" class="nav-link" data-scroll-target="#le-produit-ionique-de-leau-k_e-et-lamphotérisme"><span class="header-section-number">16.0.2</span> Le produit ionique de l’eau <span class="math inline">\(K_e\)</span> et l’amphotérisme</a></li>
+  <li><a href="#la-constante-dacidité-k_a-et-le-pk_a" id="toc-la-constante-dacidité-k_a-et-le-pk_a" class="nav-link" data-scroll-target="#la-constante-dacidité-k_a-et-le-pk_a"><span class="header-section-number">16.0.3</span> La constante d’acidité <span class="math inline">\(K_a\)</span> et le p<span class="math inline">\(K_a\)</span></a></li>
+  <li><a href="#la-constante-de-basicité-k_b-et-la-relation-k_a-cdot-k_b-k_e" id="toc-la-constante-de-basicité-k_b-et-la-relation-k_a-cdot-k_b-k_e" class="nav-link" data-scroll-target="#la-constante-de-basicité-k_b-et-la-relation-k_a-cdot-k_b-k_e"><span class="header-section-number">16.0.4</span> La constante de basicité <span class="math inline">\(K_b\)</span> et la relation <span class="math inline">\(K_a \cdot K_b = K_e\)</span></a></li>
+  <li><a href="#calculs-de-ph-acides-et-bases-forts" id="toc-calculs-de-ph-acides-et-bases-forts" class="nav-link" data-scroll-target="#calculs-de-ph-acides-et-bases-forts"><span class="header-section-number">16.0.5</span> Calculs de pH : acides et bases forts</a></li>
+  <li><a href="#calculs-de-ph-acides-et-bases-faibles" id="toc-calculs-de-ph-acides-et-bases-faibles" class="nav-link" data-scroll-target="#calculs-de-ph-acides-et-bases-faibles"><span class="header-section-number">16.0.6</span> Calculs de pH : acides et bases faibles</a></li>
+  <li><a href="#les-courbes-de-titrage-ph-métrique" id="toc-les-courbes-de-titrage-ph-métrique" class="nav-link" data-scroll-target="#les-courbes-de-titrage-ph-métrique"><span class="header-section-number">16.0.7</span> Les courbes de titrage pH-métrique</a></li>
+  <li><a href="#la-zone-tampon-et-henderson-hasselbalch" id="toc-la-zone-tampon-et-henderson-hasselbalch" class="nav-link" data-scroll-target="#la-zone-tampon-et-henderson-hasselbalch"><span class="header-section-number">16.0.8</span> La zone tampon et Henderson-Hasselbalch</a></li>
+  <li><a href="#les-indicateurs-colorés-et-les-acides-polyprotiques" id="toc-les-indicateurs-colorés-et-les-acides-polyprotiques" class="nav-link" data-scroll-target="#les-indicateurs-colorés-et-les-acides-polyprotiques"><span class="header-section-number">16.0.9</span> Les indicateurs colorés et les acides polyprotiques</a></li>
+  <li><a href="#mots-clés" id="toc-mots-clés" class="nav-link" data-scroll-target="#mots-clés"><span class="header-section-number">16.1</span> Mots-clés</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Acides, bases et pH</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Confort —</strong> Vous savez déjà que toute réaction acido-basique est un transfert d’ion hydronium <span class="math inline">\(\ce{H3O+}\)</span> entre un donneur (acide) et un accepteur (base) — c’est le modèle de Brönsted-Lowry vu au chapitre 7. Vous savez également que la constante d’équilibre <span class="math inline">\(K\)</span> mesure la position d’un équilibre chimique et que <span class="math inline">\(K_e = [\ce{H3O+}][\ce{OH-}] = 10^{-14}\)</span> relie toujours les concentrations en solution aqueuse à 25 <span class="math inline">\(^\circ\)</span>C.</p>
+<p><strong>Proximal —</strong> Ce chapitre construit la mesure quantitative de la force des acides et des bases à travers les constantes <span class="math inline">\(K_a\)</span> et <span class="math inline">\(K_b\)</span>, reliées par <span class="math inline">\(K_a \cdot K_b = 10^{-14}\)</span>. Vous apprendrez à calculer le pH de solutions d’acides ou de bases faibles, à exploiter l’équation de Henderson-Hasselbalch pour les mélanges tampons, et à analyser les quatre familles de courbes de titrage pH-métrique. Les acides polyprotiques, qui cèdent plusieurs protons successivement, complètent le tableau.</p>
+<p><strong>Dépassement —</strong> À la fin de ce chapitre, vous serez capable de calculer le pH de n’importe quelle solution aqueuse — acide fort, acide faible, base forte, base faible, mélange tampon — et d’en déduire le point d’équivalence d’un titrage à partir d’une courbe pH-métrique. Vous pourrez choisir un indicateur coloré adapté à un titrage donné et déterminer la concentration d’un acide inconnu par dosage.</p>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-05-02</em></p>
+<p><strong>Vous savez déjà que…</strong></p>
+<ul>
+<li>Une réaction acido-basique est un transfert de proton <span class="math inline">\(\ce{H+}\)</span> d’un acide (donneur) vers une base (accepteur) selon le modèle de Brönsted-Lowry ; en solution aqueuse, ce proton se lie à l’eau pour former <span class="math inline">\(\ce{H3O+}\)</span>.</li>
+<li>Tout acide <span class="math inline">\(\text{AH}\)</span> forme avec sa base conjuguée <span class="math inline">\(\text{A}^-\)</span> un couple acide/base <span class="math inline">\(\text{AH}/\text{A}^-\)</span> ne différant que d’un proton.</li>
+<li>Le produit ionique de l’eau relie toujours les concentrations en ions hydronium et hydroxyde : <span class="math inline">\(K_e = [\ce{H3O+}][\ce{OH-}] = 10^{-14}\)</span> à 25 <span class="math inline">\(^\circ\)</span>C.</li>
+<li>Un acide fort se dissocie totalement dans l’eau ; un acide faible ne se dissocie que partiellement et établit un équilibre.</li>
+<li>Le pH est défini par <span class="math inline">\(\text{pH} = -\log[\ce{H3O+}]\)</span> ; une solution neutre a un pH de 7 à 25 <span class="math inline">\(^\circ\)</span>C.</li>
+</ul>
+<p><strong>Mini-test de positionnement — répondez avant de continuer :</strong></p>
+<ol type="1">
+<li><span class="math inline">\(\ce{NH4+}\)</span> est-il un acide ou une base selon Brönsted-Lowry ? Quelle est sa base conjuguée ?</li>
+<li>Une solution de <span class="math inline">\(\ce{HCl}\)</span> 0,10 mol/L a-t-elle un pH inférieur, égal ou supérieur à celui d’une solution de <span class="math inline">\(\ce{CH3COOH}\)</span> 0,10 mol/L ? Pourquoi ?</li>
+<li>Si <span class="math inline">\([\ce{OH-}] = 10^{-3}\)</span> mol/L dans une solution aqueuse à 25 <span class="math inline">\(^\circ\)</span>C, quelle est la valeur de <span class="math inline">\([\ce{H3O+}]\)</span> ?</li>
+</ol>
+<p><em>Si vous répondez sans hésiter -&gt; vous êtes dans votre zone de confort, passez directement à la Zone 2.</em></p>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-05-02</em></p>
+<section id="les-théories-acido-basiques-rappel-et-extension" class="level3" data-number="16.0.1">
+<h3 data-number="16.0.1" class="anchored" data-anchor-id="les-théories-acido-basiques-rappel-et-extension"><span class="header-section-number">16.0.1</span> Les théories acido-basiques — rappel et extension</h3>
+<!-- REF: ref:acido-basiques-intro-bronsted-lowry — modèle de Brönsted-Lowry, couples conjugués, acides et bases forts formalisés au chapitre Introduction aux équilibres acido-basiques -->
+<p>Le modèle de Brönsted-Lowry, vu au chapitre précédent, définit un acide comme un donneur de proton <span class="math inline">\(\ce{H+}\)</span> et une base comme un accepteur de proton. Toute réaction acido-basique met en jeu deux couples conjugués <span class="math inline">\(\text{AH}/\text{A}^-\)</span> et <span class="math inline">\(\text{BH}^+/\text{B}\)</span>. Ce modèle est celui que nous utilisons dans tout ce chapitre. Il existe une théorie plus générale — la théorie de Lewis, qui étend la notion d’acide à tout accepteur de doublet non-liant — mais elle dépasse le cadre de ce cours.</p>
+<p>Ce chapitre construit la couche quantitative absente du chapitre précédent : comment <em>mesurer</em> la force d’un acide ou d’une base, et comment calculer le pH de n’importe quelle solution aqueuse.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li><p>Identifiez l’acide, la base et les deux couples conjugués dans <span class="math inline">\(\ce{HF + H2O &lt;=&gt; F- + H3O+}\)</span>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p></li>
+<li><p>L’ion <span class="math inline">\(\ce{HSO4-}\)</span> peut-il se comporter à la fois comme acide et comme base ? Donnez les deux équations correspondantes.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p></li>
+<li><p>Classez les espèces suivantes en acides forts, acides faibles ou bases faibles : <span class="math inline">\(\ce{HNO3}\)</span>, <span class="math inline">\(\ce{HCN}\)</span>, <span class="math inline">\(\ce{CH3COO-}\)</span>, <span class="math inline">\(\ce{HClO4}\)</span>. Justifiez sans calcul.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p></li>
+</ol>
+<hr>
+</section>
+<section id="le-produit-ionique-de-leau-k_e-et-lamphotérisme" class="level3" data-number="16.0.2">
+<h3 data-number="16.0.2" class="anchored" data-anchor-id="le-produit-ionique-de-leau-k_e-et-lamphotérisme"><span class="header-section-number">16.0.2</span> Le produit ionique de l’eau <span class="math inline">\(K_e\)</span> et l’amphotérisme</h3>
+<p><strong>Conception courante :</strong> on imagine souvent que l’eau pure est parfaitement neutre et inerte — qu’elle ne réagit pas avec elle-même. C’est presque vrai, mais pas tout à fait : une infime fraction des molécules d’eau réagit spontanément entre elles en permanence.</p>
+<p><strong>Au niveau particulaire :</strong> deux molécules d’eau peuvent échanger un proton entre elles selon la réaction d’<strong>autoprotolyse</strong> :</p>
+<p><span class="math display">\[\ce{2 H2O &lt;=&gt; H3O+ + OH-}\]</span></p>
+<p>Cet équilibre est très déplacé vers la gauche — la quasi-totalité de l’eau reste sous forme moléculaire — mais il produit en permanence de petites quantités de <span class="math inline">\(\ce{H3O+}\)</span> et de <span class="math inline">\(\ce{OH-}\)</span>.</p>
+<p><strong>Au niveau symbolique :</strong> la constante d’équilibre associée est le <strong>produit ionique de l’eau</strong>, noté <span class="math inline">\(K_e\)</span> (ou <span class="math inline">\(K_w\)</span>) :</p>
+<p><span class="math display">\[K_e = [\ce{H3O+}][\ce{OH-}] = 1{,}0 \times 10^{-14} \quad \text{à } 25\ ^\circ\text{C}\]</span></p>
+<p>Cette relation est <strong>toujours vraie</strong> en solution aqueuse à 25 <span class="math inline">\(^\circ\)</span>C, que la solution soit pure, acide ou basique. Elle permet de calculer <span class="math inline">\([\ce{OH-}]\)</span> dès que <span class="math inline">\([\ce{H3O+}]\)</span> est connu, et vice-versa.</p>
+<p>L’eau peut donc agir comme acide ou comme base selon son partenaire réactionnel. Le tableau suivant résume les constantes associées à ces deux comportements :</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Espèce</th>
+<th>Rôle</th>
+<th>Réaction</th>
+<th>Constante</th>
+<th>Valeur à 25 <span class="math inline">\(^\circ\)</span>C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{H2O}\)</span></td>
+<td>Acide</td>
+<td><span class="math inline">\(\ce{H2O + H2O &lt;=&gt; OH- + H3O+}\)</span></td>
+<td><span class="math inline">\(K_a(\ce{H2O})\)</span></td>
+<td><span class="math inline">\(1{,}8 \times 10^{-16}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{H2O}\)</span></td>
+<td>Base</td>
+<td><span class="math inline">\(\ce{H2O + H2O &lt;=&gt; H3O+ + OH-}\)</span></td>
+<td><span class="math inline">\(K_b(\ce{H2O})\)</span></td>
+<td><span class="math inline">\(1{,}8 \times 10^{-16}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{H3O+}\)</span></td>
+<td>Acide</td>
+<td><span class="math inline">\(\ce{H3O+ + H2O &lt;=&gt; H2O + H3O+}\)</span></td>
+<td><span class="math inline">\(K_a(\ce{H3O+})\)</span></td>
+<td><span class="math inline">\(55{,}56\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{OH-}\)</span></td>
+<td>Base</td>
+<td><span class="math inline">\(\ce{OH- + H2O &lt;=&gt; H2O + OH-}\)</span></td>
+<td><span class="math inline">\(K_b(\ce{OH-})\)</span></td>
+<td><span class="math inline">\(55{,}56\)</span></td>
+</tr>
+<tr class="odd">
+<td>Eau (autoprotolyse)</td>
+<td>—</td>
+<td><span class="math inline">\(\ce{2 H2O &lt;=&gt; H3O+ + OH-}\)</span></td>
+<td><span class="math inline">\(K_e\)</span></td>
+<td><span class="math inline">\(1{,}0 \times 10^{-14}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Attention :</strong> les valeurs de <span class="math inline">\(K_a(\ce{H2O})\)</span> et <span class="math inline">\(K_b(\ce{H2O})\)</span> semblent surprenantes — elles sont très petites parce que l’activité de l’eau <em>solvant</em> est prise égale à 1 par convention thermodynamique, mais l’activité de l’eau <em>produit</em> vaut <span class="math inline">\([\ce{H2O}] = 55{,}56\)</span> mol/L. Cette distinction sera utile pour comprendre l’origine de <span class="math inline">\(K_e\)</span>.</p>
+<p><strong>Exercice guidé :</strong> dans une solution aqueuse à 25 <span class="math inline">\(^\circ\)</span>C contenant <span class="math inline">\([\ce{H3O+}] = 0{,}10\)</span> mol/L, calculez <span class="math inline">\([\ce{OH-}]\)</span>.</p>
+<p><em>Indication : utilisez directement <span class="math inline">\(K_e = [\ce{H3O+}][\ce{OH-}]\)</span>.</em><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li><p>Une solution a un pH de 3,50 à 25 <span class="math inline">\(^\circ\)</span>C. Calculez <span class="math inline">\([\ce{H3O+}]\)</span> et <span class="math inline">\([\ce{OH-}]\)</span>.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p></li>
+<li><p>Une solution de <span class="math inline">\(\ce{NaOH}\)</span> présente <span class="math inline">\([\ce{OH-}] = 2{,}5 \times 10^{-3}\)</span> mol/L. Calculez son pH.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p></li>
+<li><p>L’eau pure à 60 <span class="math inline">\(^\circ\)</span>C a un <span class="math inline">\(K_e = 9{,}6 \times 10^{-14}\)</span>. Calculez le pH de neutralité à cette température. Est-il égal à 7 ? Pourquoi ?<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p></li>
+</ol>
+<hr>
+</section>
+<section id="la-constante-dacidité-k_a-et-le-pk_a" class="level3" data-number="16.0.3">
+<h3 data-number="16.0.3" class="anchored" data-anchor-id="la-constante-dacidité-k_a-et-le-pk_a"><span class="header-section-number">16.0.3</span> La constante d’acidité <span class="math inline">\(K_a\)</span> et le p<span class="math inline">\(K_a\)</span></h3>
+<p><strong>Conception courante :</strong> on confond souvent “acide” et “acide fort” — comme si tout acide se dissociait totalement dans l’eau. Or la grande majorité des acides rencontrés en chimie organique et en biologie sont des <strong>acides faibles</strong> : ils ne se dissocient que partiellement, et leur comportement est gouverné par un équilibre.</p>
+<p><strong>Au niveau macroscopique :</strong> on observe expérimentalement qu’à concentration égale, une solution d’acide acétique <span class="math inline">\(\ce{CH3COOH}\)</span> conduit l’électricité moins bien qu’une solution d’acide chlorhydrique <span class="math inline">\(\ce{HCl}\)</span> — preuve que <span class="math inline">\(\ce{CH3COOH}\)</span> produit moins d’ions en solution. La force d’un acide se mesure donc par sa capacité à se dissocier.</p>
+<p><strong>Au niveau particulaire :</strong> pour un acide <span class="math inline">\(\text{AH}\)</span> en solution aqueuse, l’équilibre de dissociation s’écrit :</p>
+<p><span class="math display">\[\text{AH} + \ce{H2O} \rightleftharpoons \text{A}^- + \ce{H3O+}\]</span></p>
+<p>Plus cet équilibre est déplacé vers la droite, plus l’acide est fort.</p>
+<p><strong>Au niveau symbolique :</strong> la constante d’équilibre associée est la <strong>constante d’acidité</strong> <span class="math inline">\(K_a\)</span> :</p>
+<p><span class="math display">\[K_a = \frac{[\text{A}^-][\ce{H3O+}]}{[\text{AH}]}\]</span></p>
+<p>Plus <span class="math inline">\(K_a\)</span> est grand, plus l’acide est fort. Comme les valeurs de <span class="math inline">\(K_a\)</span> varient sur de nombreux ordres de grandeur, on utilise l’échelle logarithmique inversée :</p>
+<p><span class="math display">\[\text{p}K_a = -\log(K_a)\]</span></p>
+<p><strong>Attention :</strong> l’échelle des p<span class="math inline">\(K_a\)</span> varie en sens <em>opposé</em> de celle des <span class="math inline">\(K_a\)</span> — un p<span class="math inline">\(K_a\)</span> élevé correspond à un acide <em>faible</em>.</p>
+<p>Quelques exemples emblématiques :</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Acide</th>
+<th>Réaction</th>
+<th><span class="math inline">\(K_a\)</span></th>
+<th>p<span class="math inline">\(K_a\)</span></th>
+<th>Force</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{HCl}\)</span></td>
+<td><span class="math inline">\(\ce{HCl + H2O -&gt; Cl- + H3O+}\)</span></td>
+<td><span class="math inline">\(\sim 10^{7}\)</span></td>
+<td><span class="math inline">\(-7\)</span></td>
+<td>Très fort</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{CH3COOH}\)</span></td>
+<td><span class="math inline">\(\ce{CH3COOH + H2O &lt;=&gt; CH3COO- + H3O+}\)</span></td>
+<td><span class="math inline">\(1{,}78 \times 10^{-5}\)</span></td>
+<td><span class="math inline">\(4{,}75\)</span></td>
+<td>Faible</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{NH4+}\)</span></td>
+<td><span class="math inline">\(\ce{NH4+ + H2O &lt;=&gt; NH3 + H3O+}\)</span></td>
+<td><span class="math inline">\(6{,}0 \times 10^{-10}\)</span></td>
+<td><span class="math inline">\(9{,}22\)</span></td>
+<td>Très faible</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{H2O}\)</span></td>
+<td><span class="math inline">\(\ce{H2O + H2O &lt;=&gt; OH- + H3O+}\)</span></td>
+<td><span class="math inline">\(1{,}8 \times 10^{-16}\)</span></td>
+<td><span class="math inline">\(15{,}7\)</span></td>
+<td>Négligeable</td>
+</tr>
+</tbody>
+</table>
+<p>Un acide est dit <strong>fort</strong> si son p<span class="math inline">\(K_a &lt; -1{,}74\)</span> (p<span class="math inline">\(K_a\)</span> du cation hydronium <span class="math inline">\(\ce{H3O+}\)</span>) : il se dissocie quasi intégralement en solution aqueuse. Un acide est dit <strong>faible</strong> si son p<span class="math inline">\(K_a\)</span> est compris entre <span class="math inline">\(-1{,}74\)</span> et <span class="math inline">\(\sim 12\)</span>.</p>
+<!-- REF: ref:atomes-quantite-de-matiere-mole — notion de mole et de concentration molaire formalisées au chapitre Atomes et quantité de matière -->
+<p><strong>Exercice autonome :</strong> le p<span class="math inline">\(K_a\)</span> de l’acide fluorhydrique <span class="math inline">\(\ce{HF}\)</span> est 3,17. Écrivez son équilibre de dissociation dans l’eau et calculez son <span class="math inline">\(K_a\)</span>.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li><p>L’acide nitreux <span class="math inline">\(\ce{HNO2}\)</span> a un p<span class="math inline">\(K_a = 3{,}34\)</span>. Calculez son <span class="math inline">\(K_a\)</span> et écrivez son équilibre de dissociation dans l’eau.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p></li>
+<li><p>Classez les acides suivants du plus fort au plus faible : <span class="math inline">\(\ce{HF}\)</span> (p<span class="math inline">\(K_a = 3{,}17\)</span>), <span class="math inline">\(\ce{CH3COOH}\)</span> (p<span class="math inline">\(K_a = 4{,}75\)</span>), <span class="math inline">\(\ce{HCN}\)</span> (p<span class="math inline">\(K_a = 9{,}21\)</span>), <span class="math inline">\(\ce{H2CO3}\)</span> (p<span class="math inline">\(K_{a1} = 6{,}3\)</span>).<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p></li>
+<li><p>L’acide lactique <span class="math inline">\(\ce{C3H6O3}\)</span> a <span class="math inline">\(K_a = 1{,}4 \times 10^{-4}\)</span>. Calculez son p<span class="math inline">\(K_a\)</span> et dites s’il est plus fort ou plus faible que l’acide acétique.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p></li>
+</ol>
+<hr>
+</section>
+<section id="la-constante-de-basicité-k_b-et-la-relation-k_a-cdot-k_b-k_e" class="level3" data-number="16.0.4">
+<h3 data-number="16.0.4" class="anchored" data-anchor-id="la-constante-de-basicité-k_b-et-la-relation-k_a-cdot-k_b-k_e"><span class="header-section-number">16.0.4</span> La constante de basicité <span class="math inline">\(K_b\)</span> et la relation <span class="math inline">\(K_a \cdot K_b = K_e\)</span></h3>
+<p><strong>Conception courante :</strong> on cherche souvent la force d’une base dans des tables de <span class="math inline">\(K_b\)</span>, mais ces valeurs sont rarement tabulées. Il existe une relation directe entre la force d’une base et la force de son acide conjugué — ce qui rend les tables de <span class="math inline">\(K_a\)</span> suffisantes pour tout calculer.</p>
+<p><strong>Au niveau particulaire :</strong> une base <span class="math inline">\(\text{B}\)</span> en solution aqueuse capte un proton de l’eau selon l’équilibre :</p>
+<p><span class="math display">\[\text{B} + \ce{H2O} \rightleftharpoons \text{BH}^+ + \ce{OH-}\]</span></p>
+<p><strong>Au niveau symbolique :</strong> la constante associée est la <strong>constante de basicité</strong> <span class="math inline">\(K_b\)</span> :</p>
+<p><span class="math display">\[K_b = \frac{[\text{BH}^+][\ce{OH-}]}{[\text{B}]}\]</span></p>
+<p>Et de même : <span class="math inline">\(\text{p}K_b = -\log(K_b)\)</span>.</p>
+<p>La relation fondamentale entre <span class="math inline">\(K_a\)</span> et <span class="math inline">\(K_b\)</span> d’un couple conjugué se démontre en multipliant les deux expressions :</p>
+<p><span class="math display">\[K_a \cdot K_b = \frac{[\text{A}^-][\ce{H3O+}]}{[\text{AH}]} \cdot \frac{[\text{AH}][\ce{OH-}]}{[\text{A}^-]} = [\ce{H3O+}][\ce{OH-}] = K_e\]</span></p>
+<p>Donc :</p>
+<p><span class="math display">\[\boxed{K_a \cdot K_b = K_e = 10^{-14}} \qquad \text{soit} \qquad \text{p}K_a + \text{p}K_b = 14\]</span></p>
+<p><strong>Conséquence directe :</strong> si un acide est fort (<span class="math inline">\(K_a\)</span> grand, p<span class="math inline">\(K_a\)</span> petit), sa base conjuguée est nécessairement faible (<span class="math inline">\(K_b\)</span> petit, p<span class="math inline">\(K_b\)</span> grand) — et inversement. Un acide fort n’a pas de base conjuguée efficace en solution aqueuse.</p>
+<p><strong>Exemple travaillé :</strong> calculez <span class="math inline">\(K_b\)</span> et p<span class="math inline">\(K_b\)</span> de l’ion acétate <span class="math inline">\(\ce{CH3COO-}\)</span>, sachant que p<span class="math inline">\(K_a(\ce{CH3COOH}) = 4{,}75\)</span>.</p>
+<p><em>Solution :</em></p>
+<p><span class="math display">\[\text{p}K_b(\ce{CH3COO-}) = 14 - \text{p}K_a(\ce{CH3COOH}) = 14 - 4{,}75 = 9{,}25\]</span></p>
+<p><span class="math display">\[K_b(\ce{CH3COO-}) = 10^{-9{,}25} = 5{,}6 \times 10^{-10}\]</span></p>
+<p>L’ion acétate est donc une base très faible — ce qui est cohérent avec le fait que l’acide acétique est un acide faible mais non négligeable.</p>
+<p><strong>Exercice autonome :</strong> le p<span class="math inline">\(K_a(\ce{NH4+}) = 9{,}22\)</span>. Calculez <span class="math inline">\(K_b\)</span> et p<span class="math inline">\(K_b\)</span> de l’ammoniac <span class="math inline">\(\ce{NH3}\)</span>.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li><p>Le p<span class="math inline">\(K_a\)</span> de l’acide hypochloreux <span class="math inline">\(\ce{HClO}\)</span> est 7,54. Calculez p<span class="math inline">\(K_b\)</span> et <span class="math inline">\(K_b\)</span> de l’ion hypochlorite <span class="math inline">\(\ce{ClO-}\)</span>.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></p></li>
+<li><p>L’ion benzoate <span class="math inline">\(\ce{C6H5COO-}\)</span> a p<span class="math inline">\(K_b = 9{,}80\)</span>. Calculez p<span class="math inline">\(K_a\)</span> de l’acide benzoïque <span class="math inline">\(\ce{C6H5COOH}\)</span>.<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></p></li>
+<li><p>Une base a <span class="math inline">\(K_b = 5{,}0 \times 10^{-5}\)</span>. Son acide conjugué est-il un acide fort ou un acide faible ? Calculez son p<span class="math inline">\(K_a\)</span>.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a></p></li>
+</ol>
+<hr>
+</section>
+<section id="calculs-de-ph-acides-et-bases-forts" class="level3" data-number="16.0.5">
+<h3 data-number="16.0.5" class="anchored" data-anchor-id="calculs-de-ph-acides-et-bases-forts"><span class="header-section-number">16.0.5</span> Calculs de pH : acides et bases forts</h3>
+<p><strong>Conception courante :</strong> on croit parfois que le calcul du pH d’une solution d’acide fort nécessite un tableau d’avancement à l’équilibre. Ce n’est pas le cas : la dissociation étant totale, le calcul se réduit à une simple lecture de concentration.</p>
+<p><strong>Au niveau macroscopique :</strong> une solution d’acide fort est très conductrice et réagit vigoureusement avec les métaux — signes d’une forte concentration en <span class="math inline">\(\ce{H3O+}\)</span>.</p>
+<p><strong>Au niveau particulaire :</strong> pour un monoacide fort <span class="math inline">\(\ce{HA}\)</span>, la dissociation est totale et irréversible :</p>
+<p><span class="math display">\[\ce{HA + H2O -&gt; A- + H3O+}\]</span></p>
+<p>Toutes les molécules <span class="math inline">\(\ce{HA}\)</span> initiales sont converties en <span class="math inline">\(\ce{H3O+}\)</span> : <span class="math inline">\([\ce{H3O+}] = C_{A_0}\)</span>.</p>
+<p><strong>Au niveau symbolique :</strong></p>
+<p><span class="math display">\[\boxed{\text{pH} = -\log C_{A_0}} \quad \text{(monoacide fort)}\]</span></p>
+<p>Pour une base forte monohydroxyde <span class="math inline">\(\ce{MOH}\)</span> (ex. <span class="math inline">\(\ce{NaOH}\)</span>, <span class="math inline">\(\ce{KOH}\)</span>) :</p>
+<p><span class="math display">\[\text{pOH} = -\log C_{B_0} \qquad \text{puis} \qquad \text{pH} = 14 - \text{pOH}\]</span></p>
+<p>Pour un dihydroxyde <span class="math inline">\(\ce{M(OH)2}\)</span> (ex. <span class="math inline">\(\ce{Ba(OH)2}\)</span>, <span class="math inline">\(\ce{Ca(OH)2}\)</span>), la concentration en <span class="math inline">\(\ce{OH-}\)</span> est le double de la concentration initiale : <span class="math inline">\([\ce{OH-}] = 2 C_{B_0}\)</span>.</p>
+<p><strong>Exemple travaillé :</strong> calculez le pH d’une solution de <span class="math inline">\(\ce{NaOH}\)</span> 0,050 mol/L.</p>
+<p><em>Solution :</em></p>
+<p><span class="math display">\[\text{pOH} = -\log(0{,}050) = 1{,}30 \qquad \Rightarrow \qquad \text{pH} = 14 - 1{,}30 = 12{,}70\]</span></p>
+<p><strong>Exercice guidé :</strong> calculez le pH d’une solution de <span class="math inline">\(\ce{HCl}\)</span> 0,10 mol/L, puis d’une solution de <span class="math inline">\(\ce{Ca(OH)2}\)</span> 0,050 mol/L.</p>
+<p><em>Indication : pour <span class="math inline">\(\ce{Ca(OH)2}\)</span>, pensez à doubler la concentration avant de calculer le pOH.</em><a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li><p>Calculez le pH d’une solution de <span class="math inline">\(\ce{HNO3}\)</span> 0,025 mol/L.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></p></li>
+<li><p>Calculez le pH d’une solution de <span class="math inline">\(\ce{KOH}\)</span> <span class="math inline">\(5{,}0 \times 10^{-3}\)</span> mol/L.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></p></li>
+<li><p>On mélange 50,0 mL de <span class="math inline">\(\ce{HCl}\)</span> 0,10 mol/L et 30,0 mL de <span class="math inline">\(\ce{NaOH}\)</span> 0,10 mol/L. Calculez le pH du mélange.<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a></p></li>
+</ol>
+<hr>
+</section>
+<section id="calculs-de-ph-acides-et-bases-faibles" class="level3" data-number="16.0.6">
+<h3 data-number="16.0.6" class="anchored" data-anchor-id="calculs-de-ph-acides-et-bases-faibles"><span class="header-section-number">16.0.6</span> Calculs de pH : acides et bases faibles</h3>
+<p><strong>Conception courante :</strong> on applique parfois la formule <span class="math inline">\(\text{pH} = -\log C_{A_0}\)</span> à un acide faible — comme si la dissociation était totale. C’est la même erreur que de confondre acide et acide fort : pour un acide faible, seule une fraction des molécules se dissocie, et la concentration en <span class="math inline">\(\ce{H3O+}\)</span> à l’équilibre est bien inférieure à <span class="math inline">\(C_{A_0}\)</span>.</p>
+<p><strong>Au niveau particulaire :</strong> pour un acide faible <span class="math inline">\(\text{AH}\)</span> de concentration initiale <span class="math inline">\(A_0\)</span>, l’équilibre s’établit :</p>
+<p><span class="math display">\[\text{AH} + \ce{H2O} \rightleftharpoons \text{A}^- + \ce{H3O+}\]</span></p>
+<p>On pose <span class="math inline">\(x = [\ce{H3O+}]_\text{éq} = [\text{A}^-]_\text{éq}\)</span>, et <span class="math inline">\([\text{AH}]_\text{éq} = A_0 - x\)</span>.</p>
+<p><strong>Au niveau symbolique :</strong> l’expression de <span class="math inline">\(K_a\)</span> donne :</p>
+<p><span class="math display">\[K_a = \frac{x \cdot x}{A_0 - x} = \frac{x^2}{A_0 - x}\]</span></p>
+<p><strong>Sans approximation</strong>, on résout l’équation du second degré :</p>
+<p><span class="math display">\[x^2 + K_a \cdot x - K_a \cdot A_0 = 0 \qquad \Rightarrow \qquad x = \frac{-K_a + \sqrt{K_a^2 + 4 K_a A_0}}{2}\]</span></p>
+<p><strong>Avec approximation</strong> (valable si <span class="math inline">\(\alpha = x/A_0 \leq 5\,\%\)</span>) : on pose <span class="math inline">\(A_0 - x \approx A_0\)</span>, ce qui donne :</p>
+<p><span class="math display">\[[\ce{H3O+}] \approx \sqrt{K_a \cdot A_0} \qquad \Rightarrow \qquad \boxed{\text{pH} \approx \frac{1}{2}(\text{p}K_a - \log A_0)}\]</span></p>
+<p>Le <strong>coefficient de dissociation</strong> <span class="math inline">\(\alpha\)</span> mesure la fraction d’acide dissociée :</p>
+<p><span class="math display">\[\alpha = \frac{[\text{A}^-]_\text{éq}}{A_0} = \frac{x}{A_0}\]</span></p>
+<p><strong>Attention :</strong> <span class="math inline">\(\alpha\)</span> dépend à la fois de <span class="math inline">\(K_a\)</span> <em>et</em> de <span class="math inline">\(A_0\)</span>. Un acide faible se dissocie <em>davantage</em> lorsqu’il est dilué — conséquence directe du principe de Le Châtelier : diluer déplace l’équilibre dans le sens de la dissociation.</p>
+<!-- REF: ref:equilibre-chimique-1-le-chatelier — principe de Le Châtelier formalisé au chapitre Équilibre chimique 1 -->
+<p><strong>Exemple travaillé 1 :</strong> calculez le pH d’une solution de <span class="math inline">\(\ce{CH3COOH}\)</span> 0,10 mol/L (<span class="math inline">\(\text{p}K_a = 4{,}75\)</span>).</p>
+<p><em>Solution avec approximation :</em></p>
+<p><span class="math display">\[[\ce{H3O+}] \approx \sqrt{1{,}78 \times 10^{-5} \times 0{,}10} = \sqrt{1{,}78 \times 10^{-6}} = 1{,}33 \times 10^{-3}\ \text{mol/L}\]</span></p>
+<p><span class="math display">\[\alpha = \frac{1{,}33 \times 10^{-3}}{0{,}10} = 1{,}33\,\% &lt; 5\,\% \quad \checkmark\]</span></p>
+<p><span class="math display">\[\text{pH} = -\log(1{,}33 \times 10^{-3}) = 2{,}88\]</span></p>
+<p><strong>Exemple travaillé 2 :</strong> calculez le pH d’une solution de <span class="math inline">\(\ce{NH3}\)</span> 0,10 mol/L (<span class="math inline">\(\text{p}K_b = 4{,}78\)</span>).</p>
+<p><em>Solution :</em> on travaille avec <span class="math inline">\(K_b\)</span> et <span class="math inline">\([\ce{OH-}]\)</span> :</p>
+<p><span class="math display">\[[\ce{OH-}] \approx \sqrt{K_b \cdot B_0} = \sqrt{1{,}67 \times 10^{-5} \times 0{,}10} = 1{,}29 \times 10^{-3}\ \text{mol/L}\]</span></p>
+<p><span class="math display">\[\text{pOH} = -\log(1{,}29 \times 10^{-3}) = 2{,}89 \qquad \Rightarrow \qquad \text{pH} = 14 - 2{,}89 = 11{,}11\]</span></p>
+<p>Pour les bases faibles, la formule approchée est :</p>
+<p><span class="math display">\[\boxed{\text{pH} \approx \frac{1}{2}(14 + \text{p}K_a + \log B_0)}\]</span></p>
+<p>où p<span class="math inline">\(K_a\)</span> désigne l’acide conjugué de la base.</p>
+<p><strong>Exercice guidé :</strong> calculez le pH d’une solution de <span class="math inline">\(\ce{HCOOH}\)</span> 0,10 mol/L (<span class="math inline">\(\text{p}K_a = 3{,}75\)</span>). Vérifiez que l’approximation est valable.<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li><p>Calculez le pH d’une solution de <span class="math inline">\(\ce{CH3COOH}\)</span> 0,050 mol/L (p<span class="math inline">\(K_a = 4{,}75\)</span>). Vérifiez la validité de l’approximation.<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a></p></li>
+<li><p>Calculez le pH d’une solution de <span class="math inline">\(\ce{NH3}\)</span> 0,050 mol/L (p<span class="math inline">\(K_b = 4{,}78\)</span>).<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a></p></li>
+<li><p>L’acide propanoïque <span class="math inline">\(\ce{C2H5COOH}\)</span> a p<span class="math inline">\(K_a = 4{,}87\)</span>. Quelle concentration <span class="math inline">\(C_0\)</span> de cet acide donne un pH de 3,00 ? Vérifiez que l’approximation est valide.<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a></p></li>
+</ol>
+<hr>
+</section>
+<section id="les-courbes-de-titrage-ph-métrique" class="level3" data-number="16.0.7">
+<h3 data-number="16.0.7" class="anchored" data-anchor-id="les-courbes-de-titrage-ph-métrique"><span class="header-section-number">16.0.7</span> Les courbes de titrage pH-métrique</h3>
+<p><strong>Conception courante :</strong> on imagine parfois que le point d’équivalence d’un titrage correspond toujours à pH = 7. C’est vrai uniquement pour le titrage d’un acide fort par une base forte — dès qu’un acide ou une base faible est impliqué, le pH au point d’équivalence est différent de 7.</p>
+<p><strong>Au niveau macroscopique :</strong> un titrage pH-métrique consiste à mesurer en continu le pH d’une solution à doser (solution inconnue) en fonction du volume de solution titrante (solution connue) ajouté. La courbe obtenue — pH en ordonnée, volume en abscisse — est sigmoïdale : elle présente un saut de pH brusque autour du <strong>point d’équivalence (PE)</strong>.</p>
+<p>Quatre familles de courbes sont à maîtriser :</p>
+<p><strong>A. Titrage d’un acide fort par une base forte</strong></p>
+<p>La réaction de neutralisation est totale : <span class="math inline">\(\ce{H3O+ + OH- -&gt; 2H2O}\)</span>.</p>
+<ul>
+<li><em>Avant le PE :</em> excès de <span class="math inline">\(\ce{H3O+}\)</span> ; <span class="math inline">\(\text{pH} = -\log[\ce{H3O+}]_\text{excès}\)</span>.</li>
+<li><em>Au PE :</em> <span class="math inline">\([\ce{H3O+}] = [\ce{OH-}]\)</span> ; <strong>pH = 7</strong> à 25 <span class="math inline">\(^\circ\)</span>C.</li>
+<li><em>Après le PE :</em> excès de <span class="math inline">\(\ce{OH-}\)</span> ; <span class="math inline">\(\text{pOH} = -\log[\ce{OH-}]_\text{excès}\)</span> ; <span class="math inline">\(\text{pH} = 14 - \text{pOH}\)</span>.</li>
+</ul>
+<p>Pas de zone tampon. Le saut de pH au PE est très brusque.</p>
+<p><strong>Exemple travaillé :</strong> titrage de 25,0 mL de <span class="math inline">\(\ce{HCl}\)</span> 0,10 mol/L par <span class="math inline">\(\ce{NaOH}\)</span> 0,10 mol/L.</p>
+<p>À <span class="math inline">\(V(\ce{NaOH}) = 10{,}0\)</span> mL :</p>
+<p><span class="math display">\[n(\ce{HCl})_\text{initial} = 0{,}025 \times 0{,}10 = 2{,}50 \times 10^{-3}\ \text{mol}\]</span> <span class="math display">\[n(\ce{NaOH})_\text{ajouté} = 0{,}010 \times 0{,}10 = 1{,}00 \times 10^{-3}\ \text{mol}\]</span> <span class="math display">\[n(\ce{H3O+})_\text{excès} = (2{,}50 - 1{,}00) \times 10^{-3} = 1{,}50 \times 10^{-3}\ \text{mol}\]</span> <span class="math display">\[[\ce{H3O+}] = \frac{1{,}50 \times 10^{-3}}{0{,}025 + 0{,}010} = \frac{1{,}50 \times 10^{-3}}{0{,}035} = 4{,}29 \times 10^{-2}\ \text{mol/L}\]</span> <span class="math display">\[\text{pH} = -\log(4{,}29 \times 10^{-2}) = 1{,}37\]</span></p>
+<p>Au PE (<span class="math inline">\(V = 25{,}0\)</span> mL) : pH = 7,00. À <span class="math inline">\(V = 30{,}0\)</span> mL : pH = 11,96. À <span class="math inline">\(V = 40{,}0\)</span> mL : pH = 12,91.</p>
+<p><strong>B. Titrage d’un acide faible par une base forte</strong></p>
+<p>L’acide faible <span class="math inline">\(\text{AH}\)</span> est progressivement converti en sa base conjuguée <span class="math inline">\(\text{A}^-\)</span>.</p>
+<ul>
+<li><em>Avant le PE :</em> mélange <span class="math inline">\(\text{AH}/\text{A}^-\)</span> → zone tampon ; pH calculé par Henderson-Hasselbalch (voir 2.8).</li>
+<li><em>Au PE :</em> tout <span class="math inline">\(\text{AH}\)</span> est converti en <span class="math inline">\(\text{A}^-\)</span> ; <strong>pH &gt; 7</strong> (solution basique). On calcule le pH via l’hydrolyse basique de <span class="math inline">\(\text{A}^-\)</span> :</li>
+</ul>
+<p><span class="math display">\[\text{pH} = \frac{1}{2}(14 + \text{p}K_a + \log C_{\text{A}^-})\]</span></p>
+<ul>
+<li><em>Après le PE :</em> excès de <span class="math inline">\(\ce{OH-}\)</span> ; pH calculé comme pour une base forte.</li>
+</ul>
+<p><strong>Exemple travaillé :</strong> titrage de 25,0 mL de <span class="math inline">\(\ce{CH3COOH}\)</span> 0,10 mol/L par <span class="math inline">\(\ce{NaOH}\)</span> 0,10 mol/L (<span class="math inline">\(\text{p}K_a = 4{,}75\)</span>).</p>
+<p>Au PE (<span class="math inline">\(V = 25{,}0\)</span> mL) : <span class="math inline">\(n(\ce{CH3COO-}) = 2{,}50 \times 10^{-3}\)</span> mol ; <span class="math inline">\(V_\text{total} = 0{,}050\)</span> L ; <span class="math inline">\(C_{\text{A}^-} = \frac{2{,}50 \times 10^{-3}}{0{,}050} = 0{,}050\)</span> mol/L.</p>
+<p><span class="math display">\[\text{pH} = \frac{1}{2}(14 + 4{,}75 + \log 0{,}050) = \frac{1}{2}(14 + 4{,}75 - 1{,}30) = \frac{1}{2}(17{,}45) = 8{,}72\]</span></p>
+<p><strong>C. Titrage d’une base forte par un acide fort</strong></p>
+<p>Symétrique du cas A : la courbe descend de pH élevé vers pH bas. Au PE : <strong>pH = 7</strong>. Avant le PE : excès de <span class="math inline">\(\ce{OH-}\)</span>. Après le PE : excès de <span class="math inline">\(\ce{H3O+}\)</span>.</p>
+<p><strong>D. Titrage d’une base faible par un acide fort</strong></p>
+<p>Symétrique du cas B : la base faible <span class="math inline">\(\text{B}\)</span> est progressivement convertie en son acide conjugué <span class="math inline">\(\text{BH}^+\)</span>.</p>
+<ul>
+<li><em>Au PE :</em> tout <span class="math inline">\(\text{B}\)</span> est converti en <span class="math inline">\(\text{BH}^+\)</span> ; <strong>pH &lt; 7</strong> (solution acide). On calcule via l’hydrolyse acide de <span class="math inline">\(\text{BH}^+\)</span> :</li>
+</ul>
+<p><span class="math display">\[\text{pH} = \frac{1}{2}(\text{p}K_a - \log C_{\text{BH}^+})\]</span></p>
+<p><strong>Exemple travaillé :</strong> titrage de 25,0 mL de <span class="math inline">\(\ce{NH3}\)</span> 0,10 mol/L par <span class="math inline">\(\ce{HCl}\)</span> 0,10 mol/L (<span class="math inline">\(\text{p}K_a(\ce{NH4+}) = 9{,}22\)</span>).</p>
+<p>Au PE (<span class="math inline">\(V = 25{,}0\)</span> mL) : <span class="math inline">\(n(\ce{NH4+}) = 2{,}50 \times 10^{-3}\)</span> mol ; <span class="math inline">\(V_\text{total} = 0{,}050\)</span> L ; <span class="math inline">\(C_{\text{BH}^+} = \frac{2{,}50 \times 10^{-3}}{0{,}050} = 0{,}050\)</span> mol/L.</p>
+<p><span class="math display">\[\text{pH} = \frac{1}{2}(9{,}22 - \log 0{,}050) = \frac{1}{2}(9{,}22 + 1{,}30) = \frac{1}{2}(10{,}52) = 5{,}26\]</span></p>
+<p><strong>Détermination graphique du PE — méthode des tangentes parallèles :</strong></p>
+<ol type="1">
+<li>Tracer deux tangentes parallèles à la courbe, l’une avant le saut de pH, l’autre après.</li>
+<li>Relier ces deux tangentes par une droite perpendiculaire (médiatrice).</li>
+<li>Le point d’intersection de cette médiatrice avec la courbe donne le PE.</li>
+</ol>
+<p><strong>Attention :</strong> cette construction donne le volume équivalent <span class="math inline">\(V_\text{PE}\)</span> avec précision, mais le pH au PE n’est <strong>pas nécessairement 7</strong> — sa valeur dépend de la nature des espèces en jeu.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li><p>On titre 20,0 mL de <span class="math inline">\(\ce{NaOH}\)</span> 0,10 mol/L par <span class="math inline">\(\ce{HCl}\)</span> 0,10 mol/L. Calculez le pH avant le PE (après ajout de 10,0 mL), au PE et après le PE (après ajout de 30,0 mL).<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a></p></li>
+<li><p>On titre 25,0 mL de <span class="math inline">\(\ce{CH3COOH}\)</span> 0,10 mol/L par <span class="math inline">\(\ce{NaOH}\)</span> 0,10 mol/L (p<span class="math inline">\(K_a = 4{,}75\)</span>). Calculez le pH au point de demi-équivalence.<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a></p></li>
+<li><p>Lors du titrage de 25,0 mL de <span class="math inline">\(\ce{NH3}\)</span> 0,10 mol/L par <span class="math inline">\(\ce{HCl}\)</span> 0,10 mol/L (p<span class="math inline">\(K_a(\ce{NH4+}) = 9{,}22\)</span>), le pH au PE vaut 5,26. Quel indicateur coloré choisiriez-vous parmi : hélianthine (virage 3,1–4,4), rouge de méthyle (virage 4,2–6,2), phénolphtaléïne (virage 8,0–9,8) ?<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a></p></li>
+</ol>
+<hr>
+</section>
+<section id="la-zone-tampon-et-henderson-hasselbalch" class="level3" data-number="16.0.8">
+<h3 data-number="16.0.8" class="anchored" data-anchor-id="la-zone-tampon-et-henderson-hasselbalch"><span class="header-section-number">16.0.8</span> La zone tampon et Henderson-Hasselbalch</h3>
+<p><strong>Conception courante :</strong> on croit parfois qu’une solution tampon empêche totalement la variation de pH. Elle ne l’empêche pas — elle la <em>limite</em> : pour chaque ajout d’acide ou de base, le pH varie, mais très peu. La capacité de résistance est finie et dépend des quantités d’espèces tamponnantes.</p>
+<p><strong>Au niveau macroscopique :</strong> lors du titrage d’un acide faible par une base forte, on observe une région de la courbe où le pH varie peu malgré l’ajout de base : c’est la <strong>zone tampon</strong>. Elle se situe avant le PE, là où <span class="math inline">\(\text{AH}\)</span> et <span class="math inline">\(\text{A}^-\)</span> coexistent en proportions comparables.</p>
+<p><strong>Au niveau particulaire :</strong> dans cette zone, tout ajout de base est neutralisé par <span class="math inline">\(\text{AH}\)</span>, et tout ajout d’acide est neutralisé par <span class="math inline">\(\text{A}^-\)</span>, selon les équilibres :</p>
+<p><span class="math display">\[\ce{OH-} + \text{AH} \rightarrow \text{A}^- + \ce{H2O} \qquad \text{et} \qquad \ce{H3O+} + \text{A}^- \rightarrow \text{AH} + \ce{H2O}\]</span></p>
+<p>La solution résiste aux variations de pH parce qu’elle dispose d’une réserve des deux espèces.</p>
+<p><strong>Au niveau symbolique :</strong> le pH d’un mélange tampon se calcule par l’<strong>équation de Henderson-Hasselbalch</strong> :</p>
+<p><span class="math display">\[\boxed{\text{pH} = \text{p}K_a + \log\frac{[\text{A}^-]}{[\text{AH}]}}\]</span></p>
+<p>Au <strong>point de demi-équivalence</strong> (<span class="math inline">\(V = \frac{1}{2}V_\text{PE}\)</span>), <span class="math inline">\([\text{A}^-] = [\text{AH}]\)</span>, donc <span class="math inline">\(\log(1) = 0\)</span> et :</p>
+<p><span class="math display">\[\text{pH} = \text{p}K_a\]</span></p>
+<p>Ce point permet de déterminer le p<span class="math inline">\(K_a\)</span> expérimentalement à partir de la courbe de titrage.</p>
+<p>Le <strong>domaine tampon</strong> s’étend approximativement de p<span class="math inline">\(K_a - 1\)</span> à p<span class="math inline">\(K_a + 1\)</span>, tant que le rapport <span class="math inline">\([\text{A}^-]/[\text{AH}]\)</span> reste entre 0,1 et 10.</p>
+<p>Le <strong>pouvoir tampon</strong> — capacité de la solution à résister à une variation de pH — dépend des <em>quantités</em> (et non seulement des concentrations) d’acide et de base conjuguée disponibles : plus ces quantités sont grandes, plus le tampon est efficace.</p>
+<p>Pour une base faible <span class="math inline">\(\text{B}\)</span> titrée par un acide fort, Henderson-Hasselbalch s’applique avec p<span class="math inline">\(K_a\)</span> de l’acide conjugué <span class="math inline">\(\text{BH}^+\)</span> :</p>
+<p><span class="math display">\[\text{pH} = \text{p}K_a(\text{BH}^+) + \log\frac{[\text{B}]}{[\text{BH}^+]}\]</span></p>
+<p>et au point de demi-équivalence : <span class="math inline">\(\text{pH} = \text{p}K_a(\text{BH}^+) = 14 - \text{p}K_b\)</span>.</p>
+<p><strong>Exemple travaillé :</strong> on désire préparer un tampon de pH 5,20 avec <span class="math inline">\(\ce{CH3COOH}\)</span> et <span class="math inline">\(\ce{CH3COONa}\)</span> (<span class="math inline">\(\text{p}K_a = 4{,}75\)</span>).</p>
+<p><span class="math display">\[\log\frac{[\ce{CH3COO-}]}{[\ce{CH3COOH}]} = 5{,}20 - 4{,}75 = 0{,}45 \qquad \Rightarrow \qquad \frac{[\ce{CH3COO-}]}{[\ce{CH3COOH}]} = 10^{0{,}45} = 2{,}82\]</span></p>
+<p>Si <span class="math inline">\([\ce{CH3COOH}] = 0{,}10\)</span> mol/L, alors <span class="math inline">\([\ce{CH3COO-}] = 0{,}282\)</span> mol/L.</p>
+<p><strong>Exercice guidé :</strong> calculez le pH d’un tampon <span class="math inline">\(\ce{NH3}\)</span> 0,30 mol/L / <span class="math inline">\(\ce{NH4Cl}\)</span> 0,36 mol/L (<span class="math inline">\(\text{p}K_a(\ce{NH4+}) = 9{,}22\)</span>).<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li><p>On mélange 100 mL de <span class="math inline">\(\ce{CH3COOH}\)</span> 0,20 mol/L et 100 mL de <span class="math inline">\(\ce{CH3COONa}\)</span> 0,10 mol/L (p<span class="math inline">\(K_a = 4{,}75\)</span>). Calculez le pH du tampon obtenu.<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a></p></li>
+<li><p>On ajoute 5,0 mL de <span class="math inline">\(\ce{HCl}\)</span> 0,10 mol/L à 100 mL du tampon de l’exercice précédent. Calculez le nouveau pH et la variation <span class="math inline">\(\Delta\)</span>pH.<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a></p></li>
+<li><p>Quel rapport <span class="math inline">\([\ce{CH3COO-}]/[\ce{CH3COOH}]\)</span> faut-il préparer pour obtenir un tampon de pH 5,00 (p<span class="math inline">\(K_a = 4{,}75\)</span>) ?<a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a></p></li>
+</ol>
+<hr>
+</section>
+<section id="les-indicateurs-colorés-et-les-acides-polyprotiques" class="level3" data-number="16.0.9">
+<h3 data-number="16.0.9" class="anchored" data-anchor-id="les-indicateurs-colorés-et-les-acides-polyprotiques"><span class="header-section-number">16.0.9</span> Les indicateurs colorés et les acides polyprotiques</h3>
+<section id="indicateurs-colorés" class="level4" data-number="16.0.9.1">
+<h4 data-number="16.0.9.1" class="anchored" data-anchor-id="indicateurs-colorés"><span class="header-section-number">16.0.9.1</span> Indicateurs colorés</h4>
+<p><strong>Au niveau macroscopique :</strong> un indicateur coloré est une substance dont la couleur change en fonction du pH de la solution. Ce changement est visible à l’œil nu et permet de repérer le point d’équivalence d’un titrage sans pH-mètre.</p>
+<p><strong>Au niveau particulaire :</strong> un indicateur est lui-même un acide faible <span class="math inline">\(\text{HIn}\)</span> dont la forme acide et la forme basique <span class="math inline">\(\text{In}^-\)</span> ont des couleurs différentes :</p>
+<p><span class="math display">\[\text{HIn} + \ce{H2O} \rightleftharpoons \text{In}^- + \ce{H3O+} \qquad K_a(\text{HIn})\]</span></p>
+<p><strong>Au niveau symbolique :</strong> le p<span class="math inline">\(K_a\)</span> de l’indicateur correspond au pH pour lequel <span class="math inline">\([\text{HIn}] = [\text{In}^-]\)</span> — les deux formes coexistent en proportions égales et la couleur est intermédiaire. L’œil perçoit un changement de couleur lorsque le rapport <span class="math inline">\([\text{In}^-]/[\text{HIn}]\)</span> est compris entre 1/10 et 10, ce qui correspond à une <strong>plage de virage</strong> :</p>
+<p><span class="math display">\[\text{p}K_a(\text{HIn}) - 1 \quad \text{à} \quad \text{p}K_a(\text{HIn}) + 1\]</span></p>
+<p><strong>Critère de choix :</strong> la plage de virage de l’indicateur doit <em>englober</em> le pH au PE du titrage considéré. Dans un titrage acide fort – base forte, le saut de pH est très brusque et de nombreux indicateurs conviennent. Dans un titrage impliquant un acide ou une base faible, le saut est moins marqué et le choix est plus critique.</p>
+<p>Quelques indicateurs courants :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Indicateur</th>
+<th>p<span class="math inline">\(K_a\)</span></th>
+<th>Plage de virage</th>
+<th>Forme acide</th>
+<th>Forme basique</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hélianthine (méthylorange)</td>
+<td>4,2</td>
+<td>3,1 – 4,4</td>
+<td>rouge</td>
+<td>jaune</td>
+</tr>
+<tr class="even">
+<td>Rouge de méthyle</td>
+<td>5,0</td>
+<td>4,2 – 6,2</td>
+<td>rouge</td>
+<td>jaune</td>
+</tr>
+<tr class="odd">
+<td>Bleu de bromothymol (BBT)</td>
+<td>7,1</td>
+<td>6,0 – 7,6</td>
+<td>jaune</td>
+<td>bleu</td>
+</tr>
+<tr class="even">
+<td>Phénolphtaléïne</td>
+<td>9,7</td>
+<td>8,0 – 9,8</td>
+<td>incolore</td>
+<td>rose</td>
+</tr>
+<tr class="odd">
+<td>Thymolphtaléïne</td>
+<td>9,9</td>
+<td>9,3 – 10,5</td>
+<td>incolore</td>
+<td>bleu</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exemple travaillé :</strong> quel indicateur choisir pour titrer <span class="math inline">\(\ce{CH3COOH}\)</span> (<span class="math inline">\(\text{p}K_a = 4{,}75\)</span>) par <span class="math inline">\(\ce{NaOH}\)</span> 0,10 mol/L, si la concentration initiale de l’acide est inconnue ?</p>
+<p>Le pH au PE est basique (entre 8,2 et 9,2 selon la concentration). La phénolphtaléïne (plage 8,0 – 9,8) est bien adaptée ; le BBT (6,0 – 7,6) serait mal placé car sa plage de virage ne recouvre pas le pH au PE.</p>
+</section>
+<section id="acides-polyprotiques" class="level4" data-number="16.0.9.2">
+<h4 data-number="16.0.9.2" class="anchored" data-anchor-id="acides-polyprotiques"><span class="header-section-number">16.0.9.2</span> Acides polyprotiques</h4>
+<p><strong>Au niveau particulaire :</strong> un acide polyprotique libère plusieurs protons successivement. Chaque déprotonation a sa propre constante <span class="math inline">\(K_{a1}\)</span>, <span class="math inline">\(K_{a2}\)</span>, etc., avec <span class="math inline">\(K_{a1} \gg K_{a2}\)</span> : le premier proton part toujours beaucoup plus facilement que les suivants, car la charge négative croissante de la molécule s’oppose à la perte du proton suivant.</p>
+<p><strong>Au niveau symbolique :</strong> pour un <strong>acide biprotique</strong> <span class="math inline">\(\ce{H2A}\)</span>, les deux équilibres sont :</p>
+<p><span class="math display">\[\ce{H2A + H2O &lt;=&gt; HA- + H3O+} \qquad K_{a1}\]</span> <span class="math display">\[\ce{HA- + H2O &lt;=&gt; A^{2-} + H3O+} \qquad K_{a2} \ll K_{a1}\]</span></p>
+<p>La courbe de titrage présente alors <strong>deux sauts de pH</strong> et <strong>deux points d’équivalence</strong> successifs.</p>
+<p>Exemples importants :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Acide</th>
+<th><span class="math inline">\(\text{p}K_{a1}\)</span></th>
+<th><span class="math inline">\(\text{p}K_{a2}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{H2SO4}\)</span></td>
+<td><span class="math inline">\(\ll 0\)</span> (fort)</td>
+<td>1,9</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{H2CO3}\)</span></td>
+<td>6,3</td>
+<td>10,33</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{H2C2O4}\)</span> (oxalique)</td>
+<td>1,25</td>
+<td>4,27</td>
+</tr>
+</tbody>
+</table>
+<p>Pour un <strong>acide triprotique</strong> comme <span class="math inline">\(\ce{H3PO4}\)</span>, on observe trois équilibres successifs (<span class="math inline">\(\text{p}K_{a1} = 2{,}12\)</span>, <span class="math inline">\(\text{p}K_{a2} = 7{,}20\)</span>, <span class="math inline">\(\text{p}K_{a3} = 12{,}31\)</span>) et trois PE sur la courbe de titrage.</p>
+<p><strong>Application : le tampon sanguin</strong></p>
+<p>L’acide carbonique <span class="math inline">\(\ce{H2CO3}\)</span> joue un rôle central dans la régulation du pH sanguin :</p>
+<p><span class="math display">\[\ce{CO2 + H2O &lt;=&gt; H2CO3 &lt;=&gt; HCO3- + H3O+} \qquad \text{p}K_{a1} = 6{,}3\]</span> <span class="math display">\[\ce{HCO3- + H2O &lt;=&gt; CO3^{2-} + H3O+} \qquad \text{p}K_{a2} = 10{,}33\]</span></p>
+<p>Le pH plasmatique normal se situe entre 7,38 et 7,42 — une plage très étroite. Le couple <span class="math inline">\(\ce{HCO3-}/\ce{CO2}\)</span> tamponne ce milieu malgré un p<span class="math inline">\(K_{a1}\)</span> de 6,3 apparemment éloigné, grâce aux concentrations élevées et stables de <span class="math inline">\(\ce{CO2}\)</span> et <span class="math inline">\(\ce{HCO3-}\)</span> maintenues par la respiration et le rein. Un pH inférieur à 7 ou supérieur à 7,8 est incompatible avec la vie.</p>
+<p><strong>Exercice autonome :</strong> calculez le pH au PE du titrage de 25,0 mL de <span class="math inline">\(\ce{H2CO3}\)</span> 0,10 mol/L par <span class="math inline">\(\ce{NaOH}\)</span> 0,10 mol/L lors du premier point d’équivalence. <em>(Indication : au premier PE, l’espèce majoritaire est <span class="math inline">\(\ce{HCO3-}\)</span>, ampholyte — utilisez</em> <span class="math inline">\(\text{pH} \approx \frac{1}{2}(\text{p}K_{a1} + \text{p}K_{a2})\)</span>.)<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li><p>On titre <span class="math inline">\(\ce{CH3COOH}\)</span> 0,10 mol/L par <span class="math inline">\(\ce{NaOH}\)</span> (p<span class="math inline">\(K_a = 4{,}75\)</span>, pH au PE <span class="math inline">\(\approx 8{,}72\)</span>). Parmi la phénolphtaléïne (virage 8,0–9,8) et le bleu de bromothymol (virage 6,0–7,6), quel indicateur choisir ? Justifiez.<a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a></p></li>
+<li><p>Pour l’acide oxalique <span class="math inline">\(\ce{H2C2O4}\)</span> (p<span class="math inline">\(K_{a1} = 1{,}25\)</span>, p<span class="math inline">\(K_{a2} = 4{,}27\)</span>), combien de sauts de pH observe-t-on lors d’un titrage par <span class="math inline">\(\ce{NaOH}\)</span> ? Calculez le pH au premier PE (espèce majoritaire : <span class="math inline">\(\ce{HC2O4-}\)</span>, ampholyte).<a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a></p></li>
+<li><p>À pH = 7,20, quelle est la fraction de <span class="math inline">\(\ce{H2PO4-}\)</span> et de <span class="math inline">\(\ce{HPO4^{2-}}\)</span> dans une solution de phosphate ? (p<span class="math inline">\(K_{a2}(\ce{H3PO4}) = 7{,}20\)</span>)<a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a></p></li>
+</ol>
+<hr>
+<p><strong>Exercices de synthèse</strong></p>
+<ol type="1">
+<li><p>Calculez le pH d’une solution de <span class="math inline">\(\ce{HClO4}\)</span> <span class="math inline">\(2{,}5 \times 10^{-3}\)</span> mol/L.<a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a></p></li>
+<li><p>Une solution de <span class="math inline">\(\ce{Ba(OH)2}\)</span> a un pH de 12,30. Calculez la concentration molaire en <span class="math inline">\(\ce{Ba(OH)2}\)</span>.<a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a></p></li>
+<li><p>L’acide mandélique <span class="math inline">\(\ce{C6H5CH(OH)COOH}\)</span> a p<span class="math inline">\(K_a = 3{,}37\)</span>. Calculez le pH d’une solution à 0,050 mol/L et son coefficient de dissociation <span class="math inline">\(\alpha\)</span>.<a href="#fn37" class="footnote-ref" id="fnref37" role="doc-noteref"><sup>37</sup></a></p></li>
+<li><p>Un tampon est préparé en dissolvant 0,40 mol de <span class="math inline">\(\ce{CH3COOH}\)</span> et 0,20 mol de <span class="math inline">\(\ce{CH3COONa}\)</span> dans 1,00 L (p<span class="math inline">\(K_a = 4{,}75\)</span>). Calculez le pH, puis le pH après ajout de 0,010 mol de <span class="math inline">\(\ce{NaOH}\)</span> solide.<a href="#fn38" class="footnote-ref" id="fnref38" role="doc-noteref"><sup>38</sup></a></p></li>
+<li><p>On titre 20,0 mL de <span class="math inline">\(\ce{CH3COOH}\)</span> 0,15 mol/L par <span class="math inline">\(\ce{NaOH}\)</span> 0,10 mol/L (p<span class="math inline">\(K_a = 4{,}75\)</span>). Calculez le pH après ajout de 15,0 mL de base (mi-chemin avant le PE).<a href="#fn39" class="footnote-ref" id="fnref39" role="doc-noteref"><sup>39</sup></a></p></li>
+<li><p>Calculez le pH au point d’équivalence du titrage de 25,0 mL de <span class="math inline">\(\ce{NH3}\)</span> 0,20 mol/L par <span class="math inline">\(\ce{HCl}\)</span> 0,20 mol/L (p<span class="math inline">\(K_a(\ce{NH4+}) = 9{,}22\)</span>).<a href="#fn40" class="footnote-ref" id="fnref40" role="doc-noteref"><sup>40</sup></a></p></li>
+<li><p>L’acide sulfureux <span class="math inline">\(\ce{H2SO3}\)</span> a p<span class="math inline">\(K_{a1} = 1{,}81\)</span> et p<span class="math inline">\(K_{a2} = 6{,}91\)</span>. À pH = 4,00, quelle est l’espèce majoritaire : <span class="math inline">\(\ce{H2SO3}\)</span>, <span class="math inline">\(\ce{HSO3-}\)</span> ou <span class="math inline">\(\ce{SO3^{2-}}\)</span> ? Justifiez sans calcul.<a href="#fn41" class="footnote-ref" id="fnref41" role="doc-noteref"><sup>41</sup></a></p></li>
+<li><p>Un tampon phosphate est préparé avec <span class="math inline">\(\ce{NaH2PO4}\)</span> et <span class="math inline">\(\ce{Na2HPO4}\)</span> (p<span class="math inline">\(K_{a2} = 7{,}20\)</span>) pour obtenir pH = 7,40. Calculez le rapport <span class="math inline">\([\ce{HPO4^{2-}}]/[\ce{H2PO4-}]\)</span> nécessaire.<a href="#fn42" class="footnote-ref" id="fnref42" role="doc-noteref"><sup>42</sup></a></p></li>
+<li><p>On mélange 50 mL de <span class="math inline">\(\ce{CH3COOH}\)</span> 0,10 mol/L et 50 mL de <span class="math inline">\(\ce{NaOH}\)</span> 0,05 mol/L (p<span class="math inline">\(K_a = 4{,}75\)</span>). Calculez le pH du mélange.<a href="#fn43" class="footnote-ref" id="fnref43" role="doc-noteref"><sup>43</sup></a></p></li>
+<li><p>Le sang a pH = 7,40 et <span class="math inline">\([\ce{HCO3-}] = 24\)</span> mmol/L, p<span class="math inline">\(K_{a1} = 6{,}10\)</span>. Calculez <span class="math inline">\([\ce{CO2}]_{\text{dissous}}\)</span> par Henderson-Hasselbalch. Si le pH chute à 7,10 (acidose), <span class="math inline">\([\ce{HCO3-}]\)</span> restant constant, quelle est la nouvelle concentration en <span class="math inline">\(\ce{CO2}\)</span> ?<a href="#fn44" class="footnote-ref" id="fnref44" role="doc-noteref"><sup>44</sup></a></p></li>
+</ol>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-05-11</em></p>
+<p>Ces défis s’adressent à ceux qui veulent aller réellement plus loin. Ils exigent de mobiliser les notions de Zone 2 dans des contextes nouveaux.</p>
+<p><strong>Défi A — Dosage d’un acide inconnu</strong></p>
+<p>On dissout 0,128 g d’un monoacide inconnu <span class="math inline">\(\text{HA}\)</span> dans 25,0 mL d’eau. On titre cette solution avec une solution de <span class="math inline">\(\ce{NaOH}\)</span> 0,06330 mol/L. Il faut 18,4 mL de base pour atteindre le point d’équivalence. Après ajout de 10,0 mL de base, le pH mesuré est 5,87.</p>
+<ol type="a">
+<li><p>Calculez la masse molaire de l’acide inconnu.</p></li>
+<li><p>Calculez le <span class="math inline">\(K_a\)</span> de cet acide à partir du pH mesuré après ajout de 10,0 mL de base.</p></li>
+<li><p>Identifiez l’acide parmi les candidats suivants : acide benzoïque (<span class="math inline">\(M = 122\)</span> g/mol, p<span class="math inline">\(K_a = 4{,}20\)</span>), acide salicylique (<span class="math inline">\(M = 138\)</span> g/mol, p<span class="math inline">\(K_a = 2{,}97\)</span>), acide malique (<span class="math inline">\(M = 134\)</span> g/mol, p<span class="math inline">\(K_a = 3{,}46\)</span>).<a href="#fn45" class="footnote-ref" id="fnref45" role="doc-noteref"><sup>45</sup></a></p></li>
+</ol>
+<p><strong>Défi B — Transfert : chimie de l’estomac et des antiacides</strong></p>
+<p>Le suc gastrique contient de l’acide chlorhydrique à une concentration d’environ 0,15 mol/L. Les antiacides courants neutralisent cet excès d’acidité grâce à des bases faibles ou à des carbonates.</p>
+<p>On considère un comprimé d’antiacide contenant 500 mg de carbonate de calcium <span class="math inline">\(\ce{CaCO3}\)</span> (<span class="math inline">\(M = 100{,}1\)</span> g/mol). La réaction de neutralisation dans l’estomac est :</p>
+<p><span class="math display">\[\ce{CaCO3(s) + 2 HCl(aq) -&gt; CaCl2(aq) + H2O(l) + CO2(g)}\]</span></p>
+<ol type="a">
+<li><p>Calculez la quantité de matière de <span class="math inline">\(\ce{CaCO3}\)</span> dans un comprimé et le volume de suc gastrique à 0,15 mol/L que ce comprimé peut neutraliser.</p></li>
+<li><p>Le <span class="math inline">\(\ce{CO2}\)</span> produit se dissout partiellement dans l’eau pour former <span class="math inline">\(\ce{H2CO3}\)</span>, acide biprotique (p<span class="math inline">\(K_{a1} = 6{,}3\)</span>, p<span class="math inline">\(K_{a2} = 10{,}33\)</span>). À pH gastrique normal de 2,0 après neutralisation partielle, quelle est l’espèce carbonatée majoritaire ? Justifiez par comparaison des p<span class="math inline">\(K_a\)</span> et du pH.</p></li>
+<li><p>Un second antiacide contient 400 mg d’hydroxyde de magnésium <span class="math inline">\(\ce{Mg(OH)2}\)</span> (<span class="math inline">\(M = 58{,}3\)</span> g/mol). Lequel des deux comprimés neutralise le plus grand volume de suc gastrique à 0,15 mol/L ?<a href="#fn46" class="footnote-ref" id="fnref46" role="doc-noteref"><sup>46</sup></a></p></li>
+</ol>
+<p><strong>Défi C — Ouverture : le pH du sang et l’acidose</strong></p>
+<p>Le pH plasmatique normal est de 7,40. Le système tampon principal du sang repose sur le couple <span class="math inline">\(\ce{HCO3-}/\ce{CO2}\)</span> dissous, avec p<span class="math inline">\(K_{a1} = 6{,}10\)</span> (valeur physiologique effective, tenant compte de la solubilité du <span class="math inline">\(\ce{CO2}\)</span>).</p>
+<p>En conditions normales, la concentration en <span class="math inline">\(\ce{HCO3-}\)</span> est 24 mmol/L et celle en <span class="math inline">\(\ce{CO2}\)</span> dissous est 1,2 mmol/L.</p>
+<ol type="a">
+<li><p>Vérifiez que ces valeurs sont cohérentes avec le pH de 7,40 via Henderson-Hasselbalch.</p></li>
+<li><p>Lors d’une acidose métabolique, <span class="math inline">\([\ce{HCO3-}]\)</span> chute à 15 mmol/L. Si <span class="math inline">\([\ce{CO2}]\)</span> reste à 1,2 mmol/L, quel est le nouveau pH ? Ce pH est-il compatible avec la vie ?</p></li>
+<li><p>Le poumon compense en éliminant davantage de <span class="math inline">\(\ce{CO2}\)</span> via la ventilation. Quelle concentration en <span class="math inline">\(\ce{CO2}\)</span> permettrait de retrouver un pH de 7,40 si <span class="math inline">\([\ce{HCO3-}] = 15\)</span> mmol/L ?<a href="#fn47" class="footnote-ref" id="fnref47" role="doc-noteref"><sup>47</sup></a></p></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="mots-clés" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="mots-clés"><span class="header-section-number">16.1</span> Mots-clés</h2>
+<p><strong>Ampholyte</strong> : espèce chimique pouvant se comporter à la fois comme acide et comme base selon son partenaire réactionnel ; l’eau est l’ampholyte le plus courant.</p>
+<p><strong>Coefficient de dissociation (<span class="math inline">\(\alpha\)</span>)</strong> : fraction molaire d’un acide ou d’une base dissociée à l’équilibre ; augmente lorsque la concentration diminue.</p>
+<p><strong>Constante d’acidité (<span class="math inline">\(K_a\)</span>)</strong> : constante d’équilibre de la dissociation d’un acide faible <span class="math inline">\(\text{AH}\)</span> dans l’eau ; plus <span class="math inline">\(K_a\)</span> est grand, plus l’acide est fort.</p>
+<p><strong>Constante de basicité (<span class="math inline">\(K_b\)</span>)</strong> : constante d’équilibre de la protonation d’une base faible dans l’eau ; reliée à <span class="math inline">\(K_a\)</span> de l’acide conjugué par <span class="math inline">\(K_a \cdot K_b = 10^{-14}\)</span>.</p>
+<p><strong>Courbe de titrage</strong> : graphique représentant le pH d’une solution à doser en fonction du volume de solution titrante ajouté ; présente un saut de pH brusque au point d’équivalence.</p>
+<p><strong>Henderson-Hasselbalch (équation de)</strong> : relation <span class="math inline">\(\text{pH} = \text{p}K_a + \log([\text{A}^-]/[\text{AH}])\)</span> permettant de calculer le pH d’un mélange tampon à partir du rapport des concentrations.</p>
+<p><strong>Indicateur coloré</strong> : acide faible <span class="math inline">\(\text{HIn}\)</span> dont les formes acide et basique ont des couleurs différentes ; change de couleur dans une plage de pH égale à <span class="math inline">\(\text{p}K_a \pm 1\)</span>.</p>
+<p><strong>Point d’équivalence (PE)</strong> : point d’un titrage où la quantité de réactif titrant est exactement stœchiométrique par rapport à la quantité titrée ; repéré graphiquement par la méthode des tangentes parallèles.</p>
+<p><strong>Point de demi-équivalence</strong> : point d’un titrage à mi-chemin du PE où <span class="math inline">\([\text{AH}] = [\text{A}^-]\)</span> et <span class="math inline">\(\text{pH} = \text{p}K_a\)</span> ; permet de déterminer <span class="math inline">\(K_a\)</span> expérimentalement.</p>
+<p><strong>Pouvoir tampon</strong> : capacité d’une solution tampon à résister aux variations de pH ; proportionnel aux quantités d’acide et de base conjuguée disponibles.</p>
+<p><strong>Produit ionique de l’eau (<span class="math inline">\(K_e\)</span>)</strong> : constante d’équilibre de l’autoprotolyse de l’eau, <span class="math inline">\(K_e = [\ce{H3O+}][\ce{OH-}] = 10^{-14}\)</span> à 25 <span class="math inline">\(^\circ\)</span>C ; toujours vérifiée en solution aqueuse.</p>
+<p><strong>Zone tampon</strong> : région d’une courbe de titrage d’acide ou de base faible où le pH varie peu malgré l’ajout de réactif ; s’étend de <span class="math inline">\(\text{p}K_a - 1\)</span> à <span class="math inline">\(\text{p}K_a + 1\)</span>.</p>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-05-02</em></p>
+<hr>
+<p><em>Projet-Balmer</em></p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Acide : <span class="math inline">\(\ce{HF}\)</span> ; base : <span class="math inline">\(\ce{H2O}\)</span> ; couples : <span class="math inline">\(\ce{HF}/\ce{F-}\)</span> et <span class="math inline">\(\ce{H3O+}/\ce{H2O}\)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Comportement acide : <span class="math inline">\(\ce{HSO4- + H2O &lt;=&gt; SO4^{2-} + H3O+}\)</span> (<span class="math inline">\(K_{a2}\)</span>) ; comportement basique : <span class="math inline">\(\ce{HSO4- + H2O &lt;=&gt; H2SO4 + OH-}\)</span>. <span class="math inline">\(\ce{HSO4-}\)</span> est un ampholyte.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><span class="math inline">\(\ce{HNO3}\)</span> et <span class="math inline">\(\ce{HClO4}\)</span> : acides forts (dissociation totale) ; <span class="math inline">\(\ce{HCN}\)</span> : acide faible (<span class="math inline">\(K_a\)</span> petit) ; <span class="math inline">\(\ce{CH3COO-}\)</span> : base faible (base conjuguée d’un acide faible).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><span class="math inline">\([\ce{OH-}] = K_e / [\ce{H3O+}] = 10^{-14} / 0{,}10 = 1{,}0 \times 10^{-13}\)</span> mol/L.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><span class="math inline">\([\ce{H3O+}] = 10^{-3{,}50} = 3{,}16 \times 10^{-4}\)</span> mol/L ; <span class="math inline">\([\ce{OH-}] = 10^{-14} / 3{,}16 \times 10^{-4} = 3{,}16 \times 10^{-11}\)</span> mol/L.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>pOH <span class="math inline">\(= -\log(2{,}5 \times 10^{-3}) = 2{,}60\)</span> ; pH <span class="math inline">\(= 14 - 2{,}60 = 11{,}40\)</span>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>pH <span class="math inline">\(= \frac{1}{2}(-\log(9{,}6 \times 10^{-14})) = \frac{1}{2}(13{,}02) = 6{,}51\)</span>. Non, pas 7 : le pH de neutralité dépend de <span class="math inline">\(K_e\)</span>, qui varie avec la température. Une solution neutre a toujours <span class="math inline">\([\ce{H3O+}] = [\ce{OH-}]\)</span>, mais pH <span class="math inline">\(\neq 7\)</span> dès que <span class="math inline">\(T \neq 25\ ^\circ\)</span>C.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p><span class="math inline">\(K_a(\ce{HF}) = 10^{-3{,}17} = 6{,}8 \times 10^{-4}\)</span>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><span class="math inline">\(K_a(\ce{HNO2}) = 10^{-3{,}34} = 4{,}6 \times 10^{-4}\)</span> ; équilibre : <span class="math inline">\(\ce{HNO2 + H2O &lt;=&gt; NO2- + H3O+}\)</span>.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Ordre décroissant de force (p<span class="math inline">\(K_a\)</span> croissant) : <span class="math inline">\(\ce{HF}\)</span> (3,17) &gt; <span class="math inline">\(\ce{CH3COOH}\)</span> (4,75) &gt; <span class="math inline">\(\ce{H2CO3}\)</span> (6,3) &gt; <span class="math inline">\(\ce{HCN}\)</span> (9,21).<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>p<span class="math inline">\(K_a = -\log(1{,}4 \times 10^{-4}) = 3{,}85\)</span> ; plus fort que l’acide acétique (p<span class="math inline">\(K_a = 4{,}75\)</span>).<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>p<span class="math inline">\(K_b(\ce{NH3}) = 14 - 9{,}22 = 4{,}78\)</span> ; <span class="math inline">\(K_b(\ce{NH3}) = 10^{-4{,}78} = 1{,}67 \times 10^{-5}\)</span>.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>p<span class="math inline">\(K_b(\ce{ClO-}) = 14 - 7{,}54 = 6{,}46\)</span> ; <span class="math inline">\(K_b = 10^{-6{,}46} = 3{,}5 \times 10^{-7}\)</span>.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>p<span class="math inline">\(K_a(\ce{C6H5COOH}) = 14 - 9{,}80 = 4{,}20\)</span>.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>p<span class="math inline">\(K_b = -\log(5{,}0 \times 10^{-5}) = 4{,}30\)</span> ; p<span class="math inline">\(K_a = 14 - 4{,}30 = 9{,}70\)</span> : acide faible (p<span class="math inline">\(K_a\)</span> entre 0 et 14).<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p><span class="math inline">\(\ce{HCl}\)</span> : pH <span class="math inline">\(= -\log(0{,}10) = 1{,}00\)</span>. <span class="math inline">\(\ce{Ca(OH)2}\)</span> : <span class="math inline">\([\ce{OH-}] = 2 \times 0{,}050 = 0{,}10\)</span> mol/L ; pOH <span class="math inline">\(= 1{,}00\)</span> ; pH <span class="math inline">\(= 13{,}00\)</span>.<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>pH <span class="math inline">\(= -\log(0{,}025) = 1{,}60\)</span>.<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>pOH <span class="math inline">\(= -\log(5{,}0 \times 10^{-3}) = 2{,}30\)</span> ; pH <span class="math inline">\(= 14 - 2{,}30 = 11{,}70\)</span>.<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p><span class="math inline">\(n(\ce{HCl}) = 5{,}0 \times 10^{-3}\)</span> mol ; <span class="math inline">\(n(\ce{NaOH}) = 3{,}0 \times 10^{-3}\)</span> mol ; excès <span class="math inline">\(\ce{H3O+} = 2{,}0 \times 10^{-3}\)</span> mol dans 80,0 mL ; <span class="math inline">\([\ce{H3O+}] = 0{,}025\)</span> mol/L ; pH <span class="math inline">\(= 1{,}60\)</span>.<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p><span class="math inline">\([\ce{H3O+}] \approx \sqrt{1{,}78 \times 10^{-4} \times 0{,}10} = \sqrt{1{,}78 \times 10^{-5}} = 4{,}22 \times 10^{-3}\)</span> mol/L ; <span class="math inline">\(\alpha = 4{,}22\,\% &lt; 5\,\%\)</span> ✓ ; pH <span class="math inline">\(= 2{,}38\)</span>.<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p><span class="math inline">\([\ce{H3O+}] \approx \sqrt{1{,}78 \times 10^{-5} \times 0{,}050} = 9{,}43 \times 10^{-4}\)</span> mol/L ; <span class="math inline">\(\alpha = 1{,}9\,\% &lt; 5\,\%\)</span> ✓ ; pH <span class="math inline">\(= 3{,}03\)</span>.<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p><span class="math inline">\([\ce{OH-}] \approx \sqrt{1{,}67 \times 10^{-5} \times 0{,}050} = 9{,}13 \times 10^{-4}\)</span> mol/L ; pOH <span class="math inline">\(= 3{,}04\)</span> ; pH <span class="math inline">\(= 10{,}96\)</span>.<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p>pH <span class="math inline">\(= 3{,}00\)</span> <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\([\ce{H3O+}] = 10^{-3}\)</span> mol/L <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(C_0 = [\ce{H3O+}]^2/K_a = 10^{-6}/(1{,}35 \times 10^{-5}) = 0{,}074\)</span> mol/L ; <span class="math inline">\(\alpha = 10^{-3}/0{,}074 = 1{,}4\,\% &lt; 5\,\%\)</span> ✓.<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p>Avant PE (<span class="math inline">\(V = 10\)</span> mL) : excès <span class="math inline">\(\ce{OH-} = 1{,}0 \times 10^{-3}\)</span> mol dans 30 mL ; <span class="math inline">\([\ce{OH-}] = 0{,}033\)</span> mol/L ; pH <span class="math inline">\(= 12{,}52\)</span>. Au PE (<span class="math inline">\(V = 20\)</span> mL) : pH <span class="math inline">\(= 7{,}00\)</span>. Après PE (<span class="math inline">\(V = 30\)</span> mL) : excès <span class="math inline">\(\ce{H3O+} = 1{,}0 \times 10^{-3}\)</span> mol dans 50 mL ; pH <span class="math inline">\(= 1{,}70\)</span>.<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p>Au point de demi-équivalence (<span class="math inline">\(V = 12{,}5\)</span> mL) : pH <span class="math inline">\(=\)</span> p<span class="math inline">\(K_a = 4{,}75\)</span>.<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p>Le rouge de méthyle (virage 4,2–6,2) est adapté : sa plage de virage englobe le pH au PE (5,26). La phénolphtaléïne serait mal placée (virage trop basique).<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p><span class="math inline">\(\text{pH} = 9{,}22 + \log(0{,}30/0{,}36) = 9{,}22 + \log(0{,}833) = 9{,}22 - 0{,}079 = 9{,}14\)</span>.<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p>pH <span class="math inline">\(= 4{,}75 + \log(0{,}10/0{,}20) = 4{,}75 - 0{,}30 = 4{,}45\)</span>.<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><p><span class="math inline">\(n(\ce{HCl}) = 5{,}0 \times 10^{-4}\)</span> mol consomme <span class="math inline">\(\ce{CH3COO-}\)</span> : <span class="math inline">\(n(\ce{CH3COO-}) = 0{,}010 - 5{,}0 \times 10^{-4} = 9{,}5 \times 10^{-3}\)</span> mol ; <span class="math inline">\(n(\ce{CH3COOH}) = 0{,}020 + 5{,}0 \times 10^{-4} = 0{,}0205\)</span> mol ; pH <span class="math inline">\(= 4{,}75 + \log(9{,}5 \times 10^{-3}/0{,}0205) = 4{,}75 - 0{,}334 = 4{,}42\)</span> ; <span class="math inline">\(\Delta\)</span>pH <span class="math inline">\(= -0{,}03\)</span>.<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn30"><p><span class="math inline">\(\log([\ce{CH3COO-}]/[\ce{CH3COOH}]) = 5{,}00 - 4{,}75 = 0{,}25\)</span> ; rapport <span class="math inline">\(= 10^{0{,}25} = 1{,}78\)</span>.<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p><span class="math inline">\(\text{pH} \approx \frac{1}{2}(6{,}3 + 10{,}33) = 8{,}32\)</span>.<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p>La phénolphtaléïne (virage 8,0–9,8) est adaptée : elle englobe pH <span class="math inline">\(= 8{,}72\)</span>. Le BBT (virage 6,0–7,6) ne recouvre pas le PE.<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p>Deux sauts de pH (deux PE). pH au premier PE : espèce <span class="math inline">\(\ce{HC2O4-}\)</span> (ampholyte) ; pH <span class="math inline">\(\approx \frac{1}{2}(\text{p}K_{a1} + \text{p}K_{a2}) = \frac{1}{2}(1{,}25 + 4{,}27) = 2{,}76\)</span>.<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn34"><p>À pH <span class="math inline">\(=\)</span> p<span class="math inline">\(K_{a2} = 7{,}20\)</span> : <span class="math inline">\([\ce{HC2O4-}] = [\ce{HPO4^{2-}}]\)</span> par définition du p<span class="math inline">\(K_a\)</span> — les deux formes sont présentes en proportions égales (50 % chacune).<a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn35"><p>pH <span class="math inline">\(= -\log(2{,}5 \times 10^{-3}) = 2{,}60\)</span>.<a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn36"><p>pH <span class="math inline">\(= 12{,}30\)</span> <span class="math inline">\(\Rightarrow\)</span> pOH <span class="math inline">\(= 1{,}70\)</span> <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\([\ce{OH-}] = 10^{-1{,}70} = 0{,}020\)</span> mol/L ; <span class="math inline">\([\ce{Ba(OH)2}] = 0{,}020/2 = 0{,}010\)</span> mol/L.<a href="#fnref36" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn37"><p><span class="math inline">\(K_a = 10^{-3{,}37} = 4{,}27 \times 10^{-4}\)</span> ; <span class="math inline">\([\ce{H3O+}] \approx \sqrt{4{,}27 \times 10^{-4} \times 0{,}050} = 4{,}62 \times 10^{-3}\)</span> mol/L ; pH <span class="math inline">\(= 2{,}34\)</span> ; <span class="math inline">\(\alpha = 4{,}62 \times 10^{-3}/0{,}050 = 9{,}2\,\%\)</span> : approximation limite — résolution exacte conseillée.<a href="#fnref37" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn38"><p>pH <span class="math inline">\(= 4{,}75 + \log(0{,}20/0{,}40) = 4{,}75 - 0{,}30 = 4{,}45\)</span>. Après ajout de 0,010 mol <span class="math inline">\(\ce{NaOH}\)</span> : <span class="math inline">\(n(\ce{CH3COO-}) = 0{,}21\)</span> mol ; <span class="math inline">\(n(\ce{CH3COOH}) = 0{,}39\)</span> mol ; pH <span class="math inline">\(= 4{,}75 + \log(0{,}21/0{,}39) = 4{,}75 - 0{,}27 = 4{,}48\)</span>.<a href="#fnref38" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn39"><p><span class="math inline">\(n(\ce{CH3COOH})_0 = 3{,}0 \times 10^{-3}\)</span> mol ; <span class="math inline">\(n(\ce{NaOH}) = 1{,}5 \times 10^{-3}\)</span> mol ; <span class="math inline">\(n(\ce{CH3COO-}) = 1{,}5 \times 10^{-3}\)</span> mol = <span class="math inline">\(n(\ce{CH3COOH})_\text{restant}\)</span> : point de demi-équivalence ; pH <span class="math inline">\(=\)</span> p<span class="math inline">\(K_a = 4{,}75\)</span>.<a href="#fnref39" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn40"><p>Au PE : <span class="math inline">\(n(\ce{NH4+}) = 4{,}0 \times 10^{-3}\)</span> mol dans 40,0 mL ; <span class="math inline">\(C_{\ce{NH4+}} = 0{,}10\)</span> mol/L ; pH <span class="math inline">\(= \frac{1}{2}(9{,}22 - \log 0{,}10) = \frac{1}{2}(9{,}22 + 1{,}00) = 5{,}11\)</span>.<a href="#fnref40" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn41"><p>À pH = 4,00 : p<span class="math inline">\(K_{a1} = 1{,}81\)</span> (pH <span class="math inline">\(\gg\)</span> p<span class="math inline">\(K_{a1}\)</span> : <span class="math inline">\(\ce{H2SO3}\)</span> quasi entièrement déprotoné) ; p<span class="math inline">\(K_{a2} = 6{,}91\)</span> (pH <span class="math inline">\(&lt;\)</span> p<span class="math inline">\(K_{a2}\)</span> : second proton non encore cédé) ; espèce majoritaire : <span class="math inline">\(\ce{HSO3-}\)</span>.<a href="#fnref41" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn42"><p><span class="math inline">\(7{,}40 = 7{,}20 + \log([\ce{HPO4^{2-}}]/[\ce{H2PO4-}])\)</span> ; <span class="math inline">\(\log(r) = 0{,}20\)</span> ; <span class="math inline">\(r = 10^{0{,}20} = 1{,}58\)</span>.<a href="#fnref42" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn43"><p><span class="math inline">\(n(\ce{CH3COOH}) = 5{,}0 \times 10^{-3}\)</span> mol ; <span class="math inline">\(n(\ce{NaOH}) = 2{,}5 \times 10^{-3}\)</span> mol ; après réaction : <span class="math inline">\(n(\ce{CH3COOH}) = 2{,}5 \times 10^{-3}\)</span> mol ; <span class="math inline">\(n(\ce{CH3COO-}) = 2{,}5 \times 10^{-3}\)</span> mol ; point de demi-équivalence ; pH <span class="math inline">\(= 4{,}75\)</span>.<a href="#fnref43" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn44"><p><span class="math inline">\(7{,}40 = 6{,}10 + \log(24/[\ce{CO2}])\)</span> ; <span class="math inline">\(\log(24/[\ce{CO2}]) = 1{,}30\)</span> ; <span class="math inline">\([\ce{CO2}] = 24/20 = 1{,}2\)</span> mmol/L ✓. À pH 7,10 : <span class="math inline">\(7{,}10 = 6{,}10 + \log(24/[\ce{CO2}])\)</span> ; <span class="math inline">\([\ce{CO2}] = 24/10 = 2{,}4\)</span> mmol/L.<a href="#fnref44" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn45"><ol type="a">
+<li><span class="math inline">\(n(\ce{NaOH})_\text{PE} = 0{,}0184 \times 0{,}06330 = 1{,}165 \times 10^{-3}\)</span> mol <span class="math inline">\(= n(\text{HA})\)</span> ; <span class="math inline">\(M = 0{,}128 / (1{,}165 \times 10^{-3}) = 109{,}9\)</span> g/mol. b) <span class="math inline">\(n(\ce{NaOH})_\text{ajouté} = 0{,}010 \times 0{,}06330 = 6{,}33 \times 10^{-4}\)</span> mol <span class="math inline">\(= n(\text{A}^-)\)</span> ; <span class="math inline">\(n(\text{AH})_\text{restant} = 1{,}165 \times 10^{-3} - 6{,}33 \times 10^{-4} = 5{,}32 \times 10^{-4}\)</span> mol. Via Henderson-Hasselbalch : <span class="math inline">\(\text{p}K_a = 5{,}87 - \log(6{,}33 \times 10^{-4} / 5{,}32 \times 10^{-4}) = 5{,}87 - \log(1{,}19) = 5{,}87 - 0{,}076 = 5{,}79\)</span> ; <span class="math inline">\(K_a = 10^{-5{,}79} = 1{,}62 \times 10^{-6}\)</span>. c) Aucun des trois candidats ne correspond (<span class="math inline">\(M\)</span> et p<span class="math inline">\(K_a\)</span> divergent) : cet exercice illustre qu’une identification nécessite plusieurs caractéristiques concordantes, et que la demi-équivalence est le seul point où <span class="math inline">\(\text{pH} = \text{p}K_a\)</span> directement — ici <span class="math inline">\(V_{1/2\text{PE}} = 9{,}2\)</span> mL, pas 10,0 mL.</li>
+</ol>
+<a href="#fnref45" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn46"><ol type="a">
+<li><span class="math inline">\(n(\ce{CaCO3}) = 0{,}500/100{,}1 = 4{,}99 \times 10^{-3}\)</span> mol ; <span class="math inline">\(n(\ce{HCl})_\text{neutralisé} = 2 \times 4{,}99 \times 10^{-3} = 9{,}98 \times 10^{-3}\)</span> mol ; <span class="math inline">\(V = 9{,}98 \times 10^{-3}/0{,}15 = 66{,}5\)</span> mL.</li>
+<li>À pH 2,0 : pH <span class="math inline">\(\ll\)</span> p<span class="math inline">\(K_{a1} = 6{,}3\)</span> — le premier proton n’est pas encore cédé ; espèce majoritaire : <span class="math inline">\(\ce{H2CO3}\)</span> (ou <span class="math inline">\(\ce{CO2}\)</span> dissous).</li>
+<li><span class="math inline">\(\ce{Mg(OH)2}\)</span> : <span class="math inline">\(n = 0{,}400/58{,}3 = 6{,}86 \times 10^{-3}\)</span> mol ; <span class="math inline">\(n(\ce{HCl})_\text{neutralisé} = 2 \times 6{,}86 \times 10^{-3} = 0{,}01372\)</span> mol ; <span class="math inline">\(V = 91{,}5\)</span> mL. Le comprimé de <span class="math inline">\(\ce{Mg(OH)2}\)</span> neutralise davantage.</li>
+</ol>
+<a href="#fnref46" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn47"><ol type="a">
+<li><span class="math inline">\(\text{pH} = 6{,}10 + \log(24/1{,}2) = 6{,}10 + \log(20) = 6{,}10 + 1{,}30 = 7{,}40\)</span> ✓. b) <span class="math inline">\(\text{pH} = 6{,}10 + \log(15/1{,}2) = 6{,}10 + \log(12{,}5) = 6{,}10 + 1{,}097 = 7{,}20\)</span>. Un pH de 7,20 correspond à une acidose sévère — potentiellement fatal sans traitement. c) <span class="math inline">\(7{,}40 = 6{,}10 + \log(15/[\ce{CO2}])\)</span> ; <span class="math inline">\(\log(15/[\ce{CO2}]) = 1{,}30\)</span> ; <span class="math inline">\(15/[\ce{CO2}] = 20\)</span> ; <span class="math inline">\([\ce{CO2}] = 0{,}75\)</span> mmol/L. La compensation pulmonaire doit abaisser <span class="math inline">\([\ce{CO2}]\)</span> de 1,2 à 0,75 mmol/L par hyperventilation.</li>
+</ol>
+<a href="#fnref47" class="footnote-back" role="doc-backlink">↩︎</a></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapitres/equilibre-chimique-2.html" class="pagination-link" aria-label="Équilibre chimique 2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Équilibre chimique 2</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapitres/chimie-organique.html" class="pagination-link" aria-label="Chimie organique">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Chimie organique</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

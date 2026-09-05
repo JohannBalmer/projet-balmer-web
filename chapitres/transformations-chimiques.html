@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Transformations chimiques et stœchiométrie – Projet-Balmer</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapitres/transformations-physiques.html" rel="next">
+<link href="../chapitres/liaisons-intermoleculaires.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ed7344add5f1663e434276306a2aa159.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mhchem']},
+  tex: {packages: {'[+]': ['mhchem']}}
+};
+</script>
+<style>
+.quarto-figure img, main img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+.qcm-widget { margin: 1rem 0; padding: 0.75rem 1rem; border: 1px solid #ddd; border-radius: 8px; }
+.qcm-widget .qcm-label { font-size: 13px; color: #666; margin-bottom: 8px; }
+.qcm-widget button { display: block; width: 100%; text-align: left; margin: 4px 0; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; }
+.qcm-widget .qcm-feedback { margin-top: 8px; font-size: 14px; }
+.hist-note-name { color: inherit; text-decoration: none; border-bottom: 1px dotted #8a5a00; cursor: pointer; }
+.hist-note-name:hover { border-bottom-style: solid; }
+.hist-note { text-decoration: none; font-size: 0.75em; vertical-align: super; margin-left: 2px; color: #8a5a00; border-bottom: none; }
+.hist-note:hover { text-decoration: underline; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.qcm-widget').forEach(function(el) {
+    var options = JSON.parse(el.getAttribute('data-options'));
+    var correct = parseInt(el.getAttribute('data-correct'), 10);
+    var answered = false;
+    var label = document.createElement('div');
+    label.className = 'qcm-label';
+    label.textContent = 'Vérifier ma réponse';
+    el.appendChild(label);
+    var feedback = document.createElement('div');
+    feedback.className = 'qcm-feedback';
+    options.forEach(function(opt, i) {
+      var btn = document.createElement('button');
+      btn.textContent = opt;
+      btn.onclick = function() {
+        if (answered) return;
+        answered = true;
+        el.querySelectorAll('button').forEach(function(b) { b.disabled = true; });
+        if (i === correct) {
+          btn.style.borderColor = '#2e7d32';
+          btn.style.background = '#e8f5e9';
+          feedback.textContent = 'Correct.';
+          feedback.style.color = '#2e7d32';
+        } else {
+          btn.style.borderColor = '#c62828';
+          btn.style.background = '#ffebee';
+          feedback.textContent = 'Pas tout à fait — bonne réponse : ' + options[correct];
+          feedback.style.color = '#c62828';
+        }
+      };
+      el.appendChild(btn);
+    });
+    el.appendChild(feedback);
+  });
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapitres/transformations-chimiques.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformations chimiques et stœchiométrie</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Recherche" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Projet-Balmer</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Recherche"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Historique Tome 1 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/atomes-quantite-de-matiere.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Atomes et quantité de matière</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-sels-molecules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Liaisons, sels et molécules</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-intermoleculaires.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Liaisons intermoléculaires</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-chimiques.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformations chimiques et stœchiométrie</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-physiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transformations physiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/oxydo-reduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Oxydoréduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/electrochimie-piles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Électrochimie et piles</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acido-basiques-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction aux équilibres acido-basiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Historique Tome 2 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Thermochimie 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Thermochimie 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/vitesse-de-reaction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Vitesse de réaction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Équilibre chimique 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Équilibre chimique 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acides-bases-ph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Acides, bases et pH</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/chimie-organique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Chimie organique</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#types-de-transformations-de-la-matière" id="toc-types-de-transformations-de-la-matière" class="nav-link active" data-scroll-target="#types-de-transformations-de-la-matière"><span class="header-section-number">5.1</span> Types de transformations de la matière</a></li>
+  <li><a href="#les-transformations-chimiques" id="toc-les-transformations-chimiques" class="nav-link" data-scroll-target="#les-transformations-chimiques"><span class="header-section-number">5.2</span> Les transformations chimiques</a>
+  <ul class="collapse">
+  <li><a href="#méthode-déquilibrage-empirique" id="toc-méthode-déquilibrage-empirique" class="nav-link" data-scroll-target="#méthode-déquilibrage-empirique"><span class="header-section-number">5.2.1</span> Méthode d’équilibrage empirique</a></li>
+  <li><a href="#la-combustion" id="toc-la-combustion" class="nav-link" data-scroll-target="#la-combustion"><span class="header-section-number">5.2.2</span> La combustion</a></li>
+  <li><a href="#calculs-stœchiométriques" id="toc-calculs-stœchiométriques" class="nav-link" data-scroll-target="#calculs-stœchiométriques"><span class="header-section-number">5.2.3</span> Calculs stœchiométriques</a></li>
+  <li><a href="#le-réactif-limitant-et-lexcès" id="toc-le-réactif-limitant-et-lexcès" class="nav-link" data-scroll-target="#le-réactif-limitant-et-lexcès"><span class="header-section-number">5.2.4</span> Le réactif limitant et l’excès</a></li>
+  <li><a href="#les-gaz-parfaits-et-le-volume-molaire" id="toc-les-gaz-parfaits-et-le-volume-molaire" class="nav-link" data-scroll-target="#les-gaz-parfaits-et-le-volume-molaire"><span class="header-section-number">5.2.5</span> Les gaz parfaits et le volume molaire</a></li>
+  <li><a href="#le-rendement-dune-réaction" id="toc-le-rendement-dune-réaction" class="nav-link" data-scroll-target="#le-rendement-dune-réaction"><span class="header-section-number">5.2.6</span> Le rendement d’une réaction</a></li>
+  <li><a href="#composition-centésimale-et-formule-empiriquebrute" id="toc-composition-centésimale-et-formule-empiriquebrute" class="nav-link" data-scroll-target="#composition-centésimale-et-formule-empiriquebrute"><span class="header-section-number">5.2.7</span> Composition centésimale et formule empirique/brute</a></li>
+  </ul></li>
+  <li><a href="#mots-clés" id="toc-mots-clés" class="nav-link" data-scroll-target="#mots-clés"><span class="header-section-number">5.3</span> Mots-clés</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformations chimiques et stœchiométrie</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>Ce que nous savons déjà —</strong> Nous savons déjà qu’un atome est constitué d’un noyau et d’un nuage électronique, et que les liaisons chimiques — covalentes, ioniques ou métalliques — résultent d’interactions entre les électrons de valence des atomes. Nous maîtrisons la notion de mole : une mole contient <span class="math inline">\(N_A = 6{,}022 \times 10^{23}\)</span> entités, et la masse molaire <span class="math inline">\(M\)</span> (en g/mol) permet de convertir une quantité de matière en masse par la relation <span class="math inline">\(m = nM\)</span>. Nous savons également que les forces intermoléculaires expliquent la solvatation — pourquoi certaines espèces se dissolvent dans certains solvants — sans que les molécules elles-mêmes soient modifiées.</p>
+<p><strong>Ce que ce chapitre construit —</strong> Qu’est-ce qui distingue ce que nous venons de voir d’une véritable transformation chimique ? Dans les deux cas, des interactions se rompent et se forment — mais pas au même niveau. Ce chapitre introduit la réaction chimique : un processus au cours duquel des liaisons intramoléculaires sont rompues et de nouvelles sont formées, transformant des réactifs en produits. Nous allons apprendre à équilibrer une équation chimique, à calculer des quantités de réactifs et de produits en grammes et en moles, et à décrire le comportement des gaz à travers la loi <span class="math inline">\(PV = nRT\)</span>.</p>
+<p><strong>Ce que nous saurons faire —</strong> À la fin de ce chapitre, nous serons capables de déterminer la formule empirique et brute d’un composé inconnu à partir de son analyse élémentaire, d’identifier le réactif limitant dans un mélange non stœchiométrique, de calculer les quantités de produits effectivement obtenues, et d’évaluer le rendement d’une réaction en comparant la quantité obtenue à la quantité théorique.</p>
+<p><strong>Nous savons déjà que…</strong></p>
+<ul>
+<li>La mole est l’unité de quantité de matière : <span class="math inline">\(n = \dfrac{m}{M}\)</span>, avec <span class="math inline">\(M\)</span> la masse molaire en g/mol.</li>
+<li>Les liaisons intermoléculaires (London, Keesom, ponts hydrogène, ion–dipôle) sont plus faibles que les liaisons intramoléculaires : leur rupture ou formation — par exemple lors d’une dissolution ou d’une ébullition — laisse les molécules intactes, alors que rompre une liaison intramoléculaire change la nature même de la substance.</li>
+<li>La conservation de la masse est un principe fondamental : la somme des masses des réactifs est égale à la somme des masses des produits.</li>
+</ul>
+<p><em>Ces acquis sont les points d’appui directs de ce chapitre — ils nous permettront de comprendre pourquoi une équation chimique doit toujours être équilibrée avant tout calcul de quantités.</em></p>
+<p><strong>Mini-test — vérifions nos acquis avant de continuer :</strong></p>
+<ol type="1">
+<li>Quelle est la masse molaire de l’eau <span class="math inline">\(\ce{H2O}\)</span> ? Combien de moles contient 36 g d’eau ?</li>
+<li>Lorsque de l’eau bout, les liaisons <span class="math inline">\(\ce{O-H}\)</span> intramoléculaires sont-elles rompues ? Justifions.</li>
+<li>Vrai ou faux : dans une réaction chimique, les atomes sont créés ou détruits.</li>
+</ol>
+<p><em>Si nous répondons sans hésiter, nous sommes prêts — passons à la Zone 2. Si certaines réponses hésitent, relisons les points ci-dessus avant de continuer.</em></p>
+<section id="types-de-transformations-de-la-matière" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="types-de-transformations-de-la-matière"><span class="header-section-number">5.1</span> Types de transformations de la matière</h2>
+<p>Dans les chapitres précédents, nous avons porté notre attention sur les noyaux atomiques, les liaisons intramoléculaires et les liaisons intermoléculaires.</p>
+<p>Peuvent-ils être modifié? transformé? Oui.</p>
+<p>On distingue trois grandes familles de transformations, selon ce qui est modifié au niveau particulaire.</p>
+<ul>
+<li>Une <strong>transformation nucléaire</strong> affecte le noyau atomique lui-même : un élément se transforme en un autre. Les énergies mises en jeu — de l’ordre du MeV par noyau — dépassent de plusieurs millions de fois celles des liaisons chimiques.</li>
+</ul>
+<p>Dans une transformation nucléaire, le nombre de protons dans le noyau change — c’est précisément ce qui définit un changement d’élément chimique.</p>
+<p><strong>Exemple — la tomographie par émission de positons (TEP) :</strong> En médecine nucléaire, on injecte au patient du glucose marqué au fluor-18 (<span class="math inline">\(\ce{^{18}_{9}F}\)</span>), un isotope radioactif du fluor. Au sein des tissus, le noyau de <span class="math inline">\(\ce{^{18}F}\)</span> se désintègre spontanément : un proton se transforme en neutron en émettant un positon (<span class="math inline">\(\ce{e+}\)</span>).</p>
+<p>Le résultat : le <span class="math inline">\(\ce{^{18}F}\)</span> se transforme en <span class="math inline">\(\ce{^{18}_{8}O}\)</span>.</p>
+<p><strong>Attention :</strong> nous ne traiterons pas les transformations nucléaires dans ce manuel. Cet exemple illustre uniquement ce que signifie <em>changer d’élément</em> — notion qui n’existe pas dans les deux autres familles.</p>
+<hr>
+<ul>
+<li>Une <strong>transformation chimique</strong> modifie les liaisons <em>intramoléculaires</em> : des liaisons entre atomes sont rompues et de nouvelles sont formées. Les substances de départ — les <strong>réactifs</strong> — disparaissent et de nouvelles substances — les <strong>produits</strong> — apparaissent.</li>
+</ul>
+<p>Les atomes sont redistribués entre les molécules, mais leur élément reste inchangé.</p>
+<p><strong>Représentation symbolique :</strong> quelques exemples :</p>
+<ul>
+<li>Combustion de l’éthanol : <span class="math inline">\(\ce{C2H6O(l) + 3O2(g) -&gt; 2CO2(g) + 3H2O(l)}\)</span></li>
+<li>Respiration cellulaire : <span class="math inline">\(\ce{C6H12O6(s) + 6O2(g) -&gt; 6CO2(g) + 6H2O(l)}\)</span></li>
+<li>Fermentation : <span class="math inline">\(\ce{C6H12O6(s) -&gt; 2C2H6O(l) + 2CO2(g)}\)</span></li>
+</ul>
+<p>Les transformations chimiques sont le sujet du présent chapitre.</p>
+<hr>
+<ul>
+<li>Une <strong>transformation physique</strong> ne modifie pas les liaisons intramoléculaires des substances : seules les liaisons <em>intermoléculaires</em> sont affectées. Les changements d’état, les dissolutions et les précipitations en sont les exemples les plus courants.</li>
+</ul>
+<p>Les molécules restent donc intactes ; c’est la nature de leurs liaisons intermoléculaires mutuelles qui change.</p>
+<p><strong>Résumé :</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Transformation</th>
+<th>Ce qui change</th>
+<th>Ce qui est conservé</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nucléaire</td>
+<td>Le noyau atomique (nombre de protons)</td>
+<td>Le nombre de masse total</td>
+</tr>
+<tr class="even">
+<td>Chimique</td>
+<td>Liaisons intramoléculaires</td>
+<td>Les atomes (éléments)</td>
+</tr>
+<tr class="odd">
+<td>Physique</td>
+<td>Liaisons intermoléculaires</td>
+<td>Les molécules (substances)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ce chapitre traite exclusivement des transformations chimiques.</strong> Les transformations physiques — changements d’état, dissolution, précipitation, diagramme de phase — font l’objet du prochain chapitre.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Classez les phénomènes suivants en transformation physique, chimique ou nucléaire : (a) dissolution du sel dans l’eau ; (b) cuisson d’un œuf ; (c) désintégration du radium en radon ; (d) sublimation de la glace carbonique ; (e) rouille d’une clé de fer.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="2" type="1">
+<li>Lors de la combustion d’une bougie, on observe que la bougie diminue de masse. Un élève affirme que la matière a disparu. Réfutez cette affirmation en invoquant la loi de conservation de la masse et en précisant où se trouve la matière « manquante ».[^n2]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="3" type="1">
+<li>Vrai ou faux : lors d’une transformation chimique, les éléments chimiques sont conservés mais les substances ne le sont pas. Justifiez en vous appuyant sur le tableau ci-dessus.[^n3]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+</section>
+<section id="les-transformations-chimiques" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="les-transformations-chimiques"><span class="header-section-number">5.2</span> Les transformations chimiques</h2>
+<p>Une <em>réaction chimique</em> est la transformation d’une ou plusieurs substances (les réactifs) en d’autres substances (les produits), avec modification des liaisons intramoléculaires. Elle est décrite par une <strong>équation chimique</strong> dans laquelle les réactifs figurent à gauche de la flèche et les produits à droite.</p>
+<p><strong>Loi de conservation de la masse :</strong> Rien ne se perd, rien ne se crée, tout se transforme.</p>
+<blockquote class="blockquote">
+<p><strong>Dans l’histoire…</strong> En 1789, <strong>Antoine Lavoisier</strong> rompt avec la théorie du phlogistique par une méthode radicalement nouvelle : peser systématiquement réactifs et produits. Ses mesures, d’une rigueur inédite pour l’époque, le mènent à une conclusion que nous tenons aujourd’hui pour évidente — la masse totale se conserve. C’est cette loi de conservation qui justifie, un siècle plus tard, que l’on puisse équilibrer une équation chimique avec de simples coefficients stœchiométriques.</p>
+</blockquote>
+<p><span id="hist-transformations-chimiques-lavoisier-conservation-masse"></span></p>
+<p>Par convention, les transformations chimiques - dit réactions chimiques - traduite par une équation chimique ont le nombre total d’atomes de chaque élément identique avant et après la réaction. Pour satisfaire cette loi, on place des <strong>coefficients stœchiométriques</strong> devant les formules brutes. On ne modifie jamais les formules brutes elles-mêmes.</p>
+<p><strong>Exemple: la réaction du sodium avec le dichlore gazeux :</strong> Lorsqu’un morceau de sodium métallique réagit avec du dichlore gazeux, il se forme du sel de table — blanc, solide, aux propriétés radicalement différentes des deux réactifs. Que s’est-il passé ? Le sodium se trouve initialement avec une charge nette nulle — il a autant d’électrons que de protons. Dans cet état, il a l’apparence métallique, solide, gris. Le dichlore gazeux est lui deux atomes de chlore liés entre eux. En les mélangeant, un état plus stable du système peut être obtenu, à condition que le sodium perde un électron et qu’un chlore gagne cet électron. Pourquoi ? Voici tout l’enjeu de ce chapitre. Nous y reviendrons. Mais le résultat est très surprenant : le chlore, ayant un électron de plus que son nombre de protons, adopte une charge formelle <span class="math inline">\(-1\)</span> ; le sodium, en perdant un électron, adopte une charge formelle <span class="math inline">\(+1\)</span> — formant une nouvelle entité représentée par <span class="math inline">\(\ce{NaCl}\)</span>, qui cache donc un <span class="math inline">\(\ce{Na+}\)</span> et un <span class="math inline">\(\ce{Cl-}\)</span>. Le <span class="math inline">\(\ce{NaCl}\)</span> est un sel blanc. Le métal brillant et le gaz jaune-verdâtre ont « disparu » : la formation d’une liaison chimique entre le sodium et le chlore a changé fondamentalement les propriétés des atomes impliqués, ainsi que leur apparence.</p>
+<p>Nous pouvons résumer ce phénomène à l’aide des symboles suivants :</p>
+<p><span class="math display">\[2,\ce{Na(s) + Cl2(g) -&gt; 2,NaCl(s)}\]</span></p>
+<p>Notez que nous mentionnons les états de la matière à côté des substances. Le système sous la forme de <span class="math inline">\(\ce{NaCl}\)</span> a moins d’énergie que le système <span class="math inline">\(\ce{Na}\)</span> et <span class="math inline">\(\ce{Cl2}\)</span> séparés. Nous préciserons dans un futur chapitre ce que nous entendons ici par énergie — sa description rigoureuse mérite à elle seule les deux chapitres de thermodynamique du volume 2.</p>
+<p><strong>Au niveau macroscopique :</strong> les réactions chimiques se manifestent à l’échelle du laboratoire par des échanges de chaleur avec l’environnement. Pourquoi ? Parce que toute réaction chimique implique simultanément des liaisons qui se rompent — ce qui nécessite de l’énergie — et des liaisons qui se forment — ce qui en libère. Lorsqu’une flamme brûle, le combustible et l’oxygène rompent leurs propres liaisons intramoléculaires ; lorsque le <span class="math inline">\(\ce{CO2}\)</span> et le <span class="math inline">\(\ce{H2O}\)</span> se forment, de nouvelles liaisons intramoléculaires apparaissent et libèrent de l’énergie. Le bilan est positif : les liaisons formées dans les produits sont plus stables que celles rompues dans les réactifs.</p>
+<section id="méthode-déquilibrage-empirique" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="méthode-déquilibrage-empirique"><span class="header-section-number">5.2.1</span> Méthode d’équilibrage empirique</h3>
+<p>Au niveau symbolique : partons de l’équation non équilibrée de la combustion du méthane <span class="math inline">\(\ce{CH4}\)</span> —</p>
+<p><span class="math display">\[\ce{CH4(g) + O2(g) -&gt; CO2(g) + H2O(l)}\]</span></p>
+<p>Nous constatons un problème. Nous avons bien 1 carbone des deux côtés. Mais nous avons 4 hydrogènes avant la réaction et seulement 2 après. Et pour l’oxygène : 2 atomes à gauche, 3 à droite. Des atomes ont-ils disparu ? Non. L’équation n’est pas équilibrée.</p>
+<p>Il est impératif d’équilibrer l’équation en ajoutant des <strong>coefficients stœchiométriques</strong> — des entiers placés devant chaque formule brute pour que le bilan atomique soit respecté.</p>
+<p>Nous posons 1 devant <span class="math inline">\(\ce{CH4}\)</span> : cela fixe 1 carbone et 4 hydrogènes à gauche. Le carbone impose 1 devant <span class="math inline">\(\ce{CO2}\)</span> ; les 4 hydrogènes imposent 2 devant <span class="math inline">\(\ce{H2O}\)</span>. Ces deux coefficients nous donnent <span class="math inline">\(1 \times 2 + 2 \times 1 = 4\)</span> atomes d’oxygène à droite — nous devons donc placer 2 devant <span class="math inline">\(\ce{O2}\)</span> :</p>
+<p><span class="math display">\[\ce{CH4(g) + 2O2(g) -&gt; CO2(g) + 2H2O(l)}\]</span></p>
+<p>Cette équation se lit ainsi : 1 molécule de méthane réagit avec 2 molécules de dioxygène pour former 1 molécule de dioxyde de carbone et 2 molécules d’eau.</p>
+<p>Les coefficients sont des <strong>quantités relatives</strong> — ils s’appliquent aux molécules comme aux moles. On peut tout aussi bien lire : 0,1 mol de <span class="math inline">\(\ce{CH4}\)</span> réagit avec 0,2 mol de <span class="math inline">\(\ce{O2}\)</span> pour former 0,1 mol de <span class="math inline">\(\ce{CO2}\)</span> et 0,2 mol de <span class="math inline">\(\ce{H2O}\)</span>.</p>
+<p><strong>Attention :</strong> les états physiques sont notés entre parenthèses après chaque formule. Ils correspondent aux conditions TPA (<span class="math inline">\(T = 298\ \text{K}\)</span>, <span class="math inline">\(P = 1\ \text{atm}\)</span>) sauf indication contraire : (s) solide, (l) liquide, (g) gazeux, (aq) en solution aqueuse.</p>
+<p><strong>Au niveau macroscopique:</strong> lors de la combustion du méthane, on observe une flamme bleue, un dégagement de chaleur et la formation de gouttelettes d’eau sur une surface froide. La substance de départ a disparu — de nouvelles substances sont apparues.</p>
+<p><strong>Au niveau particulaire :</strong> les liaisons <span class="math inline">\(\ce{C-H}\)</span> et <span class="math inline">\(\ce{O=O}\)</span> sont rompues, et de nouvelles liaisons <span class="math inline">\(\ce{C=O}\)</span> (dans <span class="math inline">\(\ce{CO2}\)</span>) et <span class="math inline">\(\ce{O-H}\)</span> (dans <span class="math inline">\(\ce{H2O}\)</span>) sont formées. Le carbone, l’hydrogène et l’oxygène sont simplement redistribués.</p>
+<section id="méthode-déquilibrage-empirique-1" class="level4" data-number="5.2.1.1">
+<h4 data-number="5.2.1.1" class="anchored" data-anchor-id="méthode-déquilibrage-empirique-1"><span class="header-section-number">5.2.1.1</span> Méthode d’équilibrage empirique</h4>
+<ol type="1">
+<li>Choisir un atome présent dans une seule formule à gauche et une seule à droite ; lui attribuer un coefficient.</li>
+<li>Déduire les autres coefficients par raisonnement en propageant les contraintes.</li>
+<li>Vérifier : même nombre d’atomes de chaque élément des deux côtés.</li>
+</ol>
+<p><strong>Exemple travaillé 1 — réduction du minerai de fer</strong></p>
+<p>Équilibrons <span class="math inline">\(\ce{Fe2O3 + CO -&gt; Fe + CO2}\)</span>.</p>
+<p>Commençons par <span class="math inline">\(\ce{Fe2O3}\)</span> : il apparaît dans une seule formule à gauche et son partenaire <span class="math inline">\(\ce{Fe}\)</span> dans une seule formule à droite — c’est le point de départ idéal. Nous posons 1 devant <span class="math inline">\(\ce{Fe2O3}\)</span>, ce qui impose immédiatement 2 devant <span class="math inline">\(\ce{Fe}\)</span>. <span class="math inline">\(\ce{Fe2O3}\)</span> apporte 3 atomes d’oxygène ; <span class="math inline">\(\ce{CO2}\)</span> en contient 2, ce qui impose <span class="math inline">\(\frac{3}{2}\)</span>… non : chaque <span class="math inline">\(\ce{CO2}\)</span> apporte 1 oxygène du côté carbone, donc 3 oxygènes imposent 3 devant <span class="math inline">\(\ce{CO2}\)</span>, ce qui impose 3 devant <span class="math inline">\(\ce{CO}\)</span>. La cascade est complète sans tâtonner :</p>
+<p><span class="math display">\[\ce{Fe2O3 + 3CO -&gt; 2Fe + 3CO2}\]</span></p>
+<p>Vérification : Fe : <span class="math inline">\(2 = 2\)</span> ; O : <span class="math inline">\(3 + 3 = 3 + 3\)</span> ; C : <span class="math inline">\(3 = 3\)</span> <span class="math inline">\(\checkmark\)</span></p>
+<hr>
+<p>Mais que se passe-t-il si nous posons le 1 au mauvais endroit ? Essayons avec <span class="math inline">\(\ce{CO}\)</span>.</p>
+<p>Nous posons 1 devant <span class="math inline">\(\ce{CO}\)</span> : cela impose 1 devant <span class="math inline">\(\ce{CO2}\)</span> (1 carbone de chaque côté). <span class="math inline">\(\ce{CO2}\)</span> contient 2 oxygènes ; <span class="math inline">\(\ce{CO}\)</span> en fournit 1 — il reste donc 1 oxygène à attribuer à <span class="math inline">\(\ce{Fe2O3}\)</span>. Mais <span class="math inline">\(\ce{Fe2O3}\)</span> contient 3 oxygènes indissociables liés à 2 fers : on ne peut pas en utiliser un tiers. On est bloqué. Il faut tâtonner.</p>
+<p>Le diagnostic est simple : <strong>si, après avoir posé le premier 1, nous sommes contraints de tâtonner, c’est que le point de départ était mauvais.</strong> La règle est de choisir la molécule la plus complexe — celle qui contient le plus d’éléments différents — car c’est elle qui débloque les autres par cascade.</p>
+<hr>
+<p><strong>Exemple travaillé 2 — les fractions ne sont pas une impasse : combustion du butane</strong></p>
+<p>Équilibrons <span class="math inline">\(\ce{C4H10 + O2 -&gt; CO2 + H2O}\)</span>.</p>
+<p>Nous posons 1 devant <span class="math inline">\(\ce{C4H10}\)</span>, la molécule la plus complexe.</p>
+<ul>
+<li>4 carbones → 4 devant <span class="math inline">\(\ce{CO2}\)</span></li>
+<li>10 hydrogènes → 5 devant <span class="math inline">\(\ce{H2O}\)</span></li>
+<li>Oxygènes à droite : <span class="math inline">\(4 \times 2 + 5 \times 1 = 13\)</span> → <span class="math inline">\(\frac{13}{2}\)</span> devant <span class="math inline">\(\ce{O2}\)</span></li>
+</ul>
+<p><span class="math display">\[\ce{C4H10 + \frac{13}{2}O2 -&gt; 4CO2 + 5H2O}\]</span></p>
+<p>Un coefficient fractionnaire est parfaitement acceptable en chimie : <span class="math inline">\(\frac{13}{2}\)</span> molécules de <span class="math inline">\(\ce{O2}\)</span>, c’est simplement 6,5 molécules — ou encore 6,5 moles. L’équation est juste. Si l’on préfère des entiers, on multiplie tout par 2 :</p>
+<p><span class="math display">\[\ce{2C4H10 + 13O2 -&gt; 8CO2 + 10H2O}\]</span></p>
+<p>Vérification : C : <span class="math inline">\(8 = 8\)</span> ; H : <span class="math inline">\(20 = 20\)</span> ; O : <span class="math inline">\(26 = 26\)</span> <span class="math inline">\(\checkmark\)</span></p>
+<p>Les deux formes sont équivalentes. La forme fractionnaire est souvent plus lisible car elle conserve 1 devant le combustible — et c’est celle que l’on rencontre le plus fréquemment dans les tables de combustion.</p>
+<p><strong>Exercice autonome :</strong> Équilibrez les équations suivantes.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<ol type="a">
+<li><span class="math inline">\(\ce{... NH3 + ... O2 -&gt; ... N2 + ... H2O}\)</span></li>
+</ol>
+<!-- espace:5 -->
+<ol start="2" type="a">
+<li><span class="math inline">\(\ce{... CuS2 + ... O2 -&gt; ... Cu + ... SO2}\)</span></li>
+</ol>
+<!-- espace:5 -->
+<ol start="3" type="a">
+<li><span class="math inline">\(\ce{ ... I^- + ... NO2^- + ... H^+ -&gt; ... I2 + ... NO + ... H2O}\)</span></li>
+</ol>
+<!-- espace:5 -->
+<p><strong>Exercices :</strong></p>
+<ol start="4" type="1">
+<li>Équilibrez les équations suivantes et vérifiez le bilan atomique : (a) <span class="math inline">\(\ce{Al + O2 -&gt; Al2O3}\)</span> ; (b) <span class="math inline">\(\ce{Na + H2O -&gt; NaOH + H2}\)</span> ; (c) <span class="math inline">\(\ce{C3H8 + O2 -&gt; CO2 + H2O}\)</span>.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="5" type="1">
+<li>Un élève propose d’équilibrer <span class="math inline">\(\ce{H2 + O2 -&gt; H2O}\)</span> en écrivant <span class="math inline">\(\ce{H2 + O2 -&gt; H2O2}\)</span>. Expliquez l’erreur conceptuelle commise.[^n5]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="6" type="1">
+<li>La réaction entre le magnésium et l’acide chlorhydrique produit du chlorure de magnésium et du dihydrogène. Écrivez l’équation non équilibrée, puis équilibrez-la.[^n6]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="7" type="1">
+<li>Vérifiez que l’équation <span class="math inline">\(\ce{2KMnO4 + 16HCl -&gt; 2KCl + 2MnCl2 + 5Cl2 + 8H2O}\)</span> est bien équilibrée en dressant un tableau bilan de tous les atomes.[^n7]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+</section>
+</section>
+<section id="la-combustion" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="la-combustion"><span class="header-section-number">5.2.2</span> La combustion</h3>
+<p><strong>Formalisation :</strong> La <strong>combustion</strong> est une réaction chimique exothermique entre un <strong>combustible</strong> et un <strong>comburant</strong>. Le comburant le plus courant est le dioxygène <span class="math inline">\(\ce{O2}\)</span>.</p>
+<p><strong>Réaction de combustion complète :</strong> Lorsqu’un combustible contenant du carbone et de l’hydrogène brûle complètement en présence d’un excès de dioxygène, les produits sont toujours du dioxyde de carbone <span class="math inline">\(\ce{CO2}\)</span> et de la vapeur d’eau <span class="math inline">\(\ce{H2O}\)</span>.</p>
+<p><strong>Représentation symbolique :</strong></p>
+<p><span class="math display">\[\ce{CH4(g) + 2O2(g) -&gt; CO2(g) + 2H2O(l)}\]</span></p>
+<p><span class="math display">\[\ce{C4H10(l) + \frac{13}{2}O2(g) -&gt; 4CO2(g) + 5H2O(l)}\]</span></p>
+<p><span class="math display">\[\ce{C2H6O(l) + 3O2(g) -&gt; 2CO2(g) + 3H2O(l)}\]</span></p>
+<p><strong>Attention :</strong> Les coefficients fractionnaires (comme <span class="math inline">\(\frac{13}{2}\)</span>) sont acceptables dans une équation chimique.</p>
+<p><strong>Exercice autonome :</strong> Écrivez et équilibrez la réaction de combustion complète du mazout <span class="math inline">\(\ce{C19H40}\)</span>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>Les combustibles que nous étudions principalement dans ce manuel ne contiennent que du carbone, de l’hydrogène — et parfois de l’oxygène. Les produits d’une combustion complète sont alors toujours les mêmes : du dioxyde de carbone <span class="math inline">\(\ce{CO2}\)</span> et de l’eau <span class="math inline">\(\ce{H2O}\)</span>.</p>
+<p>Si le combustible contient de l’azote — comme l’urée <span class="math inline">\(\ce{(NH2)2CO}\)</span>, utilisée massivement comme engrais agricole — la combustion produit également du dioxyde d’azote <span class="math inline">\(\ce{NO2}\)</span>. Si le combustible contient du soufre — comme l’hydrogène sulfuré <span class="math inline">\(\ce{H2S}\)</span> — on voit apparaître du trioxyde de soufre <span class="math inline">\(\ce{SO3}\)</span>. Ces cas restent marginaux dans ce chapitre.</p>
+<!-- REF: ref:oxydo-reduction-combustion — combustions complètes et partielles approfondies au chapitre Oxydoréduction -->
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>État</th>
+<th>Formules brutes</th>
+<th>Exemples courants</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Solide (s)</td>
+<td><span class="math inline">\(\ce{C}\)</span>, <span class="math inline">\(\ce{C6H12O6}\)</span> (glucose), <span class="math inline">\(\ce{C12H22O11}\)</span> (saccharose)</td>
+<td>Charbon, bois, sucre</td>
+</tr>
+<tr class="even">
+<td>Liquide (l)</td>
+<td><span class="math inline">\(\ce{C8H18}\)</span> (octane), <span class="math inline">\(\ce{C2H5OH}\)</span> (éthanol), <span class="math inline">\(\ce{C12H26}\)</span> (dodécane)</td>
+<td>Essence, alcool, mazout</td>
+</tr>
+<tr class="odd">
+<td>Gazeux (g)</td>
+<td><span class="math inline">\(\ce{CH4}\)</span> (méthane), <span class="math inline">\(\ce{C3H8}\)</span> (propane), <span class="math inline">\(\ce{C4H10}\)</span> (butane)</td>
+<td>Gaz naturel, gaz de cuisine</td>
+</tr>
+</tbody>
+</table>
+<p>Nous retravaillerons les combustions complètes et partielles en détail au chapitre Oxydoréduction.</p>
+<p><strong>Exercices :</strong></p>
+<ol start="8" type="1">
+<li>Écrivez et équilibrez les équations de combustion complète de : (a) le propane <span class="math inline">\(\ce{C3H8}\)</span> ; (b) l’acétylène <span class="math inline">\(\ce{C2H2}\)</span> ; (c) le méthanol <span class="math inline">\(\ce{CH3OH}\)</span>.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="9" type="1">
+<li>La combustion incomplète du méthane peut produire du monoxyde de carbone <span class="math inline">\(\ce{CO}\)</span> au lieu de <span class="math inline">\(\ce{CO2}\)</span>. Écrivez cette équation équilibrée et expliquez pourquoi la combustion incomplète est dangereuse.[^n9]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="10" type="1">
+<li>Un automobiliste brûle 50 L d’essence (assimilée à de l’octane <span class="math inline">\(\ce{C8H18}\)</span>, densité = 0,703 g/mL) dans son moteur. Quelle masse de <span class="math inline">\(\ce{CO2}\)</span> est rejetée dans l’atmosphère ? (<span class="math inline">\(M(\ce{C8H18}) = 114{,}2\ \text{g/mol}\)</span>, <span class="math inline">\(M(\ce{CO2}) = 44{,}01\ \text{g/mol}\)</span>)[^n10]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="11" type="1">
+<li>L’urée <span class="math inline">\(\ce{(NH2)2CO}\)</span> est utilisée comme engrais et comme combustible dans certains systèmes de réduction des émissions. Écrivez et équilibrez l’équation de sa combustion complète en présence de <span class="math inline">\(\ce{O2}\)</span>, sachant que les produits sont <span class="math inline">\(\ce{CO2}\)</span>, <span class="math inline">\(\ce{H2O}\)</span> et <span class="math inline">\(\ce{NO2}\)</span>.[^n11]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="12" type="1">
+<li>L’hydrogène sulfuré <span class="math inline">\(\ce{H2S}\)</span> est un gaz toxique produit lors de la décomposition de matières organiques soufrées. Écrivez et équilibrez l’équation de sa combustion complète, sachant que les produits sont <span class="math inline">\(\ce{SO3}\)</span> et <span class="math inline">\(\ce{H2O}\)</span>.[^n12]</li>
+</ol>
+<!-- espace:5 -->
+<!-- espace:5 -->
+<hr>
+</section>
+<section id="calculs-stœchiométriques" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="calculs-stœchiométriques"><span class="header-section-number">5.2.3</span> Calculs stœchiométriques</h3>
+<p>Il est important de remarquer qu’une équation chimique parle de moles. Les coefficients expriment des <strong>quantités relatives de moles</strong>. Ce n’est qu’après avoir travaillé en moles que l’on convertit en grammes.</p>
+<p><strong>Formalisation :</strong> Les coefficients stœchiométriques d’une équation équilibrée expriment les rapports de quantité de matière (mol) entre réactifs et produits.</p>
+<p><strong>Stratégie générale — la méthode en colonnes :</strong></p>
+<p>IL est courant que nous partons d’une masse connue d’un réactif et cherchons une masse inconnue d’un produit. La méthode se déroule en trois étapes, visualisées par le diagramme suivant :</p>
+<p><span class="math display">\[m \xrightarrow{\div M} n \xrightarrow{\times\ \text{rapport stœchio}} n' \xrightarrow{\times M'} m'\]</span></p>
+<p>Chaque étape correspond à un changement d’unité : grammes → moles → rapport molaire → moles → grammes.</p>
+<p>Dans une colonne, on ne regarde pas les coefficients — on convertit simplement masse ↔︎ moles via la masse molaire. On ne passe à la colonne voisine qu’une fois le nombre de moles de la substance de départ connu, en multipliant par le rapport des coefficients stœchiométriques.</p>
+<blockquote class="blockquote">
+<p><strong>Analyse dimensionnelle :</strong> <span class="math inline">\(\displaystyle n = \frac{m}{M}\)</span>, soit <span class="math inline">\(\dfrac{\text{g}}{\text{g/mol}} = \text{mol}\)</span> <span class="math inline">\(\checkmark\)</span></p>
+<p>Et inversement : <span class="math inline">\(m = n \times M\)</span>, soit <span class="math inline">\(\text{mol} \times \text{g/mol} = \text{g}\)</span> <span class="math inline">\(\checkmark\)</span></p>
+<p>L’analyse dimensionnelle est notre premier filet de sécurité : si les unités ne tombent pas juste, le calcul est faux.</p>
+</blockquote>
+<p><strong>Exemple travaillé 1 — combustion de 2 moles d’éthanol :</strong></p>
+<p><span class="math display">\[\ce{C2H6O(l) + 3O2(g) -&gt; 2CO2(g) + 3H2O(l)}\]</span></p>
+<p>Combien de moles de <span class="math inline">\(\ce{O2}\)</span> sont nécessaires ? Combien de moles de <span class="math inline">\(\ce{H2O}\)</span> sont produites ?</p>
+<p>Nous partons de 2 mol de <span class="math inline">\(\ce{C2H6O}\)</span>. Le rapport entre <span class="math inline">\(\ce{C2H6O}\)</span> et <span class="math inline">\(\ce{O2}\)</span> est <span class="math inline">\(1:3\)</span>, donc <span class="math inline">\(n(\ce{O2}) = 2 \times 3 = 6\ \text{mol}\)</span>. Le rapport entre <span class="math inline">\(\ce{C2H6O}\)</span> et <span class="math inline">\(\ce{H2O}\)</span> est <span class="math inline">\(1:3\)</span> également, donc <span class="math inline">\(n(\ce{H2O}) = 2 \times 3 = 6\ \text{mol}\)</span>.</p>
+<p>En convertissant en masses et en vérifiant la conservation :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;"><span class="math inline">\(\ce{C2H6O}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\ce{O2}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\ce{CO2}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\ce{H2O}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Coefficients</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(n\)</span> (mol)</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(M\)</span> (g/mol)</td>
+<td style="text-align: center;">46</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">44</td>
+<td style="text-align: center;">18</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(m\)</span> (g)</td>
+<td style="text-align: center;">92</td>
+<td style="text-align: center;">192</td>
+<td style="text-align: center;">176</td>
+<td style="text-align: center;">108</td>
+</tr>
+</tbody>
+</table>
+<p>Vérification : <span class="math inline">\(92 + 192 = 284\ \text{g}\)</span> ; <span class="math inline">\(176 + 108 = 284\ \text{g}\)</span> <span class="math inline">\(\checkmark\)</span></p>
+<p>La masse est bien conservée.</p>
+<p><strong>Exemple travaillé 2 — combustion de 21 mg d’urée :</strong></p>
+<p><span class="math display">\[\ce{2(NH2)2CO(s) + 3O2(g) -&gt; 2CO2(g) + 4H2O(l) + 4NO2(g)}\]</span></p>
+<p>Quelle quantité totale de gaz est produite par la combustion de 21 mg d’urée <span class="math inline">\(\ce{(NH2)2CO}\)</span> ? (<span class="math inline">\(M(\ce{(NH2)2CO}) = 60{,}06\ \text{g/mol}\)</span>)</p>
+<p>À TPA, seuls <span class="math inline">\(\ce{CO2(g)}\)</span> et <span class="math inline">\(\ce{NO2(g)}\)</span> sont gazeux — <span class="math inline">\(\ce{H2O}\)</span> est liquide et ne compte pas.</p>
+<p>Étape 1 — conversion mg → mol, colonne <span class="math inline">\(\ce{(NH2)2CO}\)</span> :</p>
+<p><span class="math display">\[n(\ce{(NH2)2CO}) = \frac{21 \times 10^{-3}\ \text{g}}{60{,}06\ \text{g/mol}} = 3{,}496 \times 10^{-4}\ \text{mol}\]</span></p>
+<p>Étape 2 — changement de colonne vers <span class="math inline">\(\ce{CO2}\)</span> (rapport <span class="math inline">\(2:2 = 1:1\)</span>) :</p>
+<p><span class="math display">\[n(\ce{CO2}) = 3{,}496 \times 10^{-4}\ \text{mol}\]</span></p>
+<p>Étape 3 — changement de colonne vers <span class="math inline">\(\ce{NO2}\)</span> (rapport <span class="math inline">\(2:4 = 1:2\)</span>) :</p>
+<p><span class="math display">\[n(\ce{NO2}) = 3{,}496 \times 10^{-4} \times 2 = 6{,}992 \times 10^{-4}\ \text{mol}\]</span></p>
+<p>Quantité totale de gaz produit :</p>
+<p><span class="math display">\[n_{\text{gaz}} = n(\ce{CO2}) + n(\ce{NO2}) = 3{,}496 \times 10^{-4} + 6{,}992 \times 10^{-4} = 1{,}049 \times 10^{-3}\ \text{mol}\]</span></p>
+<p>Deux leçons à retenir. Premièrement, les milligrammes se convertissent en grammes avant tout calcul — l’analyse dimensionnelle le confirme immédiatement. Deuxièmement, lorsque plusieurs produits sont gazeux, on calcule chaque colonne séparément puis on additionne les moles — jamais les coefficients.</p>
+<p><strong>Exemple travaillé 3 — la thermite : quelle masse d’aluminium pour obtenir 100 g de fer ?</strong></p>
+<p><span class="math display">\[\ce{2Al(s) + Fe2O3(s) -&gt; Al2O3(s) + 2Fe(s)}\]</span></p>
+<p>La thermite est un mélange d’aluminium et d’oxyde de fer qui, une fois enflammé, produit une réaction extrêmement violente à plus de 2500 <span class="math inline">\(^\circ\)</span>C — suffisamment chaude pour faire fondre le fer produit. Ici, nous travaillons à rebours : nous connaissons la masse de produit souhaitée et cherchons la masse de réactif nécessaire.</p>
+<p>(<span class="math inline">\(M(\ce{Al}) = 26{,}98\ \text{g/mol}\)</span>, <span class="math inline">\(M(\ce{Fe}) = 55{,}85\ \text{g/mol}\)</span>)</p>
+<p>Étape 1 — colonne <span class="math inline">\(\ce{Fe}\)</span>, conversion g → mol :</p>
+<p><span class="math display">\[n(\ce{Fe}) = \frac{100}{55{,}85} = 1{,}790\ \text{mol}\]</span></p>
+<p>Étape 2 — changement de colonne vers <span class="math inline">\(\ce{Al}\)</span> (rapport <span class="math inline">\(2:2 = 1:1\)</span>) :</p>
+<p><span class="math display">\[n(\ce{Al}) = 1{,}790\ \text{mol}\]</span></p>
+<p>Étape 3 — colonne <span class="math inline">\(\ce{Al}\)</span>, conversion mol → g :</p>
+<p><span class="math display">\[m(\ce{Al}) = 1{,}790 \times 26{,}98 = 48{,}3\ \text{g}\]</span></p>
+<p>Il faut donc 48,3 g d’aluminium pour produire 100 g de fer. La méthode fonctionne dans les deux sens — réactif → produit ou produit → réactif. Seule la colonne de départ change.</p>
+<p><strong>Exercices :</strong></p>
+<ol start="13" type="1">
+<li>La réaction entre le fer et le soufre : <span class="math inline">\(\ce{Fe(s) + S(s) -&gt; FeS(s)}\)</span>. Quelle masse de <span class="math inline">\(\ce{FeS}\)</span> obtient-on à partir de 11,2 g de fer ? (<span class="math inline">\(M(\ce{Fe}) = 55{,}85\ \text{g/mol}\)</span>, <span class="math inline">\(M(\ce{FeS}) = 87{,}91\ \text{g/mol}\)</span>)<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<div class="qcm-widget" data-correct="1" data-options="[&quot;8,8 g&quot;, &quot;17,6 g&quot;, &quot;35,2 g&quot;, &quot;44,0 g&quot;]">
+
+</div>
+<ol start="14" type="1">
+<li>La synthèse de l’ammoniac : <span class="math inline">\(\ce{N2(g) + 3H2(g) -&gt; 2NH3(g)}\)</span>. Quelle masse de <span class="math inline">\(\ce{H2}\)</span> faut-il pour produire 340 g de <span class="math inline">\(\ce{NH3}\)</span> ? (<span class="math inline">\(M(\ce{NH3}) = 17{,}03\ \text{g/mol}\)</span>)[^n14]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="15" type="1">
+<li>On fait réagir 25,0 g de calcium <span class="math inline">\(\ce{Ca}\)</span> avec de l’eau : <span class="math inline">\(\ce{2Ca(s) + 2H2O(l) -&gt; 2Ca(OH)2(aq) + H2(g)}\)</span>. Quelle masse de <span class="math inline">\(\ce{Ca(OH)2}\)</span> se forme et quelle masse d’eau est consommée ? (<span class="math inline">\(M(\ce{Ca}) = 40{,}08\ \text{g/mol}\)</span>, <span class="math inline">\(M(\ce{Ca(OH)2}) = 74{,}09\ \text{g/mol}\)</span>)[^n15]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="16" type="1">
+<li>Vérifiez la conservation de la masse dans la rouille de 3 kg de fer : <span class="math inline">\(\ce{4Fe(s) + 3O2(g) -&gt; 2Fe2O3(s)}\)</span>. Calculez la masse de <span class="math inline">\(\ce{Fe2O3}\)</span> formée et vérifiez que <span class="math inline">\(m(\ce{Fe}) + m(\ce{O2}) = m(\ce{Fe2O3})\)</span>. (<span class="math inline">\(M(\ce{Fe}) = 55{,}85\ \text{g/mol}\)</span>, <span class="math inline">\(M(\ce{Fe2O3}) = 159{,}69\ \text{g/mol}\)</span>)[^n16]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="17" type="1">
+<li>La combustion du propane <span class="math inline">\(\ce{C3H8}\)</span> produit <span class="math inline">\(\ce{CO2}\)</span> et <span class="math inline">\(\ce{H2O}\)</span>. Écrivez l’équation équilibrée, puis calculez la masse de <span class="math inline">\(\ce{CO2}\)</span> produite par la combustion de 44 g de propane. (<span class="math inline">\(M(\ce{C3H8}) = 44{,}10\ \text{g/mol}\)</span>, <span class="math inline">\(M(\ce{CO2}) = 44{,}01\ \text{g/mol}\)</span>)[^n17]</li>
+</ol>
+<!-- espace:5 -->
+<div class="qcm-widget" data-correct="2" data-options="[&quot;44,0 g&quot;, &quot;88,0 g&quot;, &quot;131,7 g&quot;, &quot;176,0 g&quot;]">
+
+</div>
+<ol start="18" type="1">
+<li>La décomposition du carbonate de calcium : <span class="math inline">\(\ce{CaCO3(s) -&gt; CaO(s) + CO2(g)}\)</span>. Quelle masse de <span class="math inline">\(\ce{CaO}\)</span> obtient-on à partir de 250 g de <span class="math inline">\(\ce{CaCO3}\)</span> ? (<span class="math inline">\(M(\ce{CaCO3}) = 100{,}09\ \text{g/mol}\)</span>, <span class="math inline">\(M(\ce{CaO}) = 56{,}08\ \text{g/mol}\)</span>)[^n18]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+</section>
+<section id="le-réactif-limitant-et-lexcès" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="le-réactif-limitant-et-lexcès"><span class="header-section-number">5.2.4</span> Le réactif limitant et l’excès</h3>
+<p>On verse deux réactifs dans un récipient. La réaction démarre — puis s’arrête. Mais si l’on examine le contenu du récipient, on constate qu’il reste encore de l’un des réactifs. Pourquoi la réaction s’est-elle arrêtée ?</p>
+<p>On suppose parfois que les réactifs sont mélangés dans les proportions exactes que requiert l’équation. C’est en réalité rarement le cas. En pratique, l’un des réactifs est épuisé avant les autres — et c’est lui qui arrête la réaction.</p>
+<p><strong>Formalisation :</strong> Le <em>réactif limitant</em> est le réactif entièrement consommé lors de la réaction. La quantité de produit est toujours calculée à partir du réactif limitant. Les autres réactifs, non entièrement consommés, sont dits <em>en excès</em>.</p>
+<p>Au niveau particulaire : lorsque toutes les particules du réactif limitant ont réagi, il n’y a plus de rencontres productives possibles — la réaction s’arrête, même s’il reste des particules de l’autre réactif.</p>
+<p><strong>Stratégie pour identifier le réactif limitant :</strong></p>
+<ol type="1">
+<li>Convertir la masse de chaque réactif en moles.</li>
+<li>Diviser chaque quantité de moles par le coefficient stœchiométrique correspondant.</li>
+<li>Le réactif ayant la <strong>plus petite valeur</strong> <span class="math inline">\(n/\text{coeff}\)</span> est le limitant.</li>
+</ol>
+<p>Cette division par le coefficient est essentielle : elle ramène chaque réactif à une base commune, celle de l’équation. Sans elle, on comparerait des quantités qui ne sont pas comparables.</p>
+<p><strong>Exemple travaillé — détection du calcaire :</strong></p>
+<p>On fait réagir 9 g de <span class="math inline">\(\ce{HCl(aq)}\)</span> avec 11 g de <span class="math inline">\(\ce{CaCO3(s)}\)</span> :</p>
+<p><span class="math display">\[\ce{2HCl(aq) + CaCO3(s) -&gt; CaCl2(aq) + CO2(g) + H2O(l)}\]</span></p>
+<p>Étape 1 — conversion en moles :</p>
+<p><span class="math display">\[n(\ce{HCl}) = \frac{9}{36{,}461} = 0{,}2468\ \text{mol} \qquad n(\ce{CaCO3}) = \frac{11}{100{,}09} = 0{,}1099\ \text{mol}\]</span></p>
+<p>Étape 2 — division par les coefficients stœchiométriques :</p>
+<p><span class="math display">\[\frac{n(\ce{HCl})}{2} = \frac{0{,}2468}{2} = 0{,}1234 \qquad \frac{n(\ce{CaCO3})}{1} = \frac{0{,}1099}{1} = 0{,}1099\]</span></p>
+<p>Étape 3 — décision : <span class="math inline">\(0{,}1099 &lt; 0{,}1234\)</span>, donc <span class="math inline">\(\ce{CaCO3}\)</span> est le <strong>réactif limitant</strong>.</p>
+<p>Nous calculons maintenant à partir de <span class="math inline">\(\ce{CaCO3}\)</span> :</p>
+<p><span class="math display">\[n(\ce{CO2}) = 0{,}1099\ \text{mol} \quad \Rightarrow \quad m(\ce{CO2}) = 0{,}1099 \times 44{,}01 = 4{,}84\ \text{g}\]</span></p>
+<p>Quelle masse de <span class="math inline">\(\ce{HCl}\)</span> reste-t-il en excès ? <span class="math inline">\(\ce{CaCO3}\)</span> consomme <span class="math inline">\(0{,}1099 \times 2 = 0{,}2198\ \text{mol}\)</span> de <span class="math inline">\(\ce{HCl}\)</span>. Il en restait <span class="math inline">\(0{,}2468\ \text{mol}\)</span>, donc :</p>
+<p><span class="math display">\[n(\ce{HCl, excès}) = 0{,}2468 - 0{,}2198 = 0{,}0270\ \text{mol} \quad \Rightarrow \quad m(\ce{HCl, excès}) = 0{,}0270 \times 36{,}461 = 0{,}98\ \text{g}\]</span></p>
+<p>Au niveau macroscopique : après la réaction, on observe un dégagement de <span class="math inline">\(\ce{CO2}\)</span> (bulles), une solution de <span class="math inline">\(\ce{CaCl2}\)</span> — et environ 1 g de <span class="math inline">\(\ce{HCl}\)</span> dissous non consommé dans la solution.</p>
+<p><strong>Exercice autonome :</strong> On fait réagir 10 L de <span class="math inline">\(\ce{Cl2(g)}\)</span> à TPA avec 30 g de phosphore solide <span class="math inline">\(\ce{P4}\)</span> pour former du pentachlorure de phosphore <span class="math inline">\(\ce{PCl5}\)</span>. Le volume de <span class="math inline">\(\ce{Cl2}\)</span> disponible est-il suffisant pour consommer tout le phosphore ? (<span class="math inline">\(V_m = 24{,}5\ \text{L/mol}\)</span> à TPA, <span class="math inline">\(M(\ce{P4}) = 123{,}9\ \text{g/mol}\)</span>)<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p>
+<!-- espace:5 -->
+<p><strong>Exercices :</strong></p>
+<ol start="19" type="1">
+<li>On fait réagir 8,50 g de <span class="math inline">\(\ce{Fe2O3(s)}\)</span> avec 2,30 g de <span class="math inline">\(\ce{CO(g)}\)</span> : <span class="math inline">\(\ce{Fe2O3(s) + 3CO(g) -&gt; 2Fe(s) + 3CO2(g)}\)</span>. Identifiez le réactif limitant et calculez la masse de fer produite. (<span class="math inline">\(M(\ce{Fe2O3}) = 159{,}69\ \text{g/mol}\)</span>, <span class="math inline">\(M(\ce{CO}) = 28{,}01\ \text{g/mol}\)</span>, <span class="math inline">\(M(\ce{Fe}) = 55{,}85\ \text{g/mol}\)</span>)[^n19]</li>
+</ol>
+<!-- espace:5 -->
+<div class="qcm-widget" data-correct="1" data-options="[&quot;1,53 g&quot;, &quot;3,06 g&quot;, &quot;6,12 g&quot;, &quot;9,18 g&quot;]">
+
+</div>
+<ol start="20" type="1">
+<li>On fait réagir 20,0 g de magnésium <span class="math inline">\(\ce{Mg(s)}\)</span> avec 40,0 g d’acide chlorhydrique <span class="math inline">\(\ce{HCl(aq)}\)</span> : <span class="math inline">\(\ce{Mg(s) + 2HCl(aq) -&gt; MgCl2(aq) + H2(g)}\)</span>. Identifiez le réactif limitant et calculez la masse de <span class="math inline">\(\ce{H2}\)</span> produite. (<span class="math inline">\(M(\ce{Mg}) = 24{,}31\ \text{g/mol}\)</span>, <span class="math inline">\(M(\ce{HCl}) = 36{,}461\ \text{g/mol}\)</span>, <span class="math inline">\(M(\ce{H2}) = 2{,}016\ \text{g/mol}\)</span>)[^n20]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="21" type="1">
+<li>Pour synthétiser l’aspirine <span class="math inline">\(\ce{C9H8O4}\)</span>, on fait réagir 14,0 g d’acide salicylique <span class="math inline">\(\ce{C7H6O3}\)</span> avec 20,0 g d’anhydride acétique <span class="math inline">\(\ce{C4H6O3}\)</span> selon une réaction 1:1 : <span class="math inline">\(\ce{C7H6O3 + C4H6O3 -&gt; C9H8O4 + CH3COOH}\)</span>. Identifiez le réactif limitant et calculez la masse théorique d’aspirine produite. (<span class="math inline">\(M(\ce{C7H6O3}) = 138{,}1\ \text{g/mol}\)</span>, <span class="math inline">\(M(\ce{C4H6O3}) = 102{,}1\ \text{g/mol}\)</span>, <span class="math inline">\(M(\ce{C9H8O4}) = 180{,}2\ \text{g/mol}\)</span>)[^n21]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="22" type="1">
+<li>On mélange 15,0 g d’aluminium <span class="math inline">\(\ce{Al(s)}\)</span> avec 60,0 g de <span class="math inline">\(\ce{Fe2O3(s)}\)</span> pour la réaction thermite : <span class="math inline">\(\ce{2Al(s) + Fe2O3(s) -&gt; Al2O3(s) + 2Fe(s)}\)</span>. (a) Quel réactif est limitant ? (b) Quelle masse de fer est produite ? (c) Quelle masse du réactif en excès reste-t-il ? (<span class="math inline">\(M(\ce{Al}) = 26{,}98\ \text{g/mol}\)</span>, <span class="math inline">\(M(\ce{Fe2O3}) = 159{,}69\ \text{g/mol}\)</span>, <span class="math inline">\(M(\ce{Fe}) = 55{,}85\ \text{g/mol}\)</span>)[^n22]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="23" type="1">
+<li>On mélange 3,00 mol de <span class="math inline">\(\ce{A}\)</span> et 5,00 mol de <span class="math inline">\(\ce{B}\)</span> pour une réaction <span class="math inline">\(\ce{2A + 3B -&gt; C + 2D}\)</span>. (a) Identifiez le réactif limitant. (b) Calculez <span class="math inline">\(n(\ce{C})\)</span> et <span class="math inline">\(n(\ce{D})\)</span> produits. (c) Quelle quantité du réactif en excès reste-t-il ?[^n23]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+</section>
+<section id="les-gaz-parfaits-et-le-volume-molaire" class="level3" data-number="5.2.5">
+<h3 data-number="5.2.5" class="anchored" data-anchor-id="les-gaz-parfaits-et-le-volume-molaire"><span class="header-section-number">5.2.5</span> Les gaz parfaits et le volume molaire</h3>
+<p>Voici la remarquable hypothèse d’Avogadro: A conditions identiques, une mole de n’importe quel gaz occupe le même volume.</p>
+<blockquote class="blockquote">
+<p><strong>Dans l’histoire…</strong> La loi des gaz parfaits est le fruit de trois découvertes indépendantes, reliées entre elles sur près d’un siècle et demi. <strong>Robert Boyle (1662)</strong> montre le premier que pression et volume d’un gaz sont inversement proportionnels. <strong>Joseph Gay-Lussac (1808)</strong> y ajoute la température. Il manque encore à l’équation une inconnue : que représente <span class="math inline">\(n\)</span> ? <strong>Amedeo Avogadro (1811)</strong> y répond en posant que des volumes égaux de gaz, à température et pression égales, contiennent toujours le même nombre de molécules — l’hypothèse qui donne enfin un sens physique à la quantité de matière dans <span class="math inline">\(PV = nRT\)</span>.</p>
+</blockquote>
+<p><span id="hist-transformations-chimiques-avogadro-boyle-gaylussac-gaz-parfaits"></span></p>
+<p><strong>Formalisation — la loi des gaz parfaits :</strong></p>
+<p>Un <strong>gaz parfait</strong> est un modèle dans lequel on néglige toutes les interactions attractives ou répulsives entre les molécules. La loi des gaz parfaits relie quatre grandeurs :</p>
+<p><span class="math display">\[PV = nRT\]</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Symbole</th>
+<th>Grandeur</th>
+<th>Unité</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(P\)</span></td>
+<td>Pression</td>
+<td>Pa, atm ou bar</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(V\)</span></td>
+<td>Volume</td>
+<td>m<span class="math inline">\(^3\)</span> ou litres</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(n\)</span></td>
+<td>Quantité de matière</td>
+<td>mol</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(R\)</span></td>
+<td>Constante des gaz parfaits</td>
+<td>selon unités</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(T\)</span></td>
+<td>Température</td>
+<td><strong>Kelvin</strong> (K)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Attention :</strong> La température doit toujours être en <strong>Kelvin</strong> : <span class="math inline">\(T(\text{K}) = T(^\circ\text{C}) + 273{,}15\)</span>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Unités de <span class="math inline">\(P\)</span></th>
+<th>Unités de <span class="math inline">\(V\)</span></th>
+<th>Valeur de <span class="math inline">\(R\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pa</td>
+<td>m<span class="math inline">\(^3\)</span></td>
+<td><span class="math inline">\(8{,}31\ \text{J·mol}^{-1}\text{·K}^{-1}\)</span></td>
+</tr>
+<tr class="even">
+<td>atm</td>
+<td>litres</td>
+<td><span class="math inline">\(0{,}0821\ \text{atm·L·mol}^{-1}\text{·K}^{-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td>bar</td>
+<td>litres</td>
+<td><span class="math inline">\(0{,}0831\ \text{bar·L·mol}^{-1}\text{·K}^{-1}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Les conditions de référence :</strong></p>
+<ul>
+<li><strong>TPN</strong> (Température et Pression Normales) : <span class="math inline">\(T = 273{,}15\ \text{K}\)</span> (0 °C), <span class="math inline">\(P = 1\ \text{atm}\)</span></li>
+<li><strong>TPA</strong> (Température et Pression Ambiantes) : <span class="math inline">\(T = 298{,}15\ \text{K}\)</span> (25 °C), <span class="math inline">\(P = 1\ \text{atm}\)</span></li>
+</ul>
+<p><strong>Volume molaire :</strong> En appliquant <span class="math inline">\(PV = nRT\)</span> pour <span class="math inline">\(n = 1\ \text{mol}\)</span> :</p>
+<p><span class="math display">\[V_m = \frac{RT}{P} \quad \text{À TPN : } 22{,}4\ \text{L/mol} \quad \text{À TPA : } 24{,}5\ \text{L/mol}\]</span></p>
+<p><strong>Volumes de gaz et stœchiométrie :</strong> Les coefficients stœchiométriques d’une équation entre gaz reflètent directement les rapports de volumes. Pour <span class="math inline">\(\ce{2H2(g) + O2(g) -&gt; 2H2O(g)}\)</span>, 2 volumes de <span class="math inline">\(\ce{H2}\)</span> réagissent avec 1 volume de <span class="math inline">\(\ce{O2}\)</span>.</p>
+<p><strong>Exemple travaillé 1 — hélium à conditions non standard :</strong></p>
+<p>On a 63 litres d’hélium à 400 mmHg et <span class="math inline">\(-60\ ^\circ\text{C}\)</span>.</p>
+<p><span class="math display">\[P = 400\ \text{mmHg} \times \frac{1\ \text{atm}}{760\ \text{mmHg}} = 0{,}526\ \text{atm} \qquad T = 213{,}15\ \text{K}\]</span></p>
+<p><span class="math display">\[n(\ce{He}) = \frac{PV}{RT} = \frac{0{,}526 \times 63}{0{,}0821 \times 213{,}15} = 1{,}894\ \text{mol} \qquad m(\ce{He}) = 1{,}894 \times 4{,}003 = 7{,}58\ \text{g}\]</span></p>
+<p><strong>Exemple travaillé 2 — prélèvement de <span class="math inline">\(\ce{CO2}\)</span> à TPN :</strong></p>
+<p><span class="math display">\[V(\ce{CO2}) = \frac{0{,}036 \times 0{,}0821 \times 273{,}15}{1} = 0{,}807\ \text{L} \qquad m(\ce{CO2}) = 0{,}036 \times 44{,}01 = 1{,}58\ \text{g}\]</span></p>
+<p><strong>Exercice autonome :</strong> Une réaction dégage 307 mL d’un gaz à TPA. Quelle quantité de matière (en mol) ?<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+<p><strong>Exercices :</strong></p>
+<ol start="24" type="1">
+<li>Un ballon de baudruche contient 2,50 L d’hélium à <span class="math inline">\(20\ ^\circ\text{C}\)</span> et 1,00 atm. (a) Calculez <span class="math inline">\(n(\ce{He})\)</span>. (b) Quelle serait la pression si l’on comprimait ce gaz à 1,00 L sans changer la température ?<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="25" type="1">
+<li>Un cylindre de plongée contient 12,0 L d’air à 200 bar et <span class="math inline">\(15\ ^\circ\text{C}\)</span>. Quel volume ce gaz occuperait-il à 1,00 bar et même température ?[^n25]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="26" type="1">
+<li>La décomposition <span class="math inline">\(\ce{2H2O2(l) -&gt; 2H2O(l) + O2(g)}\)</span> produit du dioxygène. Quelle quantité de <span class="math inline">\(\ce{H2O2}\)</span> (en grammes) faut-il décomposer pour obtenir 500 mL de <span class="math inline">\(\ce{O2}\)</span> à TPA ? (<span class="math inline">\(M(\ce{H2O2}) = 34{,}01\ \text{g/mol}\)</span>)[^n26]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="27" type="1">
+<li>Un gaz inconnu a une masse de 1,96 g pour un volume de 1,00 L à TPN. Calculez sa masse molaire et proposez une identification.[^n27]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+</section>
+<section id="le-rendement-dune-réaction" class="level3" data-number="5.2.6">
+<h3 data-number="5.2.6" class="anchored" data-anchor-id="le-rendement-dune-réaction"><span class="header-section-number">5.2.6</span> Le rendement d’une réaction</h3>
+<p><strong>Formalisation :</strong> Le <strong>rendement</strong> <span class="math inline">\(\eta\)</span> est le rapport entre la quantité de produit effectivement obtenue et la quantité théoriquement attendue :</p>
+<p><span class="math display">\[\eta = \frac{m_{\text{pratique}}}{m_{\text{théorique}}} \times 100 \quad [%]\]</span></p>
+<p><strong>Rendements en cascade :</strong> Pour une synthèse multi-étapes :</p>
+<p><span class="math display">\[\eta_{\text{global}} = \eta_1 \times \eta_2 \times \ldots \times \eta_k\]</span></p>
+<p><strong>Exemple travaillé 1 — combustion de l’octane :</strong></p>
+<p>On brûle 100 g d’octane et on mesure 92 g de <span class="math inline">\(\ce{CO2}\)</span> (théorique : 308,2 g).</p>
+<p><span class="math display">\[\eta = \frac{92}{308{,}2} \times 100 = 29{,}8,%\]</span></p>
+<p><strong>Exemple travaillé 2 — synthèse du Valium en 5 étapes :</strong></p>
+<p>Rendements : 75 %, 62 %, 80 %, 65 %, 70 %.</p>
+<p><span class="math display">\[\eta_{\text{global}} = 0{,}75 \times 0{,}62 \times 0{,}80 \times 0{,}65 \times 0{,}70 = 16{,}87,%\]</span></p>
+<p><strong>Exercice autonome :</strong> La décomposition de 0,2 kg de nitroglycérine <span class="math inline">\(\ce{C3H5N3O9}\)</span> produit 6,55 g de <span class="math inline">\(\ce{O2}\)</span>. Calculez le rendement.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
+<p><span class="math display">\[\ce{4C3H5N3O9 -&gt; 12CO2 + 10H2O + 6N2 + O2}\]</span></p>
+<hr>
+<p><strong>Exercices :</strong></p>
+<ol start="28" type="1">
+<li>On synthétise <span class="math inline">\(\ce{FeCl3}\)</span> par réaction de 5,00 g de fer avec un excès de <span class="math inline">\(\ce{Cl2}\)</span> : <span class="math inline">\(\ce{2Fe + 3Cl2 -&gt; 2FeCl3}\)</span>. On obtient 12,0 g de <span class="math inline">\(\ce{FeCl3}\)</span> (<span class="math inline">\(M = 162{,}2\ \text{g/mol}\)</span>). Calculez le rendement.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="29" type="1">
+<li>Une synthèse en 3 étapes a des rendements de 85 %, 70 % et 90 %. (a) Quel est le rendement global ? (b) Quelle masse de produit final obtient-on si la masse théorique est 500 g ?[^n29]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="30" type="1">
+<li>On veut produire 10,0 g d’aspirine (<span class="math inline">\(M = 180{,}2\ \text{g/mol}\)</span>) avec un rendement de 75,0 %. Quelle masse d’acide salicylique (<span class="math inline">\(M = 138{,}1\ \text{g/mol}\)</span>) faut-il utiliser ? (Réaction 1:1)[^n30]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="31" type="1">
+<li>Un chimiste effectue une réaction avec un rendement de 60 % et obtient 3,60 g de produit. Quelle aurait été la masse produite si le rendement avait été de 85 % ?[^n31]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+</section>
+<section id="composition-centésimale-et-formule-empiriquebrute" class="level3" data-number="5.2.7">
+<h3 data-number="5.2.7" class="anchored" data-anchor-id="composition-centésimale-et-formule-empiriquebrute"><span class="header-section-number">5.2.7</span> Composition centésimale et formule empirique/brute</h3>
+<p><strong>Conception courante :</strong> On pense parfois qu’une formule chimique se détermine directement à partir d’une analyse. En réalité, l’analyse élémentaire ne donne que les <strong>proportions</strong> des éléments — il faut deux étapes distinctes.</p>
+<p><em>Nous utilisons ici les masses atomiques avec 3 à 4 décimales significatives. Les petites erreurs d’arrondi se propagent et peuvent fausser les rapports entiers.</em></p>
+<p><strong>Composition centésimale :</strong></p>
+<p><span class="math display">\[%(\text{élément X}) = \frac{n_X \times M_X}{M_{\text{substance}}} \times 100\]</span></p>
+<p><strong>Exemple — composition de <span class="math inline">\(\ce{Ca(OH)2}\)</span> :</strong> <span class="math inline">\(M = 74{,}094\ \text{g/mol}\)</span></p>
+<p><span class="math display">\[%(\ce{Ca}) = 54{,}09,% \quad %(\ce{O}) = 43{,}18,% \quad %(\ce{H}) = 2{,}72,% \quad \text{Somme} = 99{,}99,% \checkmark\]</span></p>
+<p><strong>Formule empirique — stratégie :</strong></p>
+<ol type="1">
+<li>Pour 100 g : les pourcentages donnent directement les masses.</li>
+<li>Convertir en moles : <span class="math inline">\(n_X = m_X / M_X\)</span>.</li>
+<li>Diviser par le plus petit <span class="math inline">\(n\)</span>.</li>
+<li>Arrondir aux entiers (multiplier si nécessaire).</li>
+</ol>
+<p><strong>Exemple — composé bromé (29,29 % C, 5,74 % H, 64,97 % Br) :</strong></p>
+<p><span class="math display">\[\frac{n(\ce{C})}{0{,}8131} = 3{,}00 \quad \frac{n(\ce{H})}{0{,}8131} = 7{,}00 \quad \frac{n(\ce{Br})}{0{,}8131} = 1{,}00 \quad \Rightarrow \quad \ce{C3H7Br}\]</span></p>
+<p><strong>Formule brute :</strong> multiple entier de la formule empirique :</p>
+<p><span class="math display">\[k = \frac{M_{\text{substance}}}{M_{\text{formule empirique}}} \quad \Rightarrow \quad \text{formule brute} = k \times \text{formule empirique}\]</span></p>
+<p><strong>Exercice autonome :</strong> Un composé contient 58,80 % C, 9,87 % H et 31,33 % O. Sa masse molaire est 102,13 g/mol. Déterminez sa formule brute.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></p>
+<p><strong>Exercices :</strong></p>
+<ol start="32" type="1">
+<li>Calculez la composition centésimale de : (a) l’urée <span class="math inline">\(\ce{CH4N2O}\)</span> ; (b) le glucose <span class="math inline">\(\ce{C6H12O6}\)</span>.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="33" type="1">
+<li>Un composé contient 40,00 % C, 6,71 % H et 53,29 % O. Déterminez sa formule empirique.[^n33]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="34" type="1">
+<li>La combustion de 5,00 mg d’un composé (C, H, N) produit 12,93 mg de <span class="math inline">\(\ce{CO2}\)</span>, 3,97 mg de <span class="math inline">\(\ce{H2O}\)</span>. Déterminez la formule empirique.[^n34]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="35" type="1">
+<li>Un composé a la formule empirique <span class="math inline">\(\ce{CH2O}\)</span> et une masse molaire de 180 g/mol. Déterminez sa formule brute et proposez une identification.[^n35]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+<p><strong>Exercices de synthèse</strong></p>
+<ol start="36" type="1">
+<li>La réaction de Haber-Bosch : <span class="math inline">\(\ce{N2(g) + 3H2(g) -&gt; 2NH3(g)}\)</span>. On part de 56,0 g de <span class="math inline">\(\ce{N2}\)</span> et 18,0 g de <span class="math inline">\(\ce{H2}\)</span>. (a) Identifiez le réactif limitant. (b) Calculez la masse théorique de <span class="math inline">\(\ce{NH3}\)</span>. (c) Le rendement industriel est 15,0 %. Quelle masse est effectivement produite ?<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></li>
+</ol>
+<!-- espace:5 -->
+<ol start="37" type="1">
+<li>La combustion d’un hydrocarbure <span class="math inline">\(\ce{CxHy}\)</span> (1,00 g) produit 3,14 g de <span class="math inline">\(\ce{CO2}\)</span> et 1,29 g de <span class="math inline">\(\ce{H2O}\)</span>. (a) Composition centésimale. (b) Formule empirique. (c) Sachant <span class="math inline">\(M = 86\ \text{g/mol}\)</span>, formule brute.[^n37]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="38" type="1">
+<li>On fait passer 5,00 L de <span class="math inline">\(\ce{CH4}\)</span> (à TPA) avec de la vapeur d’eau selon : <span class="math inline">\(\ce{CH4(g) + H2O(g) -&gt; CO(g) + 3H2(g)}\)</span>. (a) Calculez <span class="math inline">\(n(\ce{CH4})\)</span>. (b) Volumes de <span class="math inline">\(\ce{CO}\)</span> et <span class="math inline">\(\ce{H2}\)</span> à TPA. (c) Volume de <span class="math inline">\(\ce{H2}\)</span> à 800 <span class="math inline">\(^\circ\)</span>C et 1 atm.[^n38]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="39" type="1">
+<li>La bauxite contient 52,0 % d’alumine <span class="math inline">\(\ce{Al2O3}\)</span> (<span class="math inline">\(M = 101{,}96\ \text{g/mol}\)</span>). Réaction : <span class="math inline">\(\ce{2Al2O3 -&gt; 4Al + 3O2}\)</span>. (a) Quelle masse de bauxite pour 1,00 tonne d’aluminium ? (b) Volume de <span class="math inline">\(\ce{O2}\)</span> à TPA ?[^n39]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="40" type="1">
+<li>Photosynthèse : <span class="math inline">\(\ce{6CO2(g) + 6H2O(l) -&gt; C6H12O6(s) + 6O2(g)}\)</span>. Une feuille fixe 2,00 mmol de <span class="math inline">\(\ce{CO2}\)</span>/h. (a) Masse de glucose produite/h. (b) Volume de <span class="math inline">\(\ce{O2}\)</span> dégagé/h à TPA. (c) Concentration de <span class="math inline">\(\ce{CO2}\)</span> atmosphérique en ppm (0,042 % vol).[^n40]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="41" type="1">
+<li>On fait réagir 25,0 mL de <span class="math inline">\(\ce{H2SO4}\)</span> 2,00 mol/L avec 30,0 mL de <span class="math inline">\(\ce{NaOH}\)</span> 3,00 mol/L : <span class="math inline">\(\ce{H2SO4 + 2NaOH -&gt; Na2SO4 + 2H2O}\)</span>. (a) Réactif limitant. (b) Masse de <span class="math inline">\(\ce{Na2SO4}\)</span> (<span class="math inline">\(M = 142{,}0\ \text{g/mol}\)</span>). (c) Concentration de l’excès dans la solution finale (55,0 mL).[^n41]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="42" type="1">
+<li>Un explosif contient 75,0 % de <span class="math inline">\(\ce{KNO3}\)</span> (<span class="math inline">\(M = 101{,}1\ \text{g/mol}\)</span>) : <span class="math inline">\(\ce{2KNO3 -&gt; 2KNO2 + O2}\)</span>. Pour 500 g d’explosif, calculez (a) la masse de <span class="math inline">\(\ce{KNO3}\)</span> et (b) le volume de <span class="math inline">\(\ce{O2}\)</span> à TPA.[^n42]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="43" type="1">
+<li>Synthèse industrielle en 4 étapes, rendements 88 %, 75 %, 92 %, 80 %. (a) Rendement global. (b) Masse de matière de départ pour produire 100 kg de médicament (<span class="math inline">\(M_{\text{départ}} = 200\ \text{g/mol}\)</span>, <span class="math inline">\(M_{\text{final}} = 350\ \text{g/mol}\)</span>).[^n43]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="44" type="1">
+<li>Analyse élémentaire : 26,7 % C, 2,2 % H, 71,1 % O. Masse molaire 180 g/mol. (a) Formule empirique. (b) Formule brute. (c) Est-ce le glucose <span class="math inline">\(\ce{C6H12O6}\)</span> ?[^n44]</li>
+</ol>
+<!-- espace:5 -->
+<ol start="45" type="1">
+<li>On mélange 10,0 g de <span class="math inline">\(\ce{CaO}\)</span> (<span class="math inline">\(M = 56{,}08\ \text{g/mol}\)</span>) et 10,0 g de <span class="math inline">\(\ce{C}\)</span> : <span class="math inline">\(\ce{CaO + 3C -&gt; CaC2 + CO}\)</span>. (a) Réactif limitant. (b) Masse théorique de <span class="math inline">\(\ce{CaC2}\)</span> (<span class="math inline">\(M = 64{,}10\ \text{g/mol}\)</span>). (c) On obtient 8,50 g. Rendement ?[^n45]</li>
+</ol>
+<!-- espace:5 -->
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-06-02</em></p>
+<p>Ces défis s’adressent à ceux qui veulent aller réellement plus loin. Ils exigent de mobiliser les notions de Zone 2 dans des contextes nouveaux.</p>
+<p><strong>Défi A — La synthèse de l’aspirine à l’échelle industrielle</strong> <em>(approfondissement formel)</em></p>
+<p>L’aspirine (<span class="math inline">\(\ce{C9H8O4}\)</span>, <span class="math inline">\(M = 180{,}2\ \text{g/mol}\)</span>) est synthétisée industriellement à partir d’acide salicylique <span class="math inline">\(\ce{C7H6O3}\)</span> (<span class="math inline">\(M = 138{,}1\ \text{g/mol}\)</span>) et d’anhydride acétique <span class="math inline">\(\ce{C4H6O3}\)</span> (<span class="math inline">\(M = 102{,}1\ \text{g/mol}\)</span>) selon :</p>
+<p><span class="math display">\[\ce{C7H6O3 + C4H6O3 -&gt; C9H8O4 + CH3COOH}\]</span></p>
+<p>Une usine souhaite produire 500 kg d’aspirine par jour avec un rendement global de 72,0 % réparti en trois étapes de rendements égaux.</p>
+<ol type="a">
+<li><p>Quel est le rendement de chaque étape ?</p></li>
+<li><p>Quelle masse d’acide salicylique faut-il engager par jour ?</p></li>
+<li><p>L’acide acétique <span class="math inline">\(\ce{CH3COOH}\)</span> est un sous-produit valorisable. Quelle masse théorique est produite par jour (avant prise en compte des pertes) ? (<span class="math inline">\(M(\ce{CH3COOH}) = 60{,}05\ \text{g/mol}\)</span>)<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a></p></li>
+</ol>
+<hr>
+<p><strong>Défi B — La réhydratation orale</strong> <em>(transfert interdisciplinaire)</em></p>
+<p>Les sels de réhydratation orale (SRO), recommandés par l’OMS lors de diarrhées sévères, contiennent par sachet : 2,6 g de <span class="math inline">\(\ce{NaCl}\)</span>, 1,5 g de <span class="math inline">\(\ce{KCl}\)</span>, 2,9 g de citrate de sodium <span class="math inline">\(\ce{Na3C6H5O7}\)</span> et 13,5 g de glucose <span class="math inline">\(\ce{C6H12O6}\)</span>. Un sachet est dissous dans 1,00 L d’eau.</p>
+<p>Données : <span class="math inline">\(M(\ce{NaCl}) = 58{,}5\ \text{g/mol}\)</span> ; <span class="math inline">\(M(\ce{KCl}) = 74{,}6\ \text{g/mol}\)</span> ; <span class="math inline">\(M(\ce{Na3C6H5O7}) = 258\ \text{g/mol}\)</span> ; <span class="math inline">\(M(\ce{C6H12O6}) = 180\ \text{g/mol}\)</span>.</p>
+<ol type="a">
+<li><p>Calculez la concentration molaire de chaque composé dans la solution reconstituée.</p></li>
+<li><p>Calculez la concentration totale en ions <span class="math inline">\(\ce{Na+}\)</span> en tenant compte de toutes les sources.</p></li>
+<li><p>Le glucose n’est pas un électrolyte. Expliquez pourquoi il est néanmoins indispensable dans la formule SRO, en termes de transport membranaire.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></p></li>
+</ol>
+<hr>
+<p><strong>Défi C — La chimie du pain</strong> <em>(ouverture conceptuelle)</em></p>
+<p>La levure chimique contient du bicarbonate de sodium <span class="math inline">\(\ce{NaHCO3}\)</span> et de l’acide tartrique <span class="math inline">\(\ce{C4H6O6}\)</span> (<span class="math inline">\(M = 150{,}1\ \text{g/mol}\)</span>). Lors de la cuisson, la réaction suivante se produit :</p>
+<p><span class="math display">\[\ce{NaHCO3(s) + C4H6O6(s) -&gt; CO2(g) + H2O(l) + NaHC4H4O6(s)}\]</span></p>
+<p>Le <span class="math inline">\(\ce{CO2}\)</span> produit fait lever la pâte. Un boulanger utilise 5,00 g de <span class="math inline">\(\ce{NaHCO3}\)</span> (<span class="math inline">\(M = 84{,}01\ \text{g/mol}\)</span>) et 8,00 g d’acide tartrique.</p>
+<ol type="a">
+<li><p>Identifiez le réactif limitant.</p></li>
+<li><p>Calculez le volume de <span class="math inline">\(\ce{CO2}\)</span> produit à TPA.</p></li>
+<li><p>En réalité, la pâte est portée à 180 °C dans le four. Quel volume occuperait ce <span class="math inline">\(\ce{CO2}\)</span> à 180 °C et 1 atm ? Commentez l’intérêt de calculer le volume à la température du four plutôt qu’à TPA.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></p></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="mots-clés" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="mots-clés"><span class="header-section-number">5.3</span> Mots-clés</h2>
+<p><strong>Réaction chimique</strong> : transformation dans laquelle des liaisons intramoléculaires sont rompues et de nouvelles sont formées ; les réactifs disparaissent et des produits apparaissent.</p>
+<p><strong>Équation chimique</strong> : représentation symbolique d’une réaction ; les réactifs figurent à gauche, les produits à droite, séparés par une flèche.</p>
+<p><strong>Coefficient stœchiométrique</strong> : nombre entier placé devant une formule chimique pour équilibrer l’équation ; exprime le rapport de quantités de matière entre espèces.</p>
+<p><strong>Combustion</strong> : réaction exothermique entre un combustible et un comburant (généralement <span class="math inline">\(\ce{O2}\)</span>) ; la combustion complète d’un hydrocarbure produit <span class="math inline">\(\ce{CO2}\)</span> et <span class="math inline">\(\ce{H2O}\)</span>.</p>
+<p><strong>Réactif limitant</strong> : réactif entièrement consommé lors d’une réaction ; sa disparition arrête la réaction et détermine la quantité maximale de produit.</p>
+<p><strong>Rendement</strong> : rapport entre la quantité de produit effectivement obtenue et la quantité théoriquement attendue, exprimé en pourcentage.</p>
+<p><strong>Gaz parfait</strong> : modèle dans lequel on néglige les interactions entre molécules ; décrit par la loi <span class="math inline">\(PV = nRT\)</span>.</p>
+<p><strong>TPN</strong> : Température et Pression Normales (<span class="math inline">\(0\ ^\circ\text{C}\)</span>, 1 atm) ; volume molaire d’un gaz : 22,4 L/mol.</p>
+<p><strong>TPA</strong> : Température et Pression Ambiantes (<span class="math inline">\(25\ ^\circ\text{C}\)</span>, 1 atm) ; volume molaire d’un gaz : 24,5 L/mol.</p>
+<p><strong>Composition centésimale</strong> : pourcentage en masse de chaque élément dans un composé ; calculée par <span class="math inline">\(%(X) = n_X M_X / M_{\text{substance}} \times 100\)</span>.</p>
+<p><strong>Formule empirique</strong> : formule donnant le plus petit rapport entier entre les atomes d’un composé.</p>
+<p><strong>Formule brute</strong> : formule donnant le nombre réel d’atomes de chaque élément dans une molécule ; multiple entier de la formule empirique.</p>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-06-02</em></p>
+<hr>
+<p><em>Projet-Balmer</em></p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><ol type="a">
+<li>Physique — les ions <span class="math inline">\(\ce{Na+}\)</span> et <span class="math inline">\(\ce{Cl-}\)</span> préexistent dans le cristal, aucune nouvelle substance. (b) Chimique — les protéines se dénaturent, de nouvelles liaisons sont formées, irréversible. (c) Nucléaire — le noyau atomique change, un élément se transforme en un autre. (d) Physique — changement d’état, les molécules de <span class="math inline">\(\ce{CO2}\)</span> restent intactes. (e) Chimique — <span class="math inline">\(\ce{Fe}\)</span> réagit avec <span class="math inline">\(\ce{O2}\)</span> et <span class="math inline">\(\ce{H2O}\)</span> pour former <span class="math inline">\(\ce{Fe2O3}\)</span>, nouvelle substance. [^n2]: La matière n’a pas disparu : elle s’est transformée en <span class="math inline">\(\ce{CO2(g)}\)</span> et <span class="math inline">\(\ce{H2O(g)}\)</span>, tous deux gazeux et invisibles, qui se dispersent dans l’atmosphère. La somme des masses de la bougie consommée, du dioxygène utilisé et des gaz produits vérifie <span class="math inline">\(m_{\text{réactifs}} = m_{\text{produits}}\)</span>. [^n3]: Vrai. Lors d’une transformation chimique, les liaisons intramoléculaires sont rompues et reformées : les réactifs disparaissent et des produits apparaissent. Mais les atomes de chaque élément sont simplement redistribués — leur nombre total est conservé.</li>
+</ol>
+<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn2"><ol type="a">
+<li><span class="math inline">\(\ce{4NH3 + 3O2 -&gt; 2N2 + 6H2O}\)</span> — b. <span class="math inline">\(\ce{CuS2 + 2O2 -&gt; Cu + 2SO2}\)</span> — c.&nbsp;<span class="math inline">\(\ce{2I^- + 2NO2^- + 4H^+ -&gt; I2 + 2NO + 2H2O}\)</span></li>
+</ol>
+<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn3"><ol type="a">
+<li><span class="math inline">\(\ce{4Al + 3O2 -&gt; 2Al2O3}\)</span> : Al 4=4, O 6=6 ✓. (b) <span class="math inline">\(\ce{2Na + 2H2O -&gt; 2NaOH + H2}\)</span> : Na 2=2, H 4=4, O 2=2 ✓. (c) <span class="math inline">\(\ce{C3H8 + 5O2 -&gt; 3CO2 + 4H2O}\)</span> : C 3=3, H 8=8, O 10=10 ✓. [^n5]: L’erreur est de modifier la formule brute d’un produit (<span class="math inline">\(\ce{H2O2}\)</span> au lieu de <span class="math inline">\(\ce{H2O}\)</span>) pour équilibrer l’équation. On ne doit jamais changer les formules des substances — seuls les coefficients stœchiométriques sont ajustables. L’équation correcte est <span class="math inline">\(\ce{2H2 + O2 -&gt; 2H2O}\)</span>. [^n6]: Non équilibrée : <span class="math inline">\(\ce{Mg + HCl -&gt; MgCl2 + H2}\)</span>. Équilibrée : <span class="math inline">\(\ce{Mg + 2HCl -&gt; MgCl2 + H2}\)</span> (Mg 1=1, H 2=2, Cl 2=2 ✓). [^n7]: Gauche : K=2, Mn=2, O=8, H=16, Cl=16. Droite : K=2, Mn=2, Cl=2+4+10=16, H=16, O=8. Tous les bilans sont équilibrés ✓.</li>
+</ol>
+<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn4"><p><span class="math inline">\(\ce{C19H40(l) + 29O2(g) -&gt; 19CO2(g) + 20H2O(l)}\)</span><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><ol type="a">
+<li><span class="math inline">\(\ce{C3H8 + 5O2 -&gt; 3CO2 + 4H2O}\)</span>. (b) <span class="math inline">\(\ce{2C2H2 + 5O2 -&gt; 4CO2 + 2H2O}\)</span>. (c) <span class="math inline">\(\ce{2CH3OH + 3O2 -&gt; 2CO2 + 4H2O}\)</span>. [^n9]: Équation : <span class="math inline">\(\ce{2CH4 + 3O2 -&gt; 2CO + 4H2O}\)</span>. Le <span class="math inline">\(\ce{CO}\)</span> est un gaz incolore et inodore qui se fixe irréversiblement sur l’hémoglobine à la place de l’oxygène, empêchant le transport d’<span class="math inline">\(\ce{O2}\)</span> dans le sang. Même à faible concentration, il est mortellement toxique. [^n10]: <span class="math inline">\(m(\ce{C8H18}) = 50,000\ \text{mL} \times 0{,}703\ \text{g/mL} = 35,150\ \text{g}\)</span>. <span class="math inline">\(n(\ce{C8H18}) = 35,150/114{,}2 = 307{,}8\ \text{mol}\)</span>. Rapport 1:8 → <span class="math inline">\(n(\ce{CO2}) = 2462\ \text{mol}\)</span>. <span class="math inline">\(m(\ce{CO2}) = 2462 \times 44{,}01 \approx 108\ \text{kg}\)</span>. [^n11]: <span class="math inline">\(\ce{(NH2)2CO + \frac{7}{2}O2 -&gt; CO2 + 2H2O + 2NO2}\)</span> — ou sous forme entière : <span class="math inline">\(\ce{2(NH2)2CO + 7O2 -&gt; 2CO2 + 4H2O + 4NO2}\)</span>. [^n12]: <span class="math inline">\(\ce{H2S + 2O2 -&gt; SO3 + H2O}\)</span>.</li>
+</ol>
+<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn6"><p><span class="math inline">\(n(\ce{Fe}) = 11{,}2/55{,}85 = 0{,}2006\ \text{mol}\)</span> ; rapport <span class="math inline">\(1:1\)</span> → <span class="math inline">\(m(\ce{FeS}) = 0{,}2006 \times 87{,}91 = 17{,}6\ \text{g}\)</span>. [^n14]: <span class="math inline">\(n(\ce{NH3}) = 340/17{,}03 = 19{,}97\ \text{mol}\)</span> ; rapport <span class="math inline">\(2:3\)</span> → <span class="math inline">\(n(\ce{H2}) = 29{,}95\ \text{mol}\)</span> ; <span class="math inline">\(m(\ce{H2}) = 60{,}4\ \text{g}\)</span>. [^n15]: <span class="math inline">\(n(\ce{Ca}) = 25{,}0/40{,}08 = 0{,}6237\ \text{mol}\)</span> ; rapport <span class="math inline">\(2:2\)</span> → <span class="math inline">\(m(\ce{Ca(OH)2}) = 0{,}6237 \times 74{,}09 = 46{,}2\ \text{g}\)</span> ; <span class="math inline">\(m(\ce{H2O}) = 0{,}6237 \times 18{,}02 = 11{,}2\ \text{g}\)</span>. [^n16]: <span class="math inline">\(n(\ce{Fe}) = 3000/55{,}85 = 53{,}72\ \text{mol}\)</span> ; rapport <span class="math inline">\(4:2\)</span> → <span class="math inline">\(n(\ce{Fe2O3}) = 26{,}86\ \text{mol}\)</span> ; <span class="math inline">\(m(\ce{Fe2O3}) = 4289\ \text{g}\)</span>. <span class="math inline">\(n(\ce{O2}) = 53{,}72 \times 3/4 = 40{,}29\ \text{mol}\)</span> ; <span class="math inline">\(m(\ce{O2}) = 1289\ \text{g}\)</span>. Vérification : <span class="math inline">\(3000 + 1289 = 4289\ \text{g}\)</span> <span class="math inline">\(\checkmark\)</span>. [^n17]: <span class="math inline">\(\ce{C3H8 + 5O2 -&gt; 3CO2 + 4H2O}\)</span>. <span class="math inline">\(n(\ce{C3H8}) = 44/44{,}10 = 0{,}9977\ \text{mol}\)</span> ; rapport <span class="math inline">\(1:3\)</span> → <span class="math inline">\(n(\ce{CO2}) = 2{,}993\ \text{mol}\)</span> ; <span class="math inline">\(m(\ce{CO2}) = 131{,}7\ \text{g}\)</span>. [^n18]: <span class="math inline">\(n(\ce{CaCO3}) = 250/100{,}09 = 2{,}498\ \text{mol}\)</span> ; rapport <span class="math inline">\(1:1\)</span> → <span class="math inline">\(m(\ce{CaO}) = 2{,}498 \times 56{,}08 = 140{,}1\ \text{g}\)</span>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Équation : <span class="math inline">\(\ce{P4 + 10Cl2 -&gt; 4PCl5}\)</span>. <span class="math inline">\(n(\ce{Cl2}) = 10/24{,}5 = 0{,}408\ \text{mol}\)</span> ; <span class="math inline">\(n(\ce{P4}) = 30/123{,}9 = 0{,}242\ \text{mol}\)</span>. <span class="math inline">\(n(\ce{Cl2})/10 = 0{,}0408\)</span> ; <span class="math inline">\(n(\ce{P4})/1 = 0{,}242\)</span> → <span class="math inline">\(\ce{Cl2}\)</span> limitant. Non — il faudrait <span class="math inline">\(0{,}242 \times 10 = 2{,}42\ \text{mol}\)</span> de <span class="math inline">\(\ce{Cl2}\)</span>, soit <span class="math inline">\(59{,}3\ \text{L}\)</span>. [^n19]: <span class="math inline">\(n(\ce{Fe2O3}) = 8{,}50/159{,}69 = 0{,}05323\ \text{mol}\)</span> ; <span class="math inline">\(n(\ce{CO}) = 2{,}30/28{,}01 = 0{,}08211\ \text{mol}\)</span>. <span class="math inline">\(n(\ce{Fe2O3})/1 = 0{,}05323\)</span> ; <span class="math inline">\(n(\ce{CO})/3 = 0{,}02737\)</span> → <span class="math inline">\(\ce{CO}\)</span> limitant. <span class="math inline">\(n(\ce{Fe}) = 0{,}02737 \times 2 = 0{,}05474\ \text{mol}\)</span> → <span class="math inline">\(m(\ce{Fe}) = 3{,}06\ \text{g}\)</span>. [^n20]: <span class="math inline">\(n(\ce{Mg}) = 20{,}0/24{,}31 = 0{,}8228\ \text{mol}\)</span> ; <span class="math inline">\(n(\ce{HCl}) = 40{,}0/36{,}461 = 1{,}097\ \text{mol}\)</span>. <span class="math inline">\(n(\ce{Mg})/1 = 0{,}8228\)</span> ; <span class="math inline">\(n(\ce{HCl})/2 = 0{,}5485\)</span> → <span class="math inline">\(\ce{HCl}\)</span> limitant. <span class="math inline">\(n(\ce{H2}) = 0{,}5485\ \text{mol}\)</span> → <span class="math inline">\(m(\ce{H2}) = 1{,}11\ \text{g}\)</span>. [^n21]: <span class="math inline">\(n(\ce{C7H6O3}) = 14{,}0/138{,}1 = 0{,}1014\ \text{mol}\)</span> ; <span class="math inline">\(n(\ce{C4H6O3}) = 20{,}0/102{,}1 = 0{,}1959\ \text{mol}\)</span>. Rapport 1:1 → <span class="math inline">\(n(\ce{C7H6O3})/1 = 0{,}1014\)</span> ; <span class="math inline">\(n(\ce{C4H6O3})/1 = 0{,}1959\)</span> → acide salicylique limitant. <span class="math inline">\(m(\ce{C9H8O4}) = 0{,}1014 \times 180{,}2 = 18{,}3\ \text{g}\)</span>. [^n22]: <span class="math inline">\(n(\ce{Al}) = 15{,}0/26{,}98 = 0{,}5560\ \text{mol}\)</span> ; <span class="math inline">\(n(\ce{Fe2O3}) = 60{,}0/159{,}69 = 0{,}3757\ \text{mol}\)</span>. <span class="math inline">\(n(\ce{Al})/2 = 0{,}2780\)</span> ; <span class="math inline">\(n(\ce{Fe2O3})/1 = 0{,}3757\)</span> → <span class="math inline">\(\ce{Al}\)</span> limitant. <span class="math inline">\(n(\ce{Fe}) = 0{,}5560\ \text{mol}\)</span> → <span class="math inline">\(m(\ce{Fe}) = 31{,}1\ \text{g}\)</span>. <span class="math inline">\(\ce{Fe2O3}\)</span> consommé : <span class="math inline">\(0{,}2780\ \text{mol}\)</span> → reste <span class="math inline">\(0{,}0977\ \text{mol}\)</span> → <span class="math inline">\(15{,}6\ \text{g}\)</span>. [^n23]: (a) <span class="math inline">\(n(\ce{A})/2 = 1{,}50\)</span> ; <span class="math inline">\(n(\ce{B})/3 = 1{,}67\)</span> → <span class="math inline">\(\ce{A}\)</span> limitant. (b) <span class="math inline">\(n(\ce{C}) = 3{,}00/2 = 1{,}50\ \text{mol}\)</span> ; <span class="math inline">\(n(\ce{D}) = 3{,}00\ \text{mol}\)</span>. (c) <span class="math inline">\(\ce{B}\)</span> consommé : <span class="math inline">\(3{,}00 \times 3/2 = 4{,}50\ \text{mol}\)</span> → reste <span class="math inline">\(0{,}50\ \text{mol}\)</span>.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p><span class="math inline">\(n = 0{,}307/24{,}5 = 0{,}01253\ \text{mol}\)</span>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><ol type="a">
+<li><span class="math inline">\(n = 0{,}1040\ \text{mol}\)</span>. (b) <span class="math inline">\(P_2 = 2{,}50\ \text{atm}\)</span>. [^n25]: <span class="math inline">\(V_2 = 2400\ \text{L} = 2{,}40\ \text{m}^3\)</span>. [^n26]: <span class="math inline">\(n(\ce{O2}) = 0{,}02042\ \text{mol}\)</span> ; <span class="math inline">\(m(\ce{H2O2}) = 1{,}39\ \text{g}\)</span>. [^n27]: <span class="math inline">\(M = 43{,}9\ \text{g/mol} \approx 44\ \text{g/mol}\)</span> : correspond à <span class="math inline">\(\ce{CO2}\)</span> ou <span class="math inline">\(\ce{C3H8}\)</span> — une mesure de masse molaire seule ne suffit pas à les distinguer.</li>
+</ol>
+<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn10"><p><span class="math inline">\(n(\ce{C3H5N3O9}) = 200/227{,}09 = 0{,}8808\ \text{mol}\)</span> ; <span class="math inline">\(m(\ce{O2})_{\text{théo}} = 7{,}047\ \text{g}\)</span> ; <span class="math inline">\(\eta = 92{,}9,%\)</span>.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p><span class="math inline">\(\eta = 82{,}6,%\)</span>. [^n29]: (a) <span class="math inline">\(53{,}6,%\)</span>. (b) <span class="math inline">\(267{,}8\ \text{g}\)</span>. [^n30]: <span class="math inline">\(m(\text{salicylique}) = 10{,}2\ \text{g}\)</span>. [^n31]: <span class="math inline">\(m = 5{,}10\ \text{g}\)</span>.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>Formule empirique <span class="math inline">\(\ce{C5H10O2}\)</span>, <span class="math inline">\(k=1\)</span> → formule brute <span class="math inline">\(\ce{C5H10O2}\)</span>.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><ol type="a">
+<li>%C=20,00, %H=6,71, %N=46,65, %O=26,64, somme=100,00 % ✓. (b) %C=40,00, %H=6,71, %O=53,29, somme=100,00 % ✓. [^n33]: Formule empirique : <span class="math inline">\(\ce{CH2O}\)</span>. [^n34]: Formule empirique : <span class="math inline">\(\ce{C4H6N}\)</span>. [^n35]: <span class="math inline">\(k=6\)</span> → <span class="math inline">\(\ce{C6H12O6}\)</span> (glucose ou isomère).</li>
+</ol>
+<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn14"><ol type="a">
+<li>Limitant : <span class="math inline">\(\ce{N2}\)</span>. (b) <span class="math inline">\(68{,}1\ \text{g}\)</span>. (c) <span class="math inline">\(10{,}2\ \text{g}\)</span>. [^n37]: (a) 85,7 % C, 14,4 % H. (b) <span class="math inline">\(\ce{CH2}\)</span>. (c) <span class="math inline">\(\ce{C6H12}\)</span>. [^n38]: (a) <span class="math inline">\(0{,}2041\ \text{mol}\)</span>. (b) <span class="math inline">\(V(\ce{CO}) = 5{,}00\ \text{L}\)</span> ; <span class="math inline">\(V(\ce{H2}) = 15{,}0\ \text{L}\)</span>. (c) <span class="math inline">\(54{,}0\ \text{L}\)</span>. [^n39]: (a) <span class="math inline">\(\approx 3{,}63\ \text{tonnes}\)</span>. (b) <span class="math inline">\(681\ \text{m}^3\)</span>. [^n40]: (a) <span class="math inline">\(60{,}0\ \text{mg}\)</span>. (b) <span class="math inline">\(49{,}0\ \text{mL}\)</span>. (c) 420 ppm. [^n41]: (a) Limitant : <span class="math inline">\(\ce{NaOH}\)</span>. (b) <span class="math inline">\(6{,}39\ \text{g}\)</span>. (c) <span class="math inline">\([\ce{H2SO4}]_{\text{exc.}} = 0{,}0909\ \text{mol/L}\)</span>. [^n42]: (a) <span class="math inline">\(375\ \text{g}\)</span>. (b) <span class="math inline">\(45{,}4\ \text{L}\)</span>. [^n43]: (a) <span class="math inline">\(48{,}6,%\)</span>. (b) <span class="math inline">\(\approx 118\ \text{kg}\)</span>. [^n44]: (a) <span class="math inline">\(\ce{CHO2}\)</span>. (b) <span class="math inline">\(\ce{C4H4O8}\)</span>. (c) Non — formule différente de <span class="math inline">\(\ce{C6H12O6}\)</span>. [^n45]: (a) Limitant : <span class="math inline">\(\ce{CaO}\)</span>. (b) <span class="math inline">\(11{,}43\ \text{g}\)</span>. (c) <span class="math inline">\(74{,}4\ %\)</span>.</li>
+</ol>
+<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn15"><ol type="a">
+<li><span class="math inline">\(\eta_{\text{étape}} = \sqrt[3]{0{,}720} = 0{,}896 = 89{,}6,%\)</span>. b) <span class="math inline">\(m_{\text{théo}}(\text{aspirine}) = 500/0{,}720 = 694{,}4\ \text{kg}\)</span> ; <span class="math inline">\(n(\text{aspirine})_{\text{théo}} = 694,400/180{,}2 = 3854\ \text{mol}\)</span> ; rapport 1:1 → <span class="math inline">\(n(\text{sal.}) = 3854\ \text{mol}\)</span> ; <span class="math inline">\(m(\text{sal.}) = 3854 \times 138{,}1 = 532,300\ \text{g} \approx 532\ \text{kg}\)</span>. c) <span class="math inline">\(n(\ce{CH3COOH}) = n(\text{aspirine})_{\text{théo}} = 3854\ \text{mol}\)</span> ; <span class="math inline">\(m = 3854 \times 60{,}05 = 231,400\ \text{g} \approx 231\ \text{kg}\)</span>.</li>
+</ol>
+<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn16"><ol type="a">
+<li><span class="math inline">\(c(\ce{NaCl}) = 2{,}6/58{,}5 = 0{,}0444\ \text{mol/L}\)</span> ; <span class="math inline">\(c(\ce{KCl}) = 1{,}5/74{,}6 = 0{,}0201\ \text{mol/L}\)</span> ; <span class="math inline">\(c(\ce{Na3C6H5O7}) = 2{,}9/258 = 0{,}01124\ \text{mol/L}\)</span> ; <span class="math inline">\(c(\ce{C6H12O6}) = 13{,}5/180 = 0{,}0750\ \text{mol/L}\)</span>. b) <span class="math inline">\([\ce{Na+}] = 0{,}0444 + 3 \times 0{,}01124 = 0{,}0781\ \text{mol/L}\)</span>. c) Le glucose n’apporte pas d’ions mais joue un rôle biologique essentiel : le co-transporteur intestinal SGLT1 fait entrer simultanément 1 molécule de glucose et 2 ions <span class="math inline">\(\ce{Na+}\)</span>. Sans glucose, le <span class="math inline">\(\ce{Na+}\)</span> ne peut pas être absorbé efficacement et la réhydratation est compromise.</li>
+</ol>
+<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn17"><ol type="a">
+<li><span class="math inline">\(n(\ce{NaHCO3}) = 5{,}00/84{,}01 = 0{,}05952\ \text{mol}\)</span> ; <span class="math inline">\(n(\ce{C4H6O6}) = 8{,}00/150{,}1 = 0{,}05330\ \text{mol}\)</span>. Rapports : <span class="math inline">\(0{,}05952/1 = 0{,}05952\)</span> ; <span class="math inline">\(0{,}05330/1 = 0{,}05330\)</span>. Limitant : acide tartrique. b) <span class="math inline">\(n(\ce{CO2}) = 0{,}05330\ \text{mol}\)</span> ; <span class="math inline">\(V = 0{,}05330 \times 24{,}5 = 1{,}306\ \text{L}\)</span> à TPA. c) <span class="math inline">\(T = 180 + 273{,}15 = 453{,}15\ \text{K}\)</span> ; <span class="math inline">\(V = nRT/P = 0{,}05330 \times 0{,}0821 \times 453{,}15/1 = 1{,}983\ \text{L}\)</span>. Le volume à la température du four est 52 % plus grand qu’à TPA : c’est cette expansion thermique qui contribue à faire lever la pâte, en plus de la simple production de <span class="math inline">\(\ce{CO2}\)</span>.</li>
+</ol>
+<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapitres/liaisons-intermoleculaires.html" class="pagination-link" aria-label="Liaisons intermoléculaires">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Liaisons intermoléculaires</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapitres/transformations-physiques.html" class="pagination-link" aria-label="Transformations physiques">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transformations physiques</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
