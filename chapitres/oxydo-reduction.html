@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Oxydoréduction, piles et électrolyse – Projet-Balmer</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapitres/acido-basiques-intro.html" rel="next">
+<link href="../chapitres/transformations-physiques.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ed7344add5f1663e434276306a2aa159.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mhchem']},
+  tex: {packages: {'[+]': ['mhchem']}}
+};
+</script>
+<style>
+.quarto-figure img, main img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+.qcm-widget { margin: 1rem 0; padding: 0.75rem 1rem; border: 1px solid #ddd; border-radius: 8px; }
+.qcm-widget .qcm-label { font-size: 13px; color: #666; margin-bottom: 8px; }
+.qcm-widget button { display: block; width: 100%; text-align: left; margin: 4px 0; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; }
+.qcm-widget .qcm-feedback { margin-top: 8px; font-size: 14px; }
+.hist-note-name { color: inherit; text-decoration: none; border-bottom: 1px dotted #8a5a00; cursor: pointer; }
+.hist-note-name:hover { border-bottom-style: solid; }
+.hist-note { text-decoration: none; font-size: 0.75em; vertical-align: super; margin-left: 2px; color: #8a5a00; border-bottom: none; }
+.hist-note:hover { text-decoration: underline; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.qcm-widget').forEach(function(el) {
+    var options = JSON.parse(el.getAttribute('data-options'));
+    var correct = parseInt(el.getAttribute('data-correct'), 10);
+    var answered = false;
+    var label = document.createElement('div');
+    label.className = 'qcm-label';
+    label.textContent = 'Vérifier ma réponse';
+    el.appendChild(label);
+    var feedback = document.createElement('div');
+    feedback.className = 'qcm-feedback';
+    options.forEach(function(opt, i) {
+      var btn = document.createElement('button');
+      btn.textContent = opt;
+      btn.onclick = function() {
+        if (answered) return;
+        answered = true;
+        el.querySelectorAll('button').forEach(function(b) { b.disabled = true; });
+        if (i === correct) {
+          btn.style.borderColor = '#2e7d32';
+          btn.style.background = '#e8f5e9';
+          feedback.textContent = 'Correct.';
+          feedback.style.color = '#2e7d32';
+        } else {
+          btn.style.borderColor = '#c62828';
+          btn.style.background = '#ffebee';
+          feedback.textContent = 'Pas tout à fait — bonne réponse : ' + options[correct];
+          feedback.style.color = '#c62828';
+        }
+      };
+      el.appendChild(btn);
+    });
+    el.appendChild(feedback);
+  });
+});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapitres/oxydo-reduction.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Oxydoréduction, piles et électrolyse</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Recherche" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Projet-Balmer</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Recherche"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../contact.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Une remarque ?</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Historique Tome 1 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/atomes-quantite-de-matiere.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Atomes et quantité de matière</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-sels-molecules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Liaisons, sels et molécules</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-intermoleculaires.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Liaisons intermoléculaires</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-chimiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformations chimiques et stœchiométrie</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-physiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transformations physiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/oxydo-reduction.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Oxydoréduction, piles et électrolyse</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acido-basiques-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction aux équilibres acido-basiques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Historique Tome 2 - Une science qui se construit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Thermochimie 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Thermochimie 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/vitesse-de-reaction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Vitesse de réaction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Équilibre chimique 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Équilibre chimique 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acides-bases-ph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Acides, bases et pH</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/chimie-organique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Chimie organique</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#oxydo-reduction-degre-oxydation" id="toc-oxydo-reduction-degre-oxydation" class="nav-link active" data-scroll-target="#oxydo-reduction-degre-oxydation"><span class="header-section-number">7.0.1</span> Le degré d’oxydation</a></li>
+  <li><a href="#oxydo-reduction-reaction-redox" id="toc-oxydo-reduction-reaction-redox" class="nav-link" data-scroll-target="#oxydo-reduction-reaction-redox"><span class="header-section-number">7.0.2</span> Réaction d’oxydo-réduction : oxydation, réduction et demi-réactions</a></li>
+  <li><a href="#oxydo-reduction-serie-electrochimique" id="toc-oxydo-reduction-serie-electrochimique" class="nav-link" data-scroll-target="#oxydo-reduction-serie-electrochimique"><span class="header-section-number">7.0.3</span> La série électrochimique</a></li>
+  <li><a href="#oxydo-reduction-equilibrage" id="toc-oxydo-reduction-equilibrage" class="nav-link" data-scroll-target="#oxydo-reduction-equilibrage"><span class="header-section-number">7.0.4</span> Équilibrage des réactions rédox</a></li>
+  <li><a href="#oxydo-reduction-combustion" id="toc-oxydo-reduction-combustion" class="nav-link" data-scroll-target="#oxydo-reduction-combustion"><span class="header-section-number">7.0.5</span> La combustion complète et partielle</a></li>
+  <li><a href="#oxydo-reduction-corrosion" id="toc-oxydo-reduction-corrosion" class="nav-link" data-scroll-target="#oxydo-reduction-corrosion"><span class="header-section-number">7.0.6</span> La corrosion et sa protection</a></li>
+  <li><a href="#oxydo-reduction-pile-galvanique" id="toc-oxydo-reduction-pile-galvanique" class="nav-link" data-scroll-target="#oxydo-reduction-pile-galvanique"><span class="header-section-number">7.0.7</span> La pile galvanique</a></li>
+  <li><a href="#oxydo-reduction-electrolyse" id="toc-oxydo-reduction-electrolyse" class="nav-link" data-scroll-target="#oxydo-reduction-electrolyse"><span class="header-section-number">7.0.8</span> Électrolyse</a></li>
+  <li><a href="#oxydo-reduction-exercices-synthese" id="toc-oxydo-reduction-exercices-synthese" class="nav-link" data-scroll-target="#oxydo-reduction-exercices-synthese"><span class="header-section-number">7.0.9</span> Exercices de synthèse</a></li>
+  <li><a href="#mots-clés" id="toc-mots-clés" class="nav-link" data-scroll-target="#mots-clés"><span class="header-section-number">7.1</span> Mots-clés</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Oxydoréduction, piles et électrolyse</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Une remarque ?</strong> <a href="../contact.html">Écrivez-nous</a> — coquille, question, suggestion.</p>
+</div>
+</div>
+</div>
+<p><strong>Confort —</strong> Vous savez déjà que les atomes échangent ou partagent des électrons pour former des liaisons chimiques. Vous connaissez la notion d’électronégativité : certains atomes attirent les électrons plus fortement que d’autres. Vous avez également manipulé des ions — des entités qui ont perdu ou gagné des électrons — et vous avez équilibré des équations chimiques en respectant la conservation des atomes.</p>
+<p><strong>Proximal —</strong> Ce chapitre généralise ces échanges d’électrons à un nouveau type de réaction : l’oxydoréduction. Vous apprendrez à attribuer un degré d’oxydation à chaque atome d’un composé — une charge fictive qui rend les transferts d’électrons visibles même dans les liaisons covalentes. Vous distinguerez l’oxydant du réducteur, et vous découvrirez la série électrochimique, un outil qui permet de prédire si une réaction a lieu spontanément.</p>
+<p><strong>Dépassement —</strong> À la fin de ce chapitre, vous serez capable d’équilibrer une réaction rédox complexe par la méthode des demi-réactions, de calculer la force électromotrice d’une pile et de prévoir les produits d’une électrolyse. Vous comprendrez comment une réaction chimique spontanée peut être convertie en courant électrique — et inversement.</p>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-05-01</em></p>
+<p><strong>Vous savez déjà que…</strong></p>
+<ul>
+<li>L’électronégativité mesure la tendance d’un atome à attirer les électrons d’une liaison vers lui — l’oxygène est plus électronégatif que le soufre, le fluor est le plus électronégatif de tous les éléments.</li>
+<li>Un ion est un atome ou un groupe d’atomes ayant perdu ou gagné un ou plusieurs électrons : le sodium perd un électron pour donner <span class="math inline">\(\ce{Na+}\)</span>, le chlore en gagne un pour donner <span class="math inline">\(\ce{Cl-}\)</span>.</li>
+<li>Équilibrer une équation chimique revient à égaliser le nombre d’atomes de chaque élément de part et d’autre de la flèche, en ajustant les coefficients stœchiométriques.</li>
+</ul>
+<p><strong>Mini-test de positionnement — répondez avant de continuer :</strong></p>
+<ol type="1">
+<li>Dans la molécule <span class="math inline">\(\ce{H2O}\)</span>, quel atome attire davantage les électrons des liaisons <span class="math inline">\(\ce{O-H}\)</span> vers lui ? Pourquoi ?</li>
+<li>Quelle est la charge de l’ion formé lorsqu’un atome de magnésium perd deux électrons ?</li>
+<li>Equilibrez l’équation suivante : <span class="math inline">\(\ce{Fe + O2 -&gt; Fe2O3}\)</span></li>
+</ol>
+<p><em>Si vous répondez sans hésiter -&gt; vous êtes dans votre zone de confort, passez directement à la Zone 2.</em></p>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-05-01</em></p>
+<section id="oxydo-reduction-degre-oxydation" class="level3" data-number="7.0.1">
+<h3 data-number="7.0.1" class="anchored" data-anchor-id="oxydo-reduction-degre-oxydation"><span class="header-section-number">7.0.1</span> Le degré d’oxydation</h3>
+<!-- REF: ref:liaisons-sels-molecules-electronegativite — notion
+d'électronégativité formalisée au chapitre Liaisons, sels et molécules -->
+<p>Nous avions vu dans la description de sels et molécules que la lecture de la différence d’électronégativité est mise à disposition pour analyser les liaisons chimiques, qu’elles soient ioniques ou covalentes.</p>
+<p>Nous allons reprendre cet outil ici afin de définir l’état d’oxydation dans lequel se trouve tout atome. La différence importante avec notre manière d’utiliser cet outil précédemment est qu’ici, nous ne considérons plus la barrière théorique du <span class="math inline">\(\Delta\text{EN} \leq 0{,}4\)</span>. Nous allons considérer que tout atome partageant une liaison et présentant une différence d’électronégativité, soit gagne, soit perd des électrons.</p>
+<p><strong>Formalisation IUPAC :</strong> Le nombre d’oxydation (n.o.), ou degré d’oxydation (d.o.), est le nombre de charges électriques élémentaires réelles ou fictives que porte un atome au sein d’une espèce chimique (molécule, radical ou ion). Ce nombre, qui décrit l’état d’oxydation de l’atome, caractérise l’état électronique de l’élément chimique correspondant en considérant la charge réelle (dans le cas d’un ion monoatomique) ou fictive (si cet élément est combiné).</p>
+<p><strong>Au niveau particulaire :</strong> Dans une liaison entre deux atomes d’électronégativité différente, on attribue fictivement <em>tous</em> les électrons liants à l’atome le plus électronégatif. Si les deux atomes sont identiques, la liaison ne contribue pas — chacun garde ses électrons. Dans un corps simple (<span class="math inline">\(\ce{O2}\)</span>, <span class="math inline">\(\ce{N2}\)</span>, <span class="math inline">\(\ce{S8}\)</span>), le degré d’oxydation est donc toujours nul.</p>
+<p><strong>Conception courante :</strong> On pourrait croire que le degré d’oxydation correspond toujours à la charge partielle (delta+ ou delta-) d’un atome dans une substance. Ce n’est pas exact. Dans un composé covalent comme <span class="math inline">\(\ce{CH4}\)</span>, il s’agit d’une charge <em>fictive</em> — calculée en faisant comme si toutes les liaisons étaient ioniques. Le degré d’oxydation applique la même convention aux électrons : l’atome le plus électronégatif les “prend tous” fictivement. Dans la réalité, les électrons ne sont pas entièrement transférés dans une liaison covalente — c’est précisément pourquoi on parle de charge <em>fictive</em>.</p>
+<p><strong>Exemple travaillé — <span class="math inline">\(\ce{SO2}\)</span> :</strong></p>
+<p>L’oxygène est plus électronégatif que le soufre. Par la règle 2, chaque <span class="math inline">\(\ce{O}\)</span> a un d.o. de <span class="math inline">\(-2\)</span>. La somme des d.o. doit être nulle (molécule neutre) :</p>
+<p><span class="math display">\[d.o.(S) + 2 \times (-2) = 0 \implies d.o.(S) = +4\]</span></p>
+<p>Le soufre a donc un d.o. de <span class="math inline">\(+4\)</span> dans <span class="math inline">\(\ce{SO2}\)</span>. Autrement dit, dans le dioxyde de soufre <span class="math inline">\(\ce{SO2}\)</span>, l’oxygène est plus électronégatif que le soufre. Comme ils sont doublement liés, l’atome de soufre a fictivement perdu deux électrons pour chaque double liaison S=O. Il porte donc au total une charge fictive de <span class="math inline">\(+4\)</span> et a un nombre d’oxydation de <span class="math inline">\(+4\)</span> ; chaque oxygène a quant à lui gagné deux électrons et a donc un nombre d’oxydation de <span class="math inline">\(-2\)</span>.</p>
+<p><strong>Exemple travaillé — <span class="math inline">\(\ce{H2S}\)</span> ; <span class="math inline">\(\ce{SO}\)</span> et <span class="math inline">\(\ce{SO3}\)</span> :</strong></p>
+<p>Remarquez que la somme de tous les nombres d’oxydation d’une molécule ou d’un composé neutre est nécessairement égale à zéro. Dans le cas d’un ion, par contre, cette somme sera égale à la charge de l’ion.</p>
+<ul>
+<li><span class="math inline">\(\ce{H2S}\)</span> : H = <span class="math inline">\(+1\)</span> (règle 3), donc <span class="math inline">\(2 \times (+1) + d.o.(S) = 0 \implies d.o.(S) = -2\)</span>.</li>
+<li><span class="math inline">\(\ce{SO}\)</span> : O = <span class="math inline">\(-2\)</span> (règle 2), donc <span class="math inline">\(d.o.(S) + (-2) = 0 \implies d.o.(S) = +2\)</span>.</li>
+<li><span class="math inline">\(\ce{SO3}\)</span> : O = <span class="math inline">\(-2\)</span> (règle 2), donc <span class="math inline">\(d.o.(S) + 3 \times (-2) = 0 \implies d.o.(S) = +6\)</span>.</li>
+</ul>
+<p>Un même élément — ici le soufre — peut donc adopter des degrés d’oxydation très différents selon son environnement chimique.</p>
+<p><strong>Exemple travaillé — <span class="math inline">\(\ce{SO3^{2-}}\)</span> et <span class="math inline">\(\ce{SO4^{2-}}\)</span> :</strong></p>
+<p>Pour <span class="math inline">\(\ce{SO3^{2-}}\)</span>, la somme des d.o. doit être égale à la charge de l’ion (<span class="math inline">\(-2\)</span>) :</p>
+<p><span class="math display">\[d.o.(S) + 3 \times (-2) = -2 \implies d.o.(S) = +4\]</span></p>
+<p>Pour <span class="math inline">\(\ce{SO4^{2-}}\)</span>, même raisonnement :</p>
+<p><span class="math display">\[d.o.(S) + 4 \times (-2) = -2 \implies d.o.(S) = +6\]</span></p>
+<p>Vous savez maintenant sur quel principe repose l’attribution d’un degré d’oxydo-réduction pour un atome dans un composé, qu’il soit covalent ou ionique.</p>
+<p>Cette charge fictive se calcule, dans le cas des molécules, en considérant que l’élément : - possède tous les électrons des liaisons chimiques établies avec les atomes moins électronégatifs que lui, ce qui se traduit donc pour lui par un gain d’électron(s) ; - ne possède aucun des électrons des liaisons chimiques établies avec les atomes plus électronégatifs que lui, ce qui se traduit par une perte d’électron(s).</p>
+<p>En réalité, sauf dans le cas où la différence d’électronégativité entre deux éléments est très importante, les liaisons sont covalentes et présentent un caractère ionique partiel, ce qui signifie qu’il y a un transfert de charge partiel entre les atomes liés.</p>
+<p>Si l’électronégativité des deux atomes liés est la même (par exemple, si les atomes liés sont un même élément), alors la liaison ne contribue pas au calcul du n.o. Ainsi, dans un corps simple, un élément est caractérisé par un nombre d’oxydation nul.</p>
+<p><strong>Exemple travaillé — <span class="math inline">\(\ce{O2}\)</span> ; <span class="math inline">\(\ce{N2}\)</span> et <span class="math inline">\(\ce{S8}\)</span> :</strong></p>
+<p>Ces trois corps simples ont un d.o. nul : <span class="math inline">\(\ce{O2^{0}}\)</span>, <span class="math inline">\(\ce{N2^{0}}\)</span>, <span class="math inline">\(\ce{S8^{0}}\)</span>. Dans chaque cas, les deux atomes liés sont identiques, donc de même électronégativité : aucun électron n’est fictivement attribué à l’un plutôt qu’à l’autre, conformément à la règle 1.</p>
+<p><strong>Représentation symbolique :</strong> Cinq règles pratiques permettent de calculer le d.o. sans passer par la structure développée :</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 35%">
+<col style="width: 36%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Règle</th>
+<th>Enoncé</th>
+<th>Exemples</th>
+<th>Exceptions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Tout élément libre a un d.o. de 0</td>
+<td><span class="math inline">\(\ce{H2}\)</span>, <span class="math inline">\(\ce{O2}\)</span>, <span class="math inline">\(\ce{Mg}\)</span>, <span class="math inline">\(\ce{P4}\)</span></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>L’oxygène a un d.o. de <span class="math inline">\(-2\)</span></td>
+<td><span class="math inline">\(\ce{H2O}\)</span>, <span class="math inline">\(\ce{MgO}\)</span>, <span class="math inline">\(\ce{SO3}\)</span></td>
+<td>Peroxydes : <span class="math inline">\(\ce{H2O2}\)</span> (<span class="math inline">\(-1\)</span>)</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>L’hydrogène a un d.o. de <span class="math inline">\(+1\)</span></td>
+<td><span class="math inline">\(\ce{H2O}\)</span>, <span class="math inline">\(\ce{CH4}\)</span>, <span class="math inline">\(\ce{HCl}\)</span></td>
+<td>Hydrures métalliques : <span class="math inline">\(\ce{LiH}\)</span> (<span class="math inline">\(-1\)</span>)</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Métaux des colonnes principales : d.o. = numéro de colonne</td>
+<td><span class="math inline">\(\ce{NaCl}\)</span> (<span class="math inline">\(+1\)</span>), <span class="math inline">\(\ce{CaSO4}\)</span> (<span class="math inline">\(+2\)</span>), <span class="math inline">\(\ce{AlF3}\)</span> (<span class="math inline">\(+3\)</span>)</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>La somme des d.o. d’un groupe est égale à sa charge</td>
+<td><span class="math inline">\(\ce{H2SO4}\)</span> : somme <span class="math inline">\(= 0\)</span> ; <span class="math inline">\(\ce{NO3-}\)</span> : somme <span class="math inline">\(= -1\)</span></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Déterminez le d.o. de chaque élément dans <span class="math inline">\(\ce{KCl}\)</span>, <span class="math inline">\(\ce{AlF3}\)</span>, <span class="math inline">\(\ce{H2CO3}\)</span>, <span class="math inline">\(\ce{NH3}\)</span>, <span class="math inline">\(\ce{CO2}\)</span>, <span class="math inline">\(\ce{He}\)</span>, <span class="math inline">\(\ce{CCl4}\)</span>, <span class="math inline">\(\ce{CaBr2}\)</span>, <span class="math inline">\(\ce{NaHSO4}\)</span>, <span class="math inline">\(\ce{H2O2}\)</span>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li>Quel est le d.o. du manganèse dans <span class="math inline">\(\ce{KMnO4}\)</span> ?<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
+<li>Quel est le d.o. du chrome dans <span class="math inline">\(\ce{K2Cr2O7}\)</span> ?<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
+<li>Déterminez le d.o. de l’oxygène dans <span class="math inline">\(\ce{H2O2}\)</span>. Pourquoi est-ce une exception à la règle 2 ?<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
+<li>Déterminez le d.o. de l’oxygène dans <span class="math inline">\(\ce{NaClO}\)</span>. Connaissez-vous cette substance ? Que pourrait-on dire du comportement de cette substance : plutôt demandeuse d’électrons ou donneuse d’électrons ? Pourquoi ?<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
+<li>Déterminez le d.o. de chaque élément dans <span class="math inline">\(\ce{CaSO4}\)</span>, <span class="math inline">\(\ce{PbSO4}\)</span>, <span class="math inline">\(\ce{MgCO3}\)</span>, <span class="math inline">\(\ce{Fe2(SO4)3}\)</span>.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
+</ol>
+<p>Les substances contenant plusieurs carbones sont intéressantes à étudier en détail, car elles nous révèlent qu’à partir d’une formule brute nous n’aurons accès qu’à une moyenne des états d’oxydation des carbones. Ces moyennes peuvent surprendre, mais elles sont absolument explicables lorsque nous regardons la formule développée :</p>
+<p><strong>Exemple travaillé — Glucose (<span class="math inline">\(\ce{C6H12O6}\)</span>) et acide stéarique (<span class="math inline">\(\ce{C18H36O2}\)</span>) :</strong></p>
+<p>Ces deux molécules ne contiennent qu’un seul type de carbone visible dans la formule brute ; on ne peut donc calculer qu’un d.o. <em>moyen</em> du carbone, pas le d.o. réel de chaque atome de carbone pris individuellement (celui-ci dépend de son environnement exact dans la formule développée).</p>
+<ul>
+<li><strong>Glucose</strong> (<span class="math inline">\(\ce{C6H12O6}\)</span>) : H = <span class="math inline">\(+1\)</span> (règle 3, <span class="math inline">\(\times 12 = +12\)</span>) ; O = <span class="math inline">\(-2\)</span> (règle 2, <span class="math inline">\(\times 6 = -12\)</span>). La molécule étant neutre :</li>
+</ul>
+<p><span class="math display">\[6 \times d.o.(C) + 12 - 12 = 0 \implies d.o.(C) = 0 \ \text{(moyenne)}\]</span></p>
+<ul>
+<li><strong>Acide stéarique</strong> (<span class="math inline">\(\ce{C18H36O2}\)</span>) : H = <span class="math inline">\(+1\)</span> (<span class="math inline">\(\times 36 = +36\)</span>) ; O = <span class="math inline">\(-2\)</span> (<span class="math inline">\(\times 2 = -4\)</span>). La molécule étant neutre :</li>
+</ul>
+<p><span class="math display">\[18 \times d.o.(C) + 36 - 4 = 0 \implies d.o.(C) = -\frac{32}{18} \approx -1{,}78 \ \text{(moyenne)}\]</span></p>
+<p><strong>R3 — Point de vigilance :</strong> un d.o. moyen non entier n’est pas une erreur de calcul — il traduit le fait que tous les atomes de carbone de la molécule n’ont pas le même environnement chimique (certains sont liés à plusieurs oxygènes, d’autres seulement à des hydrogènes et d’autres carbones). La formule brute masque cette hétérogénéité ; seule la formule développée donnerait le d.o. réel de chaque carbone.</p>
+<hr>
+</section>
+<section id="oxydo-reduction-reaction-redox" class="level3" data-number="7.0.2">
+<h3 data-number="7.0.2" class="anchored" data-anchor-id="oxydo-reduction-reaction-redox"><span class="header-section-number">7.0.2</span> Réaction d’oxydo-réduction : oxydation, réduction et demi-réactions</h3>
+<p>Une réaction d’oxydoréduction (ou réaction redox) est une transformation chimique caractérisée par un <strong>transfert d’électrons</strong> entre deux espèces chimiques. S’il y a transfert d’électrons, il y aura donc modification de l’état d’oxydation du donneur d’électrons et modification de l’état d’oxydation de l’accepteur d’électrons.</p>
+<section id="la-demi-réaction-et-son-sens-de-lecture" class="level4" data-number="7.0.2.1">
+<h4 data-number="7.0.2.1" class="anchored" data-anchor-id="la-demi-réaction-et-son-sens-de-lecture"><span class="header-section-number">7.0.2.1</span> La demi-réaction et son sens de lecture</h4>
+<p>Toute réaction d’oxydoréduction se décompose en deux <strong>demi-réactions</strong> : l’une décrit une perte d’électrons (oxydation), l’autre un gain d’électrons (réduction).</p>
+<p>Dans la série électrochimique, les demi-réactions sont écrites dans le sens de la <strong>réduction</strong> (de gauche à droite) :</p>
+<p><span class="math display">\[\ce{Cu^{2+} + 2e^{-} -&gt; Cu^{0}}\]</span></p>
+<p>Pour obtenir la demi-réaction d’<strong>oxydation</strong>, on lit la même équation en sens inverse :</p>
+<p><span class="math display">\[\ce{Cu^{0} -&gt; Cu^{2+} + 2e^{-}}\]</span></p>
+<p><strong>Attention :</strong> une demi-réaction seule ne peut jamais se produire. Les électrons libérés par l’oxydation doivent obligatoirement être captés par une réduction. Les deux demi-réactions sont toujours couplées.</p>
+<p><strong>Formalisation IUPAC :</strong></p>
+<ul>
+<li>Le processus d’<em>oxydation</em> est une <strong>perte d’électrons</strong> — le d.o. de l’atome qui s’oxyde, l’atome qui donne son ou ses électrons, augmente donc. Nous disons que cet atome est le <strong>réducteur</strong> ; il <strong>deviendra l’oxydé</strong>, car il réduit le d.o. d’un autre atome qui reçoit le ou les électrons.</li>
+<li>Le processus de <em>réduction</em> est un <strong>gain d’électrons</strong> — le d.o. de l’atome qui se réduit, l’atome qui reçoit les électrons, diminue. Nous disons que cet atome est l’<strong>oxydant</strong>, car il prend les électrons d’un autre atome, et donc l’oxyde ; il <strong>deviendra le réduit</strong>.
+<ul>
+<li>Le <em>réducteur</em> est l’espèce qui cède des électrons — il subit lui-même une oxydation.</li>
+<li>L’<em>oxydant</em> est l’espèce qui capte des électrons — il subit lui-même une réduction.</li>
+</ul></li>
+</ul>
+<p>Pour nous permettre d’avoir un moyen de nous rappeler ces termes, nous pouvons penser à l’oxygène de l’air, <span class="math inline">\(\ce{O2}\)</span>, d.o. <span class="math inline">\(= 0\)</span>. L’<strong>oxy</strong>gène <span class="math inline">\(\ce{O2}\)</span> est un <strong>oxy</strong>dant par excellence. Mais attention, nous parlons bien ici de l’oxygène corps pur, le <span class="math inline">\(\ce{O2}\)</span>, en d.o. <span class="math inline">\(= 0\)</span>.</p>
+<p>Comment fait-on perdre des électrons à un métal dans la pratique ?</p>
+</section>
+<section id="métal-vs-non-métal" class="level4" data-number="7.0.2.2">
+<h4 data-number="7.0.2.2" class="anchored" data-anchor-id="métal-vs-non-métal"><span class="header-section-number">7.0.2.2</span> Métal vs non-métal</h4>
+<p>L’une des possibilités est de mettre en présence un non-métal qui cherche à gagner des électrons : le métal perd un ou plusieurs électrons au profit du non-métal et il y a formation d’une liaison ionique.</p>
+<p>Ainsi, lorsqu’un métal a perdu des électrons et que le non-métal les a gagnés, leurs propriétés changent radicalement, comme le montrent les quelques exemples ci-dessous :</p>
+<p><strong><em>Exemple :</em></strong> <em>l’aluminium <span class="math inline">\(\ce{Al^{0}}\)</span> réagit avec le dibrome <span class="math inline">\(\ce{Br2}\)</span>.</em></p>
+<!-- TODO (LUM) : exemple à développer (macro/particulaire/symbolique, R1) -->
+<p><strong><em>Exemple :</em></strong> <em>le magnésium <span class="math inline">\(\ce{Mg^{0}}\)</span> réagit avec le dioxygène <span class="math inline">\(\ce{O2}\)</span>.</em></p>
+<!-- TODO (LUM) : exemple à développer (macro/particulaire/symbolique, R1) -->
+<p><strong><em>Exemple :</em></strong> <em>le cuivre métallique <span class="math inline">\(\ce{Cu^{0}}\)</span> réagit avec l’acide nitrique <span class="math inline">\(\ce{HNO3}\)</span>.</em></p>
+<!-- TODO (LUM) : exemple à développer (macro/particulaire/symbolique, R1) -->
+</section>
+<section id="cation-métallique-vs-non-métal" class="level4" data-number="7.0.2.3">
+<h4 data-number="7.0.2.3" class="anchored" data-anchor-id="cation-métallique-vs-non-métal"><span class="header-section-number">7.0.2.3</span> Cation métallique vs non-métal</h4>
+<p>Nous pouvons aussi voir une réaction d’échange d’électrons entre un non-métal et un cation métallique :</p>
+<p><strong><em>Exemple :</em></strong> l’oxyde de fer (III) réagit avec le gaz hydrogène <span class="math inline">\(\ce{H2}\)</span>.</p>
+<!-- TODO (LUM) : exemple à développer (macro/particulaire/symbolique, R1) -->
+</section>
+<section id="métal-vs-cation-métallique" class="level4" data-number="7.0.2.4">
+<h4 data-number="7.0.2.4" class="anchored" data-anchor-id="métal-vs-cation-métallique"><span class="header-section-number">7.0.2.4</span> Métal vs cation métallique</h4>
+<p>Il n’est pas nécessaire de mettre en présence un non-métal pour observer des échanges d’électrons.</p>
+<section id="exemple-cecu0-ceagno3-aq" class="level5" data-number="7.0.2.4.1">
+<h5 data-number="7.0.2.4.1" class="anchored" data-anchor-id="exemple-cecu0-ceagno3-aq"><span class="header-section-number">7.0.2.4.1</span> Exemple : <span class="math inline">\(\ce{Cu^{0}}\)</span> + <span class="math inline">\(\ce{AgNO3}\)</span> (aq)</h5>
+<p><em>Prenons du cuivre à l’état métallique et plongeons-le dans une solution aqueuse de nitrate d’argent, <span class="math inline">\(\ce{AgNO3}\)</span> (aq).</em></p>
+<p>Dans cet exemple, qui sont les acteurs redox possibles ? Nous avons ici quatre espèces à considérer séparément : <span class="math inline">\(\ce{Cu^{0}}\)</span>, <span class="math inline">\(\ce{Ag^{+}}\)</span>, <span class="math inline">\(\ce{NO3^{-}}\)</span> et <span class="math inline">\(\ce{H2O}\)</span>. Nous verrons plus loin que <span class="math inline">\(\ce{NO3^{-}}\)</span> et <span class="math inline">\(\ce{H2O}\)</span> ne réagissent pas dans cette réaction et ont un statut de spectateur. Il est important de se souvenir que plusieurs substances restent à l’état de spectateurs dans les réactions. - Qui est ainsi le donneur d’électrons — le réducteur ? Le cuivre métallique <span class="math inline">\(\ce{Cu^{0}}\)</span>. - Qui est le preneur d’électrons — l’oxydant ? Le cation argent(I) <span class="math inline">\(\ce{Ag^{+}}\)</span>.</p>
+<p><strong>Représentation symbolique — les demi-réactions :</strong></p>
+<p>On décompose toute réaction rédox en deux <em>demi-réactions</em> :</p>
+<p><span class="math display">\[\ce{Cu^{0} -&gt; Cu^{2+} + 2e^{-}} \quad \text{(oxydation — d.o. : } 0 \to +2\text{)}\]</span> <span class="math display">\[\ce{Ag^{+} + e^{-} -&gt; Ag^{0}} \quad \text{(réduction — d.o. : } +1 \to 0\text{)}\]</span></p>
+<p>Ces deux réactions (qu’on appelle des demi-réactions) ne pouvant avoir lieu l’une sans l’autre, on les réunit en une équation globale.</p>
+<p>Cependant, dans le cas présent, une petite précaution s’impose: si on ne veut pas voir apparaître des électrons dans l’équation globale (et on ne le veut pas !) il faut ajuster le nombre d’électrons perdus et gagnés:</p>
+<p><span class="math display">\[\ce{Cu^{0} + 2Ag^{+} -&gt; Cu^{2+} + 2Ag^{0}}\]</span></p>
+<p>Ceci est une équation ionique, qui ne représente que les espèces qui ont subi une transformation. Bien entendu, il y a aussi en solution les ions <span class="math inline">\(\ce{NO3^{-}}\)</span>, qui assurent la neutralité de l’ensemble, ainsi que l’eau.</p>
+<p>Voici l’équation complète avec espèces spectatrices :</p>
+<p><span class="math display">\[\ce{Cu^{0} + 2AgNO3 (aq) -&gt; Cu(NO3)2 (aq) + 2Ag^{0}}\]</span></p>
+<p><strong>Observation :</strong> l’apparence orangée — « cuivrée » — du cuivre métallique disparaît progressivement au profit d’une apparence argentée. La solution prend quant à elle une teinte bleutée, de plus en plus intense. Nous déduisons que la réaction est en train de se produire, libérant des ions <span class="math inline">\(\ce{Cu^{2+}}\)</span> (bleus) et produisant de l’argent métallique <span class="math inline">\(\ce{Ag^{0}}\)</span> sur le métal <span class="math inline">\(\ce{Cu^{0}}\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-oxydo-reduction/fig-oxydo-reduction-cu-agno3-johnstone.svg" class="img-fluid figure-img"></p>
+<figcaption>Triangle de Johnstone pour l’expérience Cu°/AgNO3(aq) : niveau macroscopique (couleurs observées), niveau particulaire (transfert d’électrons Cu -&gt; Cu2+, Ag+ -&gt; Ag), niveau symbolique (équation ionique)</figcaption>
+</figure>
+</div>
+<p>Examinons à nouveau les noms attitrés aux espèces.</p>
+<p>Gardons en tête qu’il y a presque une notion de temporalité : le réducteur et l’oxydant sont les acteurs de départ (réactifs, avant la réaction), l’oxydé et le réduit en sont le résultat (produits, après la réaction).</p>
+<ul>
+<li>Dans cette expérience, l’argent <span class="math inline">\(\ce{Ag^{+}}\)</span> va subir une <strong>réduction</strong> : il est donc appelé <strong>l’oxydant</strong>.</li>
+<li>Le cuivre <span class="math inline">\(\ce{Cu^{0}}\)</span> va agir comme un <strong>réducteur</strong> : il va donc subir une <strong>oxydation</strong>.</li>
+<li>Dans cette expérience, le cuivre <span class="math inline">\(\ce{Cu^{2+}}\)</span> a subi une oxydation : il est appelé <strong>l’oxydé</strong>.</li>
+<li>L’argent <span class="math inline">\(\ce{Ag^{0}}\)</span> est donc appelé le <strong>réduit</strong>.</li>
+</ul>
+<p><strong>Conception courante :</strong> On pourrait associer “oxydation” au seul contact avec l’oxygène. On comprend ici que l’oxydation est un concept bien général : <em>tout transfert d’électrons</em> constitue une oxydation, que de l’oxygène soit impliqué ou non.</p>
+<p><strong>Au niveau particulaire :</strong> Lors d’une réaction rédox, des électrons migrent du réducteur vers l’oxydant. Ce transfert modifie les degrés d’oxydation des deux espèces. Le nombre d’électrons perdus est <em>exactement</em> égal au nombre d’électrons gagnés — les électrons ne disparaissent jamais.</p>
+</section>
+<section id="exemple-travaillé-expérience-cezn0-dans-cecuso4-aq" class="level5" data-number="7.0.2.4.2">
+<h5 data-number="7.0.2.4.2" class="anchored" data-anchor-id="exemple-travaillé-expérience-cezn0-dans-cecuso4-aq"><span class="header-section-number">7.0.2.4.2</span> Exemple travaillé : expérience <span class="math inline">\(\ce{Zn^{0}}\)</span> dans <span class="math inline">\(\ce{CuSO4}\)</span> (aq)</h5>
+<p>Une lame de zinc est plongée dans une solution de sulfate de cuivre <span class="math inline">\(\ce{CuSO4}\)</span> (aq) (solution bleue, caractéristique du cation <span class="math inline">\(\ce{Cu^{2+}}\)</span>).</p>
+<p>Qui sont les acteurs possibles ? <span class="math inline">\(\ce{Zn^{0}}\)</span>, <span class="math inline">\(\ce{Cu^{2+}}\)</span>, <span class="math inline">\(\ce{SO4^{2-}}\)</span> et <span class="math inline">\(\ce{H2O}\)</span>. Comme mentionné plus haut, nous affirmons pour l’instant que <span class="math inline">\(\ce{SO4^{2-}}\)</span> et <span class="math inline">\(\ce{H2O}\)</span> sont spectateurs. Les deux acteurs principaux sont <span class="math inline">\(\ce{Zn^{0}}\)</span> et <span class="math inline">\(\ce{Cu^{2+}}\)</span>.</p>
+<p>Qui peut donner des électrons — être réducteur ? <span class="math inline">\(\ce{Zn^{0}}\)</span>. Qui peut prendre des électrons — être oxydant ? <span class="math inline">\(\ce{Cu^{2+}}\)</span>.</p>
+<p>Demi-réaction d’oxydation : <span class="math display">\[\ce{Zn^{0} -&gt; Zn^{2+} + 2e^{-}}\]</span></p>
+<p>Demi-réaction de réduction : <span class="math display">\[\ce{Cu^{2+} + 2e^{-} -&gt; Cu^{0}}\]</span></p>
+<p>Équation globale — sans ion spectateur : <span class="math display">\[\ce{Zn^{0} + Cu^{2+} -&gt; Zn^{2+} + Cu^{0}}\]</span></p>
+<p>Équation globale — avec espèces spectatrices : <span class="math display">\[\ce{Zn^{0} + CuSO4 (aq) -&gt; ZnSO4 (aq) + Cu^{0}}\]</span></p>
+<p><strong>Observation :</strong> la couleur bleue de la solution pâlit progressivement, devient plus claire. Le morceau de zinc immergé dans la solution se couvre d’une apparence rougeâtre « cuivrée ». Moins visible, mais nous pouvons conclure que le zinc <span class="math inline">\(\ce{Zn^{0}}\)</span> métallique se dissout progressivement sous la forme de <span class="math inline">\(\ce{Zn^{2+}}\)</span> (aq) et que du cuivre rougeâtre se dépose sur la lame. <strong>La réaction est favorable !</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-oxydo-reduction/fig-oxydo-reduction-zn-cuso4-johnstone.svg" class="img-fluid figure-img"></p>
+<figcaption>Triangle de Johnstone pour l’expérience Zn° dans CuSO4 (aq) : niveau macroscopique (décoloration bleue, dépôt cuivré), niveau particulaire (transfert d’électrons Zn -&gt; Zn2+, Cu2+ -&gt; Cu), niveau symbolique (équation ionique)</figcaption>
+</figure>
+</div>
+</section>
+<section id="exemple-travaillé-expérience-cecu0-dans-ceznso4-aq" class="level5" data-number="7.0.2.4.3">
+<h5 data-number="7.0.2.4.3" class="anchored" data-anchor-id="exemple-travaillé-expérience-cecu0-dans-ceznso4-aq"><span class="header-section-number">7.0.2.4.3</span> Exemple travaillé : expérience <span class="math inline">\(\ce{Cu^{0}}\)</span> dans <span class="math inline">\(\ce{ZnSO4}\)</span> (aq)</h5>
+<p>Une lame de cuivre est plongée dans une solution de sulfate de zinc <span class="math inline">\(\ce{ZnSO4}\)</span> (aq).</p>
+<p>Qui sont les acteurs possibles ? <span class="math inline">\(\ce{Cu^{0}}\)</span>, <span class="math inline">\(\ce{Zn^{2+}}\)</span>, <span class="math inline">\(\ce{SO4^{2-}}\)</span> et <span class="math inline">\(\ce{H2O}\)</span>. Comme mentionné plus haut, nous continuons à affirmer que <span class="math inline">\(\ce{SO4^{2-}}\)</span> et <span class="math inline">\(\ce{H2O}\)</span> sont spectateurs. Les deux acteurs principaux sont <span class="math inline">\(\ce{Cu^{0}}\)</span> et <span class="math inline">\(\ce{Zn^{2+}}\)</span>.</p>
+<p>Qui peut donner des électrons — être réducteur ? <span class="math inline">\(\ce{Cu^{0}}\)</span>. Qui peut prendre des électrons — être oxydant ? <span class="math inline">\(\ce{Zn^{2+}}\)</span>.</p>
+<p><strong>Observation :</strong> rien ne se passe : la lame de cuivre reste parfaitement intacte, nous ne voyons ni dépôt de <span class="math inline">\(\ce{Zn^{0}}\)</span> sur sa surface, ni apparition d’une couleur bleue dans la solution (<span class="math inline">\(\ce{Cu^{2+}}\)</span>).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-oxydo-reduction/fig-oxydo-reduction-cu-znso4-johnstone.svg" class="img-fluid figure-img"></p>
+<figcaption>Triangle de Johnstone pour l’expérience Cu° dans ZnSO4 (aq) : niveau macroscopique (aucun changement observé), niveau particulaire (absence de transfert d’électrons), niveau symbolique (absence de réaction)</figcaption>
+</figure>
+</div>
+<p><strong>Conclusions :</strong> nous constatons que le transfert d’électrons n’est pas symétrique entre <span class="math inline">\(\ce{Cu^{0}}\)</span> face à <span class="math inline">\(\ce{Zn^{2+}}\)</span> et <span class="math inline">\(\ce{Cu^{2+}}\)</span> face à <span class="math inline">\(\ce{Zn^{0}}\)</span> : seul l’un des deux sens est spontané, ou favorable.</p>
+<p>Les réactions qui se passent (ici, dans les expériences 1 et 2), sont dites <strong>spontanées</strong>.</p>
+<p>Avec ses trois expériences réalisées, nous pouvons déjà ébaucher une modeste classification de la tendance des éléments à prendre des électrons.</p>
+<p>Introduisons les demi réactions du cuivre, de l’argent et du zinc dans un tableau.</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td>Tendance à prendre des électrons</td>
+<td>Équations de réduction</td>
+</tr>
+<tr class="even">
+<td>Forte</td>
+<td><span class="math display">\[\ce{Ag^{+} + e^{-} -&gt; Ag^{0}}\]</span></td>
+</tr>
+<tr class="odd">
+<td>Moyenne</td>
+<td><span class="math display">\[\ce{Cu^{2+} + 2e^{-} -&gt; Cu^{0}}\]</span></td>
+</tr>
+<tr class="even">
+<td>Faible</td>
+<td><span class="math display">\[\ce{Zn^{2+} + 2e^{-} -&gt; Zn^{0}}\]</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="exemple-travaillé-expérience-cezn0-dans-cehcl-aq" class="level5" data-number="7.0.2.4.4">
+<h5 data-number="7.0.2.4.4" class="anchored" data-anchor-id="exemple-travaillé-expérience-cezn0-dans-cehcl-aq"><span class="header-section-number">7.0.2.4.4</span> Exemple travaillé : expérience <span class="math inline">\(\ce{Zn^{0}}\)</span> dans <span class="math inline">\(\ce{HCl}\)</span> (aq)</h5>
+<p>Une lame de zinc est plongée dans une solution d’acide chlorhydrique <span class="math inline">\(\ce{HCl}\)</span> (aq). L’acide chlorhydrique suit le comportement acide dans l’eau, c’est-à-dire que l’acide <span class="math inline">\(\ce{HCl}\)</span> se sépare en deux suivant la réaction <span class="math display">\[\ce{HCl (aq) -&gt; H^{+} (aq) + Cl^{-} (aq)}\]</span> car <span class="math inline">\(\ce{H^{+}}\)</span> préfère résider sur l’eau : <span class="math display">\[\ce{H^{+} (aq) + H2O (l) -&gt; H3O^{+} (aq)}\]</span></p>
+<p>Ceci est traité de manière plus détaillée dans le thème acide-base.</p>
+<p>Toutefois, comprenons que mettre un acide dans l’eau produit des <span class="math inline">\(\ce{H^{+}}\)</span>, ou plus précisément des <span class="math inline">\(\ce{H3O^{+}}\)</span>.</p>
+<p>Est-ce que <span class="math inline">\(\ce{H^{+}}\)</span> joue un rôle d’oxydant ou de réducteur ? De réducteur ? Non, impossible, il n’a pas d’électron. D’oxydant ? Oui, il peut capter un électron et aboutir à la formation du gaz hydrogène <span class="math inline">\(\ce{H2}\)</span> avec un de ses semblables.</p>
+<p>Ainsi, qui sont les acteurs possibles dans cette réaction ? <span class="math inline">\(\ce{Zn^{0}}\)</span>, <span class="math inline">\(\ce{H^{+}}\)</span>, <span class="math inline">\(\ce{Cl^{-}}\)</span> et <span class="math inline">\(\ce{H2O}\)</span>. Comme mentionné plus haut, nous continuons à affirmer que <span class="math inline">\(\ce{Cl^{-}}\)</span> et <span class="math inline">\(\ce{H2O}\)</span> sont spectateurs. Les deux acteurs principaux sont <span class="math inline">\(\ce{Zn^{0}}\)</span> et <span class="math inline">\(\ce{H^{+}}\)</span>.</p>
+<p>Qui peut donner des électrons — être réducteur ? <span class="math inline">\(\ce{Zn^{0}}\)</span>. Qui peut prendre des électrons — être oxydant ? <span class="math inline">\(\ce{H^{+}}\)</span>.</p>
+<p>Demi-réaction d’oxydation : <span class="math display">\[\ce{Zn^{0} -&gt; Zn^{2+} + 2e^{-}}\]</span></p>
+<p>Demi-réaction de réduction : <span class="math display">\[\ce{2H^{+} + 2e^{-} -&gt; H2}\]</span></p>
+<p>Équation globale — sans ion spectateur : <span class="math display">\[\ce{Zn^{0} + 2H^{+} -&gt; Zn^{2+} + H2}\]</span></p>
+<p>Équation globale — avec espèces spectatrices : <span class="math display">\[\ce{Zn^{0} + 2HCl (aq) -&gt; ZnCl2 (aq) + H2}\]</span></p>
+<p><strong>Observation :</strong> sur la lame de zinc <span class="math inline">\(\ce{Zn^{0}}\)</span> apparaissent des bulles de gaz. La production de gaz est évidente. Le gaz peut être récolté dans une éprouvette, et un tison incandescent met en évidence la présence d’hydrogène gazeux. Après quelques instants, le métal zinc a disparu et le gaz cesse d’être produit. <strong>La réaction est favorable !</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-oxydo-reduction/fig-oxydo-reduction-zn-hcl-johnstone.svg" class="img-fluid figure-img"></p>
+<figcaption>Triangle de Johnstone pour l’expérience Zn° dans HCl (aq) : niveau macroscopique (dégagement gazeux, disparition du zinc), niveau particulaire (transfert d’électrons Zn -&gt; Zn2+, H+ -&gt; H2), niveau symbolique (équation ionique)</figcaption>
+</figure>
+</div>
+</section>
+<section id="exemple-travaillé-expérience-cecu0-dans-cehcl-aq" class="level5" data-number="7.0.2.4.5">
+<h5 data-number="7.0.2.4.5" class="anchored" data-anchor-id="exemple-travaillé-expérience-cecu0-dans-cehcl-aq"><span class="header-section-number">7.0.2.4.5</span> Exemple travaillé : expérience <span class="math inline">\(\ce{Cu^{0}}\)</span> dans <span class="math inline">\(\ce{HCl}\)</span> (aq)</h5>
+<p>Une lame de cuivre est finalement plongée dans une solution d’acide chlorhydrique <span class="math inline">\(\ce{HCl}\)</span> (aq).</p>
+<p>Qui sont les acteurs possibles dans cette réaction ? <span class="math inline">\(\ce{Cu^{0}}\)</span>, <span class="math inline">\(\ce{H^{+}}\)</span>, <span class="math inline">\(\ce{Cl^{-}}\)</span> et <span class="math inline">\(\ce{H2O}\)</span>. Comme mentionné plus haut, nous continuons à affirmer que <span class="math inline">\(\ce{Cl^{-}}\)</span> et <span class="math inline">\(\ce{H2O}\)</span> sont spectateurs. Les deux acteurs principaux sont <span class="math inline">\(\ce{Cu^{0}}\)</span> et <span class="math inline">\(\ce{H^{+}}\)</span>.</p>
+<p>Qui peut donner des électrons — être réducteur ? <span class="math inline">\(\ce{Cu^{0}}\)</span>. Qui peut prendre des électrons — être oxydant ? <span class="math inline">\(\ce{H^{+}}\)</span>.</p>
+<p><strong>Observation :</strong> aucun gaz ne se produit. Le cuivre reste intact — aucune transformation n’est observée. <strong>La réaction n’est pas favorable !</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-oxydo-reduction/fig-oxydo-reduction-cu-hcl-johnstone.svg" class="img-fluid figure-img"></p>
+<figcaption>Triangle de Johnstone pour l’expérience Cu° dans HCl (aq) : niveau macroscopique (aucun changement observé), niveau particulaire (absence de transfert d’électrons), niveau symbolique (absence de réaction)</figcaption>
+</figure>
+</div>
+<p>On revient ainsi au tableau ci-dessus et nous pouvons y ajouter une ligne :</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td>Tendance à prendre des électrons</td>
+<td>Équations de réduction</td>
+</tr>
+<tr class="even">
+<td>Forte</td>
+<td><span class="math display">\[\ce{Ag^{+} + e^{-} -&gt; Ag^{0}}\]</span></td>
+</tr>
+<tr class="odd">
+<td>Moyenne</td>
+<td><span class="math display">\[\ce{Cu^{2+} + 2e^{-} -&gt; Cu^{0}}\]</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><span class="math display">\[\ce{2H^{+} + 2e^{-} -&gt; H2}\]</span></td>
+</tr>
+<tr class="odd">
+<td>Faible</td>
+<td><span class="math display">\[\ce{Zn^{2+} + 2e^{-} -&gt; Zn^{0}}\]</span></td>
+</tr>
+</tbody>
+</table>
+<p>Ce petit tableau devrait nous permettre de prévoir quelle est la réaction spontanée entre le zinc métallique <span class="math inline">\(\ce{Zn^{0}}\)</span> et l’ion argent <span class="math inline">\(\ce{Ag^{+}}\)</span>…</p>
+<p>Dans la pratique, on dispose d’une liste plus étoffée, appelée <strong>série électrochimique</strong>, qui permet de prédire quelle sera la réaction spontanée entre deux espèces sans devoir faire l’expérience pratique.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Dans <span class="math inline">\(\ce{Fe^0 + 2HCl -&gt; FeCl2 + H2}\)</span>, identifiez l’oxydant et le réducteur en justifiant par les d.o.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></li>
+<li>Le magnésium réagit avec le dioxygène : <span class="math inline">\(\ce{2Mg + O2 -&gt; 2MgO}\)</span>. Écrivez les deux demi-réactions.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></li>
+<li>Dans <span class="math inline">\(\ce{Fe^{3+} + Sn^{2+} -&gt; Fe^{2+} + Sn^{4+}}\)</span>, quel élément est oxydé ? Quel élément est réduit ?<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></li>
+<li>La réaction <span class="math inline">\(\ce{CO2 + H2O -&gt; H2CO3}\)</span> est-elle une oxydoréduction ? Justifiez par les d.o.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></li>
+</ol>
+<hr>
+</section>
+</section>
+</section>
+<section id="oxydo-reduction-serie-electrochimique" class="level3" data-number="7.0.3">
+<h3 data-number="7.0.3" class="anchored" data-anchor-id="oxydo-reduction-serie-electrochimique"><span class="header-section-number">7.0.3</span> La série électrochimique</h3>
+<p>La règle du gamma et la spontanéité</p>
+<p>La série électrochimique classe les couples rédox par potentiel de réduction croissant. La <strong>règle du gamma</strong> permet de prédire si une réaction entre deux couples est spontanée :</p>
+<p><strong>Proximal —</strong> Le meilleur réducteur (potentiel le plus bas, en bas à gauche de la série) réagit spontanément avec le meilleur oxydant (potentiel le plus élevé, en haut à droite). On dessine un <span class="math inline">\(\gamma\)</span> entre les deux demi-réactions pour visualiser le sens spontané.</p>
+<p>Exemple : entre <span class="math inline">\(\ce{Zn^{2+}/Zn^{0}}\)</span> (<span class="math inline">\(E^\circ = -0{,}76\ \text{V}\)</span>) et <span class="math inline">\(\ce{Cu^{2+}/Cu^{0}}\)</span> (<span class="math inline">\(E^\circ = +0{,}34\ \text{V}\)</span>) :</p>
+<ul>
+<li><span class="math inline">\(\ce{Zn^{0}}\)</span> est le meilleur réducteur — il s’oxyde.</li>
+<li><span class="math inline">\(\ce{Cu^{2+}}\)</span> est le meilleur oxydant — il se réduit.</li>
+<li>La réaction spontanée est donc :</li>
+</ul>
+<p><span class="math display">\[\ce{Zn^{0} + Cu^{2+} -&gt; Zn^{2+} + Cu^{0}}\]</span></p>
+<p>Si la règle du gamma n’est pas respectée, la réaction n’est pas spontanée — elle nécessiterait un apport d’énergie extérieure (ce sera précisément le principe de l’électrolyse, étudiée plus loin dans ce chapitre).</p>
+<p><strong>Conception courante :</strong> On croit parfois que tous les métaux réagissent avec tous les acides ou tous les ions métalliques. La série électrochimique montre que ce n’est pas le cas : chaque couple possède une tendance précise et mesurable à céder ou capter des électrons.</p>
+<p><strong>Analogie :</strong> Imaginez un classement de sportifs par niveau. Lors d’un duel, c’est toujours le mieux classé qui l’emporte. La série électrochimique classe les couples rédox selon leur tendance à capter des électrons — et prédit qui “gagne” face à qui. Limite : dans un tournoi sportif, le résultat peut varier selon le jour — en chimie, sous les conditions standard, le résultat est déterminé uniquement par les potentiels, sans exception.</p>
+<p><strong>Formalisation IUPAC :</strong> La <em>série électrochimique</em> est un classement de demi-réactions de réduction, accompagnées de leur <em>potentiel standard de réduction</em> <span class="math inline">\(E^\circ\)</span> exprimé en volts, mesuré par rapport à l’électrode standard à hydrogène (<span class="math inline">\(E^\circ = 0{,}00\ \text{V}\)</span> par convention).</p>
+<ul>
+<li>Plus <span class="math inline">\(E^\circ\)</span> est <strong>élevé</strong> : l’espèce est un bon <strong>oxydant</strong> — elle se réduit facilement.</li>
+<li>Plus <span class="math inline">\(E^\circ\)</span> est <strong>bas</strong> : l’espèce est un bon <strong>réducteur</strong> — elle s’oxyde facilement.</li>
+</ul>
+<p><strong>R2 — Bootstrapping :</strong> Nous utilisons ici la notion de potentiel électrique standard <span class="math inline">\(E^\circ\)</span>, dont la signification physique complète sera approfondie plus loin dans ce chapitre, lorsque nous aborderons les piles. Pour l’instant, retenez qu’il s’agit d’une mesure de la tendance d’un couple à capter des électrons.</p>
+<p><strong>Au niveau particulaire :</strong> Chaque demi-réaction est réversible. La direction effectivement observée dépend du partenaire. Lorsque deux couples sont mis en présence, c’est le réducteur du couple de <span class="math inline">\(E^\circ\)</span> le plus <em>bas</em> qui cède ses électrons à l’oxydant du couple de <span class="math inline">\(E^\circ\)</span> le plus <em>élevé</em>.</p>
+<p><strong>Remarque importante :</strong> <span class="math inline">\(\ce{H+}\)</span> et <span class="math inline">\(\ce{H3O+}\)</span> correspondent à la même demi-réaction (<span class="math inline">\(E^\circ = 0{,}00\ \text{V}\)</span>) — les deux notations sont strictement équivalentes.</p>
+<p><strong>Représentation symbolique :</strong> Extrait de la série électrochimique :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Demi-réaction de réduction</th>
+<th><span class="math inline">\(E^\circ\)</span> (V)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\ce{F2 + 2e- -&gt; 2F-}\)</span></td>
+<td><span class="math inline">\(+2{,}87\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{Cl2 + 2e- -&gt; 2Cl-}\)</span></td>
+<td><span class="math inline">\(+1{,}36\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{Ag+ + e- -&gt; Ag^0}\)</span></td>
+<td><span class="math inline">\(+0{,}80\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{Cu^{2+} + 2e- -&gt; Cu^0}\)</span></td>
+<td><span class="math inline">\(+0{,}34\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{2H+ + 2e- -&gt; H2}\)</span></td>
+<td><span class="math inline">\(0{,}00\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{Fe^{2+} + 2e- -&gt; Fe^0}\)</span></td>
+<td><span class="math inline">\(-0{,}44\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{Zn^{2+} + 2e- -&gt; Zn^0}\)</span></td>
+<td><span class="math inline">\(-0{,}76\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ce{Mg^{2+} + 2e- -&gt; Mg^0}\)</span></td>
+<td><span class="math inline">\(-2{,}37\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\ce{Li+ + e- -&gt; Li^0}\)</span></td>
+<td><span class="math inline">\(-3{,}04\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Dans la série, quel métal est le meilleur réducteur parmi <span class="math inline">\(\ce{Fe}\)</span>, <span class="math inline">\(\ce{Zn}\)</span>, <span class="math inline">\(\ce{Cu}\)</span> et <span class="math inline">\(\ce{Ag}\)</span> ?<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></li>
+<li>Le cuivre peut-il réagir avec une solution d’acide chlorhydrique ? Justifiez par les potentiels.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></li>
+<li>Le zinc réagit-il avec une solution de <span class="math inline">\(\ce{AgNO3}\)</span> ?<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></li>
+<li>Classez les oxydants suivants du plus faible au plus fort : <span class="math inline">\(\ce{Fe^{2+}}\)</span>, <span class="math inline">\(\ce{Cl2}\)</span>, <span class="math inline">\(\ce{Cu^{2+}}\)</span>, <span class="math inline">\(\ce{H+}\)</span>.<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a></li>
+</ol>
+<hr>
+<section id="la-règle-du-gamma-et-prédiction-de-favorabilité-spontanéité" class="level4" data-number="7.0.3.1">
+<h4 data-number="7.0.3.1" class="anchored" data-anchor-id="la-règle-du-gamma-et-prédiction-de-favorabilité-spontanéité"><span class="header-section-number">7.0.3.1</span> La règle du gamma et prédiction de favorabilité (spontanéité)</h4>
+<p><strong>Conception courante :</strong> On pense parfois que la règle du gamma est une loi universelle indépendante du format de la série utilisée. Son application graphique dépend en réalité de l’orientation de la série fournie — il faut toujours vérifier si les potentiels sont classés de haut en bas ou de bas en haut avant de tracer le gamma.</p>
+<p><strong>Formalisation IUPAC :</strong> Une réaction rédox est spontanée si et seulement si la <em>force électromotrice</em> standard est positive :</p>
+<p><span class="math display">\[\Delta V^\circ = E^\circ_{\text{cathode}} - E^\circ_{\text{anode}} &gt; 0\]</span></p>
+<p>où <span class="math inline">\(E^\circ_{\text{cathode}}\)</span> est le potentiel du couple qui se réduit (l’oxydant) et <span class="math inline">\(E^\circ_{\text{anode}}\)</span> est le potentiel du couple qui s’oxyde (le réducteur).</p>
+<p><strong>Au niveau particulaire :</strong> Lors d’un transfert d’électrons spontané, les électrons quittent le réducteur — dont le couple possède le <span class="math inline">\(E^\circ\)</span> le plus bas — pour rejoindre l’oxydant — dont le couple possède le <span class="math inline">\(E^\circ\)</span> le plus élevé. Ce mouvement est thermodynamiquement favorable : il correspond à une diminution de l’énergie libre du système. Si le sens est inversé, le transfert ne se produit pas spontanément.</p>
+<p><strong>Représentation symbolique — la règle du gamma :</strong></p>
+<p>On repère les deux couples sur la série électrochimique et on relie graphiquement l’oxydant (haut) au réducteur (bas) par un trait en forme de <span class="math inline">\(\gamma\)</span> :</p>
+<p><span class="math display">\[\text{Ox}_1 \text{ (haut)} + \text{Red}_2 \text{ (bas)}
+\longrightarrow \text{Red}_1 + \text{Ox}_2 \quad \text{(spontané)}\]</span></p>
+<p><strong>Attention :</strong> Certaines éditions de la série électrochimique présentent les potentiels en ordre inverse (meilleurs réducteurs en haut). Dans ce cas, la règle du gamma s’applique en miroir. Vérifiez toujours l’orientation de la série fournie avant d’appliquer la règle graphique.</p>
+<p><strong>Exemple travaillé — entre <span class="math inline">\(\ce{Zn}\)</span> et <span class="math inline">\(\ce{H3O+}\)</span> :</strong></p>
+<ul>
+<li><span class="math inline">\(E^\circ(\ce{Zn^{2+}/Zn}) = -0{,}76\ \text{V}\)</span> → Zn est le réducteur (anode)</li>
+<li><span class="math inline">\(E^\circ(\ce{2H+/H2}) = 0{,}00\ \text{V}\)</span> → <span class="math inline">\(\ce{H3O+}\)</span> est l’oxydant (cathode)</li>
+</ul>
+<p><span class="math display">\[\Delta V^\circ = 0{,}00 - (-0{,}76) = +0{,}76\ \text{V} &gt; 0
+\quad \text{spontané}\]</span></p>
+<p><span class="math display">\[\ce{Zn^0 + 2H3O+ -&gt; Zn^{2+} + H2 + 2H2O}\]</span></p>
+<p><strong>Exemple travaillé — entre <span class="math inline">\(\ce{Cu}\)</span> et <span class="math inline">\(\ce{H+}\)</span> :</strong></p>
+<p><span class="math display">\[\Delta V^\circ = 0{,}00 - 0{,}34 = -0{,}34\ \text{V} &lt; 0
+\quad \text{non spontané}\]</span></p>
+<p>Le cuivre ne réagit pas avec un acide dilué.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>La réaction entre <span class="math inline">\(\ce{Fe^0}\)</span> et <span class="math inline">\(\ce{Cu^{2+}}\)</span> est-elle spontanée ? Calculez <span class="math inline">\(\Delta V^\circ\)</span>.<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a></li>
+<li>La réaction entre <span class="math inline">\(\ce{Mg^{2+}}\)</span> et <span class="math inline">\(\ce{Zn^0}\)</span> est-elle spontanée ? Justifiez.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a></li>
+<li>Entre <span class="math inline">\(\ce{F2}\)</span> et <span class="math inline">\(\ce{Ag^0}\)</span>, prédisez la spontanéité et écrivez l’équation globale si la réaction a lieu.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></li>
+<li>Peut-on stocker une solution de <span class="math inline">\(\ce{CuSO4}\)</span> dans un récipient en zinc ? Justifiez.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a></li>
+<li>Expliquez pourquoi le cuivre résiste à <span class="math inline">\(\ce{HCl}\)</span> mais réagit avec <span class="math inline">\(\ce{HNO3}\)</span> concentré (<span class="math inline">\(E^\circ(\ce{NO3-/NO}) = +0{,}96\ \text{V}\)</span>).[^19]</li>
+</ol>
+<dl>
+<dt>[^19]: <span class="math inline">\(E^\circ(\ce{H+/H2}) = 0{,}00\ \text{V} &lt; +0{,}34\ \text{V}\)</span></dt>
+<dd>
+<span class="math inline">\(\ce{HCl}\)</span> ne peut pas oxyder Cu. <span class="math inline">\(E^\circ(\ce{NO3-/NO}) =
++0{,}96\ \text{V} &gt; +0{,}34\ \text{V}\)</span> : <span class="math inline">\(\ce{HNO3}\)</span> peut oxyder Cu.
+</dd>
+</dl>
+<hr>
+</section>
+</section>
+<section id="oxydo-reduction-equilibrage" class="level3" data-number="7.0.4">
+<h3 data-number="7.0.4" class="anchored" data-anchor-id="oxydo-reduction-equilibrage"><span class="header-section-number">7.0.4</span> Équilibrage des réactions rédox</h3>
+<p><strong>Conception courante :</strong> On croit souvent qu’équilibrer une réaction rédox se fait comme une réaction ordinaire — en ajustant les atomes. Les réactions rédox exigent une étape supplémentaire indispensable : <em>égaliser les électrons échangés</em> avant d’équilibrer les atomes restants. Sans cette étape, l’équation est fausse même si les atomes semblent équilibrés.</p>
+<p><strong>Au niveau macroscopique :</strong> Lorsque l’on verse une solution violette de permanganate de potassium <span class="math inline">\(\ce{KMnO4}\)</span> dans une solution d’acide chlorhydrique <span class="math inline">\(\ce{HCl}\)</span>, la solution se décolore et un gaz jaune-verdâtre de dichlore <span class="math inline">\(\ce{Cl2}\)</span> se dégage. Ce changement observable — disparition de la couleur violette, apparition du gaz — signale un transfert d’électrons. L’équilibrage correct de cette réaction rédox est indispensable pour calculer les quantités de matière mises en jeu.</p>
+<p><strong>Formalisation IUPAC :</strong> Méthode des demi-réactions en quatre étapes :</p>
+<ol type="1">
+<li>Attribuer les d.o. à chaque élément — repérer ceux qui changent.</li>
+<li>Écrire les deux demi-réactions avec les électrons échangés.</li>
+<li>Multiplier chaque demi-réaction par un coefficient pour égaliser le nombre d’électrons.</li>
+<li>Additionner les deux demi-réactions et équilibrer les atomes restants par tâtonnement.</li>
+</ol>
+<p><strong>Au niveau particulaire :</strong> Le principe fondamental est la <em>conservation des électrons</em> : chaque électron perdu par le réducteur est capté par l’oxydant. Si ce bilan n’est pas respecté, l’équation viole la conservation de la charge.</p>
+<p><strong>Représentation symbolique :</strong></p>
+<p><strong>Exemple travaillé —</strong> <span class="math inline">\(\ce{KMnO4 + HCl + H2SO4 -&gt; K2SO4 + MnSO4 + Cl2 + H2O}\)</span></p>
+<p>Étape 1 — d.o. : - Mn : <span class="math inline">\(+7 \to +2\)</span> (gain de 5 électrons → réduction) - Cl : <span class="math inline">\(-1 \to 0\)</span> (perte de 1 électron → oxydation)</p>
+<p>Étape 2 — demi-réactions : <span class="math display">\[\ce{MnO4- + 8H+ + 5e- -&gt; Mn^{2+} + 4H2O}\]</span> <span class="math display">\[\ce{2Cl- -&gt; Cl2 + 2e-}\]</span></p>
+<p>Étape 3 — égalisation (10 électrons échangés, <span class="math inline">\(\times 2\)</span> et <span class="math inline">\(\times 5\)</span>) : <span class="math display">\[\ce{2MnO4- + 16H+ + 10e- -&gt; 2Mn^{2+} + 8H2O}\]</span> <span class="math display">\[\ce{10Cl- -&gt; 5Cl2 + 10e-}\]</span></p>
+<p>Étape 4 — équation ionique globale : <span class="math display">\[\ce{2MnO4- + 16H+ + 10Cl- -&gt; 2Mn^{2+} + 5Cl2 + 8H2O}\]</span></p>
+<p>Le réducteur est <span class="math inline">\(\ce{Cl-}\)</span>, l’oxydant est <span class="math inline">\(\ce{MnO4-}\)</span>.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Équilibrez : <span class="math inline">\(\ce{Fe^{3+} + Sn^{2+} -&gt; Fe^{2+} + Sn^{4+}}\)</span><a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a></li>
+<li>Équilibrez : <span class="math inline">\(\ce{H2S + HNO3 -&gt; NO + S + H2O}\)</span><a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a></li>
+<li>Équilibrez : <span class="math inline">\(\ce{H2S + HCl + K2Cr2O7 -&gt; KCl + CrCl3 + H2O + S}\)</span><a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a></li>
+<li>Équilibrez : <span class="math inline">\(\ce{I- + NO2- + H+ -&gt; I2 + NO + H2O}\)</span><a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a></li>
+</ol>
+<hr>
+</section>
+<section id="oxydo-reduction-combustion" class="level3" data-number="7.0.5">
+<h3 data-number="7.0.5" class="anchored" data-anchor-id="oxydo-reduction-combustion"><span class="header-section-number">7.0.5</span> La combustion complète et partielle</h3>
+<p><strong>Conception courante :</strong> On pense souvent que “brûler” signifie simplement chauffer fortement. La combustion est en réalité une réaction d’oxydoréduction : le combustible est le réducteur (réservoir d’électrons), le dioxygène est l’oxydant. Supprimer l’un des trois éléments du triangle du feu — combustible, comburant, énergie d’amorçage — arrête immédiatement la combustion.</p>
+<p><strong>Analogie :</strong> Le triangle du feu illustre les trois conditions nécessaires à la combustion. Limite : cette image macroscopique ne décrit pas les transferts d’électrons à l’échelle particulaire — elle reste un outil de mémoire, pas un modèle chimique.</p>
+<p><strong>Formalisation IUPAC :</strong> La <em>combustion complète</em> d’un composé ne contenant que C, H et O produit exclusivement <span class="math inline">\(\ce{CO2}\)</span> et <span class="math inline">\(\ce{H2O}\)</span>, à condition que le dioxygène soit en excès. Méthode de construction :</p>
+<ul>
+<li>Chaque C du combustible → un <span class="math inline">\(\ce{CO2}\)</span></li>
+<li>Chaque paire H du combustible → un <span class="math inline">\(\ce{H2O}\)</span></li>
+<li>On équilibre <span class="math inline">\(\ce{O2}\)</span> en dernier</li>
+</ul>
+<p><strong>Au niveau particulaire :</strong> Le carbone passe d’un d.o. négatif ou nul dans le combustible à <span class="math inline">\(+4\)</span> dans <span class="math inline">\(\ce{CO2}\)</span> — il est oxydé. L’oxygène passe de <span class="math inline">\(0\)</span> dans <span class="math inline">\(\ce{O2}\)</span> à <span class="math inline">\(-2\)</span> — il est réduit. La combustion est donc bien une réaction rédox.</p>
+<p><strong>Représentation symbolique :</strong></p>
+<p><span class="math display">\[\ce{CH4 + 2O2 -&gt; CO2 + 2H2O} \quad \text{(méthane)}\]</span></p>
+<p><span class="math display">\[\ce{2C4H10 + 13O2 -&gt; 8CO2 + 10H2O} \quad \text{(butane)}\]</span></p>
+<p><span class="math display">\[\ce{2C8H18 + 25O2 -&gt; 16CO2 + 18H2O} \quad \text{(essence)}\]</span></p>
+<p><span class="math display">\[\ce{C2H6O + 3O2 -&gt; 2CO2 + 3H2O} \quad \text{(éthanol)}\]</span></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Écrivez et équilibrez la combustion complète du propane <span class="math inline">\(\ce{C3H8}\)</span>.<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a></li>
+<li>Écrivez et équilibrez la combustion complète du mazout <span class="math inline">\(\ce{C19H40}\)</span>.<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a></li>
+<li>Quelle est la masse de <span class="math inline">\(\ce{CO2}\)</span> produite par la combustion complète de <span class="math inline">\(46{,}0\ \text{g}\)</span> d’éthanol <span class="math inline">\(\ce{C2H6O}\)</span> (<span class="math inline">\(M = 46{,}0\ \text{g/mol}\)</span>) ?<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a></li>
+<li>Dans la combustion complète du méthane, quel est le d.o. du carbone dans <span class="math inline">\(\ce{CH4}\)</span> et dans <span class="math inline">\(\ce{CO2}\)</span> ?<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a></li>
+</ol>
+<hr>
+</section>
+<section id="oxydo-reduction-corrosion" class="level3" data-number="7.0.6">
+<h3 data-number="7.0.6" class="anchored" data-anchor-id="oxydo-reduction-corrosion"><span class="header-section-number">7.0.6</span> La corrosion et sa protection</h3>
+<p><strong>Conception courante :</strong> On croit souvent que le fer rouille simplement “au contact de l’air”. L’expérience montre que ni l’eau seule ni l’oxygène seul ne suffisent — les deux doivent être présents simultanément. La corrosion est une réaction électrochimique spontanée, pas une simple dégradation physique.</p>
+<p><strong>Analogie :</strong> La rouille fonctionne comme une pile microscopique naturelle : deux zones du métal jouent le rôle d’anode et de cathode, et les électrons circulent à travers le métal lui-même. L’eau salée accélère le processus car elle conduit mieux les ions. Limite : contrairement à une vraie pile, on ne peut pas “débrancher” la corrosion — elle progresse tant que les deux réactifs sont présents.</p>
+<p><strong>Formalisation IUPAC :</strong> En présence simultanée d’eau et de dioxygène dissous, le fer subit une oxydation spontanée selon deux demi-réactions.</p>
+<p><strong>Au niveau particulaire :</strong></p>
+<p>Oxydation (anode) : <span class="math display">\[\ce{Fe^0 -&gt; Fe^{2+} + 2e-} \quad E^\circ = -0{,}44\ \text{V}\]</span></p>
+<p>Réduction (cathode) : <span class="math display">\[\ce{O2 + 2H2O + 4e- -&gt; 4OH-} \quad E^\circ = +0{,}40\ \text{V}\]</span></p>
+<p>Réaction globale : <span class="math display">\[\ce{2Fe^0 + O2 + 2H2O -&gt; 2Fe(OH)2}\]</span></p>
+<p><span class="math display">\[\Delta V^\circ = +0{,}40 - (-0{,}44) = +0{,}84\ \text{V} &gt; 0
+\quad \text{spontané}\]</span></p>
+<p>Les ions <span class="math inline">\(\ce{Fe^{2+}}\)</span> se transforment ensuite en rouille (<span class="math inline">\(\ce{Fe2O3 \cdot 3H2O}\)</span>), qui est poreuse — elle laisse passer l’eau et l’oxygène, favorisant la corrosion en profondeur.</p>
+<p><strong>La protection contre la corrosion :</strong></p>
+<p>Le principe : trouver un métal qui s’oxyde <em>à la place</em> du fer, avec un <span class="math inline">\(E^\circ\)</span> plus bas que <span class="math inline">\(E^\circ(\ce{Fe^{2+}/Fe}) = -0{,}44\ \text{V}\)</span>.</p>
+<p>Le zinc (<span class="math inline">\(E^\circ = -0{,}76\ \text{V}\)</span>) réagit spontanément :</p>
+<p><span class="math display">\[\ce{Fe^{2+} + Zn^0 -&gt; Fe^0 + Zn^{2+}}
+\quad \Delta V^\circ = +0{,}32\ \text{V}\]</span></p>
+<p>Deux techniques courantes :</p>
+<ul>
+<li><strong>Galvanisation</strong> : trempage des objets en fer dans du zinc fondu.</li>
+<li><strong>Anode sacrificielle</strong> : un bloc de zinc ou de magnésium soudé à la pièce à protéger — remplacé périodiquement.</li>
+</ul>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Pourquoi la corrosion du fer est-elle plus rapide dans l’eau de mer que dans l’eau douce ?<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a></li>
+<li>Le magnésium peut-il servir d’anode sacrificielle pour le fer ? Justifiez par les potentiels.<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a></li>
+<li>Pourquoi la rouille ne protège-t-elle pas le fer, contrairement à l’oxyde d’aluminium qui protège l’aluminium ?<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a></li>
+<li>Un objet en fer est recouvert d’étain (<span class="math inline">\(E^\circ(\ce{Sn^{2+}/Sn}) = -0{,}14\ \text{V}\)</span>). Si la couche est rayée, l’étain protège-t-il le fer ?<a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a></li>
+</ol>
+<hr>
+</section>
+<section id="oxydo-reduction-pile-galvanique" class="level3" data-number="7.0.7">
+<h3 data-number="7.0.7" class="anchored" data-anchor-id="oxydo-reduction-pile-galvanique"><span class="header-section-number">7.0.7</span> La pile galvanique</h3>
+<blockquote class="blockquote">
+<p><strong>Dans l’histoire…</strong> En 1800, <strong>Alessandro Volta</strong> construit la toute première pile en empilant des disques de zinc et de cuivre séparés par des tissus imbibés de saumure — la première source de courant électrique continu de l’histoire. Un tiers de siècle plus tard, <strong>Michael Faraday (1833-1834)</strong> quantifie précisément la relation entre charge électrique et matière transformée lors d’une électrolyse, et invente au passage tout le vocabulaire que nous employons ici : anode, cathode, électrode, ion.</p>
+</blockquote>
+<p><span id="hist-oxydo-reduction-volta-faraday-pile"></span></p>
+<section id="niveau-macroscopique-ce-que-lon-observe" class="level4" data-number="7.0.7.1">
+<h4 data-number="7.0.7.1" class="anchored" data-anchor-id="niveau-macroscopique-ce-que-lon-observe"><span class="header-section-number">7.0.7.1</span> Niveau macroscopique — ce que l’on observe</h4>
+<p>Reprenons l’expérience vue plus haut dans ce chapitre : une lame de zinc plongée dans une solution de sulfate de cuivre. Le zinc se dissout, du cuivre métallique se dépose sur la lame, et la solution bleue pâlit. La réaction est spontanée — mais toute l’énergie est dissipée en chaleur dans la solution. Rien n’est récupérable.</p>
+<p>Pour <em>capter</em> cette énergie, il suffit d’une idée : <strong>séparer les deux demi-réactions dans l’espace</strong>. On place le zinc dans un compartiment et le cuivre dans un autre. Les électrons ne peuvent plus passer directement du zinc aux ions <span class="math inline">\(\ce{Cu^{2+}}\)</span> — ils sont forcés d’emprunter un fil métallique reliant les deux compartiments. Ce flux d’électrons dans le fil, c’est le courant électrique.</p>
+<p>Un dispositif fonctionnant sur ce principe s’appelle une <strong>pile galvanique</strong> (ou cellule électrochimique).</p>
+</section>
+<section id="niveau-particulaire-ce-qui-se-passe-entre-les-particules" class="level4" data-number="7.0.7.2">
+<h4 data-number="7.0.7.2" class="anchored" data-anchor-id="niveau-particulaire-ce-qui-se-passe-entre-les-particules"><span class="header-section-number">7.0.7.2</span> Niveau particulaire — ce qui se passe entre les particules</h4>
+<p>Chaque compartiment constitue une <strong>demi-pile</strong> : une électrode métallique plongeant dans une solution contenant les ions correspondants.</p>
+<ul>
+<li>Dans la demi-pile de <strong>zinc</strong> : les atomes <span class="math inline">\(\ce{Zn^{0}}\)</span> s’oxydent en libérant deux électrons. Les ions <span class="math inline">\(\ce{Zn^{2+}}\)</span> passent en solution.</li>
+</ul>
+<p><span class="math display">\[\ce{Zn^{0} -&gt; Zn^{2+} + 2e^{-}} \quad \text{(oxydation)}\]</span></p>
+<ul>
+<li>Dans la demi-pile de <strong>cuivre</strong> : les ions <span class="math inline">\(\ce{Cu^{2+}}\)</span> captent les électrons arrivant par le fil et se déposent sous forme de cuivre métallique.</li>
+</ul>
+<p><span class="math display">\[\ce{Cu^{2+} + 2e^{-} -&gt; Cu^{0}} \quad \text{(réduction)}\]</span></p>
+<p>Les électrons circulent donc du zinc vers le cuivre dans le circuit extérieur.</p>
+<p><strong>Attention :</strong> une idée reçue fréquente consiste à croire que le courant circule dans le même sens que les électrons. C’est l’inverse. Par convention historique, le <strong>sens conventionnel du courant</strong> est opposé au sens de déplacement des électrons : le courant va du cuivre (pôle <span class="math inline">\(+\)</span>) vers le zinc (pôle <span class="math inline">\(-\)</span>) dans le circuit extérieur.</p>
+</section>
+<section id="le-pont-salin-pourquoi-est-il-indispensable" class="level4" data-number="7.0.7.3">
+<h4 data-number="7.0.7.3" class="anchored" data-anchor-id="le-pont-salin-pourquoi-est-il-indispensable"><span class="header-section-number">7.0.7.3</span> Le pont salin — pourquoi est-il indispensable ?</h4>
+<p>Sans connexion entre les deux solutions, la demi-pile de zinc s’accumulerait en charges positives (<span class="math inline">\(\ce{Zn^{2+}}\)</span> produits) et la demi-pile de cuivre en charges négatives (appauvrissement en <span class="math inline">\(\ce{Cu^{2+}}\)</span>). La neutralité électrique serait rompue et la pile s’arrêterait immédiatement.</p>
+<p>Le <strong>pont salin</strong> — un tube contenant un gel ou une solution de sel inerte (souvent <span class="math inline">\(\ce{KNO3}\)</span> ou <span class="math inline">\(\ce{KCl}\)</span>) — relie les deux compartiments. Il permet aux ions de migrer d’un compartiment à l’autre pour maintenir l’électroneutralité, sans laisser les solutions se mélanger.</p>
+<ul>
+<li>Les <strong>anions</strong> du pont migrent vers la demi-pile de zinc (pour compenser l’excès de <span class="math inline">\(\ce{Zn^{2+}}\)</span>).</li>
+<li>Les <strong>cations</strong> du pont migrent vers la demi-pile de cuivre (pour compenser le déficit en <span class="math inline">\(\ce{Cu^{2+}}\)</span>).</li>
+</ul>
+<p>Sans pont salin, pas de courant. C’est une pièce aussi essentielle que le fil métallique.</p>
+</section>
+<section id="les-électrodes-anode-et-cathode" class="level4" data-number="7.0.7.4">
+<h4 data-number="7.0.7.4" class="anchored" data-anchor-id="les-électrodes-anode-et-cathode"><span class="header-section-number">7.0.7.4</span> Les électrodes — anode et cathode</h4>
+<p>Par définition :</p>
+<ul>
+<li>L’<strong>anode</strong> est l’électrode où se produit l’<strong>oxydation</strong>. Dans une pile, elle est chargée <strong>négativement</strong> (pôle <span class="math inline">\(-\)</span>) : c’est de là que partent les électrons.</li>
+<li>La <strong>cathode</strong> est l’électrode où se produit la <strong>réduction</strong>. Dans une pile, elle est chargée <strong>positivement</strong> (pôle <span class="math inline">\(+\)</span>) : c’est là qu’arrivent les électrons.</li>
+</ul>
+<p>Moyen mnémotechnique : <strong>CaRé</strong> — la <strong>Ca</strong>thode est le siège de la <strong>Ré</strong>duction.</p>
+</section>
+<section id="niveau-symbolique-la-pile-daniell" class="level4" data-number="7.0.7.5">
+<h4 data-number="7.0.7.5" class="anchored" data-anchor-id="niveau-symbolique-la-pile-daniell"><span class="header-section-number">7.0.7.5</span> Niveau symbolique — la pile Daniell</h4>
+<p>La pile Daniell, utilisée dans les premières installations télégraphiques, est le modèle historique de la pile galvanique. On rappelle simplement ici ses caractéristiques essentielles :</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 15%">
+<col style="width: 38%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Électrode</th>
+<th>Rôle</th>
+<th>Demi-réaction</th>
+<th>Signe</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Zinc dans <span class="math inline">\(\ce{ZnSO4}\)</span> (aq)</td>
+<td>Anode</td>
+<td><span class="math inline">\(\ce{Zn^{0} -&gt; Zn^{2+} + 2e^{-}}\)</span></td>
+<td><span class="math inline">\(-\)</span></td>
+</tr>
+<tr class="even">
+<td>Cuivre dans <span class="math inline">\(\ce{CuSO4}\)</span> (aq)</td>
+<td>Cathode</td>
+<td><span class="math inline">\(\ce{Cu^{2+} + 2e^{-} -&gt; Cu^{0}}\)</span></td>
+<td><span class="math inline">\(+\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[\ce{Zn^{0} + Cu^{2+} -&gt; Zn^{2+} + Cu^{0}} \qquad \Delta V^\circ = +1{,}10\ \text{V}\]</span></p>
+<p>La pile s’arrête lorsque tout le zinc est consumé ou que tous les ions <span class="math inline">\(\ce{Cu^{2+}}\)</span> ont été réduits.</p>
+<p><strong>R2 — Bootstrapping :</strong> La notation condensée d’une pile sous forme de diagramme (ex. <span class="math inline">\(\ce{Zn | Zn^{2+} || Cu^{2+} | Cu}\)</span>) est une convention IUPAC que nous rencontrerons dans des ouvrages avancés. Elle ne sera pas formalisée ici.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Dans la pile Daniell, dans quel sens migrent les cations <span class="math inline">\(\ce{K^{+}}\)</span> du pont salin ? Justifiez.<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a></li>
+<li>Une pile est construite avec une lame de fer dans <span class="math inline">\(\ce{FeSO4}\)</span> et une lame d’argent dans <span class="math inline">\(\ce{AgNO3}\)</span>. (<span class="math inline">\(E^\circ(\ce{Fe^{2+}/Fe^{0}}) = -0{,}44\ \text{V}\)</span>, <span class="math inline">\(E^\circ(\ce{Ag^{+}/Ag^{0}}) = +0{,}80\ \text{V}\)</span>). Identifiez l’anode et la cathode, écrivez les deux demi-réactions et la réaction globale.<a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a></li>
+<li>Vrai ou faux : dans une pile, les électrons circulent de la cathode vers l’anode dans le fil métallique. Justifiez.<a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a></li>
+<li>Dans la pile Daniell, dans quel sens migrent les anions <span class="math inline">\(\ce{SO4^{2-}}\)</span> dans le pont salin ? Justifiez.<a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a></li>
+<li>Dans une pile, pourquoi le pont salin est-il aussi indispensable que le fil métallique ?<a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a></li>
+</ol>
+<hr>
+</section>
+<section id="la-force-électromotrice-standard" class="level4" data-number="7.0.7.6">
+<h4 data-number="7.0.7.6" class="anchored" data-anchor-id="la-force-électromotrice-standard"><span class="header-section-number">7.0.7.6</span> La force électromotrice standard</h4>
+<p>La <strong>force électromotrice</strong> (f.e.m.) d’une pile est la tension mesurable entre ses deux électrodes dans les conditions standard (concentrations de 1 mol/L, température de 25 <span class="math inline">\(^\circ\)</span>C, pression de 1 bar). Elle se calcule par :</p>
+<p><span class="math display">\[\Delta V^\circ = E^\circ_\text{cathode} - E^\circ_\text{anode}
+\]</span> {#eq:fem}</p>
+<p>où <span class="math inline">\(E^\circ_\text{cathode}\)</span> est le potentiel standard de réduction de l’électrode positive (où se produit la réduction) et <span class="math inline">\(E^\circ_\text{anode}\)</span> celui de l’électrode négative (où se produit l’oxydation).</p>
+<p><strong>Attention :</strong> une erreur fréquente consiste à intervertir cathode et anode dans ce calcul. Rappelons-nous : la cathode est toujours l’électrode de potentiel <em>plus élevé</em> — celle qui attire les électrons. La f.e.m. est toujours positive pour une pile spontanée.</p>
+<p>Pour la pile Daniell (<span class="math inline">\(\ce{Zn^{0} + Cu^{2+} -&gt; Zn^{2+} + Cu^{0}}\)</span>) :</p>
+<p><span class="math display">\[\Delta V^\circ = (+0{,}34) - (-0{,}76) = +1{,}10\ \text{V}\]</span></p>
+<p>Une f.e.m. positive confirme que la réaction est spontanée. Une f.e.m. négative signalerait une réaction non spontanée — ce qui correspond au cas de l’électrolyse.</p>
+</section>
+<section id="lien-avec-la-spontanéité" class="level4" data-number="7.0.7.7">
+<h4 data-number="7.0.7.7" class="anchored" data-anchor-id="lien-avec-la-spontanéité"><span class="header-section-number">7.0.7.7</span> Lien avec la spontanéité</h4>
+<p>Une f.e.m. positive (<span class="math inline">\(\Delta V^\circ &gt; 0\)</span>) confirme que la réaction est spontanée — c’est cohérent avec la règle du gamma vue plus haut dans ce chapitre. Les deux critères sont équivalents : si la règle du gamma est respectée, alors <span class="math inline">\(\Delta V^\circ &gt; 0\)</span>, et inversement.</p>
+<p>Si <span class="math inline">\(\Delta V^\circ &lt; 0\)</span>, la réaction n’est pas spontanée dans le sens écrit — elle le serait dans le sens inverse. Pour la forcer dans le sens non spontané, il faudrait imposer une tension extérieure supérieure à <span class="math inline">\(|\Delta V^\circ|\)</span> : c’est le principe de l’électrolyse (voir section suivante).</p>
+<blockquote class="blockquote">
+<p><strong>Dans l’histoire…</strong> La force électromotrice standard suppose des concentrations de 1 mol/L — une situation rare en pratique. En 1889, <strong>Walther Nernst</strong> généralise le calcul du potentiel d’électrode à des concentrations quelconques, permettant de prédire la spontanéité d’une réaction rédox dans des conditions réelles, non standard.</p>
+</blockquote>
+<p><span id="hist-oxydo-reduction-nernst-equation"></span></p>
+</section>
+<section id="exemple-complet" class="level4" data-number="7.0.7.8">
+<h4 data-number="7.0.7.8" class="anchored" data-anchor-id="exemple-complet"><span class="header-section-number">7.0.7.8</span> Exemple complet</h4>
+<p>Soit une pile construite à partir des couples <span class="math inline">\(\ce{Mg^{2+}/Mg^{0}}\)</span> (<span class="math inline">\(E^\circ = -2{,}37\ \text{V}\)</span>) et <span class="math inline">\(\ce{Ag^{+}/Ag^{0}}\)</span> (<span class="math inline">\(E^\circ = +0{,}80\ \text{V}\)</span>).</p>
+<ol type="1">
+<li>Le magnésium a le potentiel le plus bas : il s’oxyde → <strong>anode</strong>.</li>
+<li>L’argent a le potentiel le plus élevé : il se réduit → <strong>cathode</strong>.</li>
+<li>Demi-réactions :</li>
+</ol>
+<p><span class="math display">\[\ce{Mg^{0} -&gt; Mg^{2+} + 2e^{-}} \quad \text{(anode)}\]</span> <span class="math display">\[\ce{2Ag^{+} + 2e^{-} -&gt; 2Ag^{0}} \quad \text{(cathode)}\]</span></p>
+<ol start="4" type="1">
+<li>Réaction globale équilibrée :</li>
+</ol>
+<p><span class="math display">\[\ce{Mg^{0} + 2Ag^{+} -&gt; Mg^{2+} + 2Ag^{0}}\]</span></p>
+<ol start="5" type="1">
+<li>F.e.m. :</li>
+</ol>
+<p><span class="math display">\[\Delta V^\circ = (+0{,}80) - (-2{,}37) = +3{,}17\ \text{V}\]</span></p>
+<p>L’équilibrage stœchiométrique des électrons (ici, multiplier la demi-réaction de l’argent par 2) ne modifie pas les potentiels standard — ceux-ci sont des propriétés intensives, indépendantes des quantités.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Calculez la f.e.m. standard d’une pile construite avec les couples <span class="math inline">\(\ce{Zn^{2+}/Zn^{0}}\)</span> (<span class="math inline">\(E^\circ = -0{,}76\ \text{V}\)</span>) et <span class="math inline">\(\ce{Cl2/Cl^{-}}\)</span> (<span class="math inline">\(E^\circ = +1{,}36\ \text{V}\)</span>). Identifiez anode et cathode.<a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a></li>
+<li>Une pile a une f.e.m. de <span class="math inline">\(+0{,}46\ \text{V}\)</span>. L’une des électrodes est le couple <span class="math inline">\(\ce{Cu^{2+}/Cu^{0}}\)</span> (<span class="math inline">\(E^\circ = +0{,}34\ \text{V}\)</span>). Quel est le potentiel de l’autre couple, et joue-t-il le rôle d’anode ou de cathode ?<a href="#fn37" class="footnote-ref" id="fnref37" role="doc-noteref"><sup>37</sup></a></li>
+<li>La réaction <span class="math inline">\(\ce{Cu^{0} + Zn^{2+} -&gt; Cu^{2+} + Zn^{0}}\)</span> est-elle spontanée ? Calculez <span class="math inline">\(\Delta V^\circ\)</span> et concluez.<a href="#fn38" class="footnote-ref" id="fnref38" role="doc-noteref"><sup>38</sup></a></li>
+<li>L’équilibrage stœchiométrique des demi-réactions modifie-t-il la valeur de <span class="math inline">\(\Delta V^\circ\)</span> ? Expliquez en vous appuyant sur la notion de grandeur intensive.<a href="#fn39" class="footnote-ref" id="fnref39" role="doc-noteref"><sup>39</sup></a></li>
+</ol>
+<hr>
+<p>Les piles galvaniques du commerce obéissent aux mêmes principes que la pile Daniell, mais leurs électrodes et électrolytes sont choisis pour des raisons pratiques : compacité, tension stable, absence de liquide.</p>
+</section>
+<section id="la-pile-leclanché-pile-saline" class="level4" data-number="7.0.7.9">
+<h4 data-number="7.0.7.9" class="anchored" data-anchor-id="la-pile-leclanché-pile-saline"><span class="header-section-number">7.0.7.9</span> La pile Leclanché (pile saline)</h4>
+<p>La pile Leclanché, inventée en 1866, remplace les solutions liquides par des pâtes gélatineuses humides. On retient ici l’essentiel : électrolyte gélatineux (<span class="math inline">\(\ce{ZnCl2}\)</span> et <span class="math inline">\(\ce{NH4Cl}\)</span>), anode de zinc, cathode de <span class="math inline">\(\ce{MnO2}\)</span>, tension caractéristique d’environ 1,5 V. Son inconvénient principal est que l’enveloppe de zinc se perce lorsque la pile est épuisée.</p>
+</section>
+<section id="la-pile-alcaline" class="level4" data-number="7.0.7.10">
+<h4 data-number="7.0.7.10" class="anchored" data-anchor-id="la-pile-alcaline"><span class="header-section-number">7.0.7.10</span> La pile alcaline</h4>
+<p>La pile alcaline moderne fonctionne sur le même couple zinc/manganèse, mais avec un électrolyte basique (<span class="math inline">\(\ce{KOH}\)</span> concentré) qui améliore les performances et la durée de vie.</p>
+<p>Réaction globale :</p>
+<p><span class="math display">\[\ce{Zn^{0} + 2MnO2 + H2O -&gt; 2MnO(OH) + ZnO}\]</span></p>
+<p>Tension : 1,5 V — identique à la Leclanché, mais avec une énergie stockée nettement supérieure.</p>
+</section>
+<section id="la-pile-au-lithium" class="level4" data-number="7.0.7.11">
+<h4 data-number="7.0.7.11" class="anchored" data-anchor-id="la-pile-au-lithium"><span class="header-section-number">7.0.7.11</span> La pile au lithium</h4>
+<p>Les piles au lithium offrent la tension la plus élevée des piles usuelles, grâce au potentiel d’oxydation exceptionnel du lithium (<span class="math inline">\(E^\circ(\ce{Li^{+}/Li^{0}}) = -3{,}04\ \text{V}\)</span>).</p>
+<ul>
+<li><strong>Anode</strong> : <span class="math inline">\(\ce{Li^{0} -&gt; Li^{+} + e^{-}}\)</span></li>
+<li><strong>Cathode</strong> : réduction d’un oxyde métallique complexe (ex. chlorure de thionyle <span class="math inline">\(\ce{SOCl2}\)</span>)</li>
+</ul>
+<p>Tension caractéristique : 3 à 4 V selon la chimie choisie. Utilisées dans les montres, calculatrices et dispositifs médicaux implantables. Leur légèreté et leur haute densité d’énergie les rendent irremplaçables dans les applications portables.</p>
+<p><strong>R3 — Conception naïve :</strong> on croit souvent qu’une pile “contient de l’électricité” stockée comme de l’eau dans un réservoir. Ce n’est pas le cas : une pile contient des <em>réactifs chimiques</em> capables de produire spontanément des électrons lorsqu’on ferme le circuit. L’électricité n’est pas stockée — elle est <em>générée</em> au moment de l’utilisation.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>La pile alcaline et la pile Leclanché ont toutes deux une tension de 1,5 V mais des durées de vie très différentes. Expliquez en termes de quantité de réactifs.<a href="#fn40" class="footnote-ref" id="fnref40" role="doc-noteref"><sup>40</sup></a></li>
+<li>Pourquoi l’enveloppe de zinc de la pile Leclanché finit-elle par se percer avec le temps d’utilisation ?<a href="#fn41" class="footnote-ref" id="fnref41" role="doc-noteref"><sup>41</sup></a></li>
+<li>La pile au lithium offre 3 à 4 V contre 1,5 V pour la pile alcaline. Expliquez cette différence en termes de potentiels standard, sachant que <span class="math inline">\(E^\circ(\ce{Li^{+}/Li^{0}}) = -3{,}04\ \text{V}\)</span>.<a href="#fn42" class="footnote-ref" id="fnref42" role="doc-noteref"><sup>42</sup></a></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="oxydo-reduction-electrolyse" class="level3" data-number="7.0.8">
+<h3 data-number="7.0.8" class="anchored" data-anchor-id="oxydo-reduction-electrolyse"><span class="header-section-number">7.0.8</span> Électrolyse</h3>
+<section id="principe-forcer-une-réaction-non-spontanée" class="level4" data-number="7.0.8.1">
+<h4 data-number="7.0.8.1" class="anchored" data-anchor-id="principe-forcer-une-réaction-non-spontanée"><span class="header-section-number">7.0.8.1</span> Principe — forcer une réaction non spontanée</h4>
+<p>L’électrolyse est le processus inverse de la pile galvanique : au lieu de <em>laisser</em> une réaction spontanée produire du courant, on <em>impose</em> un courant pour forcer une réaction qui ne se produirait pas spontanément.</p>
+<p><strong>Niveau macroscopique :</strong> on observe, selon le système, un dépôt de métal sur une électrode, un dégagement de gaz, ou une modification de couleur de la solution — des transformations qui n’auraient pas lieu sans apport d’énergie.</p>
+<p><strong>Niveau particulaire :</strong> un générateur électrique crée une différence de potentiel entre deux électrodes plongeant dans une solution ionique (l’<strong>électrolyte</strong>). Il <em>pompe</em> les électrons hors de l’anode et les <em>injecte</em> à la cathode, inversant le sens naturel des réactions.</p>
+<ul>
+<li>L’<strong>anode</strong> est reliée au pôle <span class="math inline">\(+\)</span> du générateur : elle <em>attire</em> les anions de la solution, qui s’y oxydent.</li>
+<li>La <strong>cathode</strong> est reliée au pôle <span class="math inline">\(-\)</span> du générateur : elle <em>attire</em> les cations de la solution, qui s’y réduisent.</li>
+</ul>
+<p><strong>Attention :</strong> dans une pile galvanique, l’anode est négative et la cathode est positive. Dans une cellule d’électrolyse, c’est l’inverse — l’anode est positive (reliée au <span class="math inline">\(+\)</span> du générateur) et la cathode est négative. La définition reste la même (anode = oxydation, cathode = réduction), mais les signes sont inversés par rapport à la pile.</p>
+<p><strong>Niveau symbolique :</strong> la condition pour qu’une électrolyse soit possible est que la tension imposée par le générateur soit <em>supérieure</em> à la f.e.m. de la pile qui se formerait spontanément avec les mêmes espèces :</p>
+<p><span class="math display">\[\Delta V_\text{générateur} \geq |\Delta V^\circ_\text{réaction}|\]</span></p>
+</section>
+<section id="exemple-1-électrolyse-dune-solution-de-bromure-de-zinc-ceznbr2-aq" class="level4" data-number="7.0.8.2">
+<h4 data-number="7.0.8.2" class="anchored" data-anchor-id="exemple-1-électrolyse-dune-solution-de-bromure-de-zinc-ceznbr2-aq"><span class="header-section-number">7.0.8.2</span> Exemple 1 — Électrolyse d’une solution de bromure de zinc <span class="math inline">\(\ce{ZnBr2}\)</span> (aq)</h4>
+<p>Les espèces présentes en solution sont <span class="math inline">\(\ce{Zn^{2+}}\)</span>, <span class="math inline">\(\ce{Br^{-}}\)</span> et <span class="math inline">\(\ce{H2O}\)</span>.</p>
+<p>La série électrochimique indique que la réaction entre <span class="math inline">\(\ce{Zn^{2+}}\)</span> et <span class="math inline">\(\ce{Br^{-}}\)</span> n’est pas spontanée — il faut un générateur.</p>
+<ul>
+<li><strong>Cathode</strong> (réduction) : les ions <span class="math inline">\(\ce{Zn^{2+}}\)</span> captent des électrons et se déposent sous forme de zinc métallique.</li>
+</ul>
+<p><span class="math display">\[\ce{Zn^{2+} + 2e^{-} -&gt; Zn^{0}}\]</span></p>
+<ul>
+<li><strong>Anode</strong> (oxydation) : les ions <span class="math inline">\(\ce{Br^{-}}\)</span> cèdent des électrons et forment du dibrome <span class="math inline">\(\ce{Br2}\)</span> liquide.</li>
+</ul>
+<p><span class="math display">\[\ce{2Br^{-} -&gt; Br2 + 2e^{-}}\]</span></p>
+<p>Réaction globale :</p>
+<p><span class="math display">\[\ce{Zn^{2+} + 2Br^{-} -&gt; Zn^{0} + Br2}\]</span></p>
+<p><strong>Remarque importante :</strong> lorsqu’on coupe le générateur, les produits accumulés sur les électrodes (<span class="math inline">\(\ce{Zn^{0}}\)</span> et <span class="math inline">\(\ce{Br2}\)</span>) peuvent réagir spontanément ensemble — le système se transforme alors en pile ! L’électrolyse et la pile sont deux faces d’un même phénomène.</p>
+</section>
+<section id="exemple-2-électrolyse-de-leau" class="level4" data-number="7.0.8.3">
+<h4 data-number="7.0.8.3" class="anchored" data-anchor-id="exemple-2-électrolyse-de-leau"><span class="header-section-number">7.0.8.3</span> Exemple 2 — Électrolyse de l’eau</h4>
+<p>L’eau pure est un très mauvais conducteur. On y dissout un peu de <span class="math inline">\(\ce{H2SO4}\)</span> ou de <span class="math inline">\(\ce{Na2SO4}\)</span> pour améliorer la conductivité sans modifier les réactions aux électrodes.</p>
+<ul>
+<li><strong>Cathode</strong> (réduction) :</li>
+</ul>
+<p><span class="math display">\[\ce{2H2O + 2e^{-} -&gt; H2 + 2OH^{-}}\]</span></p>
+<ul>
+<li><strong>Anode</strong> (oxydation) :</li>
+</ul>
+<p><span class="math display">\[\ce{2H2O -&gt; O2 + 4H^{+} + 4e^{-}}\]</span></p>
+<p>Réaction globale :</p>
+<p><span class="math display">\[\ce{2H2O -&gt; 2H2 + O2}\]</span></p>
+<p>La tension minimale à imposer est d’environ 1,23 V dans les conditions standard. Cette réaction est au cœur du développement du dihydrogène comme vecteur énergétique renouvelable : en couplant cette électrolyse à une source d’électricité verte (solaire, éolien), on produit du <span class="math inline">\(\ce{H2}\)</span> sans émettre de <span class="math inline">\(\ce{CO2}\)</span>.</p>
+</section>
+<section id="la-galvanoplastie" class="level4" data-number="7.0.8.4">
+<h4 data-number="7.0.8.4" class="anchored" data-anchor-id="la-galvanoplastie"><span class="header-section-number">7.0.8.4</span> La galvanoplastie</h4>
+<p>Une application industrielle majeure de l’électrolyse est le <strong>dépôt électrolytique</strong> de métaux — nickelage, chromage, dorage. Le principe est toujours le même : l’objet à recouvrir sert de cathode, et le métal à déposer sert d’anode (ou est présent sous forme d’ions en solution).</p>
+<p>Exemple : pour nickeler un objet en fer, on le place en cathode dans une solution de <span class="math inline">\(\ce{NiCl2}\)</span>. Une anode de nickel se dissout progressivement pour maintenir la concentration en <span class="math inline">\(\ce{Ni^{2+}}\)</span> constante.</p>
+<p><span class="math display">\[\ce{Ni^{2+} + 2e^{-} -&gt; Ni^{0}} \quad \text{(cathode — dépôt sur l'objet)}\]</span> <span class="math display">\[\ce{Ni^{0} -&gt; Ni^{2+} + 2e^{-}} \quad \text{(anode — dissolution du nickel)}\]</span></p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Lors de l’électrolyse d’une solution de <span class="math inline">\(\ce{NiCl2}\)</span>, quel produit se forme à la cathode ? À l’anode ? Écrivez les deux demi-réactions. (<span class="math inline">\(E^\circ(\ce{Ni^{2+}/Ni^{0}}) = -0{,}26\ \text{V}\)</span>, <span class="math inline">\(E^\circ(\ce{Cl2/Cl^{-}}) = +1{,}36\ \text{V}\)</span>)<a href="#fn43" class="footnote-ref" id="fnref43" role="doc-noteref"><sup>43</sup></a></li>
+<li>Dans une cellule d’électrolyse, l’anode est-elle reliée au pôle <span class="math inline">\(+\)</span> ou <span class="math inline">\(-\)</span> du générateur ? Expliquez pourquoi, en termes de sens de circulation des électrons.<a href="#fn44" class="footnote-ref" id="fnref44" role="doc-noteref"><sup>44</sup></a></li>
+<li>Expliquez pourquoi l’électrolyse de l’eau pure est très difficile en pratique, et pourquoi on ajoute <span class="math inline">\(\ce{H2SO4}\)</span> ou <span class="math inline">\(\ce{Na2SO4}\)</span>.<a href="#fn45" class="footnote-ref" id="fnref45" role="doc-noteref"><sup>45</sup></a></li>
+<li>Lorsqu’on coupe le générateur après une électrolyse de <span class="math inline">\(\ce{ZnBr2}\)</span>, les produits <span class="math inline">\(\ce{Zn^{0}}\)</span> et <span class="math inline">\(\ce{Br2}\)</span> peuvent réagir spontanément. Expliquez ce paradoxe apparent.<a href="#fn46" class="footnote-ref" id="fnref46" role="doc-noteref"><sup>46</sup></a></li>
+</ol>
+<hr>
+</section>
+<section id="principe-de-réversibilité" class="level4" data-number="7.0.8.5">
+<h4 data-number="7.0.8.5" class="anchored" data-anchor-id="principe-de-réversibilité"><span class="header-section-number">7.0.8.5</span> Principe de réversibilité</h4>
+<p>Un <strong>accumulateur</strong> (ou pile rechargeable) est une cellule électrochimique dont les réactions peuvent être inversées par électrolyse : on recrée les réactifs de départ en injectant du courant, ce qui permet de recharger la pile.</p>
+<p>La condition essentielle est que les produits formés à l’anode lors de la décharge restent <em>insolubles</em> — ils doivent demeurer sur l’électrode pour pouvoir être régénérés lors de la charge.</p>
+<p><strong>R3 — Conception naïve :</strong> on entend souvent dire qu’une batterie “se recharge en électricité”. Ce n’est pas exact : l’énergie électrique reçue lors de la charge est <em>convertie en énergie chimique</em> — les réactifs sont reconstitués. La batterie ne stocke pas des électrons, elle stocke des substances chimiques.</p>
+</section>
+<section id="laccumulateur-au-plomb-la-batterie-de-voiture" class="level4" data-number="7.0.8.6">
+<h4 data-number="7.0.8.6" class="anchored" data-anchor-id="laccumulateur-au-plomb-la-batterie-de-voiture"><span class="header-section-number">7.0.8.6</span> L’accumulateur au plomb — la batterie de voiture</h4>
+<p>La batterie d’une voiture est un accumulateur au plomb, capable de fournir des courants très intenses (pour démarrer le moteur) tout en étant rechargeable par l’alternateur.</p>
+<p>Lors de la <strong>décharge</strong> (la batterie fonctionne comme une pile) :</p>
+<ul>
+<li><strong>Anode</strong> (oxydation) :</li>
+</ul>
+<p><span class="math display">\[\ce{Pb^{0} + SO4^{2-} -&gt; PbSO4 + 2e^{-}} \quad E^\circ = -0{,}36\ \text{V}\]</span></p>
+<ul>
+<li><strong>Cathode</strong> (réduction) :</li>
+</ul>
+<p><span class="math display">\[\ce{PbO2 + SO4^{2-} + 4H^{+} + 2e^{-} -&gt; PbSO4 + 2H2O}
+\quad E^\circ = +1{,}68\ \text{V}\]</span></p>
+<p>F.e.m. de décharge :</p>
+<p><span class="math display">\[\Delta V^\circ = (+1{,}68) - (-0{,}36) = +2{,}04\ \text{V\ par\ cellule}\]</span></p>
+<p>Une batterie de voiture standard comporte 6 cellules en série : <span class="math inline">\(6 \times 2{,}04 \approx 12\ \text{V}\)</span>.</p>
+<p>Lors de la <strong>charge</strong> (le générateur inverse les réactions) : le <span class="math inline">\(\ce{PbSO4}\)</span> déposé sur les deux électrodes est reconverti en <span class="math inline">\(\ce{Pb^{0}}\)</span> à l’anode et en <span class="math inline">\(\ce{PbO2}\)</span> à la cathode.</p>
+<p><strong>R4 — Note de lecture :</strong> l’électrolyte de cette batterie est une solution d’acide sulfurique <span class="math inline">\(\ce{H2SO4}\)</span>, qui fournit les ions <span class="math inline">\(\ce{SO4^{2-}}\)</span> et <span class="math inline">\(\ce{H^{+}}\)</span> nécessaires aux deux demi-réactions. Sa concentration diminue lors de la décharge et remonte lors de la charge — on peut donc estimer l’état de charge d’une batterie en mesurant la densité de l’acide.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>Dans la batterie au plomb lors de la décharge, identifiez l’oxydant et le réducteur. Quel ion est consommé dans les deux demi-réactions ?<a href="#fn47" class="footnote-ref" id="fnref47" role="doc-noteref"><sup>47</sup></a></li>
+<li>La densité de l’acide sulfurique dans une batterie de voiture diminue lors de la décharge. Expliquez ce phénomène en vous appuyant sur les demi-réactions.<a href="#fn48" class="footnote-ref" id="fnref48" role="doc-noteref"><sup>48</sup></a></li>
+<li>Expliquez pourquoi il est impératif que les produits formés lors de la décharge (<span class="math inline">\(\ce{PbSO4}\)</span>) soient insolubles pour qu’une batterie soit rechargeable.<a href="#fn49" class="footnote-ref" id="fnref49" role="doc-noteref"><sup>49</sup></a></li>
+</ol>
+<hr>
+</section>
+<section id="du-courant-à-la-matière" class="level4" data-number="7.0.8.7">
+<h4 data-number="7.0.8.7" class="anchored" data-anchor-id="du-courant-à-la-matière"><span class="header-section-number">7.0.8.7</span> Du courant à la matière</h4>
+<p>L’électrolyse établit un lien direct entre la quantité d’électricité qui circule et la quantité de matière transformée aux électrodes. Ce lien est donné par la <strong>loi de Faraday</strong>.</p>
+<p><strong>Niveau macroscopique :</strong> on mesure le courant <span class="math inline">\(i\)</span> (en ampères) pendant un temps <span class="math inline">\(t\)</span> (en secondes). La <strong>charge électrique</strong> totale écoulée est :</p>
+<p><span class="math display">\[Q = i \cdot t \quad [Q\ \text{en coulombs, C}]\]</span></p>
+<p><strong>Niveau particulaire :</strong> un électron porte une charge de <span class="math inline">\(1{,}602 \times 10^{-19}\ \text{C}\)</span>. Une mole d’électrons porte donc une charge totale de :</p>
+<p><span class="math display">\[F = N_A \cdot e = 6{,}022 \times 10^{23} \times 1{,}602 \times 10^{-19}
+\approx 96\ 500\ \text{C/mol}\]</span></p>
+<p>Cette constante <span class="math inline">\(F = 96\ 500\ \text{C/mol}\)</span> est la <strong>constante de Faraday</strong>.</p>
+<blockquote class="blockquote">
+<p><strong>Dans l’histoire…</strong> C’est <strong>Michael Faraday</strong>, en 1833-1834, qui établit le lien quantitatif entre la charge électrique écoulée lors d’une électrolyse et la masse de matière transformée aux électrodes — ce que nous appelons aujourd’hui la loi de Faraday. La constante <span class="math inline">\(F\)</span> porte logiquement son nom, même si sa valeur moderne repose sur deux constantes qu’il ne connaissait pas encore : le nombre d’Avogadro et la charge de l’électron.</p>
+</blockquote>
+<p><span id="hist-oxydo-reduction-faraday-constante"></span></p>
+<p><strong>Niveau symbolique :</strong> le nombre de moles d’électrons échangés est :</p>
+<p><span class="math display">\[n(e^-) = \frac{Q}{F} = \frac{i \cdot t}{F}\]</span></p>
+<p>Si l’ion déposé échange <span class="math inline">\(n_e\)</span> électrons (ex. <span class="math inline">\(n_e = 2\)</span> pour <span class="math inline">\(\ce{Cu^{2+}}\)</span>), le nombre de moles de substance déposée est :</p>
+<p><span class="math display">\[n(\text{substance}) = \frac{n(e^-)}{n_e} = \frac{i \cdot t}{n_e \cdot F}\]</span></p>
+<p>La masse déposée s’obtient ensuite par :</p>
+<p><span class="math display">\[m = n(\text{substance}) \cdot M\]</span></p>
+</section>
+<section id="exemple-1-dépôt-de-cuivre" class="level4" data-number="7.0.8.8">
+<h4 data-number="7.0.8.8" class="anchored" data-anchor-id="exemple-1-dépôt-de-cuivre"><span class="header-section-number">7.0.8.8</span> Exemple 1 — Dépôt de cuivre</h4>
+<p>On électrolyse une solution de <span class="math inline">\(\ce{CuSO4}\)</span> avec un courant de <span class="math inline">\(5{,}00\ \text{A}\)</span> pendant <span class="math inline">\(30{,}0\ \text{min}\)</span>.</p>
+<p>Quelle masse de cuivre se dépose à la cathode ?</p>
+<p><strong>Demi-réaction :</strong> <span class="math inline">\(\ce{Cu^{2+} + 2e^{-} -&gt; Cu^{0}}\)</span> donc <span class="math inline">\(n_e = 2\)</span>.</p>
+<p><span class="math display">\[Q = i \cdot t = 5{,}00 \times (30{,}0 \times 60) = 9\ 000\ \text{C}\]</span></p>
+<p><span class="math display">\[n(e^-) = \frac{9\ 000}{96\ 500} = 0{,}09326\ \text{mol}\]</span></p>
+<p><span class="math display">\[n(\ce{Cu}) = \frac{0{,}09326}{2} = 0{,}04663\ \text{mol}\]</span></p>
+<p><span class="math display">\[m(\ce{Cu}) = 0{,}04663 \times 63{,}55 = 2{,}96\ \text{g}\]</span></p>
+</section>
+<section id="exemple-2-temps-nécessaire-pour-déposer-une-masse-donnée" class="level4" data-number="7.0.8.9">
+<h4 data-number="7.0.8.9" class="anchored" data-anchor-id="exemple-2-temps-nécessaire-pour-déposer-une-masse-donnée"><span class="header-section-number">7.0.8.9</span> Exemple 2 — Temps nécessaire pour déposer une masse donnée</h4>
+<p>On souhaite déposer <span class="math inline">\(6{,}75\ \text{g}\)</span> d’aluminium par électrolyse d’une solution de sels d’aluminium avec un courant de <span class="math inline">\(40{,}0\ \text{A}\)</span>.</p>
+<p><strong>Demi-réaction :</strong> <span class="math inline">\(\ce{Al^{3+} + 3e^{-} -&gt; Al^{0}}\)</span> donc <span class="math inline">\(n_e = 3\)</span>.</p>
+<p><span class="math display">\[n(\ce{Al}) = \frac{6{,}75}{26{,}98} = 0{,}2502\ \text{mol}\]</span></p>
+<p><span class="math display">\[n(e^-) = 0{,}2502 \times 3 = 0{,}7506\ \text{mol}\]</span></p>
+<p><span class="math display">\[Q = n(e^-) \times F = 0{,}7506 \times 96\ 500 = 72\ 430\ \text{C}\]</span></p>
+<p><span class="math display">\[t = \frac{Q}{i} = \frac{72\ 430}{40{,}0} = 1\ 811\ \text{s} \approx
+30{,}2\ \text{min}\]</span></p>
+<p><strong>R3 — Point de vigilance :</strong> la loi de Faraday suppose que <em>toute</em> la charge électrique est utilisée pour la réaction aux électrodes. En pratique, des réactions parasites (oxydation de l’eau, dégagement de gaz non voulu) peuvent réduire le rendement — la masse réellement déposée est alors inférieure à la masse calculée.</p>
+<p><strong>Exercices :</strong></p>
+<ol type="1">
+<li>On électrolyse une solution de <span class="math inline">\(\ce{AgNO3}\)</span> avec un courant de <span class="math inline">\(2{,}00\ \text{A}\)</span> pendant <span class="math inline">\(15{,}0\ \text{min}\)</span>. Quelle masse d’argent se dépose à la cathode ? (<span class="math inline">\(M(\ce{Ag}) = 107{,}9\ \text{g/mol}\)</span>, <span class="math inline">\(n_e = 1\)</span>)<a href="#fn50" class="footnote-ref" id="fnref50" role="doc-noteref"><sup>50</sup></a></li>
+<li>On souhaite déposer <span class="math inline">\(10{,}0\ \text{g}\)</span> de nickel (<span class="math inline">\(M = 58{,}69\ \text{g/mol}\)</span>, <span class="math inline">\(n_e = 2\)</span>) avec un courant de <span class="math inline">\(3{,}00\ \text{A}\)</span>. Combien de temps (en minutes) faut-il ?<a href="#fn51" class="footnote-ref" id="fnref51" role="doc-noteref"><sup>51</sup></a></li>
+<li>Lors de l’électrolyse de l’eau, quelle charge électrique faut-il faire circuler pour produire <span class="math inline">\(1{,}00\ \text{L}\)</span> de <span class="math inline">\(\ce{H2}\)</span> à TPA ?<a href="#fn52" class="footnote-ref" id="fnref52" role="doc-noteref"><sup>52</sup></a></li>
+<li>Un courant de <span class="math inline">\(10{,}0\ \text{A}\)</span> traverse pendant <span class="math inline">\(1{,}00\ \text{h}\)</span> une solution de <span class="math inline">\(\ce{CuSO4}\)</span>. Calculez la masse de cuivre déposée et la masse d’anode de cuivre dissoute. Sont-elles égales ? Pourquoi ?<a href="#fn53" class="footnote-ref" id="fnref53" role="doc-noteref"><sup>53</sup></a></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="oxydo-reduction-exercices-synthese" class="level3" data-number="7.0.9">
+<h3 data-number="7.0.9" class="anchored" data-anchor-id="oxydo-reduction-exercices-synthese"><span class="header-section-number">7.0.9</span> Exercices de synthèse</h3>
+<ol type="1">
+<li>Soit une pile construite avec les couples <span class="math inline">\(\ce{Fe^{2+}/Fe^{0}}\)</span> (<span class="math inline">\(E^\circ = -0{,}44\ \text{V}\)</span>) et <span class="math inline">\(\ce{Ag^{+}/Ag^{0}}\)</span> (<span class="math inline">\(E^\circ = +0{,}80\ \text{V}\)</span>). (a) Identifiez anode et cathode. (b) Écrivez les demi-réactions équilibrées et la réaction globale. (c) Calculez <span class="math inline">\(\Delta V^\circ\)</span>.<a href="#fn54" class="footnote-ref" id="fnref54" role="doc-noteref"><sup>54</sup></a></li>
+<li>On électrolyse une solution de <span class="math inline">\(\ce{CuCl2}\)</span> avec un courant de <span class="math inline">\(4{,}00\ \text{A}\)</span> pendant <span class="math inline">\(45{,}0\ \text{min}\)</span>. (a) Que se forme-t-il à la cathode et à l’anode ? (b) Calculez les masses/volumes des produits à TPA. (<span class="math inline">\(M(\ce{Cu}) = 63{,}55\ \text{g/mol}\)</span>, <span class="math inline">\(M(\ce{Cl2}) = 70{,}90\ \text{g/mol}\)</span>)<a href="#fn55" class="footnote-ref" id="fnref55" role="doc-noteref"><sup>55</sup></a></li>
+<li>Une batterie au plomb de voiture comporte 6 cellules en série. (a) Quelle est la tension nominale de chaque cellule ? (b) Quelle est la tension totale ? (c) Lors de la décharge, les ions <span class="math inline">\(\ce{SO4^{2-}}\)</span> sont consommés. Quel effet cela a-t-il sur la f.e.m. réelle de la batterie au fil du temps ?<a href="#fn56" class="footnote-ref" id="fnref56" role="doc-noteref"><sup>56</sup></a></li>
+<li>On souhaite déposer une couche de zinc de <span class="math inline">\(50{,}0\ \mu\text{m}\)</span> d’épaisseur sur une plaque d’acier de surface <span class="math inline">\(200\ \text{cm}^2\)</span> (<span class="math inline">\(\rho(\ce{Zn}) = 7{,}13\ \text{g/cm}^3\)</span>, <span class="math inline">\(M(\ce{Zn}) = 65{,}38\ \text{g/mol}\)</span>, <span class="math inline">\(n_e = 2\)</span>, <span class="math inline">\(i = 8{,}00\ \text{A}\)</span>). Calculez la durée de l’opération en minutes.<a href="#fn57" class="footnote-ref" id="fnref57" role="doc-noteref"><sup>57</sup></a></li>
+<li>La pile à combustible hydrogène-oxygène produit de l’eau en générant du courant. Les demi-réactions sont : anode <span class="math inline">\(\ce{H2 -&gt; 2H^{+} + 2e^{-}}\)</span> (<span class="math inline">\(E^\circ = 0{,}00\ \text{V}\)</span>) ; cathode <span class="math inline">\(\ce{O2 + 4H^{+} + 4e^{-} -&gt; 2H2O}\)</span> (<span class="math inline">\(E^\circ = +1{,}23\ \text{V}\)</span>). (a) Écrivez la réaction globale. (b) Calculez <span class="math inline">\(\Delta V^\circ\)</span>. (c) Comparez au rendement théorique maximal d’un moteur thermique fonctionnant entre 25 °C et 200 °C (<span class="math inline">\(\eta = 1 - T_\text{froide}/T_\text{chaude}\)</span>).<a href="#fn58" class="footnote-ref" id="fnref58" role="doc-noteref"><sup>58</sup></a></li>
+<li>On électrolyse une solution mixte contenant <span class="math inline">\(\ce{Cu^{2+}}\)</span> et <span class="math inline">\(\ce{Zn^{2+}}\)</span> à égale concentration. (<span class="math inline">\(E^\circ(\ce{Cu^{2+}/Cu^{0}}) = +0{,}34\ \text{V}\)</span>, <span class="math inline">\(E^\circ(\ce{Zn^{2+}/Zn^{0}}) = -0{,}76\ \text{V}\)</span>). Quel métal se dépose en premier à la cathode lorsqu’on augmente progressivement la tension du générateur ? Justifiez.<a href="#fn59" class="footnote-ref" id="fnref59" role="doc-noteref"><sup>59</sup></a></li>
+<li>Un accumulateur nickel-cadmium (NiCd) a une f.e.m. de 1,20 V. On le charge avec <span class="math inline">\(0{,}80\ \text{A}\)</span> pendant <span class="math inline">\(2{,}5\ \text{h}\)</span>. (a) Calculez la charge totale. (b) Si la demi-réaction anodique lors de la charge est <span class="math inline">\(\ce{Cd(OH)2 + 2e^{-} -&gt; Cd^{0} + 2OH^{-}}\)</span>, calculez la masse de cadmium régénérée (<span class="math inline">\(M(\ce{Cd}) = 112{,}4\ \text{g/mol}\)</span>).<a href="#fn60" class="footnote-ref" id="fnref60" role="doc-noteref"><sup>60</sup></a></li>
+<li>Expliquez pourquoi les signes de l’anode et de la cathode sont inversés entre une pile galvanique et une cellule d’électrolyse, même si la définition (anode = oxydation, cathode = réduction) reste la même dans les deux cas.<a href="#fn61" class="footnote-ref" id="fnref61" role="doc-noteref"><sup>61</sup></a></li>
+<li>On mesure qu’une pile zinc-cuivre délivre un courant de <span class="math inline">\(0{,}150\ \text{A}\)</span> pendant exactement <span class="math inline">\(2{,}00\ \text{h}\)</span> avant de s’arrêter. (a) Calculez la charge totale écoulée. (b) Déduisez la masse de zinc consumée à l’anode (<span class="math inline">\(M(\ce{Zn}) = 65{,}38\ \text{g/mol}\)</span>, <span class="math inline">\(n_e = 2\)</span>). (c) Calculez la masse de cuivre déposée à la cathode (<span class="math inline">\(M(\ce{Cu}) = 63{,}55\ \text{g/mol}\)</span>).<a href="#fn62" class="footnote-ref" id="fnref62" role="doc-noteref"><sup>62</sup></a></li>
+<li>La production industrielle de l’aluminium par le procédé Hall-Héroult consiste à électrolyser <span class="math inline">\(\ce{Al2O3}\)</span> fondu. La demi-réaction cathodique est <span class="math inline">\(\ce{Al^{3+} + 3e^{-} -&gt; Al^{0}}\)</span>. Une usine produit 100 tonnes d’aluminium par jour avec un courant de <span class="math inline">\(150\ 000\ \text{A}\)</span>. (a) Calculez la charge totale journalière. (b) Vérifiez que ce courant est cohérent avec la production annoncée. (<span class="math inline">\(M(\ce{Al}) = 26{,}98\ \text{g/mol}\)</span>)<a href="#fn63" class="footnote-ref" id="fnref63" role="doc-noteref"><sup>63</sup></a></li>
+</ol>
+<ol start="11" type="1">
+<li>Déterminez le d.o. du soufre dans <span class="math inline">\(\ce{H2SO3}\)</span>, <span class="math inline">\(\ce{H2SO4}\)</span> et <span class="math inline">\(\ce{SO2}\)</span>. Classez ces espèces du soufre le plus réduit au plus oxydé.<a href="#fn64" class="footnote-ref" id="fnref64" role="doc-noteref"><sup>64</sup></a></li>
+<li>La réaction <span class="math inline">\(\ce{AgNO3 + NaCl -&gt; AgCl + NaNO3}\)</span> est-elle une oxydoréduction ? Justifiez par les d.o.<a href="#fn65" class="footnote-ref" id="fnref65" role="doc-noteref"><sup>65</sup></a></li>
+<li>En utilisant la série électrochimique, prédisez si l’aluminium réagit avec une solution de <span class="math inline">\(\ce{CuSO4}\)</span>. Si oui, écrivez l’équation globale et calculez <span class="math inline">\(\Delta V^\circ\)</span>.<a href="#fn66" class="footnote-ref" id="fnref66" role="doc-noteref"><sup>66</sup></a></li>
+<li>Équilibrez par la méthode des demi-réactions : <span class="math inline">\(\ce{Cu^{0} + HNO3 -&gt; Cu(NO3)2 + NO2 + H2O}\)</span><a href="#fn67" class="footnote-ref" id="fnref67" role="doc-noteref"><sup>67</sup></a></li>
+<li>Équilibrez par la méthode des demi-réactions : <span class="math inline">\(\ce{MnO4^{-} + H2O2 + H^{+} -&gt; Mn^{2+} + O2 + H2O}\)</span> (<span class="math inline">\(E^\circ(\ce{MnO4^{-}/Mn^{2+}}) = +1{,}51\ \text{V}\)</span>, <span class="math inline">\(E^\circ(\ce{O2/H2O2}) = +0{,}68\ \text{V}\)</span>). Calculez <span class="math inline">\(\Delta V^\circ\)</span> et identifiez oxydant et réducteur.<a href="#fn68" class="footnote-ref" id="fnref68" role="doc-noteref"><sup>68</sup></a></li>
+<li>Un fil de fer est plongé successivement dans <span class="math inline">\(\ce{CuSO4}\)</span> puis dans <span class="math inline">\(\ce{MgSO4}\)</span>. Décrivez ce qui se passe dans chaque cas en justifiant par la série électrochimique.<a href="#fn69" class="footnote-ref" id="fnref69" role="doc-noteref"><sup>69</sup></a></li>
+<li>Calculez la f.e.m. standard de la pile formée par les couples <span class="math inline">\(\ce{Fe^{2+}/Fe}\)</span> et <span class="math inline">\(\ce{Cl2/Cl^{-}}\)</span> (<span class="math inline">\(E^\circ(\ce{Cl2/Cl^{-}}) = +1{,}36\ \text{V}\)</span>). Écrivez la réaction globale.<a href="#fn70" class="footnote-ref" id="fnref70" role="doc-noteref"><sup>70</sup></a></li>
+<li>Un pipeline en acier enterré dans un sol humide est protégé par une anode sacrificielle. Justifiez le choix du zinc plutôt que du cuivre (<span class="math inline">\(E^\circ(\ce{Cu^{2+}/Cu}) = +0{,}34\ \text{V}\)</span>).<a href="#fn71" class="footnote-ref" id="fnref71" role="doc-noteref"><sup>71</sup></a></li>
+<li>On plonge une lame de cuivre dans une solution de nitrate d’argent <span class="math inline">\(\ce{AgNO3}\)</span> à <span class="math inline">\(0{,}100\ \text{mol/L}\)</span>. (<span class="math inline">\(E^\circ(\ce{Ag^{+}/Ag}) = +0{,}80\ \text{V}\)</span>, <span class="math inline">\(E^\circ(\ce{Cu^{2+}/Cu}) = +0{,}34\ \text{V}\)</span>, <span class="math inline">\(M(\ce{Ag}) = 107{,}9\ \text{g/mol}\)</span>).
+<ol type="a">
+<li>La réaction est-elle spontanée ? b) Écrivez l’équation globale équilibrée. c) Quelle masse d’argent se dépose si 0,500 g de cuivre est entièrement dissous ?<a href="#fn72" class="footnote-ref" id="fnref72" role="doc-noteref"><sup>72</sup></a></li>
+</ol></li>
+<li>Une pile est construite avec <span class="math inline">\(\ce{Al^{3+}/Al}\)</span> (<span class="math inline">\(E^\circ = -1{,}66\ \text{V}\)</span>) et <span class="math inline">\(\ce{Ag^{+}/Ag}\)</span> (<span class="math inline">\(E^\circ = +0{,}80\ \text{V}\)</span>). Calculez la f.e.m., identifiez l’anode et la cathode, et écrivez l’équation globale équilibrée.<a href="#fn73" class="footnote-ref" id="fnref73" role="doc-noteref"><sup>73</sup></a></li>
+</ol>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-09-12</em></p>
+<p>Ces défis s’adressent à ceux qui veulent aller réellement plus loin. Ils exigent de mobiliser les notions de Zone 2 dans des contextes nouveaux.</p>
+<p><strong>Défi A — La protection cathodique des pipelines</strong> <em>(transfert interdisciplinaire)</em></p>
+<p>Les pipelines en acier enterrés dans un sol humide sont protégés de la corrosion par une méthode appelée <em>protection cathodique par courant imposé</em> : on relie le pipeline à la borne négative d’un générateur, ce qui force le métal à rester dans l’état réduit. En pratique, on utilise aussi des <em>anodes sacrificielles</em> en magnésium (<span class="math inline">\(E^\circ(\ce{Mg^{2+}/Mg}) = -2{,}37\ \text{V}\)</span>) fixées à intervalles réguliers le long du pipeline (<span class="math inline">\(E^\circ(\ce{Fe^{2+}/Fe}) = -0{,}44\
+\text{V}\)</span>).</p>
+<ol type="a">
+<li>Expliquez par les potentiels standard pourquoi le magnésium protège le fer plutôt que l’inverse.</li>
+<li>Calculez <span class="math inline">\(\Delta V^\circ\)</span> de la réaction spontanée entre <span class="math inline">\(\ce{Mg}\)</span> et <span class="math inline">\(\ce{Fe^{2+}}\)</span> et écrivez l’équation globale équilibrée.</li>
+<li>Un bloc de magnésium de <span class="math inline">\(120\ \text{g}\)</span> (<span class="math inline">\(M = 24{,}3\ \text{g/mol}\)</span>) est utilisé comme anode sacrificielle. Combien de moles de fer sont protégées avant que le bloc soit entièrement consommé ?<a href="#fn74" class="footnote-ref" id="fnref74" role="doc-noteref"><sup>74</sup></a></li>
+</ol>
+<hr>
+<p><strong>Défi B — La pile de Volta : une pile qui ne devrait pas fonctionner</strong> <em>(approfondissement formel)</em></p>
+<p>La pile de Volta, inventée en 1800 par Alessandro Volta, est constituée d’un empilement de disques de zinc <span class="math inline">\(\ce{Zn^{0}}\)</span> et de cuivre <span class="math inline">\(\ce{Cu^{0}}\)</span> séparés par des tissus imbibés d’eau salée neutre (sans acide).</p>
+<p>Une première analyse naïve propose les demi-réactions suivantes :</p>
+<ul>
+<li>Anode : <span class="math inline">\(\ce{Zn^{0} -&gt; Zn^{2+} + 2e^{-}}\)</span> (<span class="math inline">\(E^\circ = -0{,}76\ \text{V}\)</span>)</li>
+<li>Cathode : <span class="math inline">\(\ce{2H2O + 2e^{-} -&gt; H2 + 2OH^{-}}\)</span> (<span class="math inline">\(E^\circ = -0{,}83\ \text{V}\)</span>)</li>
+</ul>
+<p><strong>a)</strong> Calculez la f.e.m. standard à partir de ces deux demi-réactions. La pile devrait-elle fonctionner selon ce calcul ?</p>
+<p><strong>b)</strong> En réalité, la pile de Volta fonctionne. L’erreur du raisonnement précédent est de supposer que <span class="math inline">\(\ce{Zn^{2+}}\)</span> et <span class="math inline">\(\ce{OH^{-}}\)</span> peuvent coexister librement en solution. Ce n’est pas le cas : ils précipitent immédiatement selon :</p>
+<p><span class="math display">\[\ce{Zn^{2+} + 2OH^{-} -&gt; Zn(OH)2 (s)}\]</span></p>
+<p>Le produit de solubilité de <span class="math inline">\(\ce{Zn(OH)2}\)</span> vaut <span class="math inline">\(K_s = 1{,}8 \times 10^{-14}\)</span>. En appelant <span class="math inline">\(s\)</span> la concentration maximale de <span class="math inline">\(\ce{Zn^{2+}}\)</span> à saturation, montrez que <span class="math inline">\([\ce{Zn^{2+}}] = 1{,}65 \times 10^{-5}\ \text{mol/L}\)</span> et <span class="math inline">\([\ce{OH^{-}}] = 3{,}30 \times 10^{-5}\ \text{mol/L}\)</span>.</p>
+<p><strong>c)</strong> La loi de Nernst permet de corriger les potentiels en fonction des concentrations réelles. Pour une demi-réaction générale, elle s’écrit :</p>
+<p><span class="math display">\[E = E^\circ + \frac{0{,}059}{n} \log \frac{[\text{oxydant}]}{[\text{réducteur}]}\]</span></p>
+<p>Calculez le potentiel corrigé de l’anode de zinc en utilisant <span class="math inline">\([\ce{Zn^{2+}}] = 1{,}65 \times 10^{-5}\ \text{mol/L}\)</span>.</p>
+<p><span class="math display">\[E(\ce{Zn/Zn^{2+}}) = -0{,}76 + \frac{0{,}059}{2}
+\log(1{,}65 \times 10^{-5})\]</span></p>
+<p><strong>d)</strong> Calculez le potentiel corrigé de la cathode, en supposant que la pression de <span class="math inline">\(\ce{H2}\)</span> vaut 1 bar à l’équilibre et que <span class="math inline">\([\ce{OH^{-}}] = 3{,}30 \times 10^{-5}\ \text{mol/L}\)</span> :</p>
+<p><span class="math display">\[E(\ce{H2O/H2+OH^{-}}) = -0{,}83 - \frac{0{,}059}{2}
+\log[\ce{OH^{-}}]^2\]</span></p>
+<p><strong>e)</strong> Déduisez la f.e.m. réelle de la pile de Volta à partir des potentiels corrigés. Concluez sur la spontanéité.<a href="#fn75" class="footnote-ref" id="fnref75" role="doc-noteref"><sup>75</sup></a></p>
+<hr>
+<p><strong>Défi C — L’accumulateur nickel-cadmium</strong> <em>(ouverture conceptuelle)</em></p>
+<p><em>Ce défi anticipe des notions qui seront approfondies au chapitre équilibres en solution.</em></p>
+<p>L’accumulateur nickel-cadmium (NiCd) a longtemps équipé les outils portables avant d’être progressivement remplacé en raison de la toxicité du cadmium.</p>
+<p>Lors de la décharge, les demi-réactions sont :</p>
+<ul>
+<li>Anode : <span class="math inline">\(\ce{Cd^{0} + 2OH^{-} -&gt; Cd(OH)2 + 2e^{-}}\)</span> (<span class="math inline">\(E^\circ = -0{,}81\ \text{V}\)</span>)</li>
+<li>Cathode : <span class="math inline">\(\ce{NiO(OH) + H2O + e^{-} -&gt; Ni(OH)2 + OH^{-}}\)</span> (<span class="math inline">\(E^\circ = +0{,}49\ \text{V}\)</span>)</li>
+</ul>
+<p><strong>a)</strong> Écrivez la réaction globale équilibrée lors de la décharge.</p>
+<p><strong>b)</strong> Calculez la f.e.m. standard de cet accumulateur.</p>
+<p><strong>c)</strong> Lors de la charge, le générateur inverse les réactions. Identifiez quelle électrode devient l’anode et laquelle devient la cathode. Expliquez pourquoi il est indispensable que <span class="math inline">\(\ce{Cd(OH)2}\)</span> et <span class="math inline">\(\ce{Ni(OH)2}\)</span> soient insolubles pour que l’accumulateur soit rechargeable.</p>
+<p><strong>d)</strong> Un accumulateur NiCd de 1,2 V est chargé avec un courant de <span class="math inline">\(0{,}50\ \text{A}\)</span> pendant <span class="math inline">\(2{,}0\ \text{h}\)</span>. Quelle masse de cadmium métallique est reconstituée à l’anode lors de cette charge ?<a href="#fn76" class="footnote-ref" id="fnref76" role="doc-noteref"><sup>76</sup></a></p>
+<hr>
+</section>
+<section id="mots-clés" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="mots-clés"><span class="header-section-number">7.1</span> Mots-clés</h2>
+<p><strong>Degré d’oxydation</strong> : charge fictive attribuée à un atome en supposant que toutes les liaisons sont ioniques ; noté d.o. ou n.o.</p>
+<p><strong>Oxydation</strong> : perte d’électrons par une espèce chimique — le degré d’oxydation augmente.</p>
+<p><strong>Réduction</strong> : gain d’électrons par une espèce chimique — le degré d’oxydation diminue.</p>
+<p><strong>Réducteur</strong> : espèce qui cède des électrons et subit une oxydation.</p>
+<p><strong>Oxydant</strong> : espèce qui capte des électrons et subit une réduction.</p>
+<p><strong>Demi-réaction</strong> : équation représentant séparément la perte ou le gain d’électrons d’une espèce dans une réaction rédox.</p>
+<p><strong>Série électrochimique</strong> : classement de demi-réactions de réduction par potentiel standard croissant ; permet de prédire la spontanéité d’une réaction rédox.</p>
+<p><strong>Pile galvanique</strong> : dispositif convertissant l’énergie d’une réaction rédox spontanée en énergie électrique par séparation des deux demi-réactions.</p>
+<p><strong>Anode</strong> : électrode où se produit l’oxydation ; pôle négatif dans une pile, positif dans une cellule d’électrolyse.</p>
+<p><strong>Cathode</strong> : électrode où se produit la réduction ; pôle positif dans une pile, négatif dans une cellule d’électrolyse.</p>
+<p><strong>Pont salin</strong> : dispositif ionique reliant les deux demi-piles pour maintenir l’électroneutralité des solutions sans les mélanger.</p>
+<p><strong>Force électromotrice (f.e.m.)</strong> : différence de potentiel entre cathode et anode ; <span class="math inline">\(\Delta V^\circ = E^\circ_\text{cathode} - E^\circ_\text{anode}\)</span>.</p>
+<p><strong>Électrolyse</strong> : processus forçant une réaction non spontanée par apport d’énergie électrique via un générateur.</p>
+<p><strong>Accumulateur</strong> : cellule électrochimique rechargeable dont les réactions peuvent être inversées par électrolyse.</p>
+<p><strong>Constante de Faraday</strong> : charge portée par une mole d’électrons ; <span class="math inline">\(F = 96\ 500\ \text{C/mol}\)</span>.</p>
+<p><strong>Loi de Faraday</strong> : relation entre charge électrique écoulée et masse de substance transformée : <span class="math inline">\(m = \frac{i \cdot t \cdot M}{n_e \cdot F}\)</span>.</p>
+<p><strong>Loi de Nernst</strong> : correction du potentiel standard en fonction des concentrations réelles des espèces en solution.</p>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-09-12</em></p>
+<hr>
+<p><em>Projet-Balmer</em></p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p><span class="math inline">\(\ce{KCl}\)</span> : K = <span class="math inline">\(+1\)</span>, Cl = <span class="math inline">\(-1\)</span>. <span class="math inline">\(\ce{AlF3}\)</span> : Al = <span class="math inline">\(+3\)</span>, F = <span class="math inline">\(-1\)</span>. <span class="math inline">\(\ce{H2CO3}\)</span> : H = <span class="math inline">\(+1\)</span>, O = <span class="math inline">\(-2\)</span>, C = <span class="math inline">\(+4\)</span>. <span class="math inline">\(\ce{NH3}\)</span> : N = <span class="math inline">\(-3\)</span>, H = <span class="math inline">\(+1\)</span>. <span class="math inline">\(\ce{CO2}\)</span> : C = <span class="math inline">\(+4\)</span>, O = <span class="math inline">\(-2\)</span>. <span class="math inline">\(\ce{He}\)</span> : d.o. <span class="math inline">\(= 0\)</span> (élément libre). <span class="math inline">\(\ce{CCl4}\)</span> : C = <span class="math inline">\(+4\)</span>, Cl = <span class="math inline">\(-1\)</span>. <span class="math inline">\(\ce{CaBr2}\)</span> : Ca = <span class="math inline">\(+2\)</span>, Br = <span class="math inline">\(-1\)</span>. <span class="math inline">\(\ce{NaHSO4}\)</span> : Na = <span class="math inline">\(+1\)</span>, H = <span class="math inline">\(+1\)</span>, O = <span class="math inline">\(-2\)</span>, S = <span class="math inline">\(+6\)</span>. <span class="math inline">\(\ce{H2O2}\)</span> : H = <span class="math inline">\(+1\)</span>, O = <span class="math inline">\(-1\)</span> (peroxyde).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>K = <span class="math inline">\(+1\)</span>, O = <span class="math inline">\(-2\)</span> : d.o.(Mn) = <span class="math inline">\(+7\)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>d.o.(Cr) = <span class="math inline">\(+6\)</span>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>O = <span class="math inline">\(-1\)</span> dans <span class="math inline">\(\ce{H2O2}\)</span>. La liaison O-O entre deux atomes identiques ne contribue pas au d.o. — seule la liaison O-H compte.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>O = <span class="math inline">\(-2\)</span> (règle 2 ; <span class="math inline">\(\ce{NaClO}\)</span> n’est pas un peroxyde). Le <span class="math inline">\(\ce{NaClO}\)</span> (hypochlorite de sodium, principe actif de l’eau de Javel) place le chlore à un d.o. de <span class="math inline">\(+1\)</span> — intermédiaire entre <span class="math inline">\(-1\)</span> (état le plus courant du chlore) et des états plus oxydés. C’est donc une substance <em>demandeuse d’électrons</em> (oxydante) : le chlore peut être réduit vers son état <span class="math inline">\(-1\)</span>, ce qui explique son pouvoir désinfectant et décolorant.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><span class="math inline">\(\ce{CaSO4}\)</span> : Ca = <span class="math inline">\(+2\)</span>, O = <span class="math inline">\(-2\)</span>, S = <span class="math inline">\(+6\)</span>. <span class="math inline">\(\ce{PbSO4}\)</span> : Pb = <span class="math inline">\(+2\)</span>, O = <span class="math inline">\(-2\)</span>, S = <span class="math inline">\(+6\)</span>. <span class="math inline">\(\ce{MgCO3}\)</span> : Mg = <span class="math inline">\(+2\)</span>, O = <span class="math inline">\(-2\)</span>, C = <span class="math inline">\(+4\)</span>. <span class="math inline">\(\ce{Fe2(SO4)3}\)</span> : Fe = <span class="math inline">\(+3\)</span>, S = <span class="math inline">\(+6\)</span>, O = <span class="math inline">\(-2\)</span>.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Fe : d.o. <span class="math inline">\(0 \to +2\)</span> (oxydé) → réducteur. H : d.o. <span class="math inline">\(+1 \to 0\)</span> (réduit) → oxydant.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>Oxydation : <span class="math inline">\(\ce{2Mg^0 -&gt; 2Mg^{2+} + 4e-}\)</span>. Réduction : <span class="math inline">\(\ce{O2 + 4e- -&gt; 2O^{2-}}\)</span>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Sn : <span class="math inline">\(+2 \to +4\)</span> → oxydé (réducteur). Fe : <span class="math inline">\(+3 \to +2\)</span> → réduit (oxydant).<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Non — aucun d.o. ne change : C reste à <span class="math inline">\(+4\)</span>, H à <span class="math inline">\(+1\)</span>, O à <span class="math inline">\(-2\)</span>.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Le zinc (<span class="math inline">\(E^\circ = -0{,}76\ \text{V}\)</span>) — potentiel le plus bas.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>Non. <span class="math inline">\(E^\circ(\ce{Cu^{2+}/Cu}) = +0{,}34\ \text{V} &gt;
+E^\circ(\ce{H+/H2}) = 0{,}00\ \text{V}\)</span> : Cu ne peut pas réduire <span class="math inline">\(\ce{H+}\)</span>.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Oui. <span class="math inline">\(\ce{Zn^0 + 2Ag+ -&gt; Zn^{2+} + 2Ag^0}\)</span>.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>Du plus faible au plus fort : <span class="math inline">\(\ce{Fe^{2+}}\)</span> &lt; <span class="math inline">\(\ce{H+}\)</span> <span class="math inline">\(\ce{Cu^{2+}}\)</span> &lt; <span class="math inline">\(\ce{Cl2}\)</span>.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>Spontané. <span class="math inline">\(\Delta V^\circ = +0{,}34 - (-0{,}44) = +0{,}78\
+\text{V}\)</span>.<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>Non spontané. <span class="math inline">\(\ce{Mg^{2+}}\)</span> est déjà oxydé — il n’y a pas de réducteur disponible pour <span class="math inline">\(\ce{Zn^0}\)</span> dans ce sens.<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>Spontané. <span class="math inline">\(\Delta V^\circ = +2{,}87 - 0{,}80 = +2{,}07\
+\text{V}\)</span>. <span class="math inline">\(\ce{F2 + 2Ag^0 -&gt; 2F- + 2Ag+}\)</span>.<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>Non. <span class="math inline">\(\ce{Zn^0}\)</span> réduirait <span class="math inline">\(\ce{Cu^{2+}}\)</span> spontanément (<span class="math inline">\(\Delta V^\circ = +1{,}10\ \text{V}\)</span>) — le récipient se dissoudrait.<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p><span class="math inline">\(\ce{2Fe^{3+} + Sn^{2+} -&gt; 2Fe^{2+} + Sn^{4+}}\)</span>.<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p><span class="math inline">\(\ce{3H2S + 2HNO3 -&gt; 2NO + 3S + 4H2O}\)</span>.<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p><span class="math inline">\(\ce{3H2S + 2HCl + K2Cr2O7 -&gt; 2KCl + 2CrCl3 + 7H2O + 3S}\)</span>.<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p><span class="math inline">\(\ce{2I- + 2NO2- + 4H+ -&gt; I2 + 2NO + 2H2O}\)</span>.<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p><span class="math inline">\(\ce{C3H8 + 5O2 -&gt; 3CO2 + 4H2O}\)</span>.<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p><span class="math inline">\(\ce{C19H40 + 29O2 -&gt; 19CO2 + 20H2O}\)</span>.<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p><span class="math inline">\(88{,}0\ \text{g}\)</span>.<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p>Dans <span class="math inline">\(\ce{CH4}\)</span> : C = <span class="math inline">\(-4\)</span>. Dans <span class="math inline">\(\ce{CO2}\)</span> : C = <span class="math inline">\(+4\)</span>.<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p>L’eau de mer contient des ions dissous qui la rendent plus conductrice — les déplacements ioniques sont facilités.<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p>Oui. <span class="math inline">\(E^\circ(\ce{Mg^{2+}/Mg}) = -2{,}37\ \text{V} &lt; E^\circ(\ce{Fe^{2+}/Fe}) = -0{,}44\ \text{V}\)</span> : Mg s’oxyde préférentiellement à la place du fer.<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><p>La rouille est poreuse — elle laisse passer l’eau et l’oxygène. L’oxyde d’aluminium forme une couche dense et imperméable.<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn30"><p>Non. <span class="math inline">\(E^\circ(\ce{Sn^{2+}/Sn}) = -0{,}14\ \text{V} &gt;
+-0{,}44\ \text{V}\)</span> : si la couche est rayée, c’est le fer qui s’oxyde à la place de l’étain.<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p>Les cations <span class="math inline">\(\ce{K^{+}}\)</span> migrent vers la demi-pile de cuivre pour compenser l’appauvrissement en <span class="math inline">\(\ce{Cu^{2+}}\)</span> (déficit de charges positives dû à la réduction).<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p>Anode : Fe (potentiel plus bas) ; cathode : Ag. Oxydation : <span class="math inline">\(\ce{Fe^{0} -&gt; Fe^{2+} + 2e^{-}}\)</span> ; réduction : <span class="math inline">\(\ce{2Ag^{+} + 2e^{-} -&gt; 2Ag^{0}}\)</span> ; globale : <span class="math inline">\(\ce{Fe^{0} + 2Ag^{+} -&gt; Fe^{2+} + 2Ag^{0}}\)</span>.<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p>Faux. Les électrons circulent de l’anode (oxydation, pôle <span class="math inline">\(-\)</span>) vers la cathode (réduction, pôle <span class="math inline">\(+\)</span>) dans le circuit extérieur. Le courant conventionnel est dans le sens opposé.<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn34"><p>Les anions <span class="math inline">\(\ce{SO4^{2-}}\)</span> migrent vers la demi-pile de zinc pour compenser l’excès de <span class="math inline">\(\ce{Zn^{2+}}\)</span> produits à l’anode.<a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn35"><p>Sans pont salin, la neutralité électrique des solutions est rompue — le courant s’arrête immédiatement.<a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn36"><p>Anode : <span class="math inline">\(\ce{Zn^{0}}\)</span> (potentiel plus bas) ; cathode : <span class="math inline">\(\ce{Cl2}\)</span>. <span class="math inline">\(\Delta V^\circ = +1{,}36 - (-0{,}76) = +2{,}12\ \text{V}\)</span>.<a href="#fnref36" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn37"><p>L’autre couple est l’anode (potentiel plus bas) : <span class="math inline">\(E^\circ_{\text{anode}} = E^\circ_{\text{cathode}} - \Delta V^\circ = +0{,}34 - 0{,}46 = -0{,}12\ \text{V}\)</span>.<a href="#fnref37" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn38"><p>Non spontanée. <span class="math inline">\(\Delta V^\circ = -0{,}76 - (+0{,}34) = -1{,}10\ \text{V} &lt; 0\)</span>.<a href="#fnref38" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn39"><p>Non. <span class="math inline">\(\Delta V^\circ\)</span> est une grandeur intensive (comme la température) : elle ne dépend pas des quantités, seulement des couples en jeu. Multiplier une demi-réaction par un coefficient ne change pas <span class="math inline">\(E^\circ\)</span>.<a href="#fnref39" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn40"><p>La tension dépend des couples chimiques (grandeur intensive) — elle est identique pour les deux piles car elles utilisent les mêmes couples. La durée de vie dépend de la quantité de réactifs (grandeur extensive) : la pile alcaline en contient davantage.<a href="#fnref40" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn41"><p>L’enveloppe de zinc est l’anode — elle s’oxyde et se consomme progressivement lors de la décharge. Quand le zinc est épuisé localement, la paroi se perce.<a href="#fnref41" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn42"><p>Le potentiel très bas du lithium (<span class="math inline">\(-3{,}04\ \text{V}\)</span>) donne une grande différence avec la cathode : <span class="math inline">\(\Delta V^\circ \approx 3{,}04 + E^\circ_{\text{cathode}}\)</span>, nettement supérieure à celle du zinc (<span class="math inline">\(-0{,}76\ \text{V}\)</span>) face aux mêmes cathodes.<a href="#fnref42" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn43"><p>Cathode : <span class="math inline">\(\ce{Ni^{2+} + 2e^{-} -&gt; Ni^{0}}\)</span> (dépôt de nickel). Anode : <span class="math inline">\(\ce{2Cl^{-} -&gt; Cl2 + 2e^{-}}\)</span> (dégagement de dichlore gazeux).<a href="#fnref43" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn44"><p>L’anode est reliée au pôle <span class="math inline">\(+\)</span> du générateur. Le générateur pompe les électrons hors de l’anode — ce qui force les anions à s’y oxyder. À la cathode (<span class="math inline">\(-\)</span>), les électrons sont injectés, forçant les cations à s’y réduire.<a href="#fnref44" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn45"><p>L’eau pure contient très peu d’ions (<span class="math inline">\([\ce{H3O+}] = [\ce{OH^-}] = 10^{-7}\ \text{mol/L}\)</span>) : la résistance électrique est trop grande. L’ajout d’un électrolyte fort augmente la concentration ionique et la conductivité sans participer aux réactions aux électrodes.<a href="#fnref45" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn46"><p>Ce n’est pas un paradoxe : <span class="math inline">\(\ce{Zn^{0}}\)</span> et <span class="math inline">\(\ce{Br2}\)</span> sont les réactifs d’une réaction spontanée (<span class="math inline">\(\Delta V^\circ &gt; 0\)</span>). L’électrolyse avait forcé la réaction inverse ; en coupant le générateur, le système revient spontanément vers l’état de plus basse énergie — le système se comporte alors comme une pile.<a href="#fnref46" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn47"><p>Réducteur : <span class="math inline">\(\ce{Pb^{0}}\)</span> (s’oxyde à l’anode) ; oxydant : <span class="math inline">\(\ce{PbO2}\)</span> (se réduit à la cathode). L’ion <span class="math inline">\(\ce{SO4^{2-}}\)</span> est consommé dans les deux demi-réactions.<a href="#fnref47" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn48"><p>Les deux demi-réactions consomment <span class="math inline">\(\ce{SO4^{2-}}\)</span> (et <span class="math inline">\(\ce{H^{+}}\)</span> pour la cathode) lors de la décharge : la concentration en <span class="math inline">\(\ce{H2SO4}\)</span> diminue donc, ce qui réduit la densité de la solution. Lors de la charge, le phénomène s’inverse.<a href="#fnref48" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn49"><p>Si <span class="math inline">\(\ce{PbSO4}\)</span> se dissolvait, il diffuserait loin de l’électrode dans la solution. Lors de la charge, le générateur ne pourrait plus le réduire/oxyder sur place — les réactifs ne seraient pas régénérés et l’accumulateur serait détruit en un cycle.<a href="#fnref49" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn50"><p><span class="math inline">\(Q = 2{,}00 \times 900 = 1\ 800\ \text{C}\)</span> ; <span class="math inline">\(n(e^-) = 1\ 800/96\ 500 = 0{,}01865\ \text{mol}\)</span> ; <span class="math inline">\(n(\ce{Ag}) = 0{,}01865\ \text{mol}\)</span> (<span class="math inline">\(n_e = 1\)</span>) ; <span class="math inline">\(m = 0{,}01865 \times 107{,}9 = 2{,}01\ \text{g}\)</span>.<a href="#fnref50" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn51"><p><span class="math inline">\(n(\ce{Ni}) = 10{,}0/58{,}69 = 0{,}1704\ \text{mol}\)</span> ; <span class="math inline">\(n(e^-) = 0{,}3407\ \text{mol}\)</span> ; <span class="math inline">\(Q = 0{,}3407 \times 96\ 500 = 32\ 880\ \text{C}\)</span> ; <span class="math inline">\(t = 32\ 880/3{,}00 = 10\ 960\ \text{s} \approx 182\ \text{min}\)</span>.<a href="#fnref51" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn52"><p><span class="math inline">\(n(\ce{H2}) = 1{,}00/24{,}5 = 0{,}04082\ \text{mol}\)</span> ; demi-réaction : <span class="math inline">\(\ce{2H2O + 2e^- -&gt; H2 + 2OH^-}\)</span> donc <span class="math inline">\(n_e = 2\)</span> par mole de <span class="math inline">\(\ce{H2}\)</span> ; <span class="math inline">\(n(e^-) = 0{,}08163\ \text{mol}\)</span> ; <span class="math inline">\(Q = 0{,}08163 \times 96\ 500 = 7\ 877\ \text{C}\)</span>.<a href="#fnref52" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn53"><p><span class="math inline">\(Q = 10{,}0 \times 3600 = 36\ 000\ \text{C}\)</span> ; <span class="math inline">\(n(e^-) = 36\ 000/96\ 500 = 0{,}3731\ \text{mol}\)</span> ; <span class="math inline">\(n(\ce{Cu}) = 0{,}1865\ \text{mol}\)</span> ; <span class="math inline">\(m = 0{,}1865 \times 63{,}55 = 11{,}85\ \text{g}\)</span>. Oui, elles sont égales : la masse déposée à la cathode est exactement compensée par la dissolution de l’anode de cuivre — même demi-réaction inverse, même charge écoulée.<a href="#fnref53" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn54"><ol type="a">
+<li>Anode : <span class="math inline">\(\ce{Fe^{0}}\)</span> ; cathode : <span class="math inline">\(\ce{Ag^{+}}\)</span>. (b) Oxydation : <span class="math inline">\(\ce{Fe^{0} -&gt; Fe^{2+} + 2e^{-}}\)</span> ; réduction : <span class="math inline">\(\ce{2Ag^{+} + 2e^{-} -&gt; 2Ag^{0}}\)</span> ; globale : <span class="math inline">\(\ce{Fe^{0} + 2Ag^{+} -&gt; Fe^{2+} + 2Ag^{0}}\)</span>. (c) <span class="math inline">\(\Delta V^\circ = +0{,}80 - (-0{,}44) = +1{,}24\ \text{V}\)</span>.</li>
+</ol>
+<a href="#fnref54" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn55"><ol type="a">
+<li>Cathode : <span class="math inline">\(\ce{Cu^{0}}\)</span> (dépôt) ; anode : <span class="math inline">\(\ce{Cl2}\)</span> (gaz). (b) <span class="math inline">\(Q = 4{,}00 \times 2700 = 10\ 800\ \text{C}\)</span> ; <span class="math inline">\(n(e^-) = 0{,}1119\ \text{mol}\)</span> ; <span class="math inline">\(n(\ce{Cu}) = 0{,}05596\ \text{mol}\)</span> → <span class="math inline">\(m(\ce{Cu}) = 3{,}56\ \text{g}\)</span> ; <span class="math inline">\(n(\ce{Cl2}) = 0{,}05596\ \text{mol}\)</span> → <span class="math inline">\(V(\ce{Cl2}) = 0{,}05596 \times 24{,}5 = 1{,}37\ \text{L}\)</span>.</li>
+</ol>
+<a href="#fnref55" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn56"><ol type="a">
+<li>2,04 V par cellule (lecture du texte). (b) <span class="math inline">\(6 \times 2{,}04 \approx 12\ \text{V}\)</span>. (c) Lors de la décharge, les concentrations en <span class="math inline">\(\ce{SO4^{2-}}\)</span> et <span class="math inline">\(\ce{H^+}\)</span> diminuent — la f.e.m. réelle (corrigée par Nernst) s’éloigne de la valeur standard et diminue progressivement jusqu’à s’annuler quand les réactifs sont épuisés.</li>
+</ol>
+<a href="#fnref56" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn57"><p><span class="math inline">\(V = 50{,}0 \times 10^{-4}\ \text{cm} \times 200\ \text{cm}^2 = 1{,}00\ \text{cm}^3\)</span> ; <span class="math inline">\(m = 7{,}13 \times 1{,}00 = 7{,}13\ \text{g}\)</span> ; <span class="math inline">\(n(\ce{Zn}) = 7{,}13/65{,}38 = 0{,}1091\ \text{mol}\)</span> ; <span class="math inline">\(Q = 0{,}1091 \times 2 \times 96\ 500 = 21\ 050\ \text{C}\)</span> ; <span class="math inline">\(t = 21\ 050/8{,}00 = 2\ 631\ \text{s} \approx 43{,}9\ \text{min}\)</span>.<a href="#fnref57" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn58"><ol type="a">
+<li><span class="math inline">\(\ce{2H2 + O2 -&gt; 2H2O}\)</span>. (b) <span class="math inline">\(\Delta V^\circ = +1{,}23 - 0{,}00 = +1{,}23\ \text{V}\)</span>. (c) <span class="math inline">\(\eta_{\text{Carnot}} = 1 - 298/473 = 37\ \%\)</span>. La pile à combustible peut atteindre des rendements de 60–80 %, bien supérieurs au moteur thermique opérant entre les mêmes températures — avantage majeur de la conversion électrochimique directe.</li>
+</ol>
+<a href="#fnref58" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn59"><p>Le cuivre se dépose en premier : <span class="math inline">\(E^\circ(\ce{Cu^{2+}/Cu^{0}}) = +0{,}34\ \text{V}\)</span> est plus élevé que <span class="math inline">\(E^\circ(\ce{Zn^{2+}/Zn^{0}}) = -0{,}76\ \text{V}\)</span>. À la cathode, la réduction commence par le couple de potentiel le plus élevé — <span class="math inline">\(\ce{Cu^{2+}}\)</span> est réduit en premier dès que la tension imposée dépasse son seuil.<a href="#fnref59" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn60"><ol type="a">
+<li><span class="math inline">\(Q = 0{,}80 \times 2{,}5 \times 3600 = 7\ 200\ \text{C}\)</span>. (b) <span class="math inline">\(n(e^-) = 7\ 200/96\ 500 = 0{,}07461\ \text{mol}\)</span> ; <span class="math inline">\(n(\ce{Cd}) = 0{,}07461/2 = 0{,}03731\ \text{mol}\)</span> ; <span class="math inline">\(m(\ce{Cd}) = 0{,}03731 \times 112{,}4 = 4{,}19\ \text{g}\)</span>.</li>
+</ol>
+<a href="#fnref60" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn61"><p>Dans une pile galvanique, l’anode perd des électrons spontanément — elle s’appauvrit en charges et devient négative. Dans une cellule d’électrolyse, le générateur impose le sens du courant : il pompe les électrons hors de l’anode (la rendant positive) et les injecte à la cathode (la rendant négative). Le rôle chimique (anode = oxydation) est identique, mais la cause des signes est opposée.<a href="#fnref61" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn62"><ol type="a">
+<li><span class="math inline">\(Q = 0{,}150 \times 7200 = 1\ 080\ \text{C}\)</span>. (b) <span class="math inline">\(n(e^-) = 1\ 080/96\ 500 = 0{,}01119\ \text{mol}\)</span> ; <span class="math inline">\(n(\ce{Zn}) = 0{,}005596\ \text{mol}\)</span> ; <span class="math inline">\(m(\ce{Zn}) = 0{,}005596 \times 65{,}38 = 0{,}366\ \text{g}\)</span>. (c) <span class="math inline">\(n(\ce{Cu}) = 0{,}005596\ \text{mol}\)</span> (rapport 1:1) ; <span class="math inline">\(m(\ce{Cu}) = 0{,}005596 \times 63{,}55 = 0{,}356\ \text{g}\)</span>.</li>
+</ol>
+<a href="#fnref62" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn63"><ol type="a">
+<li><span class="math inline">\(Q = 150\ 000 \times 86\ 400 = 1{,}296 \times 10^{10}\ \text{C}\)</span>. (b) <span class="math inline">\(n(e^-) = 1{,}296 \times 10^{10}/96\ 500 = 1{,}343 \times 10^5\ \text{mol}\)</span> ; <span class="math inline">\(n(\ce{Al}) = 1{,}343 \times 10^5/3 = 4{,}476 \times 10^4\ \text{mol}\)</span> ; <span class="math inline">\(m(\ce{Al}) = 4{,}476 \times 10^4 \times 26{,}98 = 1{,}208 \times 10^6\ \text{g} \approx 121\ \text{tonnes}\)</span>. Légèrement supérieur à 100 tonnes — cohérent en tenant compte d’un rendement industriel d’environ 83 %.</li>
+</ol>
+<a href="#fnref63" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn64"><p><span class="math inline">\(\ce{SO2}\)</span> : S = <span class="math inline">\(+4\)</span> ; <span class="math inline">\(\ce{H2SO3}\)</span> : S = <span class="math inline">\(+4\)</span> ; <span class="math inline">\(\ce{H2SO4}\)</span> : S = <span class="math inline">\(+6\)</span>. Du plus réduit au plus oxydé : <span class="math inline">\(\ce{SO2}\)</span> et <span class="math inline">\(\ce{H2SO3}\)</span> sont ex æquo (<span class="math inline">\(+4\)</span>), puis <span class="math inline">\(\ce{H2SO4}\)</span> (<span class="math inline">\(+6\)</span>).<a href="#fnref64" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn65"><p>Non. Aucun d.o. ne change — c’est une réaction de précipitation.<a href="#fnref65" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn66"><p>Oui. <span class="math inline">\(\Delta V^\circ = +0{,}34 - (-1{,}66) = +2{,}00\
+\text{V}\)</span>. <span class="math inline">\(\ce{2Al^{0} + 3Cu^{2+} -&gt; 2Al^{3+} + 3Cu^{0}}\)</span>.<a href="#fnref66" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn67"><p><span class="math inline">\(\ce{Cu^{0} + 4HNO3 -&gt; Cu(NO3)2 + 2NO2 + 2H2O}\)</span>.<a href="#fnref67" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn68"><p><span class="math inline">\(\Delta V^\circ = +1{,}51 - 0{,}68 = +0{,}83\ \text{V}\)</span> — spontané. Oxydant : <span class="math inline">\(\ce{MnO4^{-}}\)</span> ; réducteur : <span class="math inline">\(\ce{H2O2}\)</span>. Demi-réactions : réduction (×2) : <span class="math inline">\(\ce{2MnO4^{-} + 16H^{+} + 10e^{-} -&gt; 2Mn^{2+} + 8H2O}\)</span> ; oxydation (×5) : <span class="math inline">\(\ce{5H2O2 -&gt; 5O2 + 10H^{+} + 10e^{-}}\)</span>. Globale : <span class="math inline">\(\ce{2MnO4^{-} + 5H2O2 + 6H^{+} -&gt; 2Mn^{2+} + 5O2 + 8H2O}\)</span>.<a href="#fnref68" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn69"><p>Dans <span class="math inline">\(\ce{CuSO4}\)</span> : réaction spontanée, du cuivre se dépose. Dans <span class="math inline">\(\ce{MgSO4}\)</span> : pas de réaction (<span class="math inline">\(\ce{Mg^{2+}}\)</span> ne peut pas oxyder <span class="math inline">\(\ce{Fe^{0}}\)</span>).<a href="#fnref69" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn70"><p><span class="math inline">\(\Delta V^\circ = +1{,}36 - (-0{,}44) = +1{,}80\ \text{V}\)</span>. <span class="math inline">\(\ce{Fe^{0} + Cl2 -&gt; Fe^{2+} + 2Cl^{-}}\)</span>.<a href="#fnref70" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn71"><p><span class="math inline">\(E^\circ(\ce{Zn^{2+}/Zn}) = -0{,}76\ \text{V} &lt; E^\circ(\ce{Fe^{2+}/Fe}) = -0{,}44\ \text{V}\)</span> : le zinc s’oxyde à la place du fer. Le cuivre (<span class="math inline">\(+0{,}34\ \text{V}\)</span>) ne protégerait pas — c’est le fer qui s’oxyderait à sa place.<a href="#fnref71" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn72"><ol type="a">
+<li>Spontané : <span class="math inline">\(\Delta V^\circ = +0{,}80 - 0{,}34 = +0{,}46\ \text{V} &gt; 0\)</span>. b) <span class="math inline">\(\ce{Cu^{0} + 2Ag^{+} -&gt; Cu^{2+} + 2Ag^{0}}\)</span>. c) <span class="math inline">\(n(\ce{Cu}) = 0{,}500/63{,}55 = 7{,}869 \times 10^{-3}\ \text{mol}\)</span> ; rapport 1:2 → <span class="math inline">\(n(\ce{Ag}) = 1{,}574 \times 10^{-2}\ \text{mol}\)</span> ; <span class="math inline">\(m(\ce{Ag}) = 1{,}574 \times 10^{-2} \times 107{,}9 = 1{,}698\ \text{g}\)</span>.</li>
+</ol>
+<a href="#fnref72" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn73"><p>Al : anode ; Ag : cathode. <span class="math inline">\(\Delta V^\circ = +0{,}80 -
+(-1{,}66) = +2{,}46\ \text{V}\)</span>. <span class="math inline">\(\ce{Al^{0} + 3Ag^{+} -&gt; Al^{3+} + 3Ag^{0}}\)</span>.<a href="#fnref73" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn74"><ol type="a">
+<li><span class="math inline">\(E^\circ(\ce{Mg^{2+}/Mg}) = -2{,}37\ \text{V} &lt;
+E^\circ(\ce{Fe^{2+}/Fe}) = -0{,}44\ \text{V}\)</span> : Mg s’oxyde préférentiellement à la place du fer.</li>
+<li><span class="math inline">\(\Delta V^\circ = -0{,}44 - (-2{,}37) = +1{,}93\ \text{V}\)</span> — spontané. <span class="math inline">\(\ce{Mg + Fe^{2+} -&gt; Mg^{2+} + Fe}\)</span>.</li>
+<li><span class="math inline">\(n(\ce{Mg}) = 120 / 24{,}3 = 4{,}94\ \text{mol}\)</span> → <span class="math inline">\(4{,}94\ \text{mol}\)</span> de <span class="math inline">\(\ce{Fe^{2+}}\)</span> réduits (rapport 1:1).</li>
+</ol>
+<a href="#fnref74" class="footnote-back" role="doc-backlink">↩︎</a></li>
+<li id="fn75"><p><strong>Défi B —</strong> a) <span class="math inline">\(\Delta V^\circ = (-0{,}83) - (-0{,}76) = -0{,}07\ \text{V}\)</span> : négatif, la pile ne devrait pas fonctionner. b) <span class="math inline">\(K_s = [\ce{Zn^{2+}}][\ce{OH^{-}}]^2 = s \cdot (2s)^2 = 4s^3 = 1{,}8 \times 10^{-14}\)</span>, donc <span class="math inline">\(s = \sqrt[3]{4{,}5 \times 10^{-15}} = 1{,}65 \times 10^{-5}\ \text{mol/L}\)</span> et <span class="math inline">\([\ce{OH^{-}}] = 2s = 3{,}30 \times 10^{-5}\ \text{mol/L}\)</span>. c) <span class="math inline">\(E(\ce{Zn}) = -0{,}76 + \frac{0{,}059}{2}\log(1{,}65 \times 10^{-5}) = -0{,}76 - 0{,}14 = -0{,}90\ \text{V}\)</span>. d) <span class="math inline">\(E(\text{cathode}) = -0{,}83 - \frac{0{,}059}{2}\log(3{,}30 \times 10^{-5})^2 = -0{,}83 + 0{,}26 = -0{,}57\ \text{V}\)</span>. e) <span class="math inline">\(\Delta V = (-0{,}57) - (-0{,}90) = +0{,}33\ \text{V}\)</span> : positif — la pile fonctionne bien. La précipitation de <span class="math inline">\(\ce{Zn(OH)2}\)</span> abaisse suffisamment les concentrations pour inverser l’ordre des potentiels.<a href="#fnref75" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn76"><p><strong>Défi C —</strong> a) <span class="math inline">\(\ce{Cd^{0} + 2NiO(OH) + 2H2O -&gt; Cd(OH)2 + 2Ni(OH)2}\)</span>. b) <span class="math inline">\(\Delta V^\circ = (+0{,}49) - (-0{,}81) = +1{,}30\ \text{V}\)</span>. c) Lors de la charge, l’anode devient l’électrode de <span class="math inline">\(\ce{Cd(OH)2}\)</span> (oxydation inversée) et la cathode celle de <span class="math inline">\(\ce{Ni(OH)2}\)</span> (réduction inversée). L’insolubilité est indispensable : si les produits se dissolvaient, ils diffuseraient loin de l’électrode et ne pourraient pas être régénérés sur place. d) <span class="math inline">\(Q = i \times t = 0{,}50 \times 7\ 200 = 3\ 600\ \text{C}\)</span> ; <span class="math inline">\(n(e^-) = \frac{3\ 600}{96\ 500} = 0{,}03731\ \text{mol}\)</span> ; <span class="math inline">\(n(\ce{Cd}) = \frac{0{,}03731}{2} = 0{,}01865\ \text{mol}\)</span> ; <span class="math inline">\(m(\ce{Cd}) = 0{,}01865 \times 112{,}41 = 2{,}10\ \text{g}\)</span>.<a href="#fnref76" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapitres/transformations-physiques.html" class="pagination-link" aria-label="Transformations physiques">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transformations physiques</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapitres/acido-basiques-intro.html" class="pagination-link" aria-label="Introduction aux équilibres acido-basiques">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction aux équilibres acido-basiques</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
