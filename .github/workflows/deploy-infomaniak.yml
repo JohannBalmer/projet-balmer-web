@@ -1,0 +1,45 @@
+name: Déploiement Infomaniak (projet-balmer.ch)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  ftp-deploy:
+    name: Synchroniser vers projet-balmer.ch
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Déployer via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: 8v6sdn.ftp.infomaniak.com
+          username: 8v6sdn_deploy-github
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          protocol: ftps
+          server-dir: /sites/projet-balmer.ch/
+          local-dir: ./
+          # Renommé pour forcer un renouvellement complet de l'état suivi :
+          # le fichier d'état précédent s'est désynchronisé du contenu réel
+          # du serveur dès le premier déploiement (l'action croyait que rien
+          # n'avait changé et ne renvoyait jamais balmer-cloud-eleve.html).
+          state-name: .ftp-deploy-sync-state-v2.json
+          # Sécurité : ne jamais effacer de fichiers absents de ce dépôt.
+          # Le backend de collecte (collect.php, view.php, config.php, ...)
+          # vit hors de ce dépôt (dans Projet-Balmer-Cloud/collecte-serveur/,
+          # déployé séparément) et ne doit jamais être touché par ce workflow.
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.DS_Store
+            **/collect.php
+            **/view.php
+            **/config.php
+            **/config.example.php
+            **/schema.sql
+            **/README-deploiement.md
