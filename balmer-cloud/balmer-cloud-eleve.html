@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balmer-Cloud — Entraînement</title>
+<!-- Rendu des formules chimiques $\ce{...}$ dans les questions/options/feedback
+     (qbank-liaisons-sels-molecules.md et suivants) — même MathJax que le livre
+     web : MathJax 3 (version figée 3.2.2), configuration identique à celle de
+     build-web.sh (write_quarto_yml), mhchem chargé par le loader standard.
+     2026-09-21 : abandon de MathJax 4. Avec `mathjax@4` (alias flottant, donc
+     4.1.x), mhchem dessine les flèches de réaction (->, <=>) avec des glyphes
+     d'une police d'extension séparée (@mathjax/mathjax-mhchem-font-extension).
+     Le contournement des v1.9-v1.12 empêchait le chargement de cette police
+     pour éviter un blocage de MathJax.typesetPromise : résultat, toutes les
+     flèches de réaction s'affichaient en blanc (l'équation restait lisible
+     sans son signe de flèche). MathJax 3 n'a pas cette dépendance : flèches et
+     formules s'affichent, sans bricolage de loader. Testé (Playwright, fichiers
+     MathJax servis localement) : question, options, feedback, questions
+     successives. Voir Charte_Balmer-Cloud.md v1.45. -->
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mhchem']},
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    packages: {'[+]': ['mhchem']}
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<style>
+:root {
+  --green: #1D9E75; --green-d: #0F6E56; --green-l: #E1F5EE; --green-b: #5DCAA5;
+  --coral: #D85A30; --coral-l: #FAECE7; --coral-b: #F0997B; --coral-t: #4A1B0C;
+  --amber-l: #FAEEDA; --amber-b: #FAC775; --amber-t: #633806;
+  --blue-l: #E6F1FB; --blue: #185FA5;
+  --purple-l: #EEEDFE; --purple: #534AB7;
+  --bg: #ffffff; --bg2: #f7f6f3; --bg3: #efede8;
+  --text: #1a1918; --text2: #6b6963; --text3: #9c9890;
+  --border: rgba(0,0,0,0.1); --border2: rgba(0,0,0,0.2);
+  --radius: 8px; --radius-lg: 12px;
+  --font: 'Georgia', serif; --mono: 'Courier New', monospace;
+  /* Zones du profil de maîtrise (Charte_Balmer-Cloud.md §5.1) — alias vers
+     les tokens existants ; se réadaptent seuls en mode sombre puisque
+     --coral/--amber-b/--green-b/--green sont eux-mêmes redéfinis plus bas. */
+  --zone1: var(--coral); --zone2: var(--amber-b); --zone3: var(--green-b); --zone4: var(--green);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1b19; --bg2: #252421; --bg3: #2e2c29;
+    --text: #f0ede8; --text2: #9c9890; --text3: #6b6963;
+    --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.2);
+    --green-l: #04342C; --green-b: #0F6E56;
+    --coral-l: #4A1B0C; --coral-b: #993C1D; --coral-t: #F5C4B3;
+    --blue-l: #042C53; --blue: #85B7EB;
+    --purple-l: #26215C; --purple: #AFA9EC;
+  }
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--bg3); color: var(--text); min-height: 100vh; }
+
+/* ── IMPORT SCREEN ── */
+.import-screen {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem;
+}
+.import-card {
+  background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 3rem 2.5rem; max-width: 480px; width: 100%; text-align: center;
+}
+.import-logo { font-size: 24px; font-weight: normal; margin-bottom: 4px; }
+.import-logo em { color: var(--green); font-style: normal; }
+.import-sub { font-size: 12px; color: var(--text2); font-family: var(--mono); margin-bottom: 2.5rem; }
+.import-icon { font-size: 48px; margin-bottom: 1.5rem; }
+.import-title { font-size: 16px; color: var(--text); margin-bottom: 8px; }
+.import-desc { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 2rem; }
+.banques-connues { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; }
+.banque-btn {
+  display: block; width: 100%; padding: 10px 16px; background: transparent;
+  color: var(--text); border: 1px solid var(--border); border-radius: var(--radius);
+  font-size: 14px; font-family: var(--font); cursor: pointer; text-align: left; transition: border-color .15s;
+}
+.banque-btn:hover { border-color: var(--green); }
+.import-error { margin-top: 1rem; font-size: 12px; color: var(--coral); font-family: var(--mono); }
+
+/* ── MAIN APP ── */
+.app { display: none; max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+
+/* header */
+.hdr { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+.logo { font-size: 20px; font-weight: normal; }
+.logo em { color: var(--green); font-style: normal; }
+.logo-sub { font-size: 11px; color: var(--text2); font-family: var(--mono); margin-top: 2px; }
+.hdr-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.chapter-badge { font-size: 11px; font-family: var(--mono); color: var(--text2); background: var(--bg2); border: 1px solid var(--border); padding: 3px 9px; border-radius: 20px; }
+.reset-btn { font-size: 11px; color: var(--text3); background: none; border: none; cursor: pointer; font-family: var(--mono); text-decoration: underline; }
+.reset-btn:hover { color: var(--text2); }
+a.reset-btn, a.reset-btn:visited { color: var(--text3); }
+a.reset-btn:hover { color: var(--text2); }
+
+/* classe bar — champ visible dès l'arrivée sur l'appli, pour que le code de
+   classe soit connu avant toute activité (voir renderClasseBar() dans le
+   script : le filet de sécurité autoSyncOnHide() ne peut transmettre que ce
+   qui est déjà mémorisé à ce moment-là). */
+.classe-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 1.25rem; padding: 10px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); flex-wrap: wrap; }
+.classe-bar-label { font-size: 11px; color: var(--text2); font-family: var(--mono); text-transform: uppercase; letter-spacing: .5px; white-space: nowrap; }
+.classe-input { flex: 1; min-width: 140px; padding: 7px 10px; border: 1px solid var(--border); border-radius: var(--radius); font-size: 13px; font-family: var(--font); background: var(--bg); color: var(--text); }
+.classe-input:focus { outline: none; border-color: var(--green); }
+.classe-save-btn { padding: 7px 16px; background: var(--green); color: white; border: none; border-radius: var(--radius); font-size: 13px; font-family: var(--font); cursor: pointer; white-space: nowrap; }
+.classe-save-btn:hover { background: var(--green-d); }
+.classe-value { font-size: 13px; color: var(--text); }
+.classe-value.autonome { color: var(--text2); font-style: italic; }
+.retour-banner { display: none; align-items: center; gap: 8px; margin-bottom: 1.25rem; padding: 10px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); flex-wrap: wrap; }
+.retour-label { font-size: 11px; color: var(--text2); font-family: var(--mono); text-transform: uppercase; letter-spacing: .5px; white-space: nowrap; }
+.retour-value { font-size: 13px; color: var(--text); }
+.retour-delta { color: #2e7d32; }
+.quest-box { margin: 1rem 0; padding: 12px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); text-align: left; }
+.quest-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; padding: 4px 0; }
+.quest-label { color: var(--text2); }
+.quest-val { font-weight: 600; }
+.quest-done { color: #2e7d32; font-weight: 600; }
+.quest-badge { margin-top: 8px; padding: 8px 10px; background: #fff8e1; color: #8a5a00; border-radius: 8px; font-size: 13px; text-align: center; font-weight: 600; }
+@media (prefers-color-scheme: dark) { .quest-badge { background: #3a2f10; color: #f0c674; } }
+.classe-edit-link { font-size: 11px; color: var(--text3); background: none; border: none; cursor: pointer; font-family: var(--mono); text-decoration: underline; margin-left: auto; }
+.classe-edit-link:hover { color: var(--text2); }
+.classe-add-btn { padding: 6px 14px; background: none; color: var(--green); border: 1px solid var(--green); border-radius: var(--radius); font-size: 13px; font-family: var(--font); cursor: pointer; white-space: nowrap; margin-left: auto; }
+.classe-add-btn:hover { background: var(--green); color: white; }
+.classe-msg { flex-basis: 100%; font-size: 12px; color: #9a5b00; }
+.classe-msg:empty { display: none; }
+
+/* stats */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 1.5rem; }
+.stat { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px; text-align: center; }
+.stat-v { font-size: 22px; color: var(--text); }
+.stat-l { font-size: 10px; color: var(--text2); font-family: var(--mono); text-transform: uppercase; letter-spacing: .5px; margin-top: 2px; }
+
+/* profile */
+.profile { margin-bottom: 1.5rem; }
+.profile-label { font-size: 10px; color: var(--text2); font-family: var(--mono); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+.profile-hint { font-size: 11px; color: var(--text2); font-family: var(--font); line-height: 1.4; margin-bottom: 8px; }
+.save-toast {
+  position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%) translateY(8px);
+  background: var(--text); color: var(--bg); font-family: var(--font); font-size: 12.5px;
+  padding: 7px 16px; border-radius: 999px; opacity: 0; pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease; z-index: 500; white-space: nowrap;
+}
+.save-toast.show { opacity: 0.92; transform: translateX(-50%) translateY(0); }
+/* minmax(0, 1fr) + retour à la ligne dans .cpill-status + 2 colonnes sur téléphone :
+   sans cela le contenu des pastilles ("Pas encore testé" + pourcentage) élargissait
+   la grille au-delà de l'écran (page de 502 px sur un téléphone de 390 px). */
+.concept-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+@media (max-width: 480px) { .concept-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.cpill { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 7px 9px; text-align: left; }
+.cpill-name { font-size: 10px; color: var(--text2); font-family: var(--mono); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Piste segmentée à 4 zones fixes (Charte_Balmer-Cloud.md §5.1 : 0-0,3 lacune
+   critique / 0,3-0,6 à consolider / 0,6-0,8 bonne maîtrise / 0,8-1,0 maîtrisé)
+   avec un curseur qui indique la position exacte du score dans sa zone. */
+.cpill-track {
+  position: relative; height: 6px; border-radius: 3px; margin-top: 2px;
+  background: linear-gradient(to right,
+    var(--zone1) 0%, var(--zone1) 30%,
+    var(--zone2) 30%, var(--zone2) 60%,
+    var(--zone3) 60%, var(--zone3) 80%,
+    var(--zone4) 80%, var(--zone4) 100%);
+}
+.cpill-cursor {
+  position: absolute; top: 50%; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--text); transform: translate(-50%, -50%);
+  transition: left .5s; box-shadow: 0 0 0 1px var(--bg);
+}
+.cpill-status { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 6px; margin-top: 5px; }
+.cpill-zone-label { font-size: 10px; font-family: var(--mono); }
+.cpill-zone-label.z0 { color: var(--text3); }
+.cpill-zone-label.z1 { color: var(--coral); } .cpill-zone-label.z2 { color: var(--amber-t); }
+.cpill-zone-label.z3 { color: var(--green-d); } .cpill-zone-label.z4 { color: var(--green); }
+@media (prefers-color-scheme: dark) { .cpill-zone-label.z2 { color: var(--amber-b); } .cpill-zone-label.z3 { color: var(--green); } }
+.checkpoint-summary { font-size: 13px; color: var(--text2); margin: 2px 0 1.25rem; text-align: center; }
+.cpill-pct { font-size: 10px; color: var(--text3); font-family: var(--mono); }
+.cpill-streak { font-size: 10px; color: var(--text3); font-family: var(--mono); margin-top: 3px; }
+/* Pourcentage cliquable → fenêtre « Comment est calculé ce score ? » */
+.cpill-info { font-size: 10px; font-family: var(--mono); color: var(--text2); background: none; border: 0; border-radius: 6px; cursor: pointer; padding: 4px 6px; margin: -4px -6px; display: inline-flex; align-items: center; gap: 4px; }
+.cpill-info:hover, .cpill-info:focus-visible { background: var(--bg2); color: var(--text); }
+.cpill-info:focus-visible, .score-close:focus-visible { outline: 2px solid var(--green); outline-offset: 1px; }
+.cpill-i { display: inline-flex; align-items: center; justify-content: center; width: 12px; height: 12px; border: 1px solid currentColor; border-radius: 50%; font: italic 9px/1 var(--font); }
+.score-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 600; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.score-overlay[hidden] { display: none; }
+.score-dialog { position: relative; background: var(--bg); color: var(--text); border: 1px solid var(--border2); border-radius: var(--radius-lg); width: 100%; max-width: 440px; max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); overflow-y: auto; padding: 1.25rem 1.25rem 1rem; font-size: 14px; line-height: 1.5; box-shadow: 0 8px 30px rgba(0,0,0,0.25); }
+.score-close { position: absolute; top: 6px; right: 8px; width: 36px; height: 36px; font-size: 22px; line-height: 1; background: none; border: 0; border-radius: 50%; cursor: pointer; color: var(--text2); }
+.score-close:hover { background: var(--bg2); color: var(--text); }
+.score-kicker { font-size: 11px; font-family: var(--mono); color: var(--text2); }
+.score-title { font-size: 17px; font-weight: normal; margin: 2px 40px 10px 0; }
+.score-dialog p { margin: 0 0 8px; }
+.score-list, .score-rules { margin: 6px 0 8px 18px; }
+.score-list li, .score-rules li { margin-bottom: 5px; }
+.score-sec { font-size: 11px; font-family: var(--mono); color: var(--text2); margin: 14px 0 6px; padding-top: 10px; border-top: 1px solid var(--border); }
+.score-zones { font-size: 12.5px; line-height: 1.8; margin-bottom: 8px; }
+.score-note { font-size: 12px; color: var(--text2); margin-top: 8px; }
+
+/* card */
+.card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1rem; }
+
+/* badges */
+.badges { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
+.badge { font-size: 11px; padding: 2px 9px; border-radius: 20px; font-family: var(--mono); }
+.b-macro { background: var(--blue-l); color: var(--blue); }
+.b-parti { background: var(--purple-l); color: var(--purple); }
+.b-symbo { background: var(--green-l); color: var(--green-d); }
+.b-t1 { background: var(--amber-l); color: var(--amber-t); }
+.b-t2 { background: var(--green-l); color: var(--green-d); }
+.b-t3 { background: var(--coral-l); color: var(--coral-t); }
+.b-concept { background: var(--bg2); color: var(--text2); }
+
+/* question */
+.qtext { font-size: 16px; line-height: 1.7; color: var(--text); margin-bottom: 1.25rem; }
+.opts-hint { font-size: 12px; color: var(--text2); font-style: italic; margin-bottom: 10px; }
+
+/* options */
+.opts { display: flex; flex-direction: column; gap: 8px; }
+.opt {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 14px; border: 1px solid var(--border); border-radius: var(--radius);
+  cursor: pointer; font-size: 14px; font-family: var(--font); color: var(--text);
+  background: var(--bg); transition: background .15s, border-color .15s;
+  text-align: left; width: 100%;
+}
+.opt:hover { background: var(--bg2); border-color: var(--border2); }
+.opt.answered { cursor: default; }
+.opt.answered:hover { background: var(--bg); border-color: var(--border); }
+.opt.correct { background: var(--green-l); border-color: var(--green-b); color: var(--green-d); }
+.opt.correct:hover { background: var(--green-l); border-color: var(--green-b); }
+.opt.wrong { background: var(--coral-l); border-color: var(--coral-b); color: var(--coral-t); }
+.opt.wrong:hover { background: var(--coral-l); border-color: var(--coral-b); }
+.opt.missed { background: var(--amber-l); border-color: var(--amber-b); color: var(--amber-t); }
+.opt.missed:hover { background: var(--amber-l); border-color: var(--amber-b); }
+.opt-check {
+  width: 17px; height: 17px; flex-shrink: 0; accent-color: var(--green); cursor: pointer;
+}
+.opt.answered .opt-check { cursor: default; }
+.opt-letter {
+  width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+  background: var(--bg2); display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-family: var(--mono); color: var(--text2);
+}
+.opt-text { flex: 1; }
+.opt.correct .opt-letter { background: var(--green); color: white; }
+.opt.wrong .opt-letter { background: var(--coral); color: white; }
+.opt.missed .opt-letter { background: var(--amber-b); color: var(--amber-t); }
+
+/* validate button */
+.validate-row { display: flex; justify-content: flex-end; margin-top: 1rem; }
+.btn-validate {
+  padding: 9px 20px; background: var(--green); color: white; border: none;
+  border-radius: var(--radius); font-size: 14px; font-family: var(--font); cursor: pointer;
+}
+.btn-validate:hover:not(:disabled) { background: var(--green-d); }
+.btn-validate:disabled { background: var(--bg3); color: var(--text3); cursor: not-allowed; }
+
+/* feedback */
+.fb { margin-top: 1rem; padding: 12px 14px; border-radius: var(--radius); font-size: 13px; line-height: 1.7; }
+.fb.ok { background: var(--green-l); border: 1px solid var(--green-b); color: var(--green-d); }
+.fb.ko { background: var(--coral-l); border: 1px solid var(--coral-b); color: var(--coral-t); }
+.fb-wrong { margin-top: 6px; }
+.fb-ref { font-size: 11px; font-family: var(--mono); margin-top: 6px; opacity: .85; }
+.fb-ref a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.fb-ref a:hover { opacity: .8; }
+.fb-ref-plain { opacity: .7; }
+.fb-next { font-size: 12px; font-style: italic; margin-top: 6px; }
+
+/* next button */
+.next-row { display: flex; justify-content: flex-end; margin-top: 1rem; }
+.btn-next {
+  padding: 9px 20px; background: var(--green); color: white; border: none;
+  border-radius: var(--radius); font-size: 14px; font-family: var(--font); cursor: pointer;
+}
+.btn-next:hover { background: var(--green-d); }
+
+/* done screen */
+.done-card { text-align: center; padding: 3rem 1.5rem; }
+.done-icon { font-size: 48px; margin-bottom: 1rem; }
+.done-title { font-size: 20px; color: var(--text); margin-bottom: 8px; }
+.done-sub { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 1.5rem; }
+.btn-restart { padding: 10px 24px; background: var(--green); color: white; border: none; border-radius: var(--radius); font-size: 14px; font-family: var(--font); cursor: pointer; }
+.btn-restart:hover { background: var(--green-d); }
+
+/* gap warning */
+.gap-card { text-align: center; padding: 2rem; }
+.gap-title { font-size: 15px; color: var(--text); margin-bottom: 8px; font-style: italic; }
+.gap-sub { font-size: 13px; color: var(--text2); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<!-- ── IMPORT SCREEN ── -->
+<div class="import-screen" id="import-screen">
+  <div class="import-card">
+    <div class="import-logo">Balmer<em>-Cloud</em></div>
+    <div class="import-sub">Outil élève — v1.9</div>
+    <div class="import-icon">📂</div>
+    <div class="import-title">Importer une banque de questions</div>
+    <div class="import-desc">
+      Choisissez votre chapitre ci-dessous.
+    </div>
+    <div class="banques-connues" id="banques-connues"></div>
+    <div class="import-error" id="import-error" style="display:none"></div>
+    <a href="../index.html" style="display:block;margin-top:1rem;font-size:12px;color:var(--text2);text-decoration:underline">← Retour au manuel</a>
+  </div>
+</div>
+
+<!-- Écran de choix de sous-partie (chantier 8, 09.09.2026) — affiché uniquement
+     pour un chapitre découpé en sous-parties (voir SOUS_PARTIES plus bas). -->
+<div class="import-screen" id="souspartie-screen" style="display:none">
+  <div class="import-card">
+    <div class="import-logo">Balmer<em>-Cloud</em></div>
+    <div class="import-icon">🧩</div>
+    <div class="import-title" id="souspartie-title">—</div>
+    <div class="import-desc">
+      Choisissez la partie à travailler aujourd'hui — votre progression est suivie séparément pour chacune.
+    </div>
+    <div class="banques-connues" id="souspartie-list"></div>
+    <div id="souspartie-back" style="display:block;margin-top:1rem;font-size:12px;color:var(--text2);cursor:pointer;text-decoration:underline" onclick="annulerSousPartie()">← Choisir un autre chapitre</div>
+    <a id="souspartie-manuel" href="../index.html" style="display:block;margin-top:.5rem;font-size:12px;color:var(--text2);text-decoration:underline">← Retour au manuel</a>
+  </div>
+</div>
+
+<!-- ── MAIN APP ── -->
+<div class="app" id="app">
+  <div class="hdr">
+    <div>
+      <div class="logo">Balmer<em>-Cloud</em></div>
+      <div class="logo-sub">Outil élève</div>
+    </div>
+    <div class="hdr-right">
+      <div class="chapter-badge" id="chapter-badge">—</div>
+      <a class="reset-btn" id="manuel-link" href="../index.html">← Retour au manuel</a>
+      <button class="reset-btn" onclick="resetApp()">Changer de banque</button>
+      <button class="reset-btn" onclick="resetProgress()">Réinitialiser ma progression</button>
+      <button class="reset-btn" id="export-btn" onclick="exportResults()">Exporter mes résultats</button>
+    </div>
+  </div>
+
+  <div class="classe-bar" id="classe-bar"></div>
+
+  <div class="retour-banner" id="retour-banner"></div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-v" id="s-cor">0</div><div class="stat-l">Correctes</div></div>
+    <div class="stat"><div class="stat-v" id="s-tot">0</div><div class="stat-l">Réponses</div></div>
+    <div class="stat"><div class="stat-v" id="s-mas">0</div><div class="stat-l">Maîtrisés</div></div>
+  </div>
+
+  <div class="profile">
+    <div class="profile-label">Profil de maîtrise</div>
+    <div class="profile-hint">Ces zones reflètent ta performance récente sur chaque notion, pas une note définitive — elles remontent vite avec quelques bonnes réponses d'affilée.</div>
+    <div class="concept-grid" id="concept-grid"></div>
+  </div>
+
+  <div id="q-area"></div>
+</div>
+
+<div class="save-toast" id="save-toast">Enregistré ✓</div>
+
+<div class="score-overlay" id="score-overlay" hidden>
+  <div class="score-dialog" role="dialog" aria-modal="true" aria-labelledby="score-title">
+    <button type="button" class="score-close" aria-label="Fermer">×</button>
+    <div id="score-body"></div>
+  </div>
+</div>
+
+<script>
+const LETTERS = ['A','B','C','D'];
+const R1L = { macro: 'Macroscopique', parti: 'Particulaire', symbo: 'Symbolique' };
+const TYL = { 1: 'Identification', 2: 'Application', 3: 'Transfert' };
+// zone1 / zone2 : bornes basses des zones « à consolider » et « bonne maîtrise »
+// (Charte §5.1) — lues par zoneOf() et par la fenêtre d'explication du score.
+const ALGO = { score0: 0.3, gain: 0.15, gainApresErreur: 0.10, seuil: 0.8, streak: 3, zone1: 0.3, zone2: 0.6 };
+// Point de pause proposé toutes les N questions — ne modifie en rien
+// l'algorithme adaptatif (§5.3-5.5 de la charte, toujours le concept le plus
+// faible en priorité) : c'est un écran de confort, pas une fin de session.
+// La progression est déjà persistée en continu (saveScores() après chaque
+// réponse), donc reprendre plus tard ne perd jamais rien.
+const CHECKPOINT_EVERY = 8;
+
+// Collecte automatique côté serveur — voir Projet-Balmer-Cloud/collecte-serveur/
+// README-deploiement.md. Tant que COLLECT_URL est vide, ce mécanisme est
+// entièrement inactif : l'app se comporte exactement comme avant (export
+// local uniquement, presse-papier + téléchargement JSON).
+// URL absolue vers le backend Infomaniak (non-www) plutôt qu'un chemin
+// relatif : l'appli élève est servie depuis GitHub Pages
+// (johannbalmer.github.io — voir ELEVE_APP_URL côté view.php), une origine
+// différente de projet-balmer.ch où vit collect.php. Un chemin relatif
+// résolu contre cette origine visait un collect.php inexistant sur
+// github.io (404 silencieux, corrigé le 09.09.26 après un test réel sans
+// aucun envoi reçu — voir Charte_Balmer-Cloud.md §8.2novies). collect.php
+// autorise déjà les requêtes cross-origin (Access-Control-Allow-Origin: *),
+// donc une URL absolue fonctionne quelle que soit l'origine de la page —
+// y compris le mirroir servi directement par projet-balmer.ch, avec ou
+// sans www, cf. diagnostic du 07.09.26 qui avait motivé le chemin relatif.
+const COLLECT_URL = 'https://projet-balmer.ch/collect.php';
+const COLLECT_TOKEN = 'eijeKXV8idJsD0goBVYTTlvdIviiZRqEKJlyPevV';
+// Livre web public (Charte_Balmer-Cloud.md §7.1.1) — chaque chapitre y est un
+// fichier HTML frère nommé par son slug ; **Référence manuel** du qbank ne
+// porte que l'ancre {#...} de la sous-section Zone 2 ciblée (charte-balmer.md
+// v3.14.0), q.chapitre (frontmatter) fournit le nom de fichier.
+const MANUEL_BASE_URL = 'https://johannbalmer.github.io/projet-balmer-web/chapitres/';
+// Une ancre valide est un slug kebab-case ASCII (voir ANCHOR_FORMAT_RE côté
+// check-qbank-quality.py) — sert à distinguer une ancre migrée d'un ancien
+// champ "Section X.X.X" pas encore migré, qu'on affiche alors en texte brut
+// plutôt que comme un lien qui n'atterrirait nulle part de précis.
+const ANCHOR_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+function manuelRefHtml(q) {
+  if (!q.ref) return '';
+  if (q.chapitre && ANCHOR_RE.test(q.ref)) {
+    const url = MANUEL_BASE_URL + q.chapitre + '.html#' + q.ref;
+    return `<div class="fb-ref">📖 <a href="${url}" target="_blank" rel="noopener">Revoir dans le cours</a></div>`;
+  }
+  // Repli : ancienne référence texte libre ("Section X.X.X") pas encore
+  // migrée vers une ancre {#...} — affichée telle quelle, non cliquable.
+  return `<div class="fb-ref fb-ref-plain">📖 ${q.ref}</div>`;
+}
+
+let questions = [];
+let concepts = [];
+let scores = {};
+let streaks = {};
+let usedQ = {};
+// État d'entrelacement pour pickNext() (voir plus bas) : dernier concept posé
+// et dernière question posée (tous concepts confondus). Volontairement non
+// persisté (comme erreurRecente) — se réinitialise à chaque rechargement de
+// page, ce qui est sans conséquence puisque son seul rôle est d'éviter une
+// répétition immédiate au sein d'une même session déjà ouverte.
+let lastConcept = null;
+let lastQuestionId = null;
+// Vrai pour un concept dont la dernière réponse (dans la session en cours)
+// était incorrecte — fait passer le prochain gain de +0,15 à +0,10, puis se
+// réinitialise. Volontairement non persisté (ne survit pas à un rechargement
+// de page) : la charte parle d'une erreur "récente (même session)" (§5.2).
+let erreurRecente = {};
+let sessionCor = 0, sessionTot = 0;
+// Notions déjà maîtrisées au chargement de CETTE session (avant toute nouvelle
+// réponse) — sert à calculer le nombre de notions maîtrisées PENDANT la
+// session en cours, affiché à l'écran de pause (chantier 1 étape 2).
+let masteredAtSessionStart = 0;
+let currentQ = null, answered = false;
+let selected = new Set();
+let storageKey = '';
+// Identité de banque envoyée au serveur (whitelist ALLOWED_BANQUES côté
+// collect.php, cf. plus bas) — DISTINCTE de storageKey depuis le découpage
+// en sous-parties (chantier 8, 09.09.2026) : storageKey porte le suffixe de
+// sous-partie (ex. bc-eleve-qbank-atomes-quantite-de-matiere-1A) pour
+// séparer les trois progressions localStorage, alors que le serveur doit
+// continuer à recevoir le nom de banque « brut » du qbank (ex. qbank-atomes-
+// quantite-de-matiere) — sans quoi collect.php rejette systématiquement
+// l'envoi (422 banque_inconnue), la banque suffixée n'étant pas dans
+// ALLOWED_BANQUES — sans le préfixe bc-eleve-, avec ou sans sous-partie
+// (équivalent à l'ancien storageKey.replace(/^bc-eleve-/, '') d'avant ce
+// chantier, pour un chapitre qui n'a pas de sous-partie).
+let banqueBase = '';
+// Classe/sous-partie passées en paramètre d'URL (chantier 9, 09.09.2026) —
+// lues une fois par loadFromUrl() au chargement, consommées dans
+// initApp()/processQbankText() ci-dessous pour préremplir automatiquement le
+// code de classe et sauter l'écran de choix de sous-partie quand un lien
+// (ou un QR) les fournit déjà. `null` dans le cas normal (lien/QR absent, ou
+// import via BANQUES_CONNUES) — aucun changement de comportement alors.
+let urlClasse = null;
+let classeLockedFromUrl = false; // true si meta.classe vient d'un scan QR (?classe=) plutôt que d'une saisie manuelle
+let urlSousPartie = null;
+// Journal détaillé des réponses pas encore envoyées au serveur (concept, R1,
+// type, temps passé, et — en cas d'erreur — le texte du/des distracteur(s)
+// coché(s), signal direct de la méconception en jeu, cf. §6.3). Vidé
+// (splice(0)) à chaque envoi (exportResults()/autoSyncOnHide()) : chaque
+// question n'est donc transmise qu'une fois, jamais en double d'un envoi à
+// l'autre. Contrepartie assumée : un envoi qui échoue perd ce détail-là pour
+// de bon (contrairement aux scores/streaks, qui restent toujours resynchronisés
+// en entier à l'envoi suivant puisqu'ils sont relus depuis localStorage).
+let reponsesEnAttente = [];
+// Horodatage d'affichage de la question courante, pour mesurer le temps
+// passé à y répondre (validateAnswer() calcule la différence).
+let questionAfficheeAt = 0;
+// Suivi d'usage persistant (par banque, même clé que scores/streaks) —
+// distinct de sessionCor/sessionTot (qui ne couvrent que la session en
+// cours) : meta survit aux rechargements, sessionCor/sessionTot non.
+let meta = { firstUsed: null, lastUsed: null, sessions: 0, totalAnswered: 0, pseudo: null, classe: null };
+
+// Retypeset MathJax sur un élément injecté dynamiquement (renderQuestion,
+// feedback de validateAnswer) — MathJax ne traite qu'automatiquement le
+// contenu présent au chargement de la page, pas ce qu'on insère ensuite via
+// innerHTML. Garde silencieuse si le script CDN n'est pas encore chargé
+// (connexion lente) : le texte brut $\ce{...}$ reste alors visible plutôt
+// que de faire échouer l'affichage de la question.
+function typesetMath(el) {
+  if (window.MathJax && window.MathJax.typesetPromise) {
+    window.MathJax.typesetPromise([el]).catch(() => {});
+  }
+}
+
+function parseMd(text) {
+  // Un nouveau bloc-question démarre à chaque "---" suivi directement de
+  // "id:" (le "---" qui clôt le frontmatter d'une question sert aussi de
+  // "---" d'ouverture pour la question suivante, cf. §5 de procedure-qbank.md).
+  // Un split naïf sur tout "---" isolé séparerait à tort le frontmatter
+  // (id, concept, ...) du corps (Question, Options, ...) de chaque question.
+  const blocks = text.split(/\n---\n(?=id:\s)/).map(b => b.trim()).filter(b => b.length > 0);
+  const qs = [];
+  for (let i = 0; i < blocks.length; i++) {
+    const b = blocks[i];
+    if (!b.includes('id:') || !b.includes('concept:')) continue;
+    try {
+      const get = (field) => {
+        const m = b.match(new RegExp(field + ':\\s*(.+)'));
+        return m ? m[1].trim() : '';
+      };
+      const textM = b.match(/\*\*Question\*\*\n([\s\S]+?)\n\n\*\*Options\*\*/);
+      const optsM = b.match(/\*\*Options\*\*\n([\s\S]+?)\n\n\*\*Réponse correcte\*\*/);
+      const ansM = b.match(/\*\*Réponse correcte\*\*\s*:\s*([ABCD](?:\s*,\s*[ABCD])*)/);
+      const fcM = b.match(/\*\*Feedback correct\*\*\n([\s\S]+?)\n\n\*\*Feedback incorrect\*\*/);
+      const fwM = b.match(/\*\*Feedback incorrect\*\*\n([\s\S]+?)\n\n\*\*Référence/);
+      const refM = b.match(/\*\*Référence manuel\*\*\s*:\s*(.+)/);
+      if (!textM || !optsM || !ansM) continue;
+      const opts = optsM[1].split('\n').filter(l => l.match(/^- [ABCD]\./)).map(l => l.replace(/^- [ABCD]\.\s*/, ''));
+      const fwLines = fwM ? fwM[1].split('\n').filter(l => l.match(/^- Si [ABCD]/)).map(l => l.replace(/^- Si [ABCD]\s*:\s*/, '')) : [];
+      const answerLetters = ansM[1].split(',').map(s => s.trim());
+      // Champ optionnel `outils:` (chantier 18, moteur multi-outils) — tague
+      // chaque option avec son propre concept, pour les « super questions »
+      // qui testent plusieurs outils indépendamment dans une seule question.
+      // Format : "A:<concept>, B:<concept>, C:<concept>, D:<concept>", les 4
+      // lettres requises si le champ est présent. Absent (cas de toutes les
+      // questions actuelles) : chaque option hérite du concept unique de la
+      // question — comportement strictement inchangé, voir conceptsForOptions().
+      let optionConcepts = null;
+      const outilsRaw = get('outils');
+      if (outilsRaw) {
+        const map = {};
+        outilsRaw.split(',').forEach(pair => {
+          const mm = pair.trim().match(/^([ABCD])\s*:\s*(.+)$/);
+          if (mm) map[mm[1]] = mm[2].trim();
+        });
+        if (LETTERS.every(L => map[L])) optionConcepts = LETTERS.map(L => map[L]);
+      }
+      qs.push({
+        id: get('id'), concept: get('concept'), chapitre: get('chapitre'), r1: get('r1'),
+        type: parseInt(get('type')), niveau: get('niveau'), sousPartie: get('sous-partie'),
+        text: textM[1].trim(), options: opts, optionConcepts,
+        // Ensemble des index corrects (0-3), triés — une question peut porter
+        // de 1 à 3 bonnes réponses (jamais 4), cf. Charte_Balmer-Cloud.md §6.2.
+        answer: answerLetters.map(l => LETTERS.indexOf(l)).filter(i => i >= 0).sort((a,b) => a-b),
+        fc: fcM ? fcM[1].trim() : '',
+        fw: fwLines,
+        ref: refM ? refM[1].trim() : ''
+      });
+    } catch(e) { continue; }
+  }
+  return qs;
+}
+
+function getChapterName(text) {
+  const m = text.match(/# Banque de questions validées[^\n]*\n# ([^\n]+)/);
+  return m ? m[1].trim() : 'Chapitre';
+}
+
+function setImportStatus(msg, isError) {
+  const el = document.getElementById('import-error');
+  el.textContent = msg;
+  el.style.display = msg ? 'block' : 'none';
+  el.style.color = isError ? '' : '#666';
+}
+
+function processQbankText(text, keySuffix) {
+  const parsed = parseMd(text);
+  if (!parsed.length) {
+    setImportStatus('Aucune question trouvée — vérifiez le format du fichier.', true);
+    return false;
+  }
+  const chapterName = getChapterName(text);
+  // keySuffix vaut 'qbank-<slug>' (voir fetchQbank ci-dessous) — SOUS_PARTIES
+  // est indexé par slug nu, d'où le retrait du préfixe.
+  const slug = keySuffix.replace(/^qbank-/, '');
+  const souParties = SOUS_PARTIES[slug];
+  if (souParties && souParties.length) {
+    questionsToutes = parsed;
+    keySuffixEnAttente = keySuffix;
+    chapterNameEnAttente = chapterName;
+    // ?sous-partie=<code> valide (chantier 9) : saute l'écran de choix,
+    // comme si l'élève avait cliqué directement dessus.
+    if (urlSousPartie && souParties.some(sp => sp.code === urlSousPartie)) {
+      choisirSousPartie(urlSousPartie);
+    } else {
+      renderSousParties(souParties, chapterName);
+    }
+    return true;
+  }
+  questions = parsed;
+  storageKey = 'bc-eleve-' + keySuffix;
+  banqueBase = keySuffix;
+  initApp(chapterName);
+  return true;
+}
+
+// Lien de retour vers le chapitre du manuel (page sœur dans ../chapitres/,
+// même hôte que l'appli — voir le lien « S'entraîner sur ce chapitre » du
+// livre, qui pointe vers ../balmer-cloud/). Le slug se déduit de la clé de
+// banque ('qbank-<slug>'), sans dépendre du referrer ni de l'historique.
+function urlManuel(keySuffix) {
+  const slug = (keySuffix || '').replace(/^qbank-/, '');
+  return slug ? '../chapitres/' + slug + '.html' : '../index.html';
+}
+
+// Affiche l'écran de choix de sous-partie (chantier 8) — appelé uniquement
+// pour un chapitre listé dans SOUS_PARTIES.
+function renderSousParties(liste, chapterName) {
+  document.getElementById('import-screen').style.display = 'none';
+  document.getElementById('souspartie-manuel').href = urlManuel(keySuffixEnAttente);
+  document.getElementById('souspartie-title').textContent = chapterName;
+  document.getElementById('souspartie-list').innerHTML = liste.map(sp =>
+    `<button class="banque-btn" onclick="choisirSousPartie('${sp.code}')">${sp.titre}</button>`
+  ).join('');
+  document.getElementById('souspartie-screen').style.display = 'flex';
+}
+
+// Filtre l'ensemble complet des questions sur la sous-partie choisie, avant
+// de lancer l'appli — storageKey distinct par sous-partie (ex.
+// bc-eleve-qbank-atomes-quantite-de-matiere-1A) pour trois progressions
+// localStorage indépendantes, sans jamais se marcher dessus.
+function choisirSousPartie(code) {
+  questions = questionsToutes.filter(q => q.sousPartie === code);
+  storageKey = 'bc-eleve-' + keySuffixEnAttente + '-' + code;
+  banqueBase = keySuffixEnAttente;
+  document.getElementById('souspartie-screen').style.display = 'none';
+  initApp(chapterNameEnAttente + ' — ' + code);
+}
+
+// Retour à l'écran d'import depuis l'écran de sous-partie, sans rien avoir
+// initialisé encore (pas de progression à effacer, juste l'état en attente).
+function annulerSousPartie() {
+  questionsToutes = []; keySuffixEnAttente = ''; chapterNameEnAttente = '';
+  document.getElementById('souspartie-screen').style.display = 'none';
+  document.getElementById('import-screen').style.display = 'flex';
+}
+
+// Banques connues déployées dans qbank/ à côté de ce fichier (même liste que
+// la page d'accueil du livre) — permet de choisir un chapitre sans upload
+// manuel. À mettre à jour à chaque banque ajoutée dans
+// Projet-Balmer-Cloud/qbank/ (voir procedure-qbank.md).
+const BANQUES_CONNUES = [
+  { slug: 'atomes-quantite-de-matiere', titre: 'Ch. 01 — Atomes et quantité de matière' },
+  { slug: 'liaisons-sels-molecules', titre: 'Ch. 02 — Liaisons, sels et molécules' },
+  { slug: 'liaisons-intermoleculaires', titre: 'Ch. 03 — Liaisons intermoléculaires' },
+  { slug: 'transformations-chimiques', titre: 'Ch. 04 — Transformations chimiques' },
+  { slug: 'oxydo-reduction', titre: 'Ch. 06 — Oxydoréduction, piles et électrolyse' },
+  { slug: 'acido-basiques-intro', titre: 'Ch. 07 — Introduction aux équilibres acido-basiques' },
+];
+
+// Sous-parties (chantier 8, 09.09.2026) : découpage d'un chapitre en blocs de
+// concepts plus restreints (moins de concepts à maîtriser par séance côté
+// élève), voir Charte_Balmer-Cloud.md §4.5. Un chapitre absent de cette
+// liste garde son comportement d'avant (tous les concepts en une seule
+// séance) — rien ne casse pour les chapitres non (encore) découpés. Les
+// codes doivent correspondre exactement au champ `sous-partie` du
+// frontmatter des questions du qbank correspondant.
+const SOUS_PARTIES = {
+  'atomes-quantite-de-matiere': [
+    { code: '1A', titre: '1A — Numéro atomique, isotopes, défaut de masse' },
+    { code: '1B', titre: '1B — Mole et masse molaire' },
+    { code: '1C', titre: '1C — Configuration électronique' },
+  ],
+  // Découpage ajouté le 11.09.2026 (analyse du premier test réel, 2M1) — même
+  // mécanisme que le chapitre 01 (chantier 8) : 13 notions d'un coup
+  // effrayaient les élèves (retour direct de LUM après le premier test).
+  'liaisons-sels-molecules': [
+    { code: '2A', titre: '2A — Liaison chimique, électronégativité, énergie de liaison' },
+    { code: '2B', titre: '2B — Lewis, VSEPR, polarité' },
+    { code: '2C', titre: '2C — Ions, sels, réseaux' },
+  ],
+  // Découpage ajouté le 15.09.2026 — même mécanisme (chantier 8) : 8 concepts
+  // très calculatoires (équilibrage, stœchiométrie, gaz parfaits...) d'un
+  // coup surchargeraient une seule séance ; répartition en 3 blocs de 12 à 18
+  // questions, dans l'ordre de progression du manuel.
+  'transformations-chimiques': [
+    { code: '4A', titre: '4A — Types de transformations, équilibrage et combustion' },
+    { code: '4B', titre: '4B — Calculs stœchiométriques et réactif limitant' },
+    { code: '4C', titre: '4C — Gaz parfaits, rendement et composition centésimale' },
+  ],
+  // Découpage ajouté le 14.09.2026 — même mécanisme (chantier 8), 17 notions
+  // d'un coup pour ce chapitre justifient un découpage en 4 blocs.
+  'oxydo-reduction': [
+    { code: '6A', titre: '6A — Degré d\'oxydation, oxydation, réduction' },
+    { code: '6B', titre: '6B — Oxydants, réducteurs et série électrochimique' },
+    { code: '6C', titre: '6C — La pile galvanique' },
+    { code: '6D', titre: '6D — Électrolyse, accumulateurs et lois de Faraday/Nernst' },
+  ],
+  // Découpage ajouté le 21.09.2026 — même mécanisme (chantier 8) : 14 concepts
+  // d'un coup pour ce chapitre justifient un découpage en 4 blocs (80 questions
+  // au minimum, de 12 à 26 par bloc).
+  'acido-basiques-intro': [
+    { code: '7A', titre: '7A — Arrhenius, Brønsted-Lowry, couples, autoprotolyse' },
+    { code: '7B', titre: '7B — Force des acides et des bases, pH, pOH' },
+    { code: '7C', titre: '7C — Neutralisation, conductivité, indicateurs colorés' },
+    { code: '7D', titre: '7D — Acides et métaux, carbonates, oxydes' },
+  ],
+};
+
+// État en attente d'un choix de sous-partie : l'ensemble complet des
+// questions parsées (avant filtrage), le suffixe de storageKey et le nom du
+// chapitre à réutiliser une fois la sous-partie choisie (voir
+// processQbankText() et choisirSousPartie() plus bas).
+let questionsToutes = [];
+let keySuffixEnAttente = '';
+let chapterNameEnAttente = '';
+
+function renderBanquesConnues() {
+  const el = document.getElementById('banques-connues');
+  if (!el) return;
+  el.innerHTML = BANQUES_CONNUES.map(b =>
+    `<button class="banque-btn" onclick="fetchQbank('${b.slug}')">${b.titre}</button>`
+  ).join('');
+}
+
+// Va chercher qbank/qbank-<slug>.md à côté du fichier html (même disposition
+// que le déploiement web, cf. deploy-web.sh, et que la banque locale à côté
+// de balmer-cloud-eleve.html dans Projet-Balmer-Cloud/). Repli silencieux sur
+// l'écran d'import (liste + upload manuel) si absent ou introuvable — ne
+// bloque jamais l'écran d'import. Utilisé par le lien direct ?chapitre=<slug>
+// et par les boutons de la liste des banques connues.
+// Anti-cache volontaire (paramètre ?v= horodaté + cache:'no-store') : sans
+// ça, un navigateur qui a déjà chargé ce fichier une fois peut continuer à
+// servir indéfiniment une version périmée du qbank après une correction,
+// sans jamais revalider auprès du serveur (constaté en session — le fichier
+// n'envoie pas d'en-têtes de cache explicites). Le fichier qbank étant
+// modifié occasionnellement (corrections, migration d'ancres) alors que
+// balmer-cloud-eleve.html lui-même change rarement, seul ce fetch a besoin
+// d'être anti-cache.
+function fetchQbank(slug) {
+  const fileBase = 'qbank-' + slug;
+  setImportStatus('Chargement du chapitre « ' + slug + ' »…', false);
+  fetch('qbank/' + fileBase + '.md?v=' + Date.now(), { cache: 'no-store' })
+    .then(r => { if (!r.ok) throw new Error('introuvable'); return r.text(); })
+    .then(text => { if (processQbankText(text, fileBase)) setImportStatus('', false); })
+    .catch(() => {
+      setImportStatus('Chapitre « ' + slug + ' » introuvable — vérifiez le nom du chapitre ou choisissez-le dans la liste ci-dessous.', true);
+    });
+}
+
+// Lien direct par chapitre (?chapitre=<slug>), avec classe/sous-partie
+// optionnelles (?classe=<code>&sous-partie=<code>, chantier 9) — typiquement
+// généré par le QR du tableau de bord prof (view.php?t=...).
+function loadFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('chapitre');
+  urlClasse = params.get('classe') || null;
+  urlSousPartie = params.get('sous-partie') || null;
+  if (slug) fetchQbank(slug);
+}
+
+function initApp(chapterName) {
+  // Inclut aussi les concepts secondaires des « super questions » (chantier
+  // 18, champ `outils:`) — sans quoi scores/streaks ne seraient jamais
+  // initialisés pour un concept qui n'est jamais le concept principal
+  // (ancre) d'aucune question, seulement testé via une option d'une autre.
+  const conceptSet = new Set();
+  questions.forEach(q => {
+    conceptSet.add(q.concept);
+    conceptsForOptions(q).forEach(c => conceptSet.add(c));
+  });
+  concepts = [...conceptSet];
+  const saved = loadScores();
+  const savedConcepts = saved.concepts || {};
+  concepts.forEach(c => {
+    scores[c] = savedConcepts[c]?.score ?? ALGO.score0;
+    streaks[c] = savedConcepts[c]?.streak ?? 0;
+    usedQ[c] = new Set();
+    erreurRecente[c] = false;
+  });
+  masteredAtSessionStart = mastCount();
+  const now = new Date().toISOString();
+  // Verrouillage du code de classe (chantier point 6, retour de classe du
+  // 16.09.26) : si la classe vient d'un scan QR (aucune classe locale connue
+  // auparavant, urlClasse présent), l'élève ne doit pas pouvoir la modifier
+  // à la main ensuite — évite une erreur de frappe ou une blague de classe.
+  classeLockedFromUrl = !saved.meta?.classe && !!urlClasse;
+  // Pseudo de classement (v1.49) : source de vérité globale (PSEUDO_KEY),
+  // pas la valeur par banque — sauf migration ponctuelle d'un ancien pseudo
+  // par banque (versions < 1.49) vers le stockage global, une seule fois.
+  let pseudoGlobal = getPseudoClassement();
+  if (pseudoGlobal === null && saved.meta?.pseudo) {
+    pseudoGlobal = saved.meta.pseudo;
+    setPseudoClassement(pseudoGlobal);
+  }
+  meta = {
+    firstUsed: saved.meta?.firstUsed || now,
+    lastUsed: now,
+    sessions: (saved.meta?.sessions || 0) + 1,
+    totalAnswered: saved.meta?.totalAnswered || 0,
+    pseudo: pseudoGlobal || null,
+    // urlClasse (chantier 9) ne prend le dessus que si aucune classe n'est
+    // déjà connue localement — une progression existante (retour d'un
+    // élève) n'est jamais réécrasée par un lien/QR rouvert par erreur.
+    classe: saved.meta?.classe ?? urlClasse,
+    // Snapshot du nombre de notions maîtrisées à la dernière fois où le
+    // bandeau de retour a été affiché — sert à calculer le delta affiché la
+    // prochaine fois (chantier 1 étape 1).
+    masteredAtLastBanner: saved.meta?.masteredAtLastBanner ?? null
+  };
+  sessionCor = 0; sessionTot = 0;
+  reponsesEnAttente = [];
+  saveScores(); // enregistre le début de session même sans réponse
+  document.getElementById('import-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  document.getElementById('chapter-badge').textContent = chapterName;
+  document.getElementById('manuel-link').href = urlManuel(banqueBase);
+  renderClasseBar(); renderProfile(); renderStats(); renderRetourBanner(); renderQuestion();
+}
+
+// Code de classe : bandeau visible dès l'arrivée sur l'appli (plutôt qu'un
+// prompt() surprise à l'export) — l'enseignant·e annonce le code oralement
+// avant l'exercice, l'élève le saisit tout de suite. Objectif principal :
+// meta.classe est déjà connu au tout premier changement d'onglet, donc le
+// filet de sécurité autoSyncOnHide() (plus bas) transmet la bonne classe dès
+// son tout premier envoi silencieux, pas seulement à partir du premier export
+// (voir Charte_Balmer-Cloud.md / discussion du 07.09.26). Le prompt()
+// historique dans exportResults() reste un repli si, pour une raison
+// quelconque, cette étape a été sautée (JS désactivé un instant, etc.).
+function renderClasseBar() {
+  const el = document.getElementById('classe-bar');
+  if (!el) return;
+  // Sans code de classe connu (meta.classe null ou vide), le bandeau reste
+  // compact : « Travail autonome » + lien pour ajouter un code. Les classes
+  // passent en principe par le QR du tableau de bord (?classe=), qui
+  // préremplit et verrouille le code — plus de champ de saisie affiché
+  // d'emblée, donc moins de fautes de frappe et moins de bruit pour l'élève
+  // qui travaille seul·e. meta.classe reste null tant que rien n'est saisi
+  // (interprété comme vide à l'envoi, voir exportResults()).
+  const cur = meta.classe || '';
+  const has = cur !== '';
+  const safe = cur.replace(/</g, '&lt;');
+  const editBtn = classeLockedFromUrl ? '' : (has
+    ? `<button class="classe-edit-link" onclick="editClasse()">Modifier</button>`
+    : `<button class="classe-add-btn" onclick="editClasse()">Ajouter un code de classe</button>`);
+  el.innerHTML = `<span class="classe-bar-label">Code de classe</span>
+    <span class="classe-value${has ? '' : ' autonome'}">${has ? safe : 'Travail autonome'}</span>
+    ${editBtn}`;
+}
+
+// Format des codes créés via le formulaire pilote (Charte §8.2quinquies) :
+// gymnase-classe-AA-AA en minuscules (ex. cham-3m2-25-26). La saisie manuelle
+// (élève sans QR ni lien, ex. ordinateur de prêt) est normalisée — casse,
+// espaces et soulignés convertis — seulement si le résultat respecte ce
+// format ; un code d'une ancienne classe (saisie libre côté admin) est laissé
+// tel quel, à peine nettoyé (espaces de bord).
+const CLASSE_RE = /^[a-z0-9]+-[a-z0-9]+-\d{2}-\d{2}$/;
+function normaliserClasse(v) {
+  const t = (v || '').trim();
+  const candidat = t.toLowerCase().replace(/[\s_]+/g, '-');
+  return CLASSE_RE.test(candidat) ? candidat : t;
+}
+// Valeur pour laquelle l'avertissement de format a déjà été montré : un
+// second clic sur « Valider » avec la même valeur l'accepte (ancien code libre).
+let classeAvertie = null;
+
+function saveClasseFromInput() {
+  const input = document.getElementById('classe-input');
+  const val = normaliserClasse(input ? input.value : '');
+  if (val !== '' && !CLASSE_RE.test(val) && classeAvertie !== val) {
+    classeAvertie = val;
+    if (input) input.value = val;
+    const msg = document.getElementById('classe-msg');
+    if (msg) msg.textContent = 'Format inhabituel : les codes ont la forme gymnase-classe-AA-AA (ex. cham-3m2-25-26). Vérifiez votre saisie ; si le code est bien celui donné par votre enseignant·e, cliquez à nouveau sur « Valider ».';
+    return;
+  }
+  classeAvertie = null;
+  meta.classe = val;
+  saveScores();
+  renderClasseBar();
+}
+
+function editClasse() {
+  const el = document.getElementById('classe-bar');
+  if (!el) return;
+  const current = (meta.classe || '').replace(/"/g, '&quot;');
+  el.innerHTML = `<span class="classe-bar-label">Code de classe</span>
+    <input type="text" class="classe-input" id="classe-input" placeholder="code donné par votre enseignant·e" value="${current}">
+    <button class="classe-save-btn" onclick="saveClasseFromInput()">Valider</button>
+    <div class="classe-msg" id="classe-msg"></div>`;
+  const input = document.getElementById('classe-input');
+  classeAvertie = null;
+  input.focus();
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') saveClasseFromInput(); });
+}
+
+function loadScores() {
+  try {
+    const d = localStorage.getItem(storageKey);
+    if (!d) return { meta: null, concepts: {} };
+    const parsed = JSON.parse(d);
+    // Repli sur l'ancien format à plat (concept -> {score,streak}, sans
+    // meta) pour ne pas perdre une progression déjà enregistrée avant
+    // l'introduction du suivi d'usage.
+    if (parsed && parsed.concepts) return parsed;
+    return { meta: null, concepts: parsed || {} };
+  } catch(e) { return { meta: null, concepts: {} }; }
+}
+function saveScores() {
+  try {
+    const d = { meta, concepts: {} };
+    concepts.forEach(c => d.concepts[c] = { score: scores[c], streak: streaks[c] });
+    localStorage.setItem(storageKey, JSON.stringify(d));
+  } catch(e) {}
+}
+
+// Concept de chaque option (A→D) d'une question — le tableau optionConcepts
+// (chantier 18, champ `outils:`) quand il est présent, sinon les 4 options
+// héritent toutes du concept unique de la question (cas normal, aucune
+// question existante n'est affectée). Sert à regrouper les options par
+// concept à la correction (validateAnswer) et à l'affichage des badges.
+function conceptsForOptions(q) {
+  return q.optionConcepts || q.options.map(() => q.concept);
+}
+
+function mastered(c) { return scores[c] >= ALGO.seuil && streaks[c] >= ALGO.streak; }
+function mastCount() { return concepts.filter(c => mastered(c)).length; }
+
+// Zone d'appartenance du score (Charte_Balmer-Cloud.md §5.1) — le nom "Maîtrisé"
+// n'est utilisé que pour un concept réellement mastered() (score ET streak).
+// Un score ≥ 0,8 sans le streak requis reste affiché "Bonne maîtrise" : le
+// dire "maîtrisé" prématurément induirait l'élève en erreur, puisque
+// l'algorithme continuera à lui poser des questions sur ce concept.
+function zoneOf(c) {
+  if (mastered(c)) return { cls: 'z4', label: 'Maîtrisé' };
+  const s = scores[c];
+  if (s === ALGO.score0 && streaks[c] === 0) return { cls: 'z0', label: 'Pas encore testé' };
+  if (s < ALGO.zone1) return { cls: 'z1', label: 'Lacune critique' };
+  if (s < ALGO.zone2) return { cls: 'z2', label: 'À consolider' };
+  return { cls: 'z3', label: 'Bonne maîtrise' };
+}
+
+function pickNext() {
+  const avail = concepts.filter(c => !mastered(c));
+  if (!avail.length) return null;
+  avail.sort((a,b) => scores[a] - scores[b]);
+
+  // Entrelacement : ne jamais reposer une question sur le même concept que la
+  // question précédente quand une alternative existe parmi les concepts non
+  // maîtrisés — sans ça, une erreur fait immédiatement remonter ce concept en
+  // tête (score le plus bas) et la question suivante y revient aussitôt,
+  // c'est le principal facteur de répétition immédiate identifié en session
+  // (voir Charte_Balmer-Cloud.md §5, principes-decision-matrice.md §7). Le
+  // concept le plus faible reste toujours prioritaire — seul son rang face au
+  // tout dernier concept posé change.
+  const alternatives = avail.filter(c => c !== lastConcept);
+  const ordered = alternatives.length ? [...alternatives, ...avail.filter(c => c === lastConcept)] : avail;
+
+  for (const c of ordered) {
+    let pool = questions.filter(q => q.concept === c && !usedQ[c].has(q.id));
+    if (!pool.length) {
+      usedQ[c] = new Set();
+      pool = questions.filter(q => q.concept === c);
+    }
+    if (!pool.length) continue;
+    // Tirage aléatoire dans le pool restant (plutôt que systématiquement le
+    // premier item non utilisé) — et jamais littéralement la même question
+    // que la précédente quand une autre existe dans ce pool, notamment au
+    // moment où celui-ci vient d'être remis à zéro ci-dessus.
+    const withoutLast = pool.length > 1 ? pool.filter(q => q.id !== lastQuestionId) : pool;
+    const finalPool = withoutLast.length ? withoutLast : pool;
+    const picked = finalPool[Math.floor(Math.random() * finalPool.length)];
+    lastConcept = c;
+    lastQuestionId = picked.id;
+    return { q: picked, c };
+  }
+  return null;
+}
+
+function conceptPillHtml(c) {
+  const s = scores[c], pct = Math.min(100, Math.max(0, Math.round(s * 100)));
+  const zone = zoneOf(c);
+  const label = c.replace(/-/g, ' ');
+  // Série affichée séparément du score (retour de classe du 16.09.26, point
+  // 1) : le score seul ne permet pas de comprendre pourquoi une notion à bon
+  // score n'est pas encore "maîtrisée" — il faut aussi voir où on en est sur
+  // le streak. Rien à afficher tant que la notion n'a jamais été testée (z0).
+  const streakLine = zone.cls === 'z0' ? '' :
+    `<div class="cpill-streak">${Math.min(streaks[c], ALGO.streak)}/${ALGO.streak} bonnes réponses d'affilée</div>`;
+  return `<div class="cpill">
+    <div class="cpill-name" title="${label}">${label}</div>
+    <div class="cpill-track"><div class="cpill-cursor" style="left:${pct}%"></div></div>
+    <div class="cpill-status">
+      <span class="cpill-zone-label ${zone.cls}">${zone.cls === 'z4' ? '✓ ' : ''}${zone.label}</span>
+      <button type="button" class="cpill-pct cpill-info" data-c="${String(c).replace(/"/g, '&quot;')}" title="Comment est calculé ce score ?" aria-label="${label} : ${pct} %. Comment est calculé ce score ?">${pct}%<span class="cpill-i" aria-hidden="true">i</span></button>
+    </div>
+    ${streakLine}
+  </div>`;
+}
+
+// ── Explication du score (clic sur le pourcentage d'une notion) ─────────────
+// Fenêtre posée par-dessus la page : jamais de changement de page, la
+// question en cours reste intacte. Tous les chiffres viennent de ALGO et de
+// l'état réel de l'élève (score, série, erreur récente) : le texte reste
+// juste si l'algorithme est réglé autrement. Voir Charte §5.
+const pctTxt = (v) => Math.round(v * 100) + '&#8239;%';
+const ptsTxt = (v) => Math.round(v * 100) + '&nbsp;points';
+
+function scoreExplainHtml(c) {
+  const label = c.replace(/-/g, ' ');
+  const s = scores[c];
+  const serie = Math.min(streaks[c], ALGO.streak);
+  const zone = zoneOf(c);
+  const recente = !!erreurRecente[c];
+  const gain = recente ? ALGO.gainApresErreur : ALGO.gain;
+  const apresJuste = Math.min(1, s + gain);
+  // Nombre de bonnes réponses de suite nécessaires pour maîtriser (même
+  // arithmétique que validateAnswer() et mastered()).
+  let sc = s, sr = streaks[c], rec = recente, n = 0;
+  while (!(sc >= ALGO.seuil && sr >= ALGO.streak) && n < 30) {
+    sc = Math.min(1, sc + (rec ? ALGO.gainApresErreur : ALGO.gain)); sr++; rec = false; n++;
+  }
+  const zoneHtml = `<span class="cpill-zone-label ${zone.cls}">${zone.cls === 'z4' ? '✓ ' : ''}${zone.label}</span>`;
+  let perso;
+  if (mastered(c)) {
+    perso = `<p>Ton score : <b>${pctTxt(s)}</b> ${zoneHtml}</p>
+      <p>Tu maîtrises cette notion : au moins ${pctTxt(ALGO.seuil)} et ${ALGO.streak} bonnes réponses d'affilée. Tant que c'est le cas, elle ne te sera plus proposée.</p>`;
+  } else {
+    const intro = zone.cls === 'z0'
+      ? `Tu n'as pas encore répondu à une question sur cette notion : tu pars de <b>${pctTxt(s)}</b>.`
+      : `Ton score : <b>${pctTxt(s)}</b> ${zoneHtml}<br>${serie} bonne${serie > 1 ? 's' : ''} réponse${serie > 1 ? 's' : ''} d'affilée sur ${ALGO.streak}.`;
+    perso = `<p>${intro}</p>
+      <ul class="score-list">
+        <li><b>Bonne réponse</b> à la prochaine question sur cette notion : +${ptsTxt(gain)}, soit <b>${pctTxt(apresJuste)}</b>${recente ? ` (+${ptsTxt(ALGO.gainApresErreur)} au lieu de +${ptsTxt(ALGO.gain)}, parce que tu viens de te tromper sur cette notion)` : ''}.</li>
+        <li><b>Erreur</b> : ton score ne bouge pas, mais la série repart à zéro.</li>
+        <li><b>Pour la maîtriser</b> : au moins ${pctTxt(ALGO.seuil)} <i>et</i> ${ALGO.streak} bonnes réponses d'affilée. Avec uniquement des bonnes réponses, il te faudrait ${n} bonne${n > 1 ? 's' : ''} réponse${n > 1 ? 's' : ''} de suite.</li>
+      </ul>`;
+  }
+  const z1 = pctTxt(ALGO.zone1), z2 = pctTxt(ALGO.zone2), sm = pctTxt(ALGO.seuil);
+  return `<div class="score-kicker">Comment est calculé ton score ?</div>
+    <h2 class="score-title" id="score-title">${label}</h2>
+    ${perso}
+    <div class="score-sec">LES RÈGLES</div>
+    <ul class="score-rules">
+      <li>Chaque notion a son propre score, qui démarre à ${pctTxt(ALGO.score0)}.</li>
+      <li>Bonne réponse : +${ptsTxt(ALGO.gain)} (+${ptsTxt(ALGO.gainApresErreur)} seulement si tu viens de te tromper sur cette notion). Erreur : ton score ne baisse jamais, mais la série de bonnes réponses repart à zéro.</li>
+      <li>Une question est notée en tout ou rien : il faut cocher exactement les bonnes réponses, ni plus ni moins. Quand une question teste plusieurs notions, chacune est notée séparément.</li>
+      <li>L'application te repose en priorité la notion où ton score est le plus bas ; une notion maîtrisée n'est plus proposée.</li>
+    </ul>
+    <div class="score-zones">
+      <span class="cpill-zone-label z1">Lacune critique</span> moins de ${z1}<br>
+      <span class="cpill-zone-label z2">À consolider</span> de ${z1} à ${z2}<br>
+      <span class="cpill-zone-label z3">Bonne maîtrise</span> de ${z2} à ${sm}<br>
+      <span class="cpill-zone-label z4">✓ Maîtrisé</span> ${sm} ou plus, avec ${ALGO.streak} bonnes réponses d'affilée
+    </div>
+    <div class="score-note">Ce score n'est pas une note : c'est un repère pour t'entraîner.</div>`;
+}
+
+let scoreOpener = null;
+function openScoreExplain(c, opener) {
+  if (!concepts.includes(c)) return;
+  const ov = document.getElementById('score-overlay');
+  const body = document.getElementById('score-body');
+  if (!ov || !body) return;
+  body.innerHTML = scoreExplainHtml(c);
+  scoreOpener = opener || null;
+  ov.hidden = false;
+  document.body.style.overflow = 'hidden';
+  const close = ov.querySelector('.score-close');
+  if (close) close.focus();
+}
+function closeScoreExplain() {
+  const ov = document.getElementById('score-overlay');
+  if (!ov || ov.hidden) return;
+  ov.hidden = true;
+  document.body.style.overflow = '';
+  // La pastille d'origine a pu être redessinée entre-temps : on ne rend le
+  // focus que si elle est toujours dans la page.
+  if (scoreOpener && document.contains(scoreOpener)) scoreOpener.focus();
+  scoreOpener = null;
+}
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest ? e.target.closest('.cpill-info') : null;
+  if (btn) { e.preventDefault(); openScoreExplain(btn.dataset.c, btn); return; }
+  const ov = document.getElementById('score-overlay');
+  if (ov && !ov.hidden && (e.target === ov || e.target.closest('.score-close'))) closeScoreExplain();
+});
+document.addEventListener('keydown', (e) => {
+  const ov = document.getElementById('score-overlay');
+  if (!ov || ov.hidden) return;
+  if (e.key === 'Escape') { closeScoreExplain(); return; }
+  // Un seul élément focalisable dans la fenêtre : on garde le focus dessus.
+  if (e.key === 'Tab') { e.preventDefault(); const close = ov.querySelector('.score-close'); if (close) close.focus(); }
+});
+
+function renderProfile() {
+  const g = document.getElementById('concept-grid'); if (!g) return;
+  g.innerHTML = concepts.map(conceptPillHtml).join('');
+}
+
+function renderStats() {
+  document.getElementById('s-cor').textContent = sessionCor;
+  document.getElementById('s-tot').textContent = sessionTot;
+  document.getElementById('s-mas').textContent = mastCount() + '/' + concepts.length;
+}
+
+// Bandeau de retour (chantier 1 étape 1, 21.09.2026) : à l'arrivée sur une
+// banque déjà pratiquée (meta.sessions > 1), montre l'état actuel plutôt
+// qu'une formule de politesse — jamais de recul affiché, cohérent avec
+// l'algo sans malus (§5.2 de la charte, v1.48) : le delta n'est jamais
+// négatif, et n'est montré que s'il est positif (sinon, juste l'état
+// actuel, sans mention explicite d'une stagnation).
+function renderRetourBanner() {
+  const el = document.getElementById('retour-banner');
+  if (!el) return;
+  if (meta.sessions <= 1) { el.style.display = 'none'; return; }
+  const mNow = mastCount();
+  const prev = meta.masteredAtLastBanner;
+  const delta = (typeof prev === 'number') ? Math.max(0, mNow - prev) : 0;
+  el.style.display = 'flex';
+  el.innerHTML = `<span class="retour-label">Votre score actuel</span>
+    <span class="retour-value">${mNow}/${concepts.length} notion${concepts.length > 1 ? 's' : ''} maîtrisée${concepts.length > 1 ? 's' : ''}${delta > 0 ? ` <span class="retour-delta">(+${delta} depuis votre dernière visite)</span>` : ''}</span>`;
+  meta.masteredAtLastBanner = mNow;
+  saveScores();
+}
+
+// Mélange l'ordre des options (et feedbacks associés) d'une question avant
+// affichage. Sans ça, l'ordre des options dans le fichier qbank (rédigé
+// naturellement, jamais mélangé) produit un biais de position mesurable et
+// exploitable — jusqu'à 100% des questions d'un chapitre correctes en A,
+// sans lien avec la compréhension de l'élève (constaté le 11.09.2026 sur
+// les 3 chapitres existants, voir suivi-5-chantiers-qbank.md). Le reste du
+// code travaille déjà par index (pas par lettre) pour la correction et
+// l'affichage des lettres (`LETTERS[i]`), donc mélanger ici suffit —
+// id/concept/r1/type/fc/ref restent inchangés, seuls options/fw/answer sont
+// réordonnés ensemble. Renvoie une COPIE (jamais de mutation du pool partagé
+// `questions`), pour que la même question, repiochée plus tard dans la
+// session, soit re-mélangée indépendamment à chaque affichage.
+function shuffleOptions(q) {
+  const n = q.options.length;
+  const order = [...Array(n).keys()];
+  for (let i = n - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  const options = order.map(i => q.options[i]);
+  const fw = order.map(i => (Array.isArray(q.fw) ? q.fw[i] : undefined));
+  // Concept par option (chantier 18) réordonné avec le reste — null reste
+  // null (rien à réordonner quand les 4 options partagent le même concept).
+  const optionConcepts = q.optionConcepts ? order.map(i => q.optionConcepts[i]) : null;
+  // Pour chaque ancien index correct, sa nouvelle position est celle où
+  // `order` le place — order[newPos] === oldIdx, donc newPos = order.indexOf(oldIdx).
+  const answer = q.answer.map(oldIdx => order.indexOf(oldIdx)).sort((a, b) => a - b);
+  return { ...q, options, fw, optionConcepts, answer };
+}
+
+function renderQuestion() {
+  const area = document.getElementById('q-area');
+  const next = pickNext();
+  if (!next) {
+    area.innerHTML = `<div class="card done-card">
+      <div class="done-icon">🎉</div>
+      <div class="done-title">Tous les concepts maîtrisés !</div>
+      <div class="done-sub">Score de session : ${sessionCor} / ${sessionTot}<br>Vous pouvez continuer pour consolider vos acquis.</div>
+      <button class="btn-restart" onclick="exportResults(); restartSession();">Continuer</button>
+      <div style="margin-top:14px"><button class="reset-btn" onclick="exportResults(); renderClosing();">Exporter et terminer</button></div>
+    </div>`;
+    return;
+  }
+  currentQ = shuffleOptions(next.q); answered = false; selected = new Set();
+  questionAfficheeAt = Date.now();
+  const q = currentQ;
+  area.innerHTML = `<div class="card">
+    <div class="badges">
+      <span class="badge b-${q.r1}">${R1L[q.r1] || q.r1}</span>
+      <span class="badge b-t${q.type}">${TYL[q.type] || 'Type ' + q.type}</span>
+      ${[...new Set(conceptsForOptions(q))].map(c => `<span class="badge b-concept">${c.replace(/-/g,' ')}</span>`).join('')}
+    </div>
+    <div class="qtext">${q.text}</div>
+    <div class="opts-hint">Plusieurs réponses possibles — sélectionnez de 1 à 3 réponses correctes.</div>
+    <div class="opts">
+      ${q.options.map((o,i) => `<label class="opt" data-i="${i}">
+        <input type="checkbox" class="opt-check" data-i="${i}" onchange="toggleOpt(${i})">
+        <span class="opt-letter">${LETTERS[i]}</span><span class="opt-text">${o}</span>
+      </label>`).join('')}
+    </div>
+    <div class="validate-row"><button class="btn-validate" id="btn-validate" disabled onclick="validateAnswer()">Valider</button></div>
+    <div id="fb-area"></div>
+    <div id="next-row"></div>
+  </div>`;
+  typesetMath(area);
+}
+
+function toggleOpt(i) {
+  if (answered) return;
+  if (selected.has(i)) selected.delete(i); else selected.add(i);
+  const btn = document.getElementById('btn-validate');
+  if (btn) btn.disabled = selected.size === 0;
+}
+
+function validateAnswer() {
+  if (answered || selected.size === 0) return;
+  answered = true;
+  const q = currentQ;
+  const correctSet = new Set(q.answer);
+  // Tout ou rien : l'ensemble coché doit correspondre exactement à l'ensemble
+  // correct — ni case correcte manquante, ni case incorrecte cochée en trop
+  // (Charte_Balmer-Cloud.md §5.2). Reste vrai globalement même pour une
+  // « super question » à plusieurs outils (chantier 18) : les groupes de
+  // concepts ci-dessous partitionnent toujours les 4 options, donc une
+  // correspondance exacte globale équivaut à une correspondance exacte dans
+  // chaque groupe pris séparément.
+  const ok = selected.size === correctSet.size && [...selected].every(i => correctSet.has(i));
+  sessionTot++;
+  if (ok) sessionCor++;
+
+  // Notation par groupe de concept (chantier 18) : les options sont
+  // regroupées par le concept qu'elles testent (conceptsForOptions — pour
+  // une question classique, un seul groupe = les 4 options = comportement
+  // strictement identique à avant cette version) ; chaque groupe est noté
+  // indépendamment en tout-ou-rien, avec sa propre mise à jour de
+  // score/streak et sa propre ligne de journal — une « super question » à 4
+  // outils peut ainsi produire jusqu'à 4 signaux de maîtrise indépendants au
+  // lieu d'un seul (id de la question, voir historique — permet de détecter
+  // une répétition littérale du même item, pas seulement de la même cellule
+  // concept/R1/type ; temps passé ; et — uniquement en cas d'erreur sur ce
+  // groupe — le texte du/des distracteur(s) réellement coché(s) pour CE
+  // concept, pas les options correctes manquées, qui ne révèlent pas de
+  // méconception précise).
+  const optCs = conceptsForOptions(q);
+  const dureeMs = Math.max(0, Date.now() - questionAfficheeAt);
+  [...new Set(optCs)].forEach(c => {
+    const idxs = optCs.map((cc, i) => cc === c ? i : -1).filter(i => i >= 0);
+    const groupCorrect = new Set(idxs.filter(i => correctSet.has(i)));
+    const groupSelected = new Set(idxs.filter(i => selected.has(i)));
+    const okC = groupSelected.size === groupCorrect.size && [...groupSelected].every(i => groupCorrect.has(i));
+    if (okC) {
+      // Une bonne réponse qui suit immédiatement une erreur (même session,
+      // même concept) ne rapporte que +0,10 au lieu de +0,15 — une seule
+      // bonne réponse ne suffit pas à effacer une lacune (Charte_Balmer-Cloud.md §5.2).
+      const gain = erreurRecente[c] ? ALGO.gainApresErreur : ALGO.gain;
+      scores[c] = Math.min(1, scores[c] + gain);
+      streaks[c]++;
+      erreurRecente[c] = false;
+    } else {
+      // Score inchangé sur une erreur (v1.48) : seule la série de bonnes
+      // réponses consécutives repart à zéro — le score ne recule plus jamais,
+      // ce qui ralentit la progression vers la maîtrise sans jamais effacer
+      // l'acquis (Charte_Balmer-Cloud.md §5.2).
+      streaks[c] = 0;
+      erreurRecente[c] = true;
+    }
+    const distracteursC = idxs.filter(i => selected.has(i) && !correctSet.has(i)).map(i => q.options[i]);
+    reponsesEnAttente.push({
+      id: q.id, concept: c, r1: q.r1, type: q.type, correct: okC, dureeMs,
+      ...(distracteursC.length ? { distracteurs: distracteursC } : {})
+    });
+  });
+  usedQ[q.concept].add(q.id);
+  meta.totalAnswered++;
+  meta.lastUsed = new Date().toISOString();
+  saveScores();
+
+  const errorIdx = [];
+  document.querySelectorAll('.opt').forEach(el => {
+    const i = parseInt(el.dataset.i);
+    el.classList.add('answered');
+    el.querySelector('.opt-check').disabled = true;
+    const isCorrect = correctSet.has(i);
+    const isChecked = selected.has(i);
+    if (isCorrect && isChecked) el.classList.add('correct');
+    else if (isCorrect && !isChecked) { el.classList.add('missed'); errorIdx.push(i); }
+    else if (!isCorrect && isChecked) { el.classList.add('wrong'); errorIdx.push(i); }
+  });
+
+  const correctLetters = [...correctSet].sort((a,b) => a-b).map(i => LETTERS[i]).join(', ');
+  const wrongMsgs = errorIdx.map(i => Array.isArray(q.fw) && q.fw[i] ? q.fw[i] : '').filter(Boolean);
+  // Concept ancre uniquement (q.concept) — l'affichage du feedback pour une
+  // « super question » à plusieurs outils sera affiné quand du contenu
+  // multi-outils existera réellement (chantier 18, phase contenu).
+  const mastNow = mastered(q.concept);
+  document.getElementById('fb-area').innerHTML = ok
+    ? `<div class="fb ok"><strong>Correct.</strong> ${q.fc}${manuelRefHtml(q)}${mastNow ? '<div class="fb-next">✓ Ce concept est maîtrisé — nous passerons à autre chose.</div>' : ''}</div>`
+    : `<div class="fb ko"><strong>Réponse${correctSet.size > 1 ? 's correctes' : ' correcte'} : ${correctLetters}.</strong> ${q.fc}${wrongMsgs.length ? `<div class="fb-wrong">${wrongMsgs.join('<br>')}</div>` : ''}${manuelRefHtml(q)}<div class="fb-next">Ce concept sera retravaillé dans les prochaines questions.</div></div>`;
+
+  document.getElementById('btn-validate').style.display = 'none';
+  document.getElementById('next-row').innerHTML = `<div class="next-row"><button class="btn-next" onclick="nextQ()">Question suivante →</button></div>`;
+  typesetMath(document.getElementById('fb-area'));
+
+  renderProfile(); renderStats();
+}
+
+function nextQ() {
+  if (sessionTot > 0 && sessionTot % CHECKPOINT_EVERY === 0 && mastCount() < concepts.length) {
+    renderCheckpoint();
+  } else {
+    renderQuestion();
+  }
+}
+
+function renderCheckpoint() {
+  const area = document.getElementById('q-area');
+  const counts = { z0: 0, z1: 0, z2: 0, z3: 0, z4: 0 };
+  concepts.forEach(c => counts[zoneOf(c).cls]++);
+  const sorted = [...concepts].sort((a, b) => scores[a] - scores[b]);
+  const summary = [
+    counts.z4 ? `${counts.z4} maîtrisé${counts.z4 > 1 ? 's' : ''}` : '',
+    counts.z3 ? `${counts.z3} bonne${counts.z3 > 1 ? 's' : ''} maîtrise${counts.z3 > 1 ? 's' : ''}` : '',
+    counts.z2 ? `${counts.z2} à consolider` : '',
+    counts.z1 ? `${counts.z1} lacune${counts.z1 > 1 ? 's' : ''}` : '',
+    counts.z0 ? `${counts.z0} pas encore testé${counts.z0 > 1 ? 's' : ''}` : ''
+  ].filter(Boolean).join(' · ');
+  // Chantier 1 étape 2 (21.09.2026) : petit récapitulatif façon « quête »
+  // sur cet écran de pause déjà existant (toutes les CHECKPOINT_EVERY
+  // questions) — uniquement des données déjà suivies, aucune nouvelle
+  // collecte. Version épurée volontaire (pas de coffre/animation) : à
+  // enrichir plus tard si l'usage réel le justifie.
+  const gagnees = Math.max(0, mastCount() - masteredAtSessionStart);
+  const questHtml = `<div class="quest-box">
+    <div class="quest-row"><span class="quest-label">Série de ${CHECKPOINT_EVERY} questions</span><span class="quest-done">✓ Terminée</span></div>
+    <div class="quest-row"><span class="quest-label">Notions maîtrisées cette session</span><span class="quest-val">${gagnees}</span></div>
+    ${mastCount() === concepts.length ? '<div class="quest-badge">🏅 Chapitre entièrement maîtrisé !</div>' : ''}
+  </div>`;
+  area.innerHTML = `<div class="card done-card">
+    <div class="done-icon">⏸️</div>
+    <div class="done-title">Petite pause ?</div>
+    <div class="done-sub">${sessionTot} question${sessionTot > 1 ? 's' : ''} travaillée${sessionTot > 1 ? 's' : ''}, ${sessionCor} correcte${sessionCor > 1 ? 's' : ''} cette session.</div>
+    ${questHtml}
+    <div class="checkpoint-summary">${summary}</div>
+    <div class="concept-grid">${sorted.map(conceptPillHtml).join('')}</div>
+    <div class="done-sub" style="margin-top:1.25rem">Votre progression est déjà enregistrée — vous pouvez reprendre plus tard exactement où vous en êtes.</div>
+    <button class="btn-restart" onclick="exportResults(); renderQuestion();">Continuer</button>
+    <div style="margin-top:14px"><button class="reset-btn" onclick="exportResults(); renderClosing();">Exporter et reprendre une autre fois</button></div>
+  </div>`;
+}
+
+function renderClosing() {
+  const area = document.getElementById('q-area');
+  area.innerHTML = `<div class="card done-card">
+    <div class="done-icon">👋</div>
+    <div class="done-title">À bientôt !</div>
+    <div class="done-sub">Rien n'est perdu — votre progression par concept est enregistrée. Revenez quand vous voulez, l'entraînement reprendra là où vous vous êtes arrêté·e.</div>
+    <button class="btn-restart" onclick="renderQuestion()">Reprendre maintenant</button>
+  </div>`;
+}
+
+function restartSession() {
+  concepts.forEach(c => { usedQ[c] = new Set(); });
+  lastConcept = null; lastQuestionId = null;
+  renderQuestion();
+}
+
+function resetProgress() {
+  // Efface la progression persistée (score + streak par concept) pour la
+  // banque en cours uniquement — n'affecte pas les autres qbank.md déjà
+  // ouverts dans ce navigateur (clé localStorage distincte par fichier).
+  if (!storageKey) return;
+  const ok = confirm('Réinitialiser votre progression sur cette banque de questions ? Cette action est irréversible.');
+  if (!ok) return;
+  try { localStorage.removeItem(storageKey); } catch(e) {}
+  meta = { firstUsed: null, lastUsed: null, sessions: 0, totalAnswered: 0, pseudo: null, classe: null };
+  concepts.forEach(c => { scores[c] = ALGO.score0; streaks[c] = 0; usedQ[c] = new Set(); erreurRecente[c] = false; });
+  lastConcept = null; lastQuestionId = null;
+  sessionCor = 0; sessionTot = 0;
+  reponsesEnAttente = [];
+  renderClasseBar(); renderProfile(); renderStats(); renderQuestion();
+}
+
+// Identifiant anonyme persistant de l'appareil (pas de l'élève : aucune
+// saisie, aucune donnée personnelle) — généré une fois via crypto.randomUUID()
+// et stocké indépendamment de storageKey, donc partagé entre toutes les
+// banques ouvertes dans ce navigateur. Sert uniquement, côté analyse
+// (chantier 4 — boucle d'analyse empirique par cellule), à recoller les
+// envois d'un même appareil dans le temps : le pseudo seul (facultatif,
+// souvent laissé vide) ne permet pas de savoir de façon fiable si un élève
+// qui échoue revient plus tard sur la même cellule. Cf. charte d'exploitation
+// des données (à venir) et Charte_Balmer-Cloud.md §8.2quinquies.
+const DEVICE_ID_KEY = 'bc-device-id';
+function getDeviceId() {
+  try {
+    let id = localStorage.getItem(DEVICE_ID_KEY);
+    if (!id) {
+      id = (crypto.randomUUID ? crypto.randomUUID() : ('bc-' + Date.now() + '-' + Math.random().toString(36).slice(2)));
+      localStorage.setItem(DEVICE_ID_KEY, id);
+    }
+    return id;
+  } catch (e) { return ''; }
+}
+
+// Pseudo de classement (v1.49) : contrairement au reste de meta, stocké
+// indépendamment de storageKey (même modèle que DEVICE_ID_KEY) — un pseudo
+// choisi une fois en session encadrée doit rester stable à travers tous les
+// chapitres, pas redemandé à chaque banque. N'est plus jamais demandé en
+// travail autonome (voir exportResults()) : demander un pseudo pour du
+// travail autonome n'a aucun sens, le classement (Charte-Exploitation-
+// Donnees-Balmer-Cloud.md §2bis) ne porte que sur les sessions encadrées.
+const PSEUDO_KEY = 'bc-pseudo-classement';
+function getPseudoClassement() {
+  try { return localStorage.getItem(PSEUDO_KEY); } catch (e) { return null; }
+}
+function setPseudoClassement(v) {
+  try { localStorage.setItem(PSEUDO_KEY, v || ''); } catch (e) {}
+}
+
+// Micro-confirmation discrète (point 7, retour élève du 16.09.2026) : un
+// élève se demandait si/où ses réponses étaient enregistrées lors des
+// pauses toutes les 8 questions, qui ne montraient jusqu'ici aucun signal.
+// Toujours optimiste (jamais liée au résultat du fetch() vers le serveur,
+// qui reste silencieux — voir plus bas pourquoi un statut réseau a déjà été
+// retiré le 07.09.26 : trompeur sur iOS). Un seul timer actif à la fois.
+let saveToastTimer = null;
+function showSaveToast() {
+  const el = document.getElementById('save-toast');
+  if (!el) return;
+  el.classList.add('show');
+  clearTimeout(saveToastTimer);
+  saveToastTimer = setTimeout(() => el.classList.remove('show'), 1600);
+}
+
+// Export des résultats : la collecte serveur automatique et silencieuse
+// (COLLECT_URL) est la voie normale. La copie CSV dans le presse-papier
+// reste un filet de sécurité silencieux en parallèle — plus de
+// téléchargement JSON ni de message de statut affiché à l'élève (retiré le
+// 07.09.26 : sur iOS le téléchargement interrompait l'exercice avec une
+// boîte de dialogue système, et le message de synchro pouvait afficher un
+// échec trompeur alors que la donnée était bien arrivée côté serveur).
+function exportResults() {
+  if (!storageKey || !concepts.length) return;
+  const horodatage = new Date().toISOString();
+  const classeAvant = meta.classe || '';
+  // v1.49 : plus jamais demandé en travail autonome — seulement en session
+  // encadrée (classe non vide), où le pseudo sert au classement (Charte-
+  // Exploitation-Donnees-Balmer-Cloud.md §2bis), en plus du suivi existant.
+  if (meta.pseudo === null && classeAvant !== '') {
+    meta.pseudo = (prompt('Choisissez un pseudo pour le classement de la classe (facultatif — laisser vide pour ne pas y participer). Ceci ne vous sera demandé qu\'une fois :', '') || '').trim();
+    setPseudoClassement(meta.pseudo);
+    saveScores();
+  }
+  const pseudo = meta.pseudo || '';
+  // Le code de classe est désormais saisi via le bandeau visible dès
+  // l'arrivée sur l'appli (renderClasseBar()) — plus de prompt() de repli
+  // ici. Un second popup juste après celui du pseudo, en particulier au
+  // premier checkpoint (8 questions), était redondant et perçu comme
+  // intrusif en usage réel. meta.classe reste null si l'élève n'a jamais
+  // validé le bandeau ; on l'interprète alors comme "vide" (travail
+  // autonome), sans jamais forcer de saisie a posteriori.
+  const classe = meta.classe || '';
+
+  const rows = [['horodatage', 'banque', 'pseudo', 'concept', 'score', 'streak', 'maitrise']];
+  concepts.forEach(c => {
+    rows.push([horodatage, storageKey, pseudo, c, scores[c].toFixed(2), String(streaks[c]), mastered(c) ? 'oui' : 'non']);
+  });
+  rows.push([horodatage, storageKey, pseudo, '__session__', String(sessionCor), String(sessionTot), '']);
+  rows.push([horodatage, storageKey, pseudo, '__sessions_total__', String(meta.sessions), '', '']);
+  rows.push([horodatage, storageKey, pseudo, '__questions_total__', String(meta.totalAnswered), '', '']);
+  rows.push([horodatage, storageKey, pseudo, '__first_used__', meta.firstUsed || '', '', '']);
+  rows.push([horodatage, storageKey, pseudo, '__last_used__', meta.lastUsed || '', '', '']);
+  const csv = rows.map(r => r.map(v => /[",;\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v).join(',')).join('\n');
+
+  function fallbackCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  function flashDone() {
+    showSaveToast();
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(csv).then(flashDone).catch(() => { fallbackCopy(csv); flashDone(); });
+  } else {
+    fallbackCopy(csv); flashDone();
+  }
+
+  try {
+    const data = {
+      horodatage, banque: storageKey, pseudo, classe, deviceId: getDeviceId(),
+      concepts: concepts.map(c => ({ concept: c, score: scores[c], streak: streaks[c], maitrise: mastered(c) })),
+      session: { correctes: sessionCor, total: sessionTot },
+      usage: { sessions: meta.sessions, totalAnswered: meta.totalAnswered, firstUsed: meta.firstUsed, lastUsed: meta.lastUsed },
+      // Vidé ici (splice(0)) : chaque réponse détaillée n'est envoyée qu'une
+      // fois, jamais rechargée d'un export au suivant (voir déclaration).
+      reponses: reponsesEnAttente.splice(0)
+    };
+    if (COLLECT_URL) {
+      // Le serveur attend le nom de banque « brut » (ex. qbank-atomes-
+      // quantite-de-matiere) — jamais storageKey, qui porte en plus le
+      // préfixe bc-eleve- et, depuis le découpage en sous-parties (chantier
+      // 8), un éventuel suffixe -1A/-1B/-1C : dans les deux cas, collect.php
+      // rejetterait systématiquement l'envoi (422 banque_inconnue),
+      // silencieusement avalé par le .catch() ci-dessous.
+      const banqueServeur = banqueBase;
+      fetch(COLLECT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...data, banque: banqueServeur, token: COLLECT_TOKEN })
+      }).then((r) => {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        try { localStorage.setItem('bc-sync-debug', JSON.stringify({ ok: true, t: horodatage })); } catch (e2) {}
+      }).catch((err) => {
+        const msg = (err && err.message) ? err.message : String(err);
+        try { localStorage.setItem('bc-sync-debug', JSON.stringify({ ok: false, t: horodatage, err: msg })); } catch (e2) {}
+      });
+      // La copie CSV ci-dessus reste le filet de sécurité silencieux en toutes circonstances.
+    }
+  } catch (e) {}
+}
+
+// Filet de sécurité pour les séances encadrées en classe (temps limité) :
+// si l'élève change d'onglet ou ferme la page avant d'avoir atteint un
+// checkpoint ou cliqué sur un bouton d'export, on tente quand même un envoi
+// silencieux de l'état courant. sendBeacon() est conçu pour rester fiable au
+// moment précis où la page se ferme, contrairement à fetch() qui peut être
+// interrompu. N'envoie rien si la collecte serveur est désactivée, si aucune
+// question n'a été répondue pendant cette visite, ou si l'état n'a pas changé
+// depuis le dernier envoi automatique (évite les doublons à chaque
+// changement d'onglet). Ne déclenche jamais de prompt() : contrairement à
+// exportResults(), cet envoi reste toujours silencieux.
+let lastAutoSyncSessionTot = 0;
+function autoSyncOnHide() {
+  if (!navigator.sendBeacon || !COLLECT_URL || !storageKey || !concepts.length) return;
+  if (sessionTot === 0 || sessionTot === lastAutoSyncSessionTot) return;
+  lastAutoSyncSessionTot = sessionTot;
+  try {
+    // Voir le commentaire équivalent dans exportResults() ci-dessus : banqueBase,
+    // pas storageKey, qui peut porter un suffixe de sous-partie.
+    const banqueServeur = banqueBase;
+    const payload = {
+      horodatage: new Date().toISOString(),
+      banque: banqueServeur,
+      pseudo: meta.pseudo || '',
+      classe: meta.classe || '',
+      deviceId: getDeviceId(),
+      concepts: concepts.map(c => ({ concept: c, score: scores[c], streak: streaks[c], maitrise: mastered(c) })),
+      session: { correctes: sessionCor, total: sessionTot },
+      usage: { sessions: meta.sessions, totalAnswered: meta.totalAnswered, firstUsed: meta.firstUsed, lastUsed: meta.lastUsed },
+      reponses: reponsesEnAttente.splice(0),
+      token: COLLECT_TOKEN
+    };
+    const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+    navigator.sendBeacon(COLLECT_URL, blob);
+  } catch (e) {}
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') autoSyncOnHide(); });
+window.addEventListener('pagehide', autoSyncOnHide);
+
+renderBanquesConnues();
+loadFromUrl();
+
+function resetApp() {
+  questions = []; concepts = []; scores = {}; streaks = {}; usedQ = {};
+  lastConcept = null; lastQuestionId = null;
+  sessionCor = 0; sessionTot = 0; currentQ = null; answered = false; selected = new Set();
+  questionsToutes = []; keySuffixEnAttente = ''; chapterNameEnAttente = '';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('souspartie-screen').style.display = 'none';
+  document.getElementById('import-screen').style.display = 'flex';
+  document.getElementById('import-error').style.display = 'none';
+}
+</script>
+</body>
+</html>
