@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Manuel de chimie en ligne pour les classes de maturité des gymnases vaudois, avec Balmer-Cloud, un outil de suivi de la maîtrise par concept.">
+
+<title>12&nbsp; Équilibre chimique 2 – Projet-Balmer — Manuel de chimie pour la maturité gymnasiale vaudoise</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapitres/acides-bases-ph.html" rel="next">
+<link href="../chapitres/equilibre-chimique-1.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<script>
+window.MathJax = {
+  loader: {load: ['[tex]/mhchem']},
+  tex: {packages: {'[+]': ['mhchem']}}
+};
+</script>
+<style>
+.quarto-figure img, main img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+.qcm-widget { margin: 1rem 0; padding: 0.75rem 1rem; border: 1px solid #ddd; border-radius: 8px; }
+.qcm-widget .qcm-label { font-size: 13px; color: #666; margin-bottom: 8px; }
+.qcm-widget button { display: block; width: 100%; text-align: left; margin: 4px 0; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; background: white; cursor: pointer; font-size: 14px; }
+.qcm-widget .qcm-feedback { margin-top: 8px; font-size: 14px; }
+.hist-note-name { color: inherit; text-decoration: none; border-bottom: 1px dotted #8a5a00; cursor: pointer; }
+.hist-note-name:hover { border-bottom-style: solid; }
+.hist-note { text-decoration: none; font-size: 0.75em; vertical-align: super; margin-left: 2px; color: #8a5a00; border-bottom: none; }
+.hist-note:hover { text-decoration: underline; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.qcm-widget').forEach(function(el) {
+    var options = JSON.parse(el.getAttribute('data-options'));
+    var correct = parseInt(el.getAttribute('data-correct'), 10);
+    var answered = false;
+    var label = document.createElement('div');
+    label.className = 'qcm-label';
+    label.textContent = 'Vérifier ma réponse';
+    el.appendChild(label);
+    var feedback = document.createElement('div');
+    feedback.className = 'qcm-feedback';
+    options.forEach(function(opt, i) {
+      var btn = document.createElement('button');
+      btn.textContent = opt;
+      btn.onclick = function() {
+        if (answered) return;
+        answered = true;
+        el.querySelectorAll('button').forEach(function(b) { b.disabled = true; });
+        if (i === correct) {
+          btn.style.borderColor = '#2e7d32';
+          btn.style.background = '#e8f5e9';
+          feedback.textContent = 'Correct.';
+          feedback.style.color = '#2e7d32';
+        } else {
+          btn.style.borderColor = '#c62828';
+          btn.style.background = '#ffebee';
+          feedback.textContent = 'Pas tout à fait — bonne réponse : ' + options[correct];
+          feedback.style.color = '#c62828';
+        }
+      };
+      el.appendChild(btn);
+    });
+    el.appendChild(feedback);
+  });
+});
+</script>
+<script>
+(function() {
+  var isEmbedded = false;
+  try { isEmbedded = window.self !== window.top; }
+  catch (e) { isEmbedded = true; }
+  if (isEmbedded) {
+    document.documentElement.classList.add('quarto-embed-iframe');
+  }
+})();
+</script>
+<style>
+html.quarto-embed-iframe #quarto-header,
+html.quarto-embed-iframe #quarto-sidebar,
+html.quarto-embed-iframe #quarto-sidebar-glass,
+html.quarto-embed-iframe #quarto-margin-sidebar {
+  display: none !important;
+}
+html.quarto-embed-iframe #quarto-content.page-columns {
+  grid-template-columns: minmax(1rem, 1fr) minmax(0, 900px) minmax(1rem, 1fr) !important;
+}
+html.quarto-embed-iframe #quarto-content.page-columns > * {
+  grid-column: 2 / 3 !important;
+}
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapitres/historique-tome-2.html">Tome 2</a></li><li class="breadcrumb-item"><a href="../chapitres/equilibre-chimique-2.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Équilibre chimique 2</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Recherche" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Projet-Balmer — Manuel de chimie pour la maturité gymnasiale vaudoise</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Recherche"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../contact.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Une remarque ?</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tome 1</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Historique Tome 1 - Une science qui se construit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/atomes-quantite-de-matiere.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Atomes et quantité de matière</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-sels-molecules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Liaisons, sels et molécules</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/liaisons-intermoleculaires.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Liaisons intermoléculaires</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-chimiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Transformations chimiques et stœchiométrie</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/transformations-physiques.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Transformations physiques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/oxydo-reduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Oxydoréduction, piles et électrolyse</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acido-basiques-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Introduction aux équilibres acido-basiques</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tome 2</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/historique-tome-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Historique Tome 2 - Une science qui se construit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Thermochimie 1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/thermochimie-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Thermochimie 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/vitesse-de-reaction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vitesse de réaction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Équilibre chimique 1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/equilibre-chimique-2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Équilibre chimique 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/acides-bases-ph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Acides, bases et pH</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapitres/chimie-organique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Chimie organique</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#les-équilibres-entre-solides-et-solutions" id="toc-les-équilibres-entre-solides-et-solutions" class="nav-link active" data-scroll-target="#les-équilibres-entre-solides-et-solutions"><span class="header-section-number">12.0.1</span> Les équilibres entre solides et solutions</a></li>
+  <li><a href="#constante-de-la-loi-daction-de-masse-k-rappel" id="toc-constante-de-la-loi-daction-de-masse-k-rappel" class="nav-link" data-scroll-target="#constante-de-la-loi-daction-de-masse-k-rappel"><span class="header-section-number">12.0.2</span> Constante de la loi d’action de masse K (rappel)</a></li>
+  <li><a href="#la-solubilité-s" id="toc-la-solubilité-s" class="nav-link" data-scroll-target="#la-solubilité-s"><span class="header-section-number">12.0.3</span> La solubilité <span class="math inline">\(s\)</span></a></li>
+  <li><a href="#exercices-supplémentaires-dissolution-dun-seul-sel" id="toc-exercices-supplémentaires-dissolution-dun-seul-sel" class="nav-link" data-scroll-target="#exercices-supplémentaires-dissolution-dun-seul-sel"><span class="header-section-number">12.0.4</span> Exercices supplémentaires : dissolution d’un seul sel</a></li>
+  <li><a href="#mélange-de-deux-solutions-sans-ion-commun-précipité-ou-pas-de-précipité" id="toc-mélange-de-deux-solutions-sans-ion-commun-précipité-ou-pas-de-précipité" class="nav-link" data-scroll-target="#mélange-de-deux-solutions-sans-ion-commun-précipité-ou-pas-de-précipité"><span class="header-section-number">12.0.5</span> Mélange de deux solutions sans ion commun : précipité ou pas de précipité ?</a></li>
+  <li><a href="#mélange-de-deux-solutions-ayant-ion-commun-leffet-ion-commun" id="toc-mélange-de-deux-solutions-ayant-ion-commun-leffet-ion-commun" class="nav-link" data-scroll-target="#mélange-de-deux-solutions-ayant-ion-commun-leffet-ion-commun"><span class="header-section-number">12.0.6</span> Mélange de deux solutions ayant ion commun (l’effet ion commun)</a></li>
+  <li><a href="#précipitation-dû-à-un-changement-de-température" id="toc-précipitation-dû-à-un-changement-de-température" class="nav-link" data-scroll-target="#précipitation-dû-à-un-changement-de-température"><span class="header-section-number">12.0.7</span> Précipitation dû à un changement de température</a></li>
+  <li><a href="#exercices-supplémentaires" id="toc-exercices-supplémentaires" class="nav-link" data-scroll-target="#exercices-supplémentaires"><span class="header-section-number">12.0.8</span> Exercices supplémentaires</a></li>
+  <li><a href="#mots-clés" id="toc-mots-clés" class="nav-link" data-scroll-target="#mots-clés"><span class="header-section-number">12.1</span> Mots-clés</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapitres/historique-tome-2.html">Tome 2</a></li><li class="breadcrumb-item"><a href="../chapitres/equilibre-chimique-2.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Équilibre chimique 2</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Équilibre chimique 2</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Une remarque ?</strong> <a href="../contact.html">Écrivez-nous</a> — coquille, question, suggestion.</p>
+</div>
+</div>
+</div>
+<p><strong>Ce que nous savons déjà —</strong> Nous savons déjà qu’un équilibre chimique se caractérise par une constante <span class="math inline">\(K\)</span> qui relie les concentrations des espèces en solution à l’état d’équilibre. Nous savons comparer le quotient réactionnel <span class="math inline">\(Q\)</span> à <span class="math inline">\(K\)</span> pour prédire l’évolution d’un système, et résoudre un tableau d’avancement pour trouver les concentrations à l’équilibre.</p>
+<p><strong>Ce que ce chapitre construit —</strong> Ce chapitre applique ces outils à un cas précis : la dissolution des sels peu solubles dans l’eau. Nous allons découvrir le produit de solubilité <span class="math inline">\(K_s\)</span>, constante d’équilibre propre à cet équilibre de dissolution, et la solubilité <span class="math inline">\(s\)</span> qui en découle. Nous verrons aussi comment la présence d’un ion déjà dissous en solution peut réduire la quantité de sel qui se dissout.</p>
+<p><strong>Ce que nous saurons faire —</strong> À la fin de ce chapitre, nous serons capables de calculer <span class="math inline">\(K_s\)</span> à partir d’une solubilité mesurée, et inversement. Nous saurons prédire si un mélange de deux solutions provoque l’apparition d’un solide, puis calculer les concentrations de chaque ion restant en solution après cette précipitation.</p>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-10-05</em></p>
+<p><strong>Nous savons déjà que…</strong></p>
+<ul>
+<li>La constante d’équilibre <span class="math inline">\(K\)</span> est un produit d’activités chimiques à l’équilibre : l’activité d’un solide pur vaut 1, celle d’un soluté correspond à sa concentration en mol/L.</li>
+<li>Le quotient réactionnel <span class="math inline">\(Q\)</span> se calcule comme <span class="math inline">\(K\)</span> mais à n’importe quel instant : <span class="math inline">\(Q &lt; K\)</span> signifie que le système évolue dans le sens direct, <span class="math inline">\(Q &gt; K\)</span> dans le sens inverse, <span class="math inline">\(Q = K\)</span> indique l’équilibre.</li>
+<li>La méthode du tableau d’avancement avec la variable <span class="math inline">\(x\)</span> relie les concentrations initiales aux concentrations à l’équilibre et permet de résoudre l’expression de <span class="math inline">\(K\)</span>.</li>
+</ul>
+<p><em>Ces acquis sont les points d’appui directs de ce chapitre — nous allons appliquer cette même constante <span class="math inline">\(K\)</span> à un nouvel équilibre : celui d’un solide ionique avec ses ions dissous en solution.</em></p>
+<p><strong>Mini-test — vérifions nos acquis avant de continuer :</strong></p>
+<ol type="1">
+<li>Pour la réaction <span class="math inline">\(\ce{AgCl(s) &lt;=&gt; Ag+(aq) + Cl-(aq)}\)</span>, que vaut l’activité de <span class="math inline">\(\ce{AgCl(s)}\)</span> dans l’expression de <span class="math inline">\(K\)</span> ?</li>
+<li>Pour une réaction d’équilibre, nous mesurons <span class="math inline">\(Q &gt; K\)</span>. Dans quel sens le système va-t-il évoluer ?</li>
+<li>Dans un tableau d’avancement, à quoi correspond la variable <span class="math inline">\(x\)</span> à l’équilibre ?</li>
+</ol>
+<p><em>Si nous répondons sans hésiter, nous sommes prêts — passons à la Zone 2. Si certaines réponses hésitent, relisons les points ci-dessus avant de continuer.</em></p>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-10-05</em></p>
+<section id="les-équilibres-entre-solides-et-solutions" class="level3" data-number="12.0.1">
+<h3 data-number="12.0.1" class="anchored" data-anchor-id="les-équilibres-entre-solides-et-solutions"><span class="header-section-number">12.0.1</span> Les équilibres entre solides et solutions</h3>
+<p>Les équilibres entre l’état solide d’un composé et de sa forme hydratée en solution sont une application importante de la théorie des équilibres chimiques.</p>
+<p>En chimie, un composé solide (composé moléculaire solide ou sels cristallin) en équilibre thermodynamique avec une solution est appelé <strong>précipité</strong>.</p>
+<p>La présence d’un précipité stable résulte ainsi d’un équilibre thermodynamique entre la phase liquide (solution) et la phase solide (sel).</p>
+<p><strong>Exemple d’apparition d’un soluté:</strong> Lorsque la quantité maximale de soluté qui peut être dissoute dans un volume donné de solvant est atteinte (<strong>état de saturation</strong>), l’ajout de soluté fait apparaître un précipité : une phase dispersée solide dans une matrice liquide.</p>
+<p><strong>Conception courante :</strong> On pourrait croire qu’un sel “insoluble” ne se dissout absolument pas dans l’eau. C’est inexact : tout sel ionique se dissout au moins partiellement. La distinction de solubilité entre tous les sels ne devrait pas être soluble ou insoluble, mais <em>peu soluble</em> ou <em>très soluble</em>.</p>
+<p><strong>Analogie :</strong> Imaginez un récipient contenant de l’eau. Tant que vous en ajoutez peu de sucre, tout se dissout. À partir d’un certain seuil, le sucre s’accumule au fond : la solution est saturée. Un sel peu soluble atteint ce seuil avec une infime quantité dissoute — mais le même équilibre est à l’œuvre.</p>
+<p><strong>Notation d’un équilibre entre un composé solide et sa partie dissoute en solution:</strong></p>
+<p>La précipitation est notée comme une équation chimique. Par convention, le solide prend la place du réactif et les ions aqueux ont la place des produits :</p>
+<p><span class="math display">\[\ce{NaCl(s) &lt;=&gt; Na+(aq) + Cl-(aq)}\]</span></p>
+<p><em>(précipité (solide) à gauche ; ions en solution (solution saturée) à droite)</em></p>
+<p>Les ions en milieu aqueux (aq) désignent les espèces dissociées (le sel dissous) et le solide (s) désigne le sel cristallisé.</p>
+<p>Dans ce chapitre, nous allons principalement nous concentré sur les équilibres chimiques entre composés ioniques solides et leur ions en solution. Les composés moléculaires n’en est qu’un application assez simple.</p>
+</section>
+<section id="constante-de-la-loi-daction-de-masse-k-rappel" class="level3" data-number="12.0.2">
+<h3 data-number="12.0.2" class="anchored" data-anchor-id="constante-de-la-loi-daction-de-masse-k-rappel"><span class="header-section-number">12.0.2</span> Constante de la loi d’action de masse K (rappel)</h3>
+<p>Comme déjà vu dans les chapitres précédents, il existe une relation générale entre les concentrations des espèces présentes à l’équilibre en solution et la constante d’équilibre K appelée constante de la loi d’action de masse K :</p>
+<p>Pour la réaction <span class="math inline">\(\ce{aA + bB &lt;=&gt; cC + dD}\)</span> :</p>
+<p><span class="math display">\[K = \frac{(\alpha_C)^c \cdot (\alpha_D)^d}{(\alpha_A)^a \cdot (\alpha_B)^b}\]</span></p>
+<p>Avec :</p>
+<ul>
+<li>K : constante d’équilibre</li>
+<li><span class="math inline">\((\alpha_i)^{\nu_i}\)</span> : activité chimique de l’espèce i à l’équilibre mise à la puissance de son coefficient stœchiométrique <span class="math inline">\(\nu_i\)</span></li>
+</ul>
+<p>L’activité chimique, ou activité, d’une espèce chimique exprime l’écart entre les propriétés d’une espèce pure et les propriétés de cette même espèce dans un état standard à la même température.</p>
+<p>Ce que vous devez vous rappeler est que l’activité <span class="math inline">\(\alpha_i\)</span> d’un produit ou d’un réactif se caractérise :</p>
+<ul>
+<li><span class="math inline">\(\alpha_i = 1\)</span> si la substance est un solide ou un liquide pur (solvant inclus)</li>
+<li><span class="math inline">\(\alpha_i = P_x\)</span> (en atm) - une pression - si la substance est un gaz mais peut être aussi exprimée en mol/l</li>
+<li><span class="math inline">\(\alpha_i = [X]\)</span> (en mol/L) – une concentration - si la substance est un soluté</li>
+</ul>
+<section id="le-produit-solubilité-k_s" class="level4" data-number="12.0.2.1">
+<h4 data-number="12.0.2.1" class="anchored" data-anchor-id="le-produit-solubilité-k_s"><span class="header-section-number">12.0.2.1</span> Le produit solubilité <span class="math inline">\(K_s\)</span></h4>
+<p>On considère la dissolution d’un solide ionique de formule <span class="math inline">\(\ce{X_\alpha Y_\beta}\)</span>.</p>
+<p>L’équation de précipitation est décrite de la manière suivante :</p>
+<p><span class="math display">\[\ce{X_\alpha Y_\beta (s) &lt;=&gt; \alpha X^{\beta+}(aq) + \beta Y^{\alpha-}(aq)}\]</span></p>
+<blockquote class="blockquote">
+<p>Le produit de solubilité <span class="math inline">\(K_s\)</span> est la constante d’équilibre correspondant à la dissolution d’un solide dans un solvant.</p>
+</blockquote>
+<p><strong>Au niveau particulaire :</strong> Dans une solution dite saturée (présence à l’équilibre du composé solide <span class="math display">\[\ce{X_\alpha Y_\beta (s)\]</span>, les ions <span class="math inline">\(\ce{X^{\beta+}}\)</span> et <span class="math inline">\(\ce{Y^{\alpha-}}\)</span> quittent la surface du cristal à la même vitesse qu’ils y retournent. Le solide et la solution coexistent : c’est un équilibre dynamique entre la phase solide et la phase dissoute.</p>
+<p><strong>Représentation symbolique :</strong> Le composé ionique solide étant un solide pur, son activité (<span class="math inline">\(\alpha_i\)</span>) est égale à 1. Les activités des ions dans un milieu aqueux correspondent à leurs concentrations exprimées en moles par litre (mol/L), divisées par une concentration de référence <span class="math inline">\(C_0 = 1\)</span> mol/L:</p>
+<p><span class="math display">\[K_s = \frac{(\alpha_{X^{\beta+}})^\alpha \cdot (\alpha_{Y^{\alpha-}})^\beta}{(\alpha_{X_\alpha Y_\beta (s)})} = [\ce{X^{\beta+}}]^\alpha \cdot [\ce{Y^{\alpha-}}]^\beta\]</span></p>
+<p><em>(ions en solution <span class="math inline">\(\Rightarrow \alpha = [\ ]\)</span> ; solide <span class="math inline">\(\Rightarrow \alpha = 1\)</span>)</em></p>
+<p><strong>Exemple travaillé :</strong> Écrire l’équation ionique de précipitation et l’expression de <span class="math inline">\(K_s\)</span> pour <span class="math inline">\(\ce{NaCl}\)</span>, <span class="math inline">\(\ce{PbCl2}\)</span> et <span class="math inline">\(\ce{Ca(OH)2}\)</span>.</p>
+<p><em><span class="math inline">\(\ce{NaCl}\)</span> :</em></p>
+<p><span class="math display">\[\ce{NaCl(s) &lt;=&gt; Na+(aq) + Cl-(aq)}\]</span></p>
+<p><span class="math display">\[K_s = [\ce{Na+}][\ce{Cl-}]\]</span></p>
+<p><em><span class="math inline">\(\ce{PbCl2}\)</span> :</em></p>
+<p><span class="math display">\[\ce{PbCl2(s) &lt;=&gt; Pb^{2+}(aq) + 2 Cl-(aq)}\]</span></p>
+<p><span class="math display">\[K_s = [\ce{Pb^{2+}}][\ce{Cl-}]^2\]</span></p>
+<p><em><span class="math inline">\(\ce{Ca(OH)2}\)</span> :</em></p>
+<p><span class="math display">\[\ce{Ca(OH)2(s) &lt;=&gt; Ca^{2+}(aq) + 2 OH-(aq)}\]</span></p>
+<p><span class="math display">\[K_s = [\ce{Ca^{2+}}][\ce{OH-}]^2\]</span></p>
+<p>La dissolution nécessite de connaître vos dissociations de sel. Le tableau ci-dessous vous aide à dissocier correctement certains sels.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-table-solubilite-composes-ioniques.png" class="img-fluid figure-img"></p>
+<figcaption>Table de solubilité des composés ioniques (cations Ag+, Al3+, As3+, Ba2+, Bi3+, Ca2+, Cd2+, Co2+, Cr3+, Cu2+, Fe2+, Fe3+, Hg2+, K+, Mg2+, Mn2+, Na+, NH4+, Ni2+, Pb2+, Sb3+, Sn2+, Sn4+, Sr2+, Zn2+ en lignes ; anions Br-, CH3COO-, Cl-, CO3 2-, F-, I-, NO2-, NO3-, OH-, PO4 3-, S2-, SO4 2- en colonnes ; symboles : cercle = soluble supérieur à 1 g/L, triangle plein = peu soluble inférieur à 1 g/L, croix = composé inexistant)</figcaption>
+</figure>
+</div>
+<p><strong>Écrire les équations ioniques de précipitation de l’expression des <span class="math inline">\(K_s\)</span> pour les précipités suivants :</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Formule</th>
+<th>Nom du composé</th>
+<th><span class="math inline">\(K_s\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NaCl</td>
+<td>Chlorure de sodium</td>
+<td>32,98</td>
+</tr>
+<tr class="even">
+<td>TiBrO₃</td>
+<td>Bromate de titane</td>
+<td><span class="math inline">\(1,7 \times 10^{-4}\)</span></td>
+</tr>
+<tr class="odd">
+<td>PbCl₂</td>
+<td>Chlorure de plomb(II)</td>
+<td><span class="math inline">\(1,6 \times 10^{-5}\)</span></td>
+</tr>
+<tr class="even">
+<td>Ca(OH)₂</td>
+<td>Hydroxyde de calcium</td>
+<td><span class="math inline">\(5,5 \times 10^{-6}\)</span></td>
+</tr>
+<tr class="odd">
+<td>TiBr</td>
+<td>Bromure de titane</td>
+<td><span class="math inline">\(3,4 \times 10^{-6}\)</span></td>
+</tr>
+<tr class="even">
+<td>NiCO₃</td>
+<td>Carbonate de nickel</td>
+<td><span class="math inline">\(1,3 \times 10^{-7}\)</span></td>
+</tr>
+<tr class="odd">
+<td>CaC₂O₄</td>
+<td>Oxalate de calcium</td>
+<td><span class="math inline">\(2 \times 10^{-9}\)</span></td>
+</tr>
+<tr class="even">
+<td>MnS</td>
+<td>Sulfure de manganèse(II)</td>
+<td><span class="math inline">\(2,5 \times 10^{-13}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Cu(OH)₂</td>
+<td>Hydroxyde de cuivre(II)</td>
+<td><span class="math inline">\(5,0 \times 10^{-19}\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-equations-ioniques-ks-corrige.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit : équations ioniques et expressions de Ks pour les 9 sels du tableau ci-dessus</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="la-solubilité-s" class="level3" data-number="12.0.3">
+<h3 data-number="12.0.3" class="anchored" data-anchor-id="la-solubilité-s"><span class="header-section-number">12.0.3</span> La solubilité <span class="math inline">\(s\)</span></h3>
+<p><strong>Formalisation :</strong> La solubilité <span class="math inline">\(s\)</span> (en mol/L) est la quantité maximale de soluté qui peut se dissoudre dans un litre de solvant à une température donnée. La solubilité massique <span class="math inline">\(S\)</span> (en g/L) s’obtient par <span class="math inline">\(S = s \cdot M\)</span>, où <span class="math inline">\(M\)</span> est la masse molaire du sel (en g/mol).</p>
+<p><strong>Conception courante :</strong> On confond souvent <span class="math inline">\(K_s\)</span> et la solubilité. <span class="math inline">\(K_s\)</span> est une constante d’équilibre — elle ne dépend que de la température. La solubilité <span class="math inline">\(s\)</span> est la concentration maximale de sel dissous dans ces conditions — elle se calcule à partir de <span class="math inline">\(K_s\)</span> via la stœchiométrie, mais les deux grandeurs ne sont pas identiques.</p>
+<p>Le produit de solubilité <span class="math inline">\(K_s\)</span> est directement lié à la solubilité <span class="math inline">\(s\)</span> (et, par conversion, à <span class="math inline">\(S\)</span>).</p>
+<p><strong>Attention :</strong> cette sous-section introduit deux opérations distinctes que vous pouvez traiter séparément : (1) calculer <span class="math inline">\(s\)</span> depuis <span class="math inline">\(K_s\)</span> — sens direct ; (2) calculer <span class="math inline">\(K_s\)</span> depuis <span class="math inline">\(S\)</span> mesurée — sens inverse. Si les deux directions vous semblent lourdes à la première lecture, maîtrisez d’abord le sens direct avant d’aborder le sens inverse.</p>
+<p>La solubilité permet de distinguer trois états de la solution :</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>État de la solution</th>
+<th>Concentration en sel dissous</th>
+<th>Précipité présent ?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Insaturée</td>
+<td><span class="math inline">\(&lt; s\)</span></td>
+<td>Non</td>
+</tr>
+<tr class="even">
+<td>Saturée</td>
+<td><span class="math inline">\(= s\)</span></td>
+<td>Non, mais limite atteinte</td>
+</tr>
+<tr class="odd">
+<td>Sursaturée</td>
+<td><span class="math inline">\(&gt; s\)</span></td>
+<td>Oui — excès de solide au fond</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Au niveau particulaire :</strong> Dans une solution insaturée, tous les ions sont en solution. À saturation, la vitesse de dissolution égale la vitesse de recristallisation. En solution sursaturée, une partie des ions se réorganise en réseau cristallin et forme le précipité visible.</p>
+<p><strong>Représentation symbolique :</strong> La solubilité se calcule par le tableau d’avancement. Pour <span class="math inline">\(\ce{X_\alpha Y_\beta (s) &lt;=&gt; \alpha X^{\beta+}(aq) + \beta Y^{\alpha-}(aq)}\)</span>, en posant <span class="math inline">\(x = s\)</span> :</p>
+<p><span class="math display">\[K_s = (\alpha \cdot s)^\alpha \cdot (\beta \cdot s)^\beta
+= \alpha^\alpha \cdot \beta^\beta \cdot s^{\alpha+\beta}\]</span></p>
+<p><strong>Exemple : écrire l’équation de précipitation du NaCl et calculer sa solubilité <span class="math inline">\(s\)</span> et <span class="math inline">\(S\)</span> :</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exemple-nacl-avancement.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit : tableau d’avancement de la dissolution de NaCl(s), Ks = s^2 = 32,98, s ≈ 5,74 mol/L, S ≈ 335,4 g/L</figcaption>
+</figure>
+</div>
+<p><strong>Exemple :</strong> La solubilité de AgCl est de <span class="math inline">\(1,8 \times 10^{-4}\)</span> g par 100 ml à 25°C. Calculer son produit de solubilité <span class="math inline">\(K_s\)</span>. <em>(Réponse : <span class="math inline">\(1,59 \times 10^{-10}\)</span>)</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exemple-agcl-sens-inverse.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit : conversion S → s → Ks pour AgCl, sens inverse (solubilité mesurée vers Ks)</figcaption>
+</figure>
+</div>
+<p><strong>Exemple :</strong> La solubilité de PbI₂ est de 0,07 g par 100 ml à 25°C. Calculer son produit de solubilité <span class="math inline">\(K_s\)</span>. <em>(réponse : <span class="math inline">\(1,4 \times 10^{-8}\)</span>)</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exemple-pbi2-ks.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit : conversion S → s → Ks pour PbI2, stœchiométrie 1:2</figcaption>
+</figure>
+</div>
+<p><strong>Exercice :</strong> la solubilité dans l’eau de Cu₃(PO₄)₂ est de 6,35 µg/l. Quel est le produit de solubilité ? <em>(Réponse : <span class="math inline">\(1,4 \times 10^{-37}\)</span>)</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exercice-cu3po42-ks.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit : Ks de Cu3(PO4)2 à partir de la solubilité massique, stœchiométrie 3:2</figcaption>
+</figure>
+</div>
+<p><strong>Exemple :</strong> Le <span class="math inline">\(K_s\)</span> de AgBr vaut <span class="math inline">\(5,3 \times 10^{-13}\)</span> à 25°C. Quelle est sa solubilité <span class="math inline">\(S\)</span> en g/100 ml ? <em>(Réponse : <span class="math inline">\(1,36 \times 10^{-5}\)</span> g/100 ml)</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exemple-agbr-solubilite.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit : Ks → s → S pour AgBr</figcaption>
+</figure>
+</div>
+<p><strong>Exercice guidé :</strong> Le <span class="math inline">\(K_s\)</span> de Ag₂CrO₄ est égal à <span class="math inline">\(1,1 \times 10^{-12}\)</span> à 25°C. Quelle est sa solubilité <span class="math inline">\(S\)</span> en g/100 ml ? <em>(Réponse : <span class="math inline">\(2,157 \times 10^{-3}\)</span> g/100 ml)</em></p>
+<p><em>Indication :</em> écrire l’équation de précipitation, poser <span class="math inline">\(x = s\)</span> dans le tableau d’avancement — les coefficients stœchiométriques de <span class="math inline">\(\ce{Ag+}\)</span> sont 2, ce qui modifie l’expression de <span class="math inline">\(K_s\)</span> — puis résoudre <span class="math inline">\(K_s = f(s)\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exemple-ag2cro4-solubilite.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit : Ks → s → S pour Ag2CrO4, stœchiométrie 2:1</figcaption>
+</figure>
+</div>
+<p><strong>Exercice :</strong> La solubilité molaire du sulfate d’argent (Ag₂SO₄) est de <span class="math inline">\(1,5 \times 10^{-2}\)</span> M. Calculez le <span class="math inline">\(K_s\)</span>. <em>(Réponse : <span class="math inline">\(1,35 \times 10^{-5}\)</span>)</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exercice-ag2so4-ks.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit : Ks de Ag2SO4 à partir de la solubilité molaire</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="exercices-supplémentaires-dissolution-dun-seul-sel" class="level3" data-number="12.0.4">
+<h3 data-number="12.0.4" class="anchored" data-anchor-id="exercices-supplémentaires-dissolution-dun-seul-sel"><span class="header-section-number">12.0.4</span> Exercices supplémentaires : dissolution d’un seul sel</h3>
+<p><strong>Exercice :</strong> Pour chaque sel dissous dans l’eau, écrire l’équation ionique (indiquer les ions avec leurs charges et leur état physique) de dissociation ainsi que la constante de solubilité.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Composé dissous</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NaCl (aq)</td>
+</tr>
+<tr class="even">
+<td>KNO₃ (aq)</td>
+</tr>
+<tr class="odd">
+<td>CaCl₂ (aq)</td>
+</tr>
+<tr class="even">
+<td>Al(NO₃)₃ (aq)</td>
+</tr>
+<tr class="odd">
+<td>MgBr₂ (aq)</td>
+</tr>
+<tr class="even">
+<td>NH₄Cl (aq)</td>
+</tr>
+<tr class="odd">
+<td>Ba(NO₃)₂ (aq)</td>
+</tr>
+<tr class="even">
+<td>SrI₂ (aq)</td>
+</tr>
+<tr class="odd">
+<td>Li₂SO₄ (aq)</td>
+</tr>
+<tr class="even">
+<td>Na₂CO₃ (aq)</td>
+</tr>
+<tr class="odd">
+<td>K₂SO₄ (aq)</td>
+</tr>
+<tr class="even">
+<td>NaCH₃COO (aq)</td>
+</tr>
+<tr class="odd">
+<td>Ca(NO₃)₂ (aq)</td>
+</tr>
+<tr class="even">
+<td>ZnCl₂ (aq)</td>
+</tr>
+<tr class="odd">
+<td>Fe(NO₃)₃ (aq)</td>
+</tr>
+<tr class="even">
+<td>AgNO₃ (aq)</td>
+</tr>
+<tr class="odd">
+<td>Pb(NO₃)₂ (aq)</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exercice2-tableau-16-sels.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit complet : équation ionique et expression du Ks pour les 17 sels du tableau (colonnes équation ionique + expression du Ks)</figcaption>
+</figure>
+</div>
+<p><strong>Exercice :</strong> Le produit de solubilité de Ag₂CO₃ vaut <span class="math inline">\(8,46 \times 10^{-12}\)</span>. Quelle est la concentration d’une solution saturée en mol/l et en g/l ? <em>(Réponse : <span class="math inline">\(1,28 \times 10^{-4}\)</span> mol/l ; <span class="math inline">\(3,54 \times 10^{-2}\)</span> g/l)</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exercice-ag2co3-solubilite.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit : solubilité molaire et massique de Ag2CO3</figcaption>
+</figure>
+</div>
+<p><strong>Exercice :</strong> Le carbonate de sodium Na₂CO₃ est un solide très courant que l’on trouve dissout par exemple dans les eaux calcaires.</p>
+<ol type="1">
+<li>Que vaut sa solubilité en mol/l si <span class="math inline">\(K_s = 1,2\)</span> ? <em>(réponse : <span class="math inline">\(s = 0,67\)</span> mol/l)</em></li>
+<li>Quelle est sa solubilité massique (kg/l) maximale ? <em>(réponse : <span class="math inline">\(0,071\)</span> kg/l)</em></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exercice-na2co3-solubilite.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit : solubilité molaire et massique de Na2CO3</figcaption>
+</figure>
+</div>
+</section>
+<section id="mélange-de-deux-solutions-sans-ion-commun-précipité-ou-pas-de-précipité" class="level3" data-number="12.0.5">
+<h3 data-number="12.0.5" class="anchored" data-anchor-id="mélange-de-deux-solutions-sans-ion-commun-précipité-ou-pas-de-précipité"><span class="header-section-number">12.0.5</span> Mélange de deux solutions sans ion commun : précipité ou pas de précipité ?</h3>
+<section id="le-quotient" class="level4" data-number="12.0.5.1">
+<h4 data-number="12.0.5.1" class="anchored" data-anchor-id="le-quotient"><span class="header-section-number">12.0.5.1</span> Le quotient</h4>
+<p>Lorsqu’on mélange deux solutions contenant des ions susceptibles de former un sel peu soluble, il faut que le produit des concentrations ioniques dépasse <span class="math inline">\(K_s\)</span>.</p>
+<p>Apparition d’un précipité ou non? c’est le quotient ionique <span class="math inline">\(Q\)</span> qui permet de trancher.</p>
+<p><strong>Formalisation :</strong> Lors du mélange de deux solutions ne partageant aucun ion commun, la procédure est la suivante :</p>
+<ol type="1">
+<li>Identifier le sel peu soluble susceptible de se former.</li>
+<li>Calculer les concentrations des ions concernés après dilution par mélange, en supposant qu’il n’y a pas de précipitation.</li>
+<li>Calculer le quotient ionique <span class="math inline">\(Q = [\ce{X^{\beta+}}]_0^\alpha \cdot [\ce{Y^{\alpha-}}]_0^\beta\)</span>.</li>
+<li>Comparer <span class="math inline">\(Q\)</span> à <span class="math inline">\(K_s\)</span> :</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Cas</th>
+<th>Conclusion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(Q &lt; K_s\)</span></td>
+<td>Solution insaturée — pas de précipité</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(Q = K_s\)</span></td>
+<td>Solution saturée — pas de précipité</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(Q &gt; K_s\)</span></td>
+<td>Solution sursaturée — précipité jusqu’à <span class="math inline">\(Q = K_s\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Au niveau particulaire :</strong> Si <span class="math inline">\(Q &gt; K_s\)</span>, la solution contient plus d’ions que l’équilibre ne peut en tolérer. À l’échelle particulaire, la fréquence des rencontres entre ions opposés dépasse le seuil à partir duquel les attractions électrostatiques les maintiennent ensemble plutôt qu’en solution. Des ions se réorganisent spontanément en réseau cristallin — c’est la nucléation du précipité — jusqu’à ce que les concentrations restantes satisfassent <span class="math inline">\(K_s\)</span>.</p>
+<p><strong>Représentation symbolique :</strong> Après vérification que <span class="math inline">\(Q &gt; K_s\)</span>, on calcule les concentrations réelles à l’équilibre par le tableau d’avancement, en notant <span class="math inline">\(x\)</span> la concentration de sel précipitée.</p>
+<p>Si, à la suite du mélange de deux solutions sans précipité, contenant chacune un composé ionique, une précipitation est observée, cela signifie qu’un sel peu soluble a pu se former. Les ions formant le précipité proviennent alors de sources différentes. Les concentrations utilisées dans le calcul du produit ionique ne sont donc plus liées à la stœchiométrie du précipité.</p>
+<p><strong>Expérience :</strong> réaction de précipitation entre une solution d’AgNO₃ 1 M et une solution de KCl 1 M.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-agno3-kcl-particulaire.png" class="img-fluid figure-img"></p>
+<figcaption>Schéma particulaire : mélange AgNO3(aq) + KCl(aq) → AgCl(s) + KNO3(aq), ions Ag+/NO3-/K+/Cl- représentés avant et après précipitation</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exemple-agno3-kcl-calcul.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit : équation de précipitation AgCl et calcul de Ks</figcaption>
+</figure>
+</div>
+<p><strong>Exemple :</strong> Réaction de précipitation du PbI₂ (s)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-pbi2-photos-precipitation.png" class="img-fluid figure-img"></p>
+<figcaption>Photographie en trois temps du mélange KI(aq) + Pb(NO3)2(aq) → PbI2(s) + 2KNO3(aq) (changement de couleur jaune), avec schéma particulaire correspondant sous chaque bécher</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exemple-pbi2-precipitation-calcul.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit : identification des deux précipités possibles (KNO3 soluble, PbI2 insoluble) et équation de précipitation retenue</figcaption>
+</figure>
+</div>
+</section>
+<section id="calculs-des-concentrations-après-précipitation-sans-approximation" class="level4" data-number="12.0.5.2">
+<h4 data-number="12.0.5.2" class="anchored" data-anchor-id="calculs-des-concentrations-après-précipitation-sans-approximation"><span class="header-section-number">12.0.5.2</span> Calculs des concentrations après précipitation sans approximation</h4>
+<p>Observera-t-on une précipitation, l’apparition d’un précipité lors d’un mélange d’une solution de BaCl₂ et d’une Na₂SO₄ ?</p>
+<p><em>(équation globale : <span class="math inline">\(\ce{BaCl2(aq) + Na2SO4(aq) &lt;=&gt; 2 NaCl(aq) + BaSO4(s)}\)</span> — question manuscrite : « Est-ce que <span class="math inline">\(\ce{BaSO4(s)}\)</span> apparaît ou non ? »)</em></p>
+<p>La réponse exige d’identifier un composé ayant une faible solubilité.</p>
+<ul>
+<li>NaCl n’a aucune chance de précipiter, car les composés ioniques des métaux de la première colonne sont tous très solubles.</li>
+<li>BaSO₄ est quant à lui faiblement soluble. Il pourrait avoir précipitation.</li>
+</ul>
+<p>Pour savoir si on observe une précipitation de BaSO₄, nous devons appliquer la procédure suivante :</p>
+<ol type="1">
+<li>on calcule les concentrations en ions Ba²⁺ et SO₄²⁻ après mélange, en faisant l’hypothèse qu’il n’y a pas de précipitation.</li>
+<li>On introduit ensuite ces valeurs dans l’expression du quotient de solubilité <span class="math inline">\(Q = [\ce{Ba^{2+}}]_0 \cdot [\ce{SO4^{2-}}]_0\)</span>.</li>
+<li>Si le quotient ionique dépasse le produit de solubilité <span class="math inline">\(K_s = [\ce{Ba^{2+}}] \cdot [\ce{SO4^{2-}}]\)</span> de BaSO₄, la précipitation a lieu.</li>
+<li>Le calcul des quantités restantes en solution après précipitation en considérant une quantité <span class="math inline">\(x\)</span> précipitant et en soustrayant les quantités de ions précipités aux ions en solution.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>En conclusion, nous avons trois possibilités :</strong></p>
+<p><strong>Cas 1</strong> <span class="math inline">\(Q &lt; K_s\)</span> — solution insaturée : pas de précipité.</p>
+<p><strong>Cas 2</strong> <span class="math inline">\(Q = K_s\)</span> — solution saturée : pas de précipité.</p>
+<p><strong>Cas 3</strong> <span class="math inline">\(Q &gt; K_s\)</span> — solution sursaturée : précipité, jusqu’à ce que le <span class="math inline">\(Q\)</span> soit égal à <span class="math inline">\(K_s\)</span>.</p>
+</blockquote>
+<p>Dans le cas 3, <span class="math inline">\(Q &gt; K_s\)</span>, solution sursaturée, la résolution demande des calculs souvent complexes. Dans certains cas où <span class="math inline">\(Q \gg K_s\)</span>, il est possible d’approximer que le limitant se transforme dans un premier temps entièrement en précipité afin de simplifier les calculs.</p>
+<p><strong>Exercice :</strong> On mélange 20 ml d’une solution 0,001 M de BaCl₂ et 50 ml d’une solution 0,001 M de Na₂SO₄. Sachant que le produit de solubilité de BaSO₄ vaut <span class="math inline">\(1,1 \times 10^{-10}\)</span>. Quelles sont les nombres de moles des 4 ions présents en solution après précipitation ? <em>(réponses : n(BaSO₄(s)) = <span class="math inline">\(1,998 \times 10^{-5}\)</span> mol, [Ba²⁺(aq)] = <span class="math inline">\(3 \times 10^{-7}\)</span> mol/l, [SO₄²⁻(aq)] = <span class="math inline">\(4,29 \times 10^{-4}\)</span> mol/l, [Cl⁻(aq)] = <span class="math inline">\(5,714 \times 10^{-4}\)</span> mol/l, [Na⁺(aq)] = <span class="math inline">\(1,429 \times 10^{-3}\)</span> mol/l)</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exercice-bacl2-na2so4-sans-approx.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit complet, sans approximation : Q vs Ks, équation du second degré en x, concentrations des 4 ions à l’équilibre</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exercice-bacl2-na2so4-avec-approx.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit : même exercice résolu avec l’approximation (réactif limitant considéré totalement précipité), comparaison au résultat sans approximation</figcaption>
+</figure>
+</div>
+</section>
+<section id="calculs-des-concentrations-après-précipitation-avec-approximation" class="level4" data-number="12.0.5.3">
+<h4 data-number="12.0.5.3" class="anchored" data-anchor-id="calculs-des-concentrations-après-précipitation-avec-approximation"><span class="header-section-number">12.0.5.3</span> Calculs des concentrations après précipitation avec approximation</h4>
+<p><strong>Exercice :</strong> On introduit dans 1 L de solution de nitrate d’argent 0,1 M complètement dissout 10 mg de chlorure de plomb PbCl₂ solide. Observe-t-on un précipité ? Si oui, lequel ? Quelle est la quantité en gramme de précipité que nous pourrions observer ? On donne <span class="math inline">\(K_s(\ce{AgCl}) = 1,77 \times 10^{-10}\)</span> <em>(Réponse : [Cl⁻(aq)] = 1,77 nM, [Ag⁺(aq)] = <span class="math inline">\(9,99 \times 10^{-2}\)</span> mol/l, m(AgCl(s)) = 10,3 mg)</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exercice-agno3-pbcl2.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit : identification du précipité AgCl, approximation Ag+ en large excès, masse de précipité formé</figcaption>
+</figure>
+</div>
+<p><strong>Exercice :</strong> On mélange 200 ml d’une solution 0,01 M de K₃PO₄ avec 50 ml d’une solution 0,001 M de AgNO₃. Sachant que le produit de solubilité de Ag₃PO₄ vaut <span class="math inline">\(1,05 \times 10^{-16}\)</span>, pensez-vous qu’on observera une précipitation de ce composé ? Quelles sont les concentrations molaires des 4 ions présents en solution ? <em>(réponses : [PO₄³⁻(aq)] = <span class="math inline">\(7,9 \times 10^{-3}\)</span> mol/l, [NO₃⁻(aq)] = <span class="math inline">\(2,4 \times 10^{-4}\)</span> mol/l, [Ag⁺(aq)] = <span class="math inline">\(2,38 \times 10^{-5}\)</span> mol/l, [K⁺(aq)] = <span class="math inline">\(2,4 \times 10^{-2}\)</span> mol/l)</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exercice-k3po4-agno3.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit : équation de précipitation Ag3PO4, identification du réactif limitant (Ag+), concentrations des 4 ions à l’équilibre</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="mélange-de-deux-solutions-ayant-ion-commun-leffet-ion-commun" class="level3" data-number="12.0.6">
+<h3 data-number="12.0.6" class="anchored" data-anchor-id="mélange-de-deux-solutions-ayant-ion-commun-leffet-ion-commun"><span class="header-section-number">12.0.6</span> Mélange de deux solutions ayant ion commun (l’effet ion commun)</h3>
+<p>L’effet ion commun apparaît lorsqu’on mélange un solide (ou une solution salée) à une autre solution contenant déjà un des ions qui composent le précipité. La solubilité du sel diminue alors par effet d’ion commun.</p>
+<!-- REF: ref:equilibre-chimique-1-principe-le-chatelier — principe de Le Châtelier formalisé au chapitre Équilibre chimique 1 -->
+<p><strong>Formalisation :</strong> L’effet ion commun est le déplacement d’un équilibre de dissolution causé par la présence en solution d’un ion qui entre dans l’expression de <span class="math inline">\(K_s\)</span> du sel considéré. Conformément au principe de Le Châtelier, l’ajout d’un produit déplace l’équilibre dans le sens inverse — ici, vers la recristallisation. La solubilité <span class="math inline">\(s'\)</span> du sel en présence de l’ion commun est donc inférieure à sa solubilité <span class="math inline">\(s\)</span> dans l’eau pure.</p>
+<p><strong>Au niveau particulaire :</strong> La concentration accrue d’un des ions en solution augmente la fréquence des collisions entre cet ion et la surface du cristal, favorisant la recristallisation par rapport à la dissolution. L’équilibre se rétablit à une solubilité plus faible.</p>
+<p><strong>Représentation symbolique :</strong> On reprend le tableau d’avancement en intégrant la concentration initiale <span class="math inline">\(c_0\)</span> de l’ion commun. Pour <span class="math inline">\(\ce{AgCl(s) &lt;=&gt; Ag+(aq) + Cl-(aq)}\)</span> dans une solution contenant déjà <span class="math inline">\([\ce{Cl-}]_0 = c_0\)</span> :</p>
+<p><span class="math display">\[K_s = s'(s' + c_0)\]</span></p>
+<p>Si <span class="math inline">\(c_0 \gg s'\)</span> (approximation valide lorsque <span class="math inline">\(c_0 \gg \sqrt{K_s}\)</span>) :</p>
+<p><span class="math display">\[K_s \approx s' \cdot c_0 \implies s' \approx \frac{K_s}{c_0}\]</span></p>
+<p><strong>Exemple :</strong> Quelle est la solubilité de AgCl (<span class="math inline">\(K_s(\ce{AgCl}) = 1,77 \times 10^{-10}\)</span>) dans une solution de NaCl 0,55 M ? Est-elle identique à la solubilité dans l’eau pure ? <em>(réponse : <span class="math inline">\(s' = 3,22 \times 10^{-10}\)</span> M, facteur de réduction ≈ 40’000 par rapport à <span class="math inline">\(s_\text{eau pure} \approx 1,33 \times 10^{-5}\)</span> M)</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exemple-agcl-nacl-ion-commun.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit : tableau d’avancement avec ion commun Cl- à 0,55 M, équation du second degré en s’, comparaison au facteur de réduction de solubilité (≈40’000)</figcaption>
+</figure>
+</div>
+<p><strong>Exemple travaillé — limites de l’approximation :</strong> Calculer la solubilité de <span class="math inline">\(\ce{PbI2}\)</span> (<span class="math inline">\(K_s = 9{,}8 \times 10^{-9}\)</span>) dans une solution de <span class="math inline">\(\ce{CaI2}\)</span> à <span class="math inline">\(5 \times 10^{-6}\)</span> M.</p>
+<p><em><span class="math inline">\([\ce{I-}]_0 = 2 \times 5 \times 10^{-6} = 10^{-5}\)</span> M.</em></p>
+<p><span class="math display">\[\ce{PbI2(s) &lt;=&gt; Pb^{2+}(aq) + 2 I-(aq)}\]</span></p>
+<p>Avec l’approximation <span class="math inline">\([\ce{I-}]_{eq} \approx 10^{-5}\)</span> M :</p>
+<p><span class="math display">\[s' \approx \frac{K_s}{(10^{-5})^2} = \frac{9{,}8 \times 10^{-9}}{10^{-10}}
+= 98 \ \text{mol/L}\]</span></p>
+<p><strong>Attention :</strong> ce résultat est physiquement absurde. L’approximation n’est plus valide car <span class="math inline">\(c_0 = 10^{-5}\)</span> M <span class="math inline">\(\ll \sqrt{K_s}
+= \sqrt{9{,}8 \times 10^{-9}} \approx 9{,}9 \times 10^{-5}\)</span> M : la condition <span class="math inline">\(c_0 \gg \sqrt{K_s}\)</span> n’est pas satisfaite. Sans approximation (résolution numérique), on obtient <span class="math inline">\(s' \approx 1{,}30 \times 10^{-3}\)</span> M — proche de la solubilité dans l’eau pure (<span class="math inline">\(s = 1{,}35 \times 10^{-3}\)</span> M). L’ion commun est ici si dilué qu’il n’affecte presque pas la solubilité.</p>
+<blockquote class="blockquote">
+<p><em>Question de contrôle avant d’appliquer l’approximation : vérifier que <span class="math inline">\(c_0 \gg \sqrt{K_s}\)</span>. Si la condition n’est pas satisfaite, résoudre sans approximation ou utiliser un solveur numérique.</em></p>
+</blockquote>
+<p>Par exemple l’ajout de AgCl (s), sel peu soluble, à une solution contenant du AgNO₃ (aq) contribue dans un premier temps à une augmentation de la concentration totale en solution de l’ion argent :</p>
+<p><span class="math display">\[\ce{AgCl(s) + AgNO3(aq) -&gt; Ag+(aq) + Cl-(aq) + NO3-(aq)}\]</span></p>
+<p>L’augmentation de <span class="math inline">\([\ce{Ag+}]\)</span> par la présence d’Ag⁺ en solution rendra ainsi le quotient <span class="math inline">\(Q\)</span> supérieur au produit de solubilité :</p>
+<p><span class="math display">\[Q = [\ce{Ag+}]_0 [\ce{Cl-}]_0 &gt; K_s\]</span></p>
+<p>Pour établir l’équilibre, il y aura donc formation d’un précipité de AgCl jusqu’à ce que la valeur du produit ionique soit de nouveau égale à celle de <span class="math inline">\(K_s\)</span>.</p>
+<p>L’ajout d’un ion Ag⁺ déjà présent dans la solution se solde donc par une diminution de la solubilité du sel AgCl en solution.</p>
+<p>Cet exemple montre ce que l’on appelle l’effet d’ion commun, c’est-à-dire le déplacement d’un équilibre causé par la présence d’un ion commun.</p>
+<p><strong>Exercice :</strong> Calculer la solubilité du chromate d’argent dans une solution de nitrate d’argent de concentration 0,01 M. La comparer à la solubilité dans l’eau pure <span class="math inline">\(s = 6,3 \times 10^{-5}\)</span> M. <span class="math inline">\(K_s(\ce{Ag2CrO4}) = 1,12 \times 10^{-12}\)</span>. <em>(Réponse = <span class="math inline">\(1,12 \times 10^{-8}\)</span> M)</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exercice-ag2cro4-ion-commun.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit : deux méthodes évoquées (équation du 3e degré rejetée comme trop complexe, approximation retenue), facteur de réduction ≈1000</figcaption>
+</figure>
+</div>
+<p><strong>Exemple :</strong> Considérer l’iodure de plomb PbI₂, <span class="math inline">\(K_s = 9,8 \times 10^{-9}\)</span>.</p>
+<ol type="1">
+<li>Que vaut sa solubilité en mol/l dans l’eau pure ? <em>(Réponse : <span class="math inline">\(s = 1,35 \times 10^{-3}\)</span> M)</em></li>
+<li>Que vaut sa solubilité dans une solution d’iodure de potassium 0,1 M ? <em>(Réponse avec approx : <span class="math inline">\(s' = 9,8 \times 10^{-7}\)</span> M)</em></li>
+<li>Que vaut sa solubilité dans une solution d’iodure de calcium à <span class="math inline">\(5 \times 10^{-6}\)</span> M ? <em>(Réponse avec approx : <span class="math inline">\(s' = 98\)</span> M, sans approx : <span class="math inline">\(s' \approx 1,30 \times 10^{-3}\)</span> M)</em></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exemple-pbi2-ion-commun-3parties.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit des 3 parties : solubilité dans l’eau pure, dans KI 0,1M, dans CaI2 5·10-6M avec mise en évidence explicite des limites de l’approximation (résultat “98 M” jugé physiquement absurde par comparaison à la résolution sans approximation)</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="précipitation-dû-à-un-changement-de-température" class="level3" data-number="12.0.7">
+<h3 data-number="12.0.7" class="anchored" data-anchor-id="précipitation-dû-à-un-changement-de-température"><span class="header-section-number">12.0.7</span> Précipitation dû à un changement de température</h3>
+<p>À partir d’une quantité de sel dissout donnée, qui dépend de la température, le sel ne se dissout plus : la solution est dite « saturée ». Pourquoi ? Parce que la constante d’équilibre change en fonction de la température.</p>
+<p><strong>Conception courante :</strong> On croit souvent que chauffer une solution favorise toujours la dissolution d’un sel. C’est vrai pour la majorité des sels dont la dissolution est endothermique — mais certains composés ioniques ont une solubilité qui <em>diminue</em> avec la température. Pour eux, c’est en chauffant qu’un précipité peut se former.</p>
+<p><strong>Analogie :</strong> Pensez à la vapeur d’eau qui se condense sur un miroir froid : c’est la baisse de température qui provoque le changement de phase. Pour les sels à solubilité décroissante, c’est l’élévation de température qui “expulse” le soluté hors de la solution. La limite de cette analogie : la condensation est un changement d’état physique ; ici, c’est un équilibre ionique dont la constante <span class="math inline">\(K_s\)</span> dépend de <span class="math inline">\(T\)</span> via la relation de Van’t Hoff.</p>
+<!-- REF: ref:thermochimie-2-van-t-hoff — relation de Van't Hoff formalisée au chapitre Thermochimie 2 -->
+<p><strong>Formalisation :</strong> Puisque <span class="math inline">\(K_s\)</span> est une constante d’équilibre, elle dépend de la température selon la relation de Van’t Hoff (formalisée au chapitre 9). Deux cas sont possibles :</p>
+<ul>
+<li>Si la dissolution est <strong>endothermique</strong> (<span class="math inline">\(\Delta_r H^\circ &gt; 0\)</span>) : <span class="math inline">\(K_s\)</span> augmente avec <span class="math inline">\(T\)</span> — le sel se dissout davantage à chaud.</li>
+<li>Si la dissolution est <strong>exothermique</strong> (<span class="math inline">\(\Delta_r H^\circ &lt; 0\)</span>) : <span class="math inline">\(K_s\)</span> diminue avec <span class="math inline">\(T\)</span> — le sel se dissout moins à chaud, et un précipité peut apparaître par chauffage.</li>
+</ul>
+<p><strong>Attention :</strong> cette évolution inverse de la solubilité avec la température ne s’observe qu’avec certains composés ioniques. Les composés moléculaires organiques ont une solubilité qui croît systématiquement avec <span class="math inline">\(T\)</span> — ce comportement inverse ne les concerne pas.</p>
+<p><strong>Au niveau particulaire :</strong> L’élévation de température modifie l’agitation thermique des ions et les interactions électrostatiques dans le réseau cristallin. Pour les sels dont la dissolution est exothermique, l’énergie apportée par la chaleur déstabilise davantage les ions en solution qu’en réseau — l’équilibre se déplace vers la recristallisation.</p>
+<p><strong>Représentation symbolique :</strong> La dépendance de <span class="math inline">\(K_s\)</span> en <span class="math inline">\(T\)</span> est donnée par la relation de Van’t Hoff :</p>
+<p><span class="math display">\[\ln\frac{K_s(T_2)}{K_s(T_1)} = -\frac{\Delta_r H^\circ}{R}
+\left(\frac{1}{T_2} - \frac{1}{T_1}\right)\]</span></p>
+<p><strong>Exemple travaillé :</strong> L’acétate de calcium <span class="math inline">\(\ce{Ca(CH3COO)2}\)</span> présente la solubilité suivante :</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Température</th>
+<th><span class="math inline">\(K_s\)</span></th>
+<th>Solubilité (g/100 ml)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(0\ ^{\circ}\)</span>C</td>
+<td>53</td>
+<td>37,4</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(20\ ^{\circ}\)</span>C</td>
+<td>42</td>
+<td>34,7</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(100\ ^{\circ}\)</span>C</td>
+<td>26</td>
+<td>29,7</td>
+</tr>
+</tbody>
+</table>
+<p>La solubilité <em>diminue</em> avec la température : la dissolution de <span class="math inline">\(\ce{Ca(CH3COO)2}\)</span> est exothermique. Une solution saturée à <span class="math inline">\(20\ ^{\circ}\)</span>C contient 34,7 g/100 ml. Si on la chauffe à <span class="math inline">\(100\ ^{\circ}\)</span>C, la solubilité tombe à 29,7 g/100 ml : la différence, soit <span class="math inline">\(34{,}7 - 29{,}7 = 5{,}0\)</span> g par 100 ml de solution, précipite.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-ca-acetate-graphe-temperature.png" class="img-fluid figure-img"></p>
+<figcaption>Graphique manuscrit solubilité (g/100ml) en fonction de la température (0/20/100°C) montrant la décroissance, avec schéma de deux béchers (0°C saturé à 37,4 g/100ml → chauffage → 100°C, précipitation de 7,7 g de Ca(CH3COO)2) et calcul de Ks(273K) et Ks(373K)</figcaption>
+</figure>
+</div>
+<hr>
+</section>
+<section id="exercices-supplémentaires" class="level3" data-number="12.0.8">
+<h3 data-number="12.0.8" class="anchored" data-anchor-id="exercices-supplémentaires"><span class="header-section-number">12.0.8</span> Exercices supplémentaires</h3>
+<p><strong>Exercice 1.</strong></p>
+<p>On ajoute 200 ml de BaCl₂ 0,0040 M à 600 ml de K₂SO₄ 0,008 M. Y aura-t-il formation d’un précipité ? <span class="math inline">\(K_s\)</span> de BaSO₄ vaut <span class="math inline">\(1,1 \times 10^{-10}\)</span>. Calculer les concentrations à l’équilibre avec approximation <em>(Réponse : <span class="math inline">\([\ce{Ba^{2+}}] = K_s/[\ce{SO4^{2-}}]\)</span>, <span class="math inline">\([\ce{SO4^{2-}}] = 0,005\)</span> M)</em> et comparer à l’aide d’un calculateur comme <a href="https://www.wolframalpha.com/calculators/equation-solver-calculator">wolframalpha.com</a> la réponse sans approximation.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exercice1-bacl2-k2so4.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit complet</figcaption>
+</figure>
+</div>
+<p><strong>Exercice 2.</strong></p>
+<p>Si l’on verse 2,00 ml de NaOH 0,200 M dans 1,00 l de CaCl₂ 0,100 M, y aura-t-il formation d’un précipité ? <span class="math inline">\(K_s\)</span> de Ca(OH)₂ vaut <span class="math inline">\(8,0 \times 10^{-6}\)</span>. <em>(réponse : pas de précipité)</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exercice2-naoh-cacl2.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit complet : Q &lt; Ks, pas de précipitation</figcaption>
+</figure>
+</div>
+<p><strong>Exercice 3.</strong></p>
+<p>Calculez la solubilité du chlorure d’argent, AgCl (M = 143,32 g/mol) en grammes par litre, dans une solution de nitrate d’argent AgNO₃ <span class="math inline">\(6,5 \times 10^{-3}\)</span> M. La solubilité de AgCl dans l’eau pure est de <span class="math inline">\(1,9 \times 10^{-3}\)</span> g/l. <em>(Réponse : <span class="math inline">\(s = 2,703 \times 10^{-8}\)</span> mol/l)</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exercice3-agcl-agno3.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit complet, avec et sans approximation, conclusion sur la qualité de l’approximation</figcaption>
+</figure>
+</div>
+<p><strong>Exercice 4.</strong></p>
+<p>Calculez les solubilités, à 25 °C, du sulfate de baryum, en moles par litre :</p>
+<ol type="a">
+<li>dans l’eau ;</li>
+<li>dans une solution de nitrate de baryum 0,010 M.</li>
+</ol>
+<p><span class="math inline">\(K_s\)</span> du sulfate de baryum vaut <span class="math inline">\(1,1 \times 10^{-10}\)</span>. <em>(Réponse : <span class="math inline">\(s = 1,05 \times 10^{-5}\)</span> mol/l, <span class="math inline">\(s' = 1,1 \times 10^{-8}\)</span> mol/l)</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exercice4-baso4.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit complet, parties a) et b)</figcaption>
+</figure>
+</div>
+<p><strong>Exercice 5.</strong></p>
+<p>Calculez la solubilité, à 25 °C, du chromate d’argent, Ag₂CrO₄, en moles par litre, dans une solution de chromate de potassium, K₂CrO₄, 0,005 M. Comparez-la à celle dans l’eau. <span class="math inline">\(K_s\)</span> de Ag₂CrO₄ vaut <span class="math inline">\(1,1 \times 10^{-12}\)</span>. <em>(Réponse : <span class="math inline">\(s = 6,05 \times 10^{-5}\)</span> mol/l, <span class="math inline">\(s' = 7,416 \times 10^{-6}\)</span> mol/l)</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../illustrations/chap-equilibre-chimique-2/fig-equilibre-chimique-2-exercice5-ag2cro4-k2cro4.png" class="img-fluid figure-img"></p>
+<figcaption>Corrigé manuscrit complet, parties a) et b)</figcaption>
+</figure>
+</div>
+<p><strong>Exercices de synthèse</strong></p>
+<ol type="1">
+<li><p>Le fluorure de calcium <span class="math inline">\(\ce{CaF2}\)</span> a un <span class="math inline">\(K_s = 3{,}45 \times 10^{-11}\)</span>. Calculez sa solubilité molaire <span class="math inline">\(s\)</span> et sa solubilité massique <span class="math inline">\(S\)</span>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p></li>
+<li><p>La solubilité du sulfate de baryum <span class="math inline">\(\ce{BaSO4}\)</span> dans l’eau à <span class="math inline">\(25\ ^{\circ}\)</span>C est de <span class="math inline">\(2{,}4 \times 10^{-3}\)</span> g/L. Calculez son produit de solubilité <span class="math inline">\(K_s\)</span>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p></li>
+<li><p>On dispose d’une solution contenant <span class="math inline">\(\ce{Pb^{2+}}\)</span> à <span class="math inline">\(1{,}0 \times 10^{-3}\)</span> M et <span class="math inline">\(\ce{SO4^{2-}}\)</span> à <span class="math inline">\(1{,}0 \times 10^{-4}\)</span> M. <span class="math inline">\(K_s(\ce{PbSO4}) = 2{,}53 \times 10^{-8}\)</span>. Un précipité se forme-t-il ?<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p></li>
+<li><p>On mélange 100 ml d’une solution de <span class="math inline">\(\ce{Pb(NO3)2}\)</span> à <span class="math inline">\(0{,}020\)</span> M et 100 ml d’une solution de <span class="math inline">\(\ce{Na2SO4}\)</span> à <span class="math inline">\(0{,}010\)</span> M. <span class="math inline">\(K_s(\ce{PbSO4}) = 2{,}53 \times 10^{-8}\)</span>. Calculez les concentrations de <span class="math inline">\(\ce{Pb^{2+}}\)</span> et <span class="math inline">\(\ce{SO4^{2-}}\)</span> à l’équilibre.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p></li>
+<li><p>Calculez la solubilité de <span class="math inline">\(\ce{AgCl}\)</span> (<span class="math inline">\(K_s = 1{,}77 \times 10^{-10}\)</span>) dans une solution de <span class="math inline">\(\ce{CaCl2}\)</span> à <span class="math inline">\(0{,}10\)</span> M. Comparez à la solubilité dans l’eau pure.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p></li>
+<li><p>On dissout <span class="math inline">\(\ce{AgNO3}\)</span> jusqu’à obtenir une solution à <span class="math inline">\(0{,}050\)</span> M. On ajoute ensuite <span class="math inline">\(\ce{NaCl}\)</span> solide jusqu’à saturation en <span class="math inline">\(\ce{AgCl}\)</span> (<span class="math inline">\(K_s = 1{,}77 \times 10^{-10}\)</span>). Quelle est la concentration résiduelle en <span class="math inline">\(\ce{Ag+}\)</span> à l’équilibre ?<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p></li>
+<li><p>Le carbonate de magnésium <span class="math inline">\(\ce{MgCO3}\)</span> a <span class="math inline">\(K_s = 6{,}82 \times 10^{-6}\)</span>. Sa dissolution est endothermique (<span class="math inline">\(\Delta_r H^\circ &gt; 0\)</span>). Sa solubilité augmente-t-elle ou diminue-t-elle si on chauffe la solution ? Justifiez sans calcul.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></p></li>
+<li><p>L’hydroxyde de fer(III) <span class="math inline">\(\ce{Fe(OH)3}\)</span> a <span class="math inline">\(K_s = 2{,}79 \times 10^{-39}\)</span>. Calculez sa solubilité molaire <span class="math inline">\(s\)</span> dans l’eau pure, puis la concentration en <span class="math inline">\(\ce{OH-}\)</span> à l’équilibre.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p></li>
+<li><p>On mélange 50 ml de <span class="math inline">\(\ce{AgNO3}\)</span> à <span class="math inline">\(1{,}0 \times 10^{-3}\)</span> M et 50 ml de <span class="math inline">\(\ce{Na3PO4}\)</span> à <span class="math inline">\(1{,}0 \times 10^{-4}\)</span> M. <span class="math inline">\(K_s(\ce{Ag3PO4}) = 1{,}05 \times 10^{-16}\)</span>. Un précipité se forme-t-il ? Justifiez par le calcul de <span class="math inline">\(Q\)</span>.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p></li>
+<li><p>Une solution saturée de <span class="math inline">\(\ce{PbI2}\)</span> (<span class="math inline">\(K_s = 9{,}8 \times 10^{-9}\)</span>) est préparée à <span class="math inline">\(25\ ^{\circ}\)</span>C. On ajoute ensuite <span class="math inline">\(\ce{KI}\)</span> solide jusqu’à porter <span class="math inline">\([\ce{I-}]\)</span> à <span class="math inline">\(0{,}10\)</span> M. Calculez la nouvelle solubilité <span class="math inline">\(s'\)</span> de <span class="math inline">\(\ce{PbI2}\)</span> et le facteur de réduction par rapport à l’eau pure.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p></li>
+</ol>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-10-05</em></p>
+<p>Ces défis s’adressent à ceux qui veulent aller réellement plus loin. Ils exigent de mobiliser les notions de Zone 2 dans des contextes nouveaux.</p>
+<p><strong>Défi A — Approfondissement : la relation de Van’t Hoff appliquée à un produit de solubilité</strong></p>
+<p>Le produit de solubilité de <span class="math inline">\(\ce{PbI2}\)</span> à <span class="math inline">\(25\ ^{\circ}\)</span>C (<span class="math inline">\(298\)</span> K) vaut <span class="math inline">\(K_s = 9{,}8 \times 10^{-9}\)</span>. Sa dissolution est endothermique, avec <span class="math inline">\(\Delta_r H^\circ = +61\)</span> kJ/mol.</p>
+<p>Calculez le produit de solubilité <span class="math inline">\(K_s\)</span> de <span class="math inline">\(\ce{PbI2}\)</span> à <span class="math inline">\(50\ ^{\circ}\)</span>C (<span class="math inline">\(323\)</span> K), en utilisant la relation de Van’t Hoff vue en Zone 2. La solubilité de ce sel augmente-t-elle ou diminue-t-elle avec la température, et ce résultat est-il cohérent avec le sens de la dissolution ?<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p>
+<p><strong>Défi B — Transfert : précipitation sélective en chimie analytique environnementale</strong></p>
+<p>Les eaux usées d’une industrie contiennent simultanément des ions <span class="math inline">\(\ce{Pb^{2+}}\)</span> et <span class="math inline">\(\ce{Ca^{2+}}\)</span>, chacun à <span class="math inline">\(5{,}0 \times 10^{-3}\)</span> M. Un traitement consiste à ajouter progressivement une solution de <span class="math inline">\(\ce{Na2SO4}\)</span> pour précipiter sélectivement le plomb sous forme de <span class="math inline">\(\ce{PbSO4}\)</span>, sans précipiter le calcium.</p>
+<p>On donne : <span class="math inline">\(K_s(\ce{PbSO4}) = 2{,}53 \times 10^{-8}\)</span> et <span class="math inline">\(K_s(\ce{CaSO4}) = 4{,}93 \times 10^{-5}\)</span>.</p>
+<ol type="1">
+<li>Calculez la concentration en <span class="math inline">\(\ce{SO4^{2-}}\)</span> nécessaire pour amorcer la précipitation de <span class="math inline">\(\ce{PbSO4}\)</span>, puis celle nécessaire pour amorcer la précipitation de <span class="math inline">\(\ce{CaSO4}\)</span>.</li>
+<li>Existe-t-il une plage de concentration en <span class="math inline">\(\ce{SO4^{2-}}\)</span> permettant de précipiter <span class="math inline">\(\ce{Pb^{2+}}\)</span> sans toucher <span class="math inline">\(\ce{Ca^{2+}}\)</span> ?</li>
+<li>Quelle est la concentration résiduelle en <span class="math inline">\(\ce{Pb^{2+}}\)</span> au moment où <span class="math inline">\(\ce{CaSO4}\)</span> commence à précipiter ?<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></li>
+</ol>
+<p><strong>Défi C — Ouverture : <span class="math inline">\(K_s\)</span> peut-il vraiment être constant ?</strong></p>
+<p>Dans toute la Zone 2, nous avons traité <span class="math inline">\(K_s\)</span> comme une constante ne dépendant que de la température. Cette hypothèse est-elle toujours justifiée en pratique ?</p>
+<p>Réfléchissez aux situations suivantes et argumentez pour chacune si <span class="math inline">\(K_s\)</span> reste un outil fiable ou si des corrections seraient nécessaires :</p>
+<ol type="1">
+<li>Une solution très concentrée en ions étrangers (par exemple <span class="math inline">\(\ce{NaNO3}\)</span> à 1 M) modifie-t-elle la valeur effective de <span class="math inline">\(K_s\)</span> ? Quel concept physico-chimique est en jeu ?</li>
+<li>Pour des sels dont le cation est susceptible de former des complexes avec des ligands présents en solution (par exemple <span class="math inline">\(\ce{Ag+}\)</span> en présence d’ammoniac), la solubilité mesurée coïncide-t-elle avec celle prédite par <span class="math inline">\(K_s\)</span> seul ?</li>
+<li>À quelle condition l’expression simplifiée <span class="math inline">\(K_s = [\ce{X^{\beta+}}]^\alpha
+\cdot [\ce{Y^{\alpha-}}]^\beta\)</span> est-elle rigoureusement exacte ?<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a></li>
+</ol>
+<hr>
+</section>
+<section id="mots-clés" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="mots-clés"><span class="header-section-number">12.1</span> Mots-clés</h2>
+<p><strong>Produit de solubilité (<span class="math inline">\(K_s\)</span>)</strong> : constante d’équilibre de la dissolution d’un solide ionique dans l’eau ; produit des concentrations ioniques à l’équilibre élevées à leurs coefficients stœchiométriques.</p>
+<p><strong>Solubilité (<span class="math inline">\(s\)</span>)</strong> : concentration maximale d’un sel dissous à l’équilibre dans un solvant à température donnée, en mol/L ; liée à <span class="math inline">\(K_s\)</span> par la stœchiométrie de la dissolution.</p>
+<p><strong>Solubilité massique (<span class="math inline">\(S\)</span>)</strong> : solubilité exprimée en g/L, obtenue par <span class="math inline">\(S = s \cdot M\)</span> où <span class="math inline">\(M\)</span> est la masse molaire du sel.</p>
+<p><strong>Précipité</strong> : sel solide en équilibre thermodynamique avec une solution saturée ; se forme lorsque le quotient ionique <span class="math inline">\(Q\)</span> dépasse <span class="math inline">\(K_s\)</span>.</p>
+<p><strong>Quotient ionique (<span class="math inline">\(Q\)</span>)</strong> : produit des concentrations ioniques à un instant donné, de même forme que <span class="math inline">\(K_s\)</span> ; <span class="math inline">\(Q &lt; K_s\)</span> : solution insaturée, <span class="math inline">\(Q = K_s\)</span> : solution saturée, <span class="math inline">\(Q &gt; K_s\)</span> : précipitation.</p>
+<p><strong>États de saturation</strong> : une solution est insaturée si la concentration en sel dissous est inférieure à <span class="math inline">\(s\)</span> (pas de précipité), saturée si elle est égale à <span class="math inline">\(s\)</span> (limite atteinte), sursaturée si elle la dépasse (précipité présent).</p>
+<p><strong>Effet ion commun</strong> : diminution de la solubilité d’un sel peu soluble causée par la présence en solution d’un de ses ions constitutifs ; conséquence du principe de Le Châtelier.</p>
+<hr>
+<p><em>Projet-Balmer</em> <em>Dernière mise à jour : 2026-10-05</em></p>
+<hr>
+<p><em>Projet-Balmer</em></p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p><span class="math inline">\(s = \sqrt[3]{K_s/4} \approx 2{,}06 \times 10^{-4}\)</span> mol/L ; <span class="math inline">\(S \approx 0{,}016\)</span> g/L (<span class="math inline">\(M(\ce{CaF2}) = 78{,}07\)</span> g/mol).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><span class="math inline">\(s = 2{,}4 \times 10^{-3}/233{,}4 \approx 1{,}03 \times 10^{-5}\)</span> mol/L ; <span class="math inline">\(K_s = s^2 \approx 1{,}06 \times 10^{-10}\)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><span class="math inline">\(Q = 1{,}0 \times 10^{-3} \times 1{,}0 \times 10^{-4}
+= 1{,}0 \times 10^{-7} &gt; K_s\)</span> : précipité formé.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Concentrations après mélange : <span class="math inline">\([\ce{Pb^{2+}}]_0 = 0{,}010\)</span> M, <span class="math inline">\([\ce{SO4^{2-}}]_0 = 0{,}005\)</span> M. <span class="math inline">\(Q \gg K_s\)</span> : précipité. <span class="math inline">\([\ce{SO4^{2-}}]_{eq} \approx 1{,}27 \times 10^{-6}\)</span> mol/L ; <span class="math inline">\([\ce{Pb^{2+}}]_{eq} \approx 0{,}005\)</span> mol/L (excès).<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><span class="math inline">\([\ce{Cl-}]_0 = 2 \times 0{,}10 = 0{,}20\)</span> M ; <span class="math inline">\(s' \approx K_s / 0{,}20 \approx 8{,}85 \times 10^{-10}\)</span> mol/L ; facteur de réduction <span class="math inline">\(\approx 15\,000\)</span> par rapport à <span class="math inline">\(s = 1{,}33 \times 10^{-5}\)</span> mol/L dans l’eau pure.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><span class="math inline">\([\ce{Cl-}]_{eq} \approx 0{,}050\)</span> M (excès) ; <span class="math inline">\([\ce{Ag+}]_{eq} = K_s / 0{,}050 = 3{,}54 \times 10^{-9}\)</span> mol/L.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>La solubilité augmente avec <span class="math inline">\(T\)</span> : dissolution endothermique, Le Châtelier déplace l’équilibre dans le sens direct quand on apporte de l’énergie.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p><span class="math inline">\(\ce{Fe(OH)3 &lt;=&gt; Fe^{3+} + 3 OH-}\)</span> ; <span class="math inline">\(K_s = s(3s)^3 = 27s^4\)</span> ; <span class="math inline">\(s = (K_s/27)^{1/4} \approx 1{,}77 \times 10^{-10}\)</span> mol/L ; <span class="math inline">\([\ce{OH-}] = 3s \approx 5{,}3 \times 10^{-10}\)</span> mol/L.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Concentrations après mélange : <span class="math inline">\([\ce{Ag+}]_0 = 5{,}0 \times 10^{-4}\)</span> M, <span class="math inline">\([\ce{PO4^{3-}}]_0 = 5{,}0 \times 10^{-5}\)</span> M ; <span class="math inline">\(Q = (5{,}0 \times 10^{-4})^3 \times 5{,}0 \times 10^{-5}
+= 6{,}25 \times 10^{-15} &gt; K_s\)</span> : précipité formé.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p><span class="math inline">\(s_\text{eau pure} = (K_s/4)^{1/3} \approx 1{,}35 \times 10^{-3}\)</span> mol/L ; avec <span class="math inline">\([\ce{I-}]_0 = 0{,}10\)</span> M : <span class="math inline">\(s' \approx K_s / (0{,}10)^2 = 9{,}8 \times 10^{-7}\)</span> mol/L ; facteur de réduction <span class="math inline">\(\approx 1\,380\)</span>.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p><span class="math inline">\(\ln(K_s(323)/K_s(298)) \approx 1{,}91\)</span> ; <span class="math inline">\(K_s(323) \approx 9{,}8 \times 10^{-9} \times e^{1{,}91}
+\approx 6{,}6 \times 10^{-8}\)</span>. La solubilité augmente avec <span class="math inline">\(T\)</span>, cohérent avec une dissolution endothermique.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>Seuil <span class="math inline">\(\ce{PbSO4}\)</span> : <span class="math inline">\([\ce{SO4^{2-}}]_c = K_s/[\ce{Pb^{2+}}]
+= 5{,}06 \times 10^{-6}\)</span> M. Seuil <span class="math inline">\(\ce{CaSO4}\)</span> : <span class="math inline">\([\ce{SO4^{2-}}]_c = K_s/[\ce{Ca^{2+}}]
+= 9{,}86 \times 10^{-3}\)</span> M. Plage utilisable : entre <span class="math inline">\(5 \times 10^{-6}\)</span> M et <span class="math inline">\(9{,}86 \times 10^{-3}\)</span> M. <span class="math inline">\([\ce{Pb^{2+}}]_\text{résiduel} = K_s(\ce{PbSO4}) / 9{,}86 \times 10^{-3}
+\approx 2{,}57 \times 10^{-6}\)</span> M — soit une élimination à plus de 99,9 %.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>Pistes de réflexion — pas de réponse unique attendue. (1) En solution concentrée, les activités ioniques s’écartent des concentrations molaires : des coefficients d’activité <span class="math inline">\(\gamma &lt; 1\)</span> corrigent <span class="math inline">\(K_s\)</span> — c’est la théorie de Debye-Hückel. (2) La formation de complexes augmente la solubilité apparente au-delà de ce que <span class="math inline">\(K_s\)</span> prédit seul — il faut combiner <span class="math inline">\(K_s\)</span> et les constantes de formation des complexes. (3) L’expression est rigoureuse uniquement en solution infiniment diluée, où les activités se confondent avec les concentrations.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/projet-balmer\.ch");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapitres/equilibre-chimique-1.html" class="pagination-link" aria-label="Équilibre chimique 1">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Équilibre chimique 1</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapitres/acides-bases-ph.html" class="pagination-link" aria-label="Acides, bases et pH">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Acides, bases et pH</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
