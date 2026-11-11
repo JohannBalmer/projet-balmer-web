@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 680">
+  <defs>
+    <style>
+      .titre { font-family: Georgia, serif; font-size: 26px; fill: #1a1a1a; text-anchor: middle; }
+      .label { font-family: Georgia, serif; font-size: 20px; fill: #1a1a1a; text-anchor: middle; }
+      .fleche { font-family: Georgia, serif; font-size: 30px; font-weight: bold; fill: #1a1a1a; text-anchor: middle; }
+      .case { fill: #e5e5e5; stroke: #555555; stroke-width: 2; }
+      .ok { font-family: Georgia, serif; font-size: 44px; font-weight: bold; fill: #1a1a1a; text-anchor: middle; }
+      .err { font-family: Georgia, serif; font-size: 44px; font-weight: bold; fill: #1a1a1a; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <!-- Panneau 1 : correct -->
+  <text class="titre" x="254" y="100">Azote</text>
+
+  <rect class="case" x="50" y="150" width="72" height="72"/>
+  <rect class="case" x="146" y="150" width="72" height="72"/>
+  <rect class="case" x="242" y="150" width="72" height="72"/>
+  <rect class="case" x="314" y="150" width="72" height="72"/>
+  <rect class="case" x="386" y="150" width="72" height="72"/>
+
+  <text class="fleche" x="86" y="196">&#8593;&#8595;</text>
+  <text class="fleche" x="182" y="196">&#8593;&#8595;</text>
+  <text class="fleche" x="278" y="196">&#8593;</text>
+  <text class="fleche" x="350" y="196">&#8593;</text>
+  <text class="fleche" x="422" y="196">&#8593;</text>
+
+  <text class="label" x="86" y="250">1s</text>
+  <text class="label" x="182" y="250">2s</text>
+  <text class="label" x="350" y="250">2p</text>
+
+  <text class="ok" x="520" y="200">&#10003;</text>
+
+  <!-- Panneau 2 : incorrect -->
+  <text class="titre" x="254" y="430">Azote</text>
+
+  <rect class="case" x="50" y="480" width="72" height="72"/>
+  <rect class="case" x="146" y="480" width="72" height="72"/>
+  <rect class="case" x="242" y="480" width="72" height="72"/>
+  <rect class="case" x="314" y="480" width="72" height="72"/>
+  <rect class="case" x="386" y="480" width="72" height="72"/>
+
+  <text class="fleche" x="86" y="526">&#8593;&#8595;</text>
+  <text class="fleche" x="182" y="526">&#8593;&#8595;</text>
+  <text class="fleche" x="278" y="526">&#8593;&#8595;</text>
+  <text class="fleche" x="350" y="526">&#8593;</text>
+
+  <text class="label" x="86" y="580">1s</text>
+  <text class="label" x="182" y="580">2s</text>
+  <text class="label" x="350" y="580">2p</text>
+
+  <text class="err" x="520" y="530">&#10007;</text>
+</svg>
