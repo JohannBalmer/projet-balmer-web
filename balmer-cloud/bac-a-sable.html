@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Balmer-Cloud — bac à sable</title>
+<style>body{font-family:Georgia,serif;max-width:34rem;margin:3rem auto;padding:0 1rem;line-height:1.5}
+a.b,button{display:inline-block;margin:.35rem .35rem .35rem 0;padding:.6rem 1rem;border:none;border-radius:8px;background:#1D9E75;color:#fff;font-size:15px;cursor:pointer;text-decoration:none;font-family:inherit}
+.s{background:#efede8;color:#1a1918}.n{color:#6b6963;font-size:13px}</style></head><body>
+<h1>Bac à sable Balmer-Cloud</h1>
+<p>Classe fictive <b>GYCHA_2627_1_FICTIVE_CHIMIE</b>, avec ses élèves et ses résultats fictifs. Choisis le rôle que tu veux essayer.</p>
+<h2 style="font-size:1.1rem;margin-top:1.6rem">Enseignant·e</h2>
+<p>Tu arrives sur le suivi de la classe. Les 20 élèves fictifs portent des noms (que tu peux modifier avec « Entrer les correspondances… ») et les notes des tests 1A, 1B et 1C sont déjà saisies.</p>
+<p><button onclick="entrerProf('suivi')">Entrer sur le suivi</button> <button onclick="entrerProf('apres')">Entrer sur « Après le test »</button></p>
+<h2 style="font-size:1.1rem;margin-top:1.6rem">Élève</h2>
+<p>Ce navigateur devient l'élève <b>fict-moi</b> : il reçoit les notes annoncées avant les tests 1A, 1B et 1C, comme si tu les avais données en t'entraînant. Ouvre ensuite « Mon parcours » → « Après le test ».</p>
+<p><button onclick="preparer('1B')">Entrer comme élève fict-moi</button></p>
+<p class="n">Cette page ne modifie que ce navigateur (stockage local) ; aucune donnée n'est envoyée. « Terminer l'essai » retire seulement les données fictives posées par cette page (élève fict-moi, notes, noms des élèves fictifs) ; tes vraies données ne sont pas touchées.</p>
+<p style="margin-top:2rem"><button class="s" onclick="effacer()">Terminer l'essai (effacer les données fictives de ce navigateur)</button></p>
+<p id="m" class="n"></p>
+<script>
+var CLASSE="GYCHA_2627_1_FICTIVE_CHIMIE", PSEUDO='fict-moi', SLUG="atomes-quantite-de-matiere", CONF={"1A": [{"t": "2026-10-29T19:24:54.000Z", "n": 24, "note": 4, "maitrisees": 2, "total": 5, "scoreMoyen": 0.69}, {"t": "2026-10-30T20:34:07.000Z", "n": 48, "note": 5, "maitrisees": 5, "total": 5, "scoreMoyen": 1.0}, {"t": "2026-10-31T16:09:53.000Z", "n": 72, "note": 5, "maitrisees": 5, "total": 5, "scoreMoyen": 1.0}], "1B": [{"t": "2026-11-02T17:40:48.000Z", "n": 23, "note": 5, "maitrisees": 1, "total": 6, "scoreMoyen": 0.642}, {"t": "2026-11-05T18:51:08.000Z", "n": 50, "note": 5, "maitrisees": 5, "total": 6, "scoreMoyen": 1.0}, {"t": "2026-11-12T18:53:40.000Z", "n": 60, "note": 6, "maitrisees": 6, "total": 6, "scoreMoyen": 0.9}], "1C": [{"t": "2026-11-08T20:14:12.000Z", "n": 20, "note": 4, "maitrisees": 3, "total": 4, "scoreMoyen": 0.8}, {"t": "2026-11-11T17:10:08.000Z", "n": 48, "note": 4, "maitrisees": 4, "total": 4, "scoreMoyen": 1.0}, {"t": "2026-11-14T19:34:16.000Z", "n": 73, "note": 5, "maitrisees": 4, "total": 4, "scoreMoyen": 1.0}], "1D": [{"t": "2026-11-17T17:06:45.000Z", "n": 20, "note": 3, "maitrisees": 2, "total": 5, "scoreMoyen": 0.65}]}, NOTES={"1A": {"fict-01": 3.5, "fict-02": 6.0, "fict-03": 4.0, "fict-04": 3.5, "fict-05": 3.0, "fict-06": 5.0, "fict-07": 4.5, "fict-08": 3.5, "fict-09": 3.5, "fict-10": 3.0, "fict-11": 2.0, "fict-12": 4.0, "fict-13": 5.0, "fict-14": 2.0, "fict-15": 5.5, "fict-16": 5.5, "fict-17": 5.0, "fict-18": 5.5, "fict-19": 5.0, "fict-20": 5.5}, "1B": {"fict-01": 4.0, "fict-02": 5.0, "fict-03": 4.0, "fict-04": 3.5, "fict-05": 3.5, "fict-06": 4.5, "fict-07": 5.5, "fict-08": 4.0, "fict-09": 4.0, "fict-10": 2.5, "fict-11": 2.5, "fict-12": 3.5, "fict-13": 5.5, "fict-14": 2.5, "fict-15": 5.5, "fict-16": 5.5, "fict-17": 5.5, "fict-18": 5.5, "fict-19": 5.5, "fict-20": 5.0}, "1C": {"fict-01": 3.5, "fict-02": 5.5, "fict-03": 3.5, "fict-04": 4.5, "fict-05": 4.0, "fict-06": 5.5, "fict-07": 5.5, "fict-08": 3.5, "fict-09": 4.5, "fict-10": 2.5, "fict-11": 3.5, "fict-12": 3.0, "fict-13": 5.0, "fict-14": 3.0, "fict-15": 5.5, "fict-16": 5.5, "fict-17": 5.0, "fict-18": 5.5, "fict-19": 5.0, "fict-20": 5.5}};
+function preparer(sp){
+  try{
+    localStorage.setItem('bc-pseudo-classement',PSEUDO);
+    localStorage.setItem('bc-classe-globale',CLASSE);
+    localStorage.setItem('bc-classe-verrouillee','1');
+    Object.keys(CONF).forEach(function(c){localStorage.setItem('bc-eleve-qbank-'+SLUG+'-'+c+'-confiances',JSON.stringify(CONF[c]));});
+  }catch(e){document.getElementById('m').textContent='Stockage local indisponible (navigation privée stricte ?).';return;}
+  location.href='balmer-cloud-eleve.html?chapitre='+SLUG+'&sous-partie='+sp+'&classe='+encodeURIComponent(CLASSE)+'&pseudo='+PSEUDO;
+}
+function cleNotes(sp){return 'balmer_notesp_v1|'+CLASSE+'|qbank-'+SLUG+'|'+sp+'|apres';}
+var NOMS={"fict-01":"Aebischer Léa","fict-02":"Baumann Jean-Michel","fict-03":"Chavaz Inès","fict-04":"Dubois Noah","fict-05":"Etter Camille","fict-06":"Favre Lucas","fict-07":"Gomes Sofia","fict-08":"Henchoz Théo","fict-09":"Imhof Clara","fict-10":"Jaquier Hugo","fict-11":"Kaufmann Elisa","fict-12":"Lambert Maxime","fict-13":"Mottier Jade","fict-14":"Nicolet Arthur","fict-15":"Oberson Lina","fict-16":"Pittet Samuel","fict-17":"Rochat Manon","fict-18":"Savary Elias","fict-19":"Tinguely Zoé","fict-20":"Udry Nathan"};
+function cleNoms(){return 'balmer_noms_v1|'+CLASSE;}
+function entrerProf(vue){
+  try{Object.keys(NOTES).forEach(function(sp){localStorage.setItem(cleNotes(sp),JSON.stringify(NOTES[sp]));});
+    if(!localStorage.getItem(cleNoms()))localStorage.setItem(cleNoms(),JSON.stringify(NOMS));}
+  catch(e){document.getElementById('m').textContent='Stockage local indisponible (navigation privée stricte ?).';return;}
+  location.href='/view.php?t=371758ce6b96d0da5c5123c36584efd7&vue='+(vue==='suivi'?'detail':'apres')+'&banque=qbank-'+SLUG+'&sous_partie=1B';
+}
+function effacer(){
+  try{
+    Object.keys(localStorage).filter(function(k){return k.indexOf('bc-eleve-qbank-'+SLUG)===0&&(k.slice(-11)==='-confiances'||k.slice(-11)==='-notes-test');}).forEach(function(k){localStorage.removeItem(k);});
+    Object.keys(NOTES).forEach(function(sp){localStorage.removeItem(cleNotes(sp));});
+    localStorage.removeItem(cleNoms());
+    localStorage.removeItem('bc-pseudo-classement');localStorage.removeItem('bc-classe-globale');localStorage.removeItem('bc-classe-verrouillee');
+  }catch(e){}
+  document.getElementById('m').textContent='Données du bac à sable retirées de ce navigateur.';
+}
+</script></body></html>
